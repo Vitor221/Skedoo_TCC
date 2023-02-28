@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #87CAC4;
+  width: 100vw;
+  height: 100vh;
+  font-size: 16px;
+}
+
+body::before {
+  content: "";
+  background-image: url('../img/img_inicio/background_inicio_1.svg');
+  background-size: 107% auto;
+  background-position: 50% 26%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+/* Parte Nav - INICIO */
+
+nav {
+  position: fixed;
+  display: flex;
+  font-size: 1.1em;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5em;
+  background-color: rgba(255,255,255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.menu_list {
+  margin-bottom: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.menu_list li {
+  margin-right: 2rem;
+}
+
+.menu_list li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  transition: color .2s ease-in-out;
+}
+
+.menu_list li a:hover {
+  color: #8396DC;
+}
+
+#baixe_app {
+  padding: 1rem;
+  background-color: #8396DC;
+  color: #fff;
+  border-radius: 5rem;
+}
+
+#baixe_app a:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+#baixe_app-list {
+  transition: transform .2s ease-in-out;
+}
+
+#baixe_app-list:hover {
+  transform: scale(1.1);
+}
+
+#logo_nav {
+  margin-left: 10%;
+  width: 60%;
+}
+
+/* Parte Nav - FIM */
