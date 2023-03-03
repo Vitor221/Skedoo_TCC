@@ -25,13 +25,13 @@ body::before {
 /* Parte Nav - INICIO */
 
 nav {
-  position: fixed;
+  position: relative;
   display: flex;
   font-size: 1.1em;
   justify-content: space-between;
   width: 100%;
   padding: 0.5em;
-  background-color: rgba(255,255,255, 0.2);
+  background-color: rgba(255,255,255, 0.3);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -83,3 +83,61 @@ nav {
 }
 
 /* Parte Nav - FIM */
+
+/* Parte Main */
+
+main {
+  position: relative;
+  width: 100%;
+  margin-top: 10em;
+}
+
+.intro_skedoo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.img_intro{
+  width: 26%;
+  margin-left: 13em;
+}
+
+section img {
+  width: 120%;
+  height: 100%;
+  align-items: center;
+}
+
+.text_intro {
+  margin-right: 16em;
+  width: 31%;
+}
+
+.text_intro p {
+  background-color: #fff;
+  padding: 1.2em;
+  margin-top: 2.6em;
+  font-size: 1.5em;
+  border-radius: 1em;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.text_intro h2{
+  margin: auto;
+  text-align: center;
+  background-color: #8396DC;
+  width: 60%;
+  padding: 1.5rem;
+  color: #fff;
+  font-size: 2em;
+  font-weight: 700;
+  border-radius: 5rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  transition: transform .3s ease-in-out;
+}
+
+.text_intro h2:hover{
+  transform: scale(1.1);
+}

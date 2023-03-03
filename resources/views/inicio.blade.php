@@ -20,5 +20,18 @@
       <li><a href="">Login <i class="uil uil-user"></i></a></li>
     </ul>
   </nav>
+  <main>
+    <section class="intro_skedoo">
+      <div class="img_intro">
+        <img src="{{ asset('img/img_inicio/skedoo_celular.png') }}" alt="logo skedoo">
+      </div>
+      <div class="text_intro">
+        <h2>O que é Skedoo?</h2>
+        <p>É um aplicativo desktop e mobile desenvolvido para facilitar a comunicação e a organização das instituições. Conectando-as com todos os responsaveis por alunos matriculados naquela instituição</p>
+      </div>
+    </section>
+
+
+  </main>
 </body>
 </html>
