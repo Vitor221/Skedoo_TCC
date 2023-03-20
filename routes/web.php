@@ -17,5 +17,8 @@ use App\Http\Controllers\ControllerSkedoo;
 Route::get('/', function () {
     return view('home');
 })->name('skedoo_pag');
+Route::get('/contato', function() {
+    return view('contato');
+})->name('contato_pag');
 
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');

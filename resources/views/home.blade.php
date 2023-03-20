@@ -28,7 +28,7 @@
                 
             </div>
             
-          <a href="">Entre em contato <i class="uil uil-arrow-right"></i></a>
+          <a href="{{ route('contato_pag') }}">Entre em contato <i class="uil uil-arrow-right"></i></a>
         </section>
         <div class="img_balls">
             <img class="img_balls1" src="{{ asset('img/img_home/professora.jpg') }}" alt="">

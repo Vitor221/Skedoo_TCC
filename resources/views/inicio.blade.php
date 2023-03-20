@@ -15,11 +15,12 @@
   <nav>
     <a href="{{ route('skedoo_pag')}}"><img id="logo_nav" src="{{ asset('img/Skedoo.png')}}" alt="logo da Skedoo"></a>
     <ul class="menu_list">
-      <li><a href="#">Contato</a></li>
+      <li><a href="{{ route('contato_pag') }}">Contato</a></li>
       <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
       <li><a href="">Login <i class="uil uil-user"></i></a></li>
     </ul>
   </nav>
+  
   <main>
     <section class="intro_skedoo">
       <div class="img_intro">
@@ -88,20 +89,20 @@
         </div>
       </div>
     </section>
-
-    <footer>
-      <div class="titulo_foot">
-        <h3>Copyright & 2023 Skedoo - Todos os direitos reservados</h3>
-      </div>
-      <div class="social_img">
-        <ul>
-          <li><a href=""><img src="{{ asset('img/logo/facebook_logo-white.png')}}" alt=""></a></li>
-          <li><a href=""><img src="{{ asset('img/logo/instagram_logo-white.png') }}" alt=""></a></li>
-          <li><a href=""><img src="{{ asset('img/logo/twitter_logo-white.png') }}" alt=""></a></li>
-          <li><a href=""><img src="{{ asset('img/logo/youtube_logo-white.png') }}" alt=""></a></li>
-        </ul>
-      </div>
-    </footer>
   </main>
+  
+  <footer>
+    <div class="titulo_foot">
+      <h3>Copyright & 2023 Skedoo - Todos os direitos reservados</h3>
+    </div>
+    <div class="social_img">
+      <ul>
+        <li><a href=""><img src="{{ asset('img/logo/facebook_logo-white.png')}}" alt=""></a></li>
+        <li><a href=""><img src="{{ asset('img/logo/instagram_logo-white.png') }}" alt=""></a></li>
+        <li><a href=""><img src="{{ asset('img/logo/twitter_logo-white.png') }}" alt=""></a></li>
+        <li><a href=""><img src="{{ asset('img/logo/youtube_logo-white.png') }}" alt=""></a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>
