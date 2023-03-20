@@ -17,7 +17,7 @@
     <ul class="menu_list">
       <li><a href="{{ route('contato_pag') }}">Contato</a></li>
       <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
-      <li><a href="">Login <i class="uil uil-user"></i></a></li>
+      <li><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
     </ul>
   </nav>
   
