@@ -105,7 +105,7 @@
 
   .login-block h2 {
     font-size: 1.8em;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
     color: #fff;
     font-weight: 700;
   }
@@ -118,6 +118,18 @@
     color: #fff;
     font-weight: 600;
   }
+  
+  .login-text input {
+    border: 1px solid #e2e2e2;
+    border-radius: 1em;
+    padding: 0.2rem 0.5rem;
+    outline: none;
+    transition: transform .2s ease-in-out;
+  }
+
+  .login-text input:focus {
+    transform: scale(1.05);
+  }
 
   .login-passw {
     margin-bottom: 1rem;
@@ -126,6 +138,18 @@
   .login-passw {
     color: #fff;
     font-weight: 600;
+  }
+
+  .login-passw input {
+    border: 1px solid #e2e2e2;
+    border-radius: 1em;
+    padding: 0.2rem 0.5rem;
+    outline: none;
+    transition: transform .2s ease-in-out;
+  }
+
+  .login-passw input:focus {
+    transform: scale(1.05);
   }
   
   .btn-submit {
@@ -172,6 +196,18 @@
 
   .login-check {
     color: #fff;
+  }
+
+  input[type=checkbox]::before {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+
+  }
+
+  .login-block span a {
+    color: white;
   }
 
   footer {
