@@ -13,6 +13,27 @@
     <title>Instituição - Skedoo</title>
 </head>
 <body>
-    
+    <nav>
+        <img src="{{ asset('../img/Skedoo.png') }}" alt="">
+        <h3>Bem-vindo, ...</h3>
+    </nav>
+
+    <div class="menu-bar">
+        <h2>Menu</h2>
+        <div class="search">
+            <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button type="submit">Pesquisar</button>
+        </div>
+    </div>
+
+    <div class="group-date-inst">
+        <div class="instituicao">
+            <h2>Instituição - Nome</h2>
+        </div>
+
+        <div class="date-now">
+            <h3>12/06/2023</h3>
+        </div>
+    </div>
 </body>
 </html>

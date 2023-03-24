@@ -13,6 +13,7 @@
     <title>Login - Skedoo</title>
 </head>
 <body>
+
     <nav>
         <a href="{{ route('skedoo_pag') }}"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
         <ul class="menu_list">
@@ -21,31 +22,34 @@
         </ul>
     </nav>
 
-    <div class="login-block">
-        <h2>Área de Acesso</h2>
-        <div class="login-text">
-            <label for="">Login:</label>
-            <br>
-            <input type="text">
-        </div>
-        <div class="login-passw">
-            <label for="">Senha:</label>
-            <br>
-            <input type="password">
-        </div>
-        <div class="login-check">
-            <input type="checkbox">&nbsp;&nbspMantenha-me conectado
-        </div>
-        <div class="btn-submit">
-            <div class="btn-canc">
-                <button>Cancelar</button>
+    <form method="post" action="">
+        @csrf
+        <div class="login-block">
+            <h2>Área de Acesso</h2>
+            <div class="login-text">
+                <label for="">Login:</label>
+                <br>
+                <input type="text" name="user" id="user">
             </div>
-            <div class="btn-entr">
-                <button>Entrar</button>
+            <div class="login-passw">
+                <label for="">Senha:</label>
+                <br>
+                <input type="password" name="password" id="password">
             </div>
+            <div class="login-check">
+                <input type="checkbox">&nbsp;&nbspMantenha-me conectado
+            </div>
+            <div class="btn-submit">
+                <div class="btn-canc">
+                    <button type="submit">Cancelar</button>
+                </div>
+                <div class="btn-entr">
+                    <button type="submit">Entrar</button>
+                </div>
+            </div>
+            <span><a href="">Esqueceu sua senha?</a></span>
         </div>
-        <span><a href="">Esqueceu sua senha?</a></span>
-    </div>
+    </form>
 
     <footer>
         <div class="titulo_foot">

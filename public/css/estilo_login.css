@@ -6,13 +6,10 @@
   }
   
   body {
+    position: relative;
     background-color: #fff;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     height: 100vh;
-    align-items: center;
     font-size: 16px;
   }
   
@@ -91,12 +88,18 @@
     width: 55%;
   }
 
+  form {
+    display: flex;
+    justify-content: center;
+    height: 73%;
+    align-items: center;
+  }
+
   .login-block {
     position: relative;
     display: flex;
+    width: 22%;
     flex-direction: column;
-    margin: auto;
-    align-items: center;
     background-color: #87CAC4;
     padding: 4em;
     border-radius: 1em;
@@ -108,6 +111,11 @@
     margin-bottom: 4rem;
     color: #fff;
     font-weight: 700;
+  }
+
+  .login-block span {
+    display: flex;
+    justify-content: center;
   }
 
   .login-text {
@@ -156,6 +164,7 @@
     display: flex;
     margin-top: 2.5rem;
     margin-bottom: 2rem;
+    justify-content: center;
   }
 
   .btn-canc {
@@ -203,7 +212,6 @@
     display: block;
     width: 15px;
     height: 15px;
-
   }
 
   .login-block span a {

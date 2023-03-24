@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerSkedoo;
+use App\Http\Controllers\InstituicaoController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +24,11 @@ Route::get('/contato', function() {
     return view('contato');
 })->name('contato_pag');
 
-Route::get('/login', function() {
-    return view('login');
-})->name('login_pag');
+Route::view('/login', [LoginController::class, 'login'])->name('login_pag');
+Route::post('/login', [LoginController::class, 'autenticar'])->name('autenticar');
 
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
+
+Route::group(['prefix' => 'login'], function() {
+    Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
+});
