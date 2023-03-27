@@ -9,32 +9,38 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <!-- FontAwesome - Ícones -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/estilo_login.css') }}">
+    <link rel="stylesheet" href="{{ asset('../css/estilo_login.css') }}">
     <title>Login - Skedoo</title>
 </head>
 <body>
 
     <nav>
-        <a href="{{ route('skedoo_pag') }}"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
+        <a href="{{ route('skedoo_pag') }}"><img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="logo skedoo"></a>
         <ul class="menu_list">
             <li><a href="{{ route('inicio_pag') }}">Início</a></li>
             <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
         </ul>
     </nav>
 
-    <form method="post" action="">
+    @if(session()->has('error_login'))
+        {{ session()->get('error_login') }}
+    @endif
+
+    <form method="post" action="{{ route('login_pag') }}">
         @csrf
         <div class="login-block">
             <h2>Área de Acesso</h2>
             <div class="login-text">
+                {{ $errors->first('user') }}
                 <label for="">Login:</label>
                 <br>
-                <input type="text" name="user" id="user">
+                <input type="text" name="nm_login" id="nm_login">
             </div>
             <div class="login-passw">
+                {{ $errors->first('password') }}
                 <label for="">Senha:</label>
                 <br>
-                <input type="password" name="password" id="password">
+                <input type="password" name="cd_senha" id="cd_senha">
             </div>
             <div class="login-check">
                 <input type="checkbox">&nbsp;&nbspMantenha-me conectado
@@ -57,10 +63,10 @@
         </div>
         <div class="social_img">
           <ul>
-            <li><a href=""><img src="{{ asset('img/logo/facebook_logo.png')}}" alt=""></a></li>
-            <li><a href=""><img src="{{ asset('img/logo/instagram_logo.png') }}" alt=""></a></li>
-            <li><a href=""><img src="{{ asset('img/logo/twitter_logo.png') }}" alt=""></a></li>
-            <li><a href=""><img src="{{ asset('img/logo/youtube_logo.png') }}" alt=""></a></li>
+            <li><a href=""><img src="{{ asset('../img/logo/facebook_logo.png')}}" alt=""></a></li>
+            <li><a href=""><img src="{{ asset('../img/logo/instagram_logo.png') }}" alt=""></a></li>
+            <li><a href=""><img src="{{ asset('../img/logo/twitter_logo.png') }}" alt=""></a></li>
+            <li><a href=""><img src="{{ asset('../img/logo/youtube_logo.png') }}" alt=""></a></li>
           </ul>
         </div>
       </footer>

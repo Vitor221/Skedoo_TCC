@@ -10,4 +10,5 @@ class Login extends Model
     use HasFactory;
 
     protected $table = 'tb_login';
+    protected $primaryKey = 'cd_login';
 }

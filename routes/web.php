@@ -20,12 +20,10 @@ Route::get('/', function () {
     return view('home');
 })->name('skedoo_pag');
 
-Route::get('/contato', function() {
-    return view('contato');
-})->name('contato_pag');
+Route::view('/contato', 'contato')->name('contato_pag');
 
-Route::view('/login', [LoginController::class, 'login'])->name('login_pag');
-Route::post('/login', [LoginController::class, 'autenticar'])->name('autenticar');
+Route::view('/login', 'login.index')->name('login_pag');
+Route::post('/login', [LoginController::class, 'store'])->name('login_pag');
 
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 

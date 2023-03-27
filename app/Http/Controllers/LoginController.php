@@ -2,44 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Dotenv\Exception\ValidationException;
-use Error;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Login;
 
 class LoginController extends Controller
 {
+    public function store(Request $request) {
 
-    public function autenticar(Request $request){
-        $this->autenticarPerfil($request);
-        $this->validarPerfil($request);
+        $validated = $request->validate([
+            'nm_login'      =>  'required',
+            'cd_senha'  =>  'required',
+        ]);
 
-        session()->regenerate();
-        session(['key' => env('TOKEN_ADMIN')]);
-        return redirect()->route('instituicao');
+        $logget = Auth::attempt($validated);
 
-    }
-
-    public function autenticarPerfil(Request $request){
-        try {
-            config()->set('database.connection.mysql.username', \strtoupper($request->user));
-            config()->set('database.connection.mysql.password', $request->password);
-            DB::connection('mysql');
-            dd($request);
-        } catch (\Exception $e){
-            $error = 'Erro no sistema';
-            dd($error);
+        if($logget){
+            return redirect()->intended('login_pags.instituicao');
         }
-    }
 
-
-    public function validarPerfil(Request $request){
-        config()->set('database.connections.mysql.username', env('DB_USERNAME'));
-        config()->set('database.connections.mysql.password', env('DB_PASSWORD'));
-
-        $perfil = DB::connection('mysql')
-            ->table('tb_login')
-            ->select('cd_login', 'nm_login', 'cd_senha', 'cd_responsavel')
-            ->get();
+        return back()->with('error_login', 'Ocorreu um erro ao fazer o login, tente novamente mais tarde');
     }
 }
