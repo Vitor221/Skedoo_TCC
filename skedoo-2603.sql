@@ -1,5 +1,6 @@
-create database db_skedoo;
+create database db_skedoo character set = 'utf8' collate = 'utf8_general_ci';
 use db_skedoo;
+
 
 create table if not exists tb_uf(
 sg_uf CHAR(2) not null,
@@ -52,6 +53,7 @@ constraint pk_cadastro
 	primary key(cd_cadastro));
 select * from tb_cadastro;
 
+
 create table if not exists tb_forma_pagamento(
 cd_forma_pagamento int not null,
 nm_forma_pagamento varchar(15),
@@ -82,7 +84,7 @@ constraint fk_status_pagamento_pagamento
 );
 
 create table if not exists tb_responsavel(
-cd_responsavel int not null,
+cd_responsavel int auto_increment,
 nm_responsavel varchar(80),
 cd_cpf char(11),
 cd_endereco int,
@@ -98,10 +100,11 @@ constraint fk_responsavel_cadastro
 );
 
 create table if not exists tb_login(
-cd_login INT not null,
+cd_login INT auto_increment,
 nm_login VARCHAR(45),
 cd_senha VARCHAR(20),
 cd_responsavel int,
+cd_acesso int,
 constraint pk_login
 	primary key(cd_login),
 	constraint fk_login_responsavel
@@ -109,12 +112,15 @@ constraint pk_login
 			references tb_responsavel(cd_responsavel));
    select * from tb_login; 
    
+    /* alter table tb_login já foi adicionado na criação da tabela
+   add cd_acesso int;*/
+   
 
 
 
 
 create table if not exists tb_turma(
-cd_turma INT not null,
+cd_turma INT auto_increment,
 nm_turma VARCHAR(15),
 ds_periodo VARCHAR(30),
 constraint pk_turma
@@ -122,7 +128,7 @@ constraint pk_turma
 );
 
 create table if not exists tb_instituicao(
-cd_instituicao int not null,
+cd_instituicao int auto_increment,
 nm_instituicao varchar(80),
 cd_cnpj char(14),
 cd_cep char(8),
@@ -146,7 +152,7 @@ constraint fk_instituicao_pagamento
 );
 
 create table if not exists tb_aluno (
-cd_aluno int not null,
+cd_aluno int auto_increment,
 nm_aluno varchar(80),
 dt_nascimento date,
 cd_certidao varchar(32),
@@ -170,7 +176,7 @@ constraint fk_aluno_responasvel
 );
 
 create table if not exists tb_profissional(
-cd_profissional int not null,
+cd_profissional int auto_increment,
 nm_profissional varchar(80),
 cd_cpf char(11),
 nm_funcao varchar(45),
@@ -384,6 +390,12 @@ Insert Into tb_uf Values
 (49,	 "Alice Caroline da Rocha", "60401320863"),
 (50,	"Raimunda Isabelle Esther Dias", "70983823880");
 
+ insert into tb_responsavel (cd_responsavel, nm_responsavel, cd_cpf) values
+(51, "admin", "99999999"),
+(52, "admin", "99999998"),
+(53, "admin", "99999997");
+
+
  select * from tb_responsavel;
 
 update	tb_responsavel	set	cd_endereco	=	1005	where	cd_responsavel	=	1	;
@@ -491,77 +503,87 @@ insert into tb_pagamento (cd_pagamento, vl_fatura, dt_pagamento, cd_forma_pagame
 (111161, 1100.52, '2022-03-07', 2, 1, 51),		
 (111162, 1100.52, '2022-03-07', 1, 1, 52);
 
-select * from tb_responsavel;
-select * from tb_pagamento;
-
-
-
-select * from tb_pagamento;
-
-
-
-
-
-
-select * from tb_pagamento;
-	
-select * from tb_pagamento;
-
-
-
 
  
-insert into tb_login ( cd_login, nm_login, cd_senha, cd_responsavel) values
-(200001, "lorenzo_assis", "w1TWu00PAe ", 1),		
-(200002,"nair.giovana.fogaca", "y0q2jLPtna ", 2),		
-(200003,"rafael_figueiredo", "8emoE95MsF ", 3),		
-(200004,"aurora_patricia_rezende", "hxxQjBLEgl ", 4),		
-(200005, "rita-almeida90","FKH90LsAUY ", 5),		
-(200006, "paulo.luan.silva",		 "OY2RemGcxt ", 6),		
-(200007, "sabrina-cavalcanti88", "wylA1oTnWL ", 7),	
-(200008, "murilo.tomas.barros", "kot6QqlJql ", 8),		
-(200009, "antonia_goncalves", "2GQiLMQdyK ", 9),		
-(200010, "geraldohenryjesus", "dJpgOY4Yl8 ", 10),		
-(200011, "felipejosedapaz", "wi9DOyLt77 ", 11),		
-(200012, "adriana-lima84", "IlxJai02xT", 12),		
-(200013, "roberto.daniel.vieira", "sr7Em9RHg0", 13),		
-(200014, "luna_viana", "3j6SinGohz", 14),		
-(200015, "clarice_ribeiro", "5C9L3509R9", 15),		
-(200016, "marcela_depaula", "eG2wENmtO9", 16),		
-(200017, "marcianataliasilveira", "M4JYcmWre5", 17),		
-(200018, "victor-daconceicao90 ", "y6WEU0IsQ7", 18),		
-(200019, "allana_santos ", "b3xDRX8YFi", 19),		
-(200020, "mariana.joana.cardoso ", "MIAiadXjyU", 20),		
-(200021, "thiagovictornascimento ", "Q3Hjuy5bfF", 21),		
-(200022, "heloisa_jennifer_dossantos ", "5KIWGDrUqF", 22),		
-(200023, "leticiaalinepereira ", "XO5Tydjrp3", 23),		
-(200024, "sandra.marcia.cortereal ", "rK31MlHxP4", 24),		
-(200025, "caroline-damota98 ", "YLRiFFuYCY", 25),		
-(200026, "guilherme-alves85 ", "WRT3TmEsCf", 26),		
-(200027, "vanessa-fernandes86 ", "6FyRCiGdRC", 27),		
-(200028, "rodrigo-baptista73 ", "CCttXWAckW", 28),		
-(200029, "aurora_novaes ", "0c8C5tCYy1", 29),		
-(200030, "lara_castro ", "3ilHoTC7En", 30),		
-(200031, "cauafabiogoncalves", "nIt9HDSt3f", 31),		
-(200032, "cristiane-martins99 ", "f8HS4iT7xu", 32),		
-(200033, "daiane_louise_galvao ", "mp9kZsDbMc", 33),		
-(200034, "kamilly.flavia.fernandes ", "fDe6CfdsZq", 34),		
-(200035, "filipe_dasneves ", "02TXhrGLfP", 35),		
-(200036, "carla.vitoria.cardoso ", "N9gg3QiYfl", 36),		
-(200037, "enrico-ribeiro79 ", "GLZD0rBOCR", 37),		
-(200038, "tomasthomassantos ", "w6YZ0XoALf", 38),		
-(200039, "esther_ferreira ", "NFJ7FRqL6D", 39),		
-(200040, "elzacamilavieira ", "m1ay2AKcdw", 40),		
-(200041, "julia_moura ", "eAgCGULfjH", 41),	
-(200042, "vinicius_damota ", "eBkEWhDmng", 42),		
-(200043, "sergio_kaique_daconceicao ", "CXg2OB7jkM", 43),		
-(200044, "diego.joaquim.gomes ", "cznSQGXIiT", 44),		
-(200045, "caroline_sabrina_pires ", "zqjMTBaxeF", 45),		
-(200046, "enzobeneditoalmeida ", "opHW87Wa4H", 46),		
-(200047, "eduardosergiosilva ", "ePXhkGLzyn", 47),		
-(200048, "emanuelly-porto80 ", "rNESeosZNi", 48),		
-(200049, "alice_darocha ", "mZAarEnC05", 49),		
-(200050, "raimundaisabelledias ", "H6BxpM3o8Y", 50);			
+insert into tb_login ( cd_login, nm_login, cd_senha, cd_responsavel, cd_acesso) values
+(200001, "lorenzo_assis", "w1TWu00PAe ", 1 , 3),		
+(200002,"nair.giovana.fogaca", "y0q2jLPtna ", 2, 3),		
+(200003,"rafael_figueiredo", "8emoE95MsF ", 3, 3),		
+(200004,"aurora_patricia_rezende", "hxxQjBLEgl ", 4, 3),		
+(200005, "rita-almeida90","FKH90LsAUY ", 5, 3),		
+(200006, "paulo.luan.silva",		 "OY2RemGcxt ", 6, 3),		
+(200007, "sabrina-cavalcanti88", "wylA1oTnWL ", 7, 3),	
+(200008, "murilo.tomas.barros", "kot6QqlJql ", 8, 3),		
+(200009, "antonia_goncalves", "2GQiLMQdyK ", 9, 3),		
+(200010, "geraldohenryjesus", "dJpgOY4Yl8 ", 10, 3),		
+(200011, "felipejosedapaz", "wi9DOyLt77 ", 11, 3),		
+(200012, "adriana-lima84", "IlxJai02xT", 12, 3),		
+(200013, "roberto.daniel.vieira", "sr7Em9RHg0", 13, 3),		
+(200014, "luna_viana", "3j6SinGohz", 14, 3),		
+(200015, "clarice_ribeiro", "5C9L3509R9", 15, 3),		
+(200016, "marcela_depaula", "eG2wENmtO9", 16, 3),		
+(200017, "marcianataliasilveira", "M4JYcmWre5", 17, 3),		
+(200018, "victor-daconceicao90 ", "y6WEU0IsQ7", 18, 3),		
+(200019, "allana_santos ", "b3xDRX8YFi", 19, 3),		
+(200020, "mariana.joana.cardoso ", "MIAiadXjyU", 20, 3),		
+(200021, "thiagovictornascimento ", "Q3Hjuy5bfF", 21, 3),		
+(200022, "heloisa_jennifer_dossantos ", "5KIWGDrUqF", 22, 3),		
+(200023, "leticiaalinepereira ", "XO5Tydjrp3", 23, 3),		
+(200024, "sandra.marcia.cortereal ", "rK31MlHxP4", 24, 3),		
+(200025, "caroline-damota98 ", "YLRiFFuYCY", 25, 3),		
+(200026, "guilherme-alves85 ", "WRT3TmEsCf", 26, 3),		
+(200027, "vanessa-fernandes86 ", "6FyRCiGdRC", 27, 3),		
+(200028, "rodrigo-baptista73 ", "CCttXWAckW", 28, 3),		
+(200029, "aurora_novaes ", "0c8C5tCYy1", 29, 3),		
+(200030, "lara_castro ", "3ilHoTC7En", 30, 3),		
+(200031, "cauafabiogoncalves", "nIt9HDSt3f", 31, 3),		
+(200032, "cristiane-martins99 ", "f8HS4iT7xu", 32, 3),		
+(200033, "daiane_louise_galvao ", "mp9kZsDbMc", 33, 3),		
+(200034, "kamilly.flavia.fernandes ", "fDe6CfdsZq", 34, 3),		
+(200035, "filipe_dasneves ", "02TXhrGLfP", 35, 3),		
+(200036, "carla.vitoria.cardoso ", "N9gg3QiYfl", 36, 3),		
+(200037, "enrico-ribeiro79 ", "GLZD0rBOCR", 37, 3),		
+(200038, "tomasthomassantos ", "w6YZ0XoALf", 38, 3),		
+(200039, "esther_ferreira ", "NFJ7FRqL6D", 39, 3),		
+(200040, "elzacamilavieira ", "m1ay2AKcdw", 40, 3),		
+(200041, "julia_moura ", "eAgCGULfjH", 41, 3),	
+(200042, "vinicius_damota ", "eBkEWhDmng", 42, 3),		
+(200043, "sergio_kaique_daconceicao ", "CXg2OB7jkM", 43, 3),		
+(200044, "diego.joaquim.gomes ", "cznSQGXIiT", 44, 3),		
+(200045, "caroline_sabrina_pires ", "zqjMTBaxeF", 45, 3),		
+(200046, "enzobeneditoalmeida ", "opHW87Wa4H", 46, 3),		
+(200047, "eduardosergiosilva ", "ePXhkGLzyn", 47, 3),		
+(200048, "emanuelly-porto80 ", "rNESeosZNi", 48, 3),		
+(200049, "alice_darocha ", "mZAarEnC05", 49, 3),		
+(200050, "raimundaisabelledias ", "H6BxpM3o8Y", 50, 3),
+(200051, "admin1","admin",51, 1),
+(200052, "admin2", "admin", 52, 2),
+(200053, "admin3","admin", 53, 3);
+
+select * from tb_login;
+
+/* adcionando professores */
+
+insert into tb_login ( cd_login, nm_login, cd_senha, cd_acesso) values
+(200054, "mirella.moraes", "UdAsyCMjl5 ", 2);
+	insert into tb_login ( cd_login, nm_login, cd_senha, cd_acesso) values			
+(200055, "isabella.sales", "MWRnBYzxEz", 2),				
+(200056, "ayla.carolina", "5GikPPKi1N", 2),				
+(200057, "alice.vieira", "O5tq2lpfBe", 2),				
+(200058, "andreia.barbosa", "4AO3M2EN62", 2),				
+(200059, "carlos.santos", "8DQo7HrpWp", 2),				
+(200060, "vinicius.silva", "74aKrTjBAk", 2);			
+
+		/* adcionando isntituição e parte adiminstrativa */	
+insert into tb_login ( cd_login, nm_login, cd_senha, cd_acesso) values		
+(200061, "Cristiane Francisca Souza", "loNz2HlszI", 1),				
+(200062, "Manuela Fabiana Aparício", "MDXUkJgh25", 1),			
+(200063, "Daiane Luna Carolina Lima", "BB0ZhEddym", 1),			
+(200064, "Giovanna Juliana Baptista", "Hka2cNqGRE", 1),		
+(200065, "Fabiana Marina Silva", "BnrMLBxSOJ", 1),				
+(200066, "Betina Isabelly Gomes", "JxugYn9ipe", 1),						
+(200067, "Andrea Alana Alves", "MODqypJLm3", 1),			
+(200068, "Isabelle Isabela Aline Cavalcanti", "P7plhcPCHF", 1);	
 
 
 		
@@ -634,6 +656,8 @@ insert into tb_cadastro ( cd_cadastro, nm_login, cd_senha) values
 (200065, "Isabelle-Cavalcanti", "BVCM3o8Y"),		
 (200066, "Carlos-Santos", "5ASDJtNn5"),		
 (200067, "Vinicius-Silva", "721AS4pM");
+
+
 
 update	tb_responsavel	set	cd_cadastro	=	200001		where cd_responsavel	=	1	;
 update	tb_responsavel	set	cd_cadastro	=	200002		where cd_responsavel	=	2	;
@@ -919,143 +943,21 @@ group by nm_instituicao;
 
 -- SUBSELECTS
 
-select nm_aluno, nm_turma from tb_aluno join tb_turma as t
-	where (select count(*) from tb_turma)
-		group by nm_aluno; -- Contar e agrupar alunos registrados em alguma turma
+select * from tb_aluno;
+select count(cd_aluno) "Número de alunos por turma " from tb_aluno 
+ 		group by cd_turma; -- Divisão de aluno por periodos
+        
+select count(nm_aluno) as 'Números de alunos' from tb_aluno
+where  cd_turma = 321; -- numero de aluno em determinada turma
+        
         
 select cd_pagamento, vl_fatura
 	from tb_pagamento
 		where vl_fatura < (select avg(vl_fatura) from tb_pagamento); -- Retornar os valores de fatura que são menores que a média delas
 
-/* VIEWS CRIADAS */
-
-create view vw_ProfissionaisTurmas as
-select cd_profissional as Chaves, nm_profissional as Profissionais, nm_turma as Turmas
-from tb_profissional
-inner join tb_turma
-	on tb_profissional.cd_turma = tb_turma.cd_turma;
-    select * from vw_ProfissionaisTurmas;
-
-create view vw_AlunosTurmas as
-select cd_aluno as Chaves, nm_aluno as Nomes, nm_turma as Turmas
-from tb_aluno
-inner join tb_turma
-	on tb_aluno.cd_turma = tb_turma.cd_turma;
-    select * from vw_AlunosTurmas;
-
-create view vw_AlunosResponsaveis as
-select cd_aluno as Chaves, nm_aluno as Alunos, nm_responsavel as Responsaveis
-from tb_aluno
-inner join tb_responsavel
-	on tb_aluno.cd_responsavel = tb_responsavel.cd_responsavel;
-    select * from vw_AlunosResponsaveis;
-select * from vw_AlunosResponsaveis;
-    
-create view vw_NumerosResponsaveisAlunos as
-select cd_telefone as Numeros, nm_responsavel as Responsaveis, nm_aluno as Alunos
-from tb_contato
-inner join tb_responsavel
-	on tb_contato.cd_responsavel = tb_responsavel.cd_responsavel
-inner join tb_aluno
-	on tb_aluno.cd_responsavel = tb_responsavel.cd_responsavel;
-    select * from vw_NumerosResponsaveisAlunos;
-
-create view vw_PagamentoStatusResponsaveis as
-select cd_pagamento as Chaves, nm_status_pagamento as Status_Pagamento, nm_responsavel as Responsaveis
-from tb_pagamento
-inner join tb_status_pagamento
-	on tb_pagamento.cd_status_pagamento = tb_status_pagamento.cd_status_pagamento
-inner join tb_responsavel
-	on tb_pagamento.cd_responsavel = tb_responsavel.cd_responsavel;
-    select * from vw_PagamentoStatusResponsaveis;
-
-create view vw_EnderecosResponsaveisAlunos as
-select nm_endereco as Enderecos, nm_responsavel as Responsaveis, nm_aluno as Alunos
-from tb_aluno
-inner join tb_responsavel
-	on tb_aluno.cd_responsavel = tb_responsavel.cd_responsavel
-inner join tb_endereco
-	on tb_responsavel.cd_endereco = tb_endereco.cd_endereco;
-	select * from vw_EnderecosResponsaveisAlunos;
-    
-create view vw_AlunoAnivers as
-select cd_aluno as Matrícula, nm_aluno as Alunos, day(dt_nascimento) as 'Dia do Aniversário' from tb_aluno
-where month(dt_nascimento) = month(curdate()); /* Curdate para identificar o mês atual no sistema */
-select * from vw_AlunoAnivers;
-
-select cd_pagamento as Pagamentos, nm_responsavel as Responsaveis, day(dt_pagamento) as 'Data de Pagamento'
-from tb_pagamento
-	inner join tb_responsavel
-		on tb_pagamento.cd_responsavel = tb_responsavel.cd_responsavel;
-
-create view vw_PagamentoResponsaveis as
-select cd_pagamento as Pagamentos, nm_responsavel as Responsaveis,dt_pagamento as 'Data de Pagamento'
-from tb_pagamento
-	inner join tb_responsavel
-		on tb_pagamento.cd_responsavel = tb_responsavel.cd_responsavel;
-select * from vw_PagamentoResponsaveis;
-
-create view vw_StatusAlunos as
-select cd_aluno as Matrícula, nm_aluno as Alunos, nm_turma as Turmas
-from tb_aluno
-inner join tb_turma
-	on tb_aluno.cd_turma = tb_turma.cd_turma;
-    
-create view vw_ProfissionaisAlunosTurmas as
-select cd_profissional as Professores, nm_profissional as 'Nomes dos Professores', nm_turma as Turmas, nm_aluno as Alunos
-from tb_aluno
-	inner join tb_turma
-		on tb_aluno.cd_turma = tb_turma.cd_turma
-	inner join tb_profissional
-		on tb_profissional.cd_turma = tb_turma.cd_turma;
-select * from vw_ProfissionaisAlunosTurmas;
-	
-
-    
-
-
-/* VIEWS CRIADAS - FIM */
-
-/* PESQUISAS COM PROCEDURE */ 
-
-
-create procedure sp_RespRegistroCPF (varCpf varchar(14))
-select cd_responsavel as Matricula, nm_responsavel as Nome, cd_cpf as CPF
-from tb_responsavel 
-where tb_responsavel.cd_cpf = varCpf;
-call sp_RespRegistroCPF ("74221965800");
-drop procedure sp_RespRegistroCPF;
-
-create procedure sp_RespBairro (varBairro varchar(80)) 
-select tb_responsavel.cd_responsavel as Matricula, nm_responsavel as Nome, tb_endereco.cd_bairro as 'Cod. Bairro',  tb_bairro.nm_bairro as 'Nome do Bairro'
-from tb_responsavel
-inner join tb_endereco
-	on tb_responsavel.cd_endereco = tb_endereco.cd_endereco
-inner join tb_bairro
-	on tb_endereco.cd_bairro = tb_bairro.cd_bairro
-where tb_bairro.nm_bairro = varBairro;
-call sp_RespBairro ("Centro");
-drop procedure sp_RespBairro;
-
-
-create procedure sp_ProfRegistro (varProfessor varchar(100)) 
-select cd_profissional as Registro , nm_profissional as Nome, nm_funcao as Função, tb_turma.cd_turma as Sala , tb_turma.nm_turma as Turma
-from tb_profissional
-inner join tb_turma
-	on tb_profissional.cd_turma = tb_turma.cd_turma
-where tb_profissional.nm_profissional = varProfessor;
-call sp_ProfRegistro ("Mirella Sandra Clara Moraes");
-drop procedure sp_ProfRegistro;
-
-create procedure sp_VerifPagamento ( matricula int)
-	select tb_responsavel.cd_responsavel as matricula, nm_responsavel as Responsavel, nm_status_pagamento as 'Status Atual' 
-		from tb_pagamento
-			inner join tb_responsavel
-				on tb_responsavel.cd_responsavel = tb_pagamento.cd_responsavel
-			inner join tb_status_pagamento
-				on tb_pagamento.cd_status_pagamento = tb_status_pagamento.cd_status_pagamento
-where tb_responsavel.cd_responsavel = matricula;
-call sp_VerifPagamento("40");
-
-/* PESQUISAS PROCEDURE - FIM */
-
+select cd_endereco,cd_responsavel, nm_responsavel
+    from tb_responsavel
+        where cd_endereco = 1009;
+        
+select count(cd_responsavel) as 'Números de clientes ativos' from tb_pagamento
+ where  cd_status_pagamento = 1;

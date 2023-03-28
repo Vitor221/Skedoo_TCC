@@ -11,4 +11,14 @@ class Login extends Model
 
     protected $table = 'tb_login';
     protected $primaryKey = 'cd_login';
+
+    protected $fillable = [
+        'nm_login',
+        'cd_senha',
+    ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['cd_senha'] = bcrypt($value);
+    }
 }

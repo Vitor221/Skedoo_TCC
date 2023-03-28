@@ -22,10 +22,6 @@
         </ul>
     </nav>
 
-    @if(session()->has('error_login'))
-        {{ session()->get('error_login') }}
-    @endif
-
     <form method="post" action="{{ route('login_pag') }}">
         @csrf
         <div class="login-block">
