@@ -27,13 +27,13 @@
         <div class="login-block">
             <h2>Área de Acesso</h2>
             <div class="login-text">
-                {{ $errors->first('user') }}
+                {{ $errors->first('nm_login') }}
                 <label for="">Login:</label>
                 <br>
                 <input type="text" name="nm_login" id="nm_login">
             </div>
             <div class="login-passw">
-                {{ $errors->first('password') }}
+                {{ $errors->first('cd_senha') }}
                 <label for="">Senha:</label>
                 <br>
                 <input type="password" name="cd_senha" id="cd_senha">
