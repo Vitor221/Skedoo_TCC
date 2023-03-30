@@ -1,70 +1,47 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <!-- FontAwesome - Ícones -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/estilo_login.css') }}">
-    <title>Logins</title>
-</head>
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/estilo_login.css') }}">
+@endsection
 
-<body>
-    <nav>
-        <a href="{{ route('skedoo_pag') }}" class="imgLink"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
-        <ul class="menu_list">
-            <li class="linkInicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
-            <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
-        </ul>
-    </nav>
+@section('title', 'Login')
 
-    <form method="post" action="">
-        @csrf
-        <div class="login-block">
-            <h2>Área de Acesso</h2>
-            <div class="login-text">
-                <label for="">Login:</label>
-                <br>
-                <input type="text" name="user" id="user">
-            </div>
-            <div class="login-passw">
-                <label for="">Senha:</label>
-                <br>
-                <input type="password" name="password" id="password">
-            </div>
-            <div class="login-check">
-                <input type="checkbox">&nbsp; Mantenha-me conectado
-            </div>
-            <div class="btn-submit">
-                <div class="btn-canc">
-                    <button type="submit">Cancelar</button>
-                </div>
-                <div class="btn-entr">
-                    <button type="submit">Entrar</button>
-                </div>
-            </div>
-            <span><a href=""> Esqueceu sua senha?</a></span>
+@section('content')
+
+<nav>
+    <a href="{{ route('skedoo_pag') }}" class="imgLink"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
+    <ul class="menu_list">
+        <li class="linkInicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
+        <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
+    </ul>
+</nav>
+
+<form method="post" action="">
+    @csrf
+    <div class="login-block">
+        <h2>Área de Acesso</h2>
+        <div class="login-text">
+            <label for="">Login:</label>
+            <br>
+            <input type="text" name="user" id="user">
         </div>
-    </form>
-
-    <footer>
-        <div class="titulo_foot">
-            <h3>Copyright & 2023 Skedoo - Todos os direitos reservados</h3>
+        <div class="login-passw">
+            <label for="">Senha:</label>
+            <br>
+            <input type="password" name="password" id="password">
         </div>
-        <div class="social_img">
-            <ul>
-                <li><a href=""><img src="{{ asset('img/logo/facebook_logo.png')}}" alt=""></a></li>
-                <li><a href=""><img src="{{ asset('img/logo/instagram_logo.png') }}" alt=""></a></li>
-                <li><a href=""><img src="{{ asset('img/logo/twitter_logo.png') }}" alt=""></a></li>
-                <li><a href=""><img src="{{ asset('img/logo/youtube_logo.png') }}" alt=""></a></li>
-            </ul>
+        <div class="login-check">
+            <input type="checkbox">&nbsp; Mantenha-me conectado
         </div>
-    </footer>
-</body>
-
-</html>
+        <div class="btn-submit">
+            <div class="btn-canc">
+                <button type="submit">Cancelar</button>
+            </div>
+            <div class="btn-entr">
+                <button type="submit">Entrar</button>
+            </div>
+        </div>
+        <span><a href=""> Esqueceu sua senha?</a></span>
+    </div>
+</form>
+@endsection

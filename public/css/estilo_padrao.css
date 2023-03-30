@@ -1,0 +1,40 @@
+footer {
+    margin-top: 2em;
+    position: relative;
+    padding: 20px;
+    width: 100%;
+}
+
+.titulo_foot {
+    text-align: center;
+    color: #87cac4;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.titulo_foot h3 {
+    font-size: 1em;
+}
+
+.social_img {
+    display: flex;
+    justify-content: center;
+}
+
+.social_img ul {
+    display: flex;
+}
+
+.social_img ul li {
+    margin: 0.25rem;
+}
+
+.social_img a img {
+    height: 27px;
+    width: 27px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.social_img a img:hover {
+    transform: scale(1.2);
+}
