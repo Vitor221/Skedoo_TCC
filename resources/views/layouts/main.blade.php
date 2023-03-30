@@ -14,7 +14,7 @@
 
     @yield('styles')
 
-    <title>@yield('title')</title>
+    <title>{{$title}}</title>
 </head>
 
 <body>

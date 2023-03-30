@@ -36,6 +36,10 @@ nav {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.menu_item {
+    background-color: #87cac4;
+}
+
 .menu_list {
     margin-bottom: 0;
     list-style: none;
@@ -56,26 +60,6 @@ nav {
 
 .menu_list li a:hover {
     color: #8396dc;
-}
-
-#baixe_app {
-    padding: 1rem;
-    background-color: #8396dc;
-    color: #fff;
-    border-radius: 5rem;
-}
-
-#baixe_app a:hover {
-    color: #fff;
-    transform: scale(1.1);
-}
-
-#baixe_app-list {
-    transition: transform 0.2s ease-in-out;
-}
-
-#baixe_app-list:hover {
-    transform: scale(1.1);
 }
 
 #logo_nav {

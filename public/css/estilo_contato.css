@@ -38,18 +38,6 @@ nav {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.menu_list {
-    margin-bottom: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.menu_list li {
-    margin-right: 5rem;
-    margin-left: 5rem;
-}
-
 .menu_list li a {
     text-decoration: none;
     color: #8396dc;
@@ -58,27 +46,23 @@ nav {
 }
 
 .menu_list li a:hover {
-    color: #8396dc;
+    color: #5f7de6;
+}
+
+.menu_item {
+    background-color: #597cfa;
+}
+
+.link_inicio {
+    margin-right: auto;
+}
+
+.link_login {
+    margin-left: auto;
 }
 
 #baixe_app {
-    padding: 1rem;
-    background-color: #8396dc;
     color: #fff;
-    border-radius: 5rem;
-}
-
-#baixe_app a:hover {
-    color: #fff;
-    transform: scale(1.1);
-}
-
-#baixe_app-list {
-    transition: transform 0.2s ease-in-out;
-}
-
-#baixe_app-list:hover {
-    transform: scale(1.1);
 }
 
 #logo_nav {
@@ -166,7 +150,6 @@ textarea:focus {
 .input_box label {
     color: #597cfa;
     font-weight: 600;
-    /* letter-spacing: 0.1em; */
     margin-bottom: 0.5em;
 }
 
@@ -212,6 +195,11 @@ textarea:focus {
     }
     form {
         width: 90%;
+    }
+}
+@media screen and (min-width: 600px) {
+    nav {
+        padding-inline: 5em;
     }
 }
 @media screen and (max-width: 805px) {

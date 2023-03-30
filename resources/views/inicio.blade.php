@@ -1,10 +1,8 @@
-@extends('layouts.main')
+@extends('layouts.main', ['title'=>'Skedoo - Login'])
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/estilo_inicio.css')}}">
 @endsection
-
-@section('title', 'Inicio')
 
 @section('content')
 
@@ -12,7 +10,7 @@
   <a href="{{ route('skedoo_pag')}}"><img id="logo_nav" src="{{ asset('img/Skedoo.png')}}" alt="logo da Skedoo"></a>
   <ul class="menu_list">
     <li><a href="{{ route('contato_pag') }}">Contato</a></li>
-    <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
+    <x-botaoapp />
     <li><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
   </ul>
 </nav>

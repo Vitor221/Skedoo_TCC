@@ -1,18 +1,16 @@
-@extends('layouts.main')
+@extends('layouts.main', ['title'=>'Skedoo - Login'])
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/estilo_login.css') }}">
 @endsection
 
-@section('title', 'Login')
-
 @section('content')
 
 <nav>
-    <a href="{{ route('skedoo_pag') }}" class="imgLink"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
+    <a href="{{ route('skedoo_pag') }}"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
     <ul class="menu_list">
         <li class="linkInicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
-        <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
+        <x-botaoapp />
     </ul>
 </nav>
 

@@ -5,11 +5,6 @@
     list-style: none;
 }
 
-ol,
-ul {
-    padding-left: 0px;
-}
-
 body {
     position: relative;
     background-color: #fff;
@@ -47,12 +42,12 @@ nav {
     margin-right: 20px;
 }
 
+.menu_item {
+    background-color: #87cac4;
+}
 .menu_list {
-    margin-bottom: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    padding: 0;
+    margin-left: auto;
+    width: auto;
 }
 
 .menu_list li a {
@@ -63,38 +58,15 @@ nav {
     margin-right: auto;
 }
 
-.menu_item {
-    width: 125px;
-    padding: 0.5em;
-    background-color: #87cac4;
-    border-radius: 5rem;
-}
-
 .menu_list li a:hover {
     color: #8396dc;
-}
-
-#baixe_app {
-    color: #fff;
-}
-
-#baixe_app a:hover {
-    color: #fff;
-    transform: scale(1.1);
-}
-
-#baixe_app-list {
-    transition: transform 0.2s ease-in-out;
-}
-
-#baixe_app-list:hover {
-    transform: scale(1.1);
 }
 
 nav img {
     width: 80%;
     margin-top: auto;
     margin-bottom: auto;
+    display: block;
 }
 
 form {
@@ -231,19 +203,13 @@ input[type="checkbox"]::before {
     color: white;
 }
 
-@media screen and (min-width: 700px) {
-    .menu_item {
-        width: 150px;
-        padding: 1em;
-    }
-
-    nav {
-        padding: 20px;
-    }
-}
-
 @media screen and (min-width: 1367px) {
     .login-block {
         padding: 3em;
+    }
+}
+@media screen and (min-width: 700px) {
+    nav {
+        padding: 30px;
     }
 }

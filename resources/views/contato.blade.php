@@ -1,6 +1,4 @@
-@extends('layouts.main')
-
-@section('title', 'Contato')
+@extends('layouts.main', ['title'=>'Skedoo - Login'])
 
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/estilo_contato.css') }}">
@@ -9,9 +7,9 @@
 @section('content')
 <nav>
   <ul class="menu_list">
-    <li><a href="{{ route('inicio_pag') }}">Início</a></li>
-    <li id="baixe_app-list" class="menu_item"><a id="baixe_app" href="">Baixe o App</a></li>
-    <li><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
+    <li class="link_inicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
+    <x-botaoapp />
+    <li class="link_login"><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
   </ul>
 </nav>
 

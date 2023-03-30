@@ -1,3 +1,44 @@
+ol,
+ul {
+    padding-left: 0px;
+}
+nav a {
+    display: flex;
+    align-items: center;
+}
+
+.menu_item {
+    width: 125px;
+    padding: 0.5em;
+    border-radius: 5rem;
+}
+.menu_list {
+    margin-bottom: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+#baixe_app {
+    color: #fff;
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+#baixe_app a:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+#baixe_app-list {
+    transition: transform 0.2s ease-in-out;
+}
+
+#baixe_app-list:hover {
+    transform: scale(1.1);
+}
+
 footer {
     margin-top: 2em;
     position: relative;
@@ -37,4 +78,10 @@ footer {
 
 .social_img a img:hover {
     transform: scale(1.2);
+}
+@media screen and (min-width: 700px) {
+    .menu_item {
+        width: 150px;
+        padding: 1em;
+    }
 }
