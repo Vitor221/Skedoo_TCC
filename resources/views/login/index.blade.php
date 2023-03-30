@@ -26,6 +26,11 @@
         @csrf
         <div class="login-block">
             <h2>Área de Acesso</h2>
+            <div class="invalidTitle">
+                @if($mensagem = Session::get('erro'))
+                    {{ $mensagem }}
+                @endif
+            </div>
             <div class="login-text">
                 {{ $errors->first('nm_login') }}
                 <label for="">Login:</label>

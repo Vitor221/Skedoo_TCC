@@ -11,13 +11,30 @@ class LoginController extends Controller
     public function store(Request $request) {
         $request->validate([
             'nm_login'  =>  'required',
-            'cd_senha'  =>  'required',
+            'cd_senha'  =>  'required'
         ]);
 
-        $credentials = $request->only('nm_login', 'cd_senha');
+        $nm_login = $request->input('nm_login');
+        $cd_senha = $request->input('cd_senha');
 
-        if(Auth::attempt($credentials)){
-            return redirect()->route('instituicao');
+        if(Auth::attempt(['nm_login' => $nm_login, 'cd_login' => $cd_senha])){
+            $user = User::where('nm_login', $nm_login)->first();
+            Auth::login($user);
+            return redirect('contato');
+        } else {
+            return redirect()->back()->with('erro', 'Usuário ou senha inválido');
         }
-    }
+
+        // $credentials = $request->validate([
+        //     'nm_login'  =>  ['required'],
+        //     'cd_senha'  =>  ['required']
+        // ]);
+
+        // if(Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('contato');
+        // } else {
+        //     return redirect()->back()->with('erro', 'Usuário ou senha inválido');
+        // }
+        }
 }

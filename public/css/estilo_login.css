@@ -258,3 +258,8 @@
   .social_img a img:hover{
     transform: scale(1.2);
   }
+
+  .invalidTitle {
+    color: #fff;
+    font-weight: 700;
+  }
