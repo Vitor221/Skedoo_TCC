@@ -23,7 +23,7 @@
 
   <main class="conteudo">
     <div class="logo_skedoo">
-      <a href="{{ route('skedoo_pag') }}"><img src="{{ asset('img/Skedoo.png') }}" alt=""></a>
+      <a href="{{ route('skedoo_pag') }}"><img src="{{ asset('img/Skedoo.png') }}" alt="" class="logo_img"></a>
     </div>
 
     <div class="texto_topo">

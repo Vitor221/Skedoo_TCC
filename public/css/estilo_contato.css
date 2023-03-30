@@ -93,6 +93,9 @@ nav {
   justify-content: center;
   margin-top: 5em;
 }
+.logo_img{
+  width: 100%;
+}
 
 .texto_topo {
   display: flex;
@@ -237,3 +240,19 @@ footer {
 .social_img a img:hover{
   transform: scale(1.2);
 }
+@media screen and (max-width:1360px){
+  .texto_topo{
+    width: 60%;
+  }
+}
+@media screen and (max-width: 805px){
+  .logo_img{
+    width: 60%;
+  }
+}
+@media screen and (max-width: 870px){
+  .input_tel-cel{
+    display: block;
+  }
+}
+
