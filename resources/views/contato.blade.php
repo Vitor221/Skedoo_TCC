@@ -8,7 +8,7 @@
 <nav>
   <ul class="menu_list">
     <li class="link_inicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
-    <x-botaoapp />
+    <x-botao-app />
     <li class="link_login"><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
   </ul>
 </nav>

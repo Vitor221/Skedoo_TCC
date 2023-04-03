@@ -1,5 +1,6 @@
 @extends('layouts.main', ['title'=>'Skedoo - Login'])
 
+
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{asset('css/estilo_home.css')}}">
 @endsection
