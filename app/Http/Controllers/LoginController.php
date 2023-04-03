@@ -18,9 +18,6 @@ class LoginController extends Controller
     }
 
     public function autenticarLogin(Request $request){
-
-        
-
         $request->validate([
             'nm_login'  =>  'required',
             'cd_senha'  =>  'required'
@@ -40,6 +37,10 @@ class LoginController extends Controller
         } else {
             return redirect()->back()->with('erro', 'Usuário ou senha inválido');
         }
+    }
 
+    public function logoutLogin() {
+        session()->forget('login');
+        return redirect()->route('login_pag');
     }
 }

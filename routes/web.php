@@ -26,6 +26,7 @@ Route::get('/contato', function() {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login_pag');
 Route::post('/login', [LoginController::class, 'autenticarLogin'])->name('login_pag');
+Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 

@@ -48,9 +48,6 @@
             <input type="checkbox">&nbsp; Mantenha-me conectado
         </div>
         <div class="btn-submit">
-            <div class="btn-canc">
-                <button type="submit">Cancelar</button>
-            </div>
             <div class="btn-entr">
                 <button type="submit">Entrar</button>
             </div>
