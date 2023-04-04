@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="group-date-inst">
+    {{-- <div class="group-date-inst">
         <div class="instituicao">
             <h2>Instituição - Nome</h2>
         </div>
@@ -40,8 +40,14 @@
         <div class="date-now">
             <h3>12/06/2023</h3>
         </div>
-    </div>
+    </div> --}}
 
+    <main>
+        <section class="titulo_desenvolvimento">
+            <img src="{{ asset('../img/Skedoo.png') }}" alt="">
+            <h1>Em desenvolvimento</h1>
+        </section>
+    </main>
 </body>
 
 </html>

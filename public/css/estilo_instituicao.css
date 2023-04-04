@@ -15,7 +15,6 @@ body {
 nav {
     position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background-color: #fff;
@@ -27,13 +26,15 @@ nav img {
 }
 
 nav h3 {
+    margin-right: 1em;
+    margin-left: auto;
     font-size: 1.6em;
 }
 
 .menu-bar {
     display: flex;
     justify-content: space-between;
-    background-color: #51cbe9;
+    background-color: #87cac4;
     padding: 0.8rem 4rem;
     align-items: center;
 }
@@ -83,4 +84,34 @@ nav h3 {
 .img-perfil {
     border-radius: 25px;
     width: 50px;
+    transition: all .2s ease-in-out;
 }
+
+.img-perfil:hover {
+    transform: scale(1.1);
+}
+
+.titulo_desenvolvimento {
+    margin-top: 16%;
+    align-items: center;
+    text-align: center;
+}
+
+.titulo_desenvolvimento img {
+    width: 35%;
+}
+
+.titulo_desenvolvimento {
+    animation: go-back 1s;
+  }
+  
+  @keyframes go-back {
+    from {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 100%;
+    }
+  } 

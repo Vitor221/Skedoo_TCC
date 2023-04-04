@@ -15,20 +15,21 @@
 <body class="conteudo">
 
     <div class="img_div">
-        <x-profile-button />
+        <x-profile-button/>
     </div>
+
     <div class="informacoes">
         <h3 class="info-titulo">
             Nome de Usuário
         </h3>
         <p class="info-texto">{{ session('login')['nm_login'] }}</p>
     </div>
+    
     <div class="flex">
         <div class="div-sair">
             <a href="{{ route('logout') }}" class="sair-link">Sair</a>
         </div>
     </div>
-
 
 </body>
 
