@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerSkedoo;
 use App\Http\Controllers\InstituicaoController;
+use App\Http\Controllers\DadosController;
 use App\Http\Controllers\LoginController;
 
 /*
@@ -32,4 +33,10 @@ Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 
 Route::group(['prefix' => 'login'], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
+
+
 });
+
+Route::get('/clientes',[DadosController::class,'cliente'])->name('index.clientes');
+
+Route::get('/alunos',[DadosController::class,'aluno'])->name('index.alunos');

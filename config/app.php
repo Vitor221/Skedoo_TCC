@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+            // Reliese\CodersServiceProvider::class,
         /*
          * Application Service Providers...
          */
