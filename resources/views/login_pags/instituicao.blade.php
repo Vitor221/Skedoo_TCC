@@ -15,7 +15,8 @@
 <body>
     <nav>
         <img src="{{ asset('../img/Skedoo.png') }}" alt="">
-        <h3>Bem-vindo, ...</h3>
+        <h3>Bem-vindo, {{session(['login'])}}</h3> 
+        <span><a href="{{ route('logout') }}">Sair</a></span>
     </nav>
 
     <div class="menu-bar">
@@ -35,5 +36,6 @@
             <h3>12/06/2023</h3>
         </div>
     </div>
+
 </body>
 </html>

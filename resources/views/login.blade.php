@@ -10,31 +10,44 @@
     <a href="{{ route('skedoo_pag') }}"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
     <ul class="menu_list">
         <li class="linkInicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
-        <x-botaoapp />
+        <x-botao-app />
     </ul>
 </nav>
 
-<form method="post" action="">
+<form method="post" action="{{ route('login_pag') }}">
     @csrf
     <div class="login-block">
         <h2>Área de Acesso</h2>
+            @if (session('mensagem'))
+                <div class="alert alert-warn">
+                    <p>{{ session('mensagem') }}</p>
+                </div>
+            @endif
+        <div class="error">
+            @if ($mensagem = Session::get('erro'))
+                {{ $mensagem }}
+            @endif
+        </div>
         <div class="login-text">
+            <div class="error">
+                {{ $errors->first('nm_login') }}
+            </div>
             <label for="">Login:</label>
             <br>
-            <input type="text" name="user" id="user">
+            <input type="text" name="nm_login" id="user">
         </div>
         <div class="login-passw">
+            <div class="error">
+                {{ $errors->first('cd_senha') }}
+            </div>
             <label for="">Senha:</label>
             <br>
-            <input type="password" name="password" id="password">
+            <input type="password" name="cd_senha" id="password">
         </div>
         <div class="login-check">
             <input type="checkbox">&nbsp; Mantenha-me conectado
         </div>
         <div class="btn-submit">
-            <div class="btn-canc">
-                <button type="submit">Cancelar</button>
-            </div>
             <div class="btn-entr">
                 <button type="submit">Entrar</button>
             </div>

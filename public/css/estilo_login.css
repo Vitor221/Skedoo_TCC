@@ -203,6 +203,11 @@ input[type="checkbox"]::before {
     color: white;
 }
 
+.error {
+    color: rgb(206, 66, 66);
+    font-weight: 700;
+}
+
 @media screen and (min-width: 1367px) {
     .login-block {
         padding: 3em;
