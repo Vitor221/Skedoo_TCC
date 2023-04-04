@@ -35,7 +35,8 @@ class TbLogin extends Model
 	protected $fillable = [
 		'nm_login',
 		'cd_senha',
-		'cd_responsavel'
+		'cd_responsavel',
+		'cd_acesso',
 	];
 
 	public function tb_responsavel()
