@@ -5,6 +5,8 @@ use App\Http\Controllers\ControllerSkedoo;
 use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\DadosController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfissionalController;
+use App\Http\Controllers\ResponsavelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +34,13 @@ Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 
 Route::group(['prefix' => 'login'], function() {
-    Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
+    
+    Route::get('/instituicao', [InstituicaoController::class, 'index'])->middleware('acessoInstituicao')->name('instituicao');
 
+    Route::get('/profissional', [ProfissionalController::class, 'index'])->middleware('acessoInstituicao')->name('profissional');
 
+    Route::get('/responsavel', [ResponsavelController::class, 'index'])->middleware('acessoInstituicao')->name('responsavel');
 });
 
 Route::get('/clientes',[DadosController::class,'cliente'])->name('index.clientes');
-
 Route::get('/alunos',[DadosController::class,'aluno'])->name('index.alunos');

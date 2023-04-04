@@ -9,7 +9,6 @@ class InstituicaoController extends Controller
 {
     public function index()
     {
-
         if (session()->has('login')) {
             return view('login_pags.instituicao');
         }
