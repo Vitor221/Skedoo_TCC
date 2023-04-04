@@ -15,7 +15,7 @@
 <body>
     <nav>
         <img src="{{ asset('../img/Skedoo.png') }}" alt="">
-        <h3>Bem-vindo, {{session(['login'])}}</h3> 
+        <h3>Bem-vindo, {{session('login')['nm_login']}}</h3> 
         <span><a href="{{ route('logout') }}">Sair</a></span>
     </nav>
 
