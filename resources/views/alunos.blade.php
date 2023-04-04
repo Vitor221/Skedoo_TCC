@@ -32,13 +32,13 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($TbResponsavel as $TbResponsavel)
+    @foreach ($TbAluno as $TbAluno)
     <tr>
       
             
-      <th scope="row">{{ $TbResponsavel->cd_responsavel}}</th>
-      <th scope>{{ $TbResponsavel->nm_responsavel}}</th>
-      <th scope>{{ $TbResponsavel->cd_cadastro}}</th>
+      <th scope="row">{{ $TbAluno->cd_aluno}}</th>
+      <th scope>{{ $TbAluno->nm_aluno}}</th>
+      <th scope>{{ $TbAluno->cd_turma}}</th>
     
       
     @endforeach;

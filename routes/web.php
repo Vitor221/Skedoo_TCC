@@ -36,4 +36,6 @@ Route::group(['prefix' => 'login'], function() {
 
 });
 
-Route::get('/clientes',[DadosController::class,'cliente']);
+Route::get('/clientes',[DadosController::class,'cliente'])->name('index.clientes');
+
+Route::get('/alunos',[DadosController::class,'aluno'])->name('index.alunos');

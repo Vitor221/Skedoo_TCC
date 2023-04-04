@@ -2,18 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Responsavel;
+use App\Models\TbResponsavel;
+use App\Models\TbAluno;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DadosController extends Controller
 {
     // public utilizada no DadosControllers
     public function cliente(){
       
-        $tb_responsavel = Responsavel::all();
-        dd($tb_responsavel);
+
+
+        $TbResponsavel = TbResponsavel::all();
+        // dd($TbResponsavel);
         // Chamando a View/blade
-        return view('clientes'); 
+        
+
+        return view('clientes',['TbResponsavel'=>$TbResponsavel]); 
     }
+
+    public function aluno(){
+      
+
+
+        $TbAluno = TbAluno::all();
+        // dd($TbResponsavel);
+        // Chamando a View/blade
+        
+
+        return view('alunos',['TbAluno'=>$TbAluno]); 
+    }
+
 
 }
