@@ -13,7 +13,7 @@ class Login extends Model
 
     protected $fillable  = [
         'nm_login',
-        'cd_senha'
+        'cd_senha',
+        'cd_acesso'
     ];
-    
 }

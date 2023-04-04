@@ -1,0 +1,45 @@
+.img_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-perfil {
+    border-radius: 1000px;
+    width: 250px;
+}
+.conteudo {
+    margin: 3%;
+}
+.informacoes {
+    padding: 2em;
+    background-color: rgb(135, 202, 196);
+    color: white;
+    margin-top: 2em;
+    border-radius: 2em;
+}
+.info-titulo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.info-texto {
+    font-size: 1.2em;
+}
+.div-sair {
+    width: 150px;
+    height: 50px;
+    border-radius: 1em;
+    background-color: rgb(228, 43, 43);
+    display: flex;
+    margin: auto;
+    margin-top: 2em;
+}
+.sair-link {
+    font-size: 1.5em;
+    text-decoration: none;
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+.flex {
+    display: flex;
+}
