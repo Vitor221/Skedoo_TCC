@@ -5,9 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\TbLogin;
+use App\Models\Login;
 
-class InstituicaoSession
+class accessLogins
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,13 @@ class InstituicaoSession
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->session()->has('login') && TbLogin::where('cd_acesso')->first() == 3){
-            return redirect()->route('profissional');
-        }
-
         return $next($request);
+        // if(session()->has('login') && session()->get('login.cd_acesso') == 1) {
+        //     return redirect('instituicao');
+        // } else {
+        //     abort(403, 'Acesso negado');
+        // }
+
+
     }
 }
