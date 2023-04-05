@@ -16,7 +16,7 @@
     <x-card-funcoes tituloCard="Financeiro" href="{{route('clientes')}}" icon="uil uil-money-withdraw"/>
     <x-card-funcoes tituloCard="Serviços" href="{{route('clientes')}}" icon="uil uil-apps"/>
     <x-card-funcoes tituloCard="Configurações" href="{{route('clientes')}}" icon="uil uil-setting"/>
-    <x-card-funcoes tituloCard="Ajuda" href="{{route('clientes')}}" icon="uil uil-question"/>
+    <x-card-funcoes tituloCard="Ajuda" href="{{route('ajuda')}}" icon="uil uil-question"/>
 </div>
 
 @endsection

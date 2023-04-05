@@ -2,20 +2,23 @@
 
 @section('content')
     <table class="tabela">
+        <h2>Tabela de Alunos</h2>
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Cadastro</th>
-                <th>Editar</th>
+                <th>Turma</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($TbAluno as $TbAluno)
-                <tr>
-                    <th class="nome">{{ $TbAluno->nm_aluno }}</th>
-                    <th>{{ $TbAluno->cd_turma }}</th>
+                <tr class="pessoa">
+                    <th class="nome" scope>{{ $TbAluno->nm_aluno }}</th>
+                    <th scope>{{ $TbAluno->cd_turma }}</th>
+                    <th class="botoes"><button class="ver">Vizualizar</button><button class="editar">Editar</button><button
+                            class="deletar"><i class="uil uil-trash-alt"></i></button></th>
+                </tr>
             @endforeach
-            </tr>
+
         </tbody>
     </table>
 @endsection

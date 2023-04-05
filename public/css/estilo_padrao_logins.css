@@ -54,6 +54,7 @@ nav h3 {
     border-radius: 5em;
     padding-left: 1em;
     padding-right: 0.5em;
+    
 }
 
 .search input {
@@ -71,6 +72,11 @@ nav h3 {
     margin-top: auto;
     margin-bottom: auto;
 }
+
+.search button:hover {
+    transition: all .3s ease-in-out;
+    background-color: rgb(88, 88, 235);
+}   
 
 .nome-inst {
     display: flex;

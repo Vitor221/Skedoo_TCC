@@ -1,21 +1,23 @@
-@extends('layouts.telas', ['title'=>'Skedoo - Responsaveis'], ['nometela'=>'Responaveis'])
+@extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responaveis dos Alunos'])
 
 @section('content')
-<table class="tabela">
-  <thead>
-      <tr>
-          <th scope="col">Nome</th>
-          <th scope="col">Cadastro</th>
-          <th scope="col">Editar</th>
-      </tr>
-  </thead>
-  <tbody>
-      @foreach ($TbResponsavel as $TbResponsavel)
-          <tr>
-              <th class="nome" scope>{{ $TbResponsavel->nm_responsavel }}</th>
-              <th scope>{{ $TbResponsavel->cd_cadastro }}</th>
-      @endforeach;
-      </tr>
-  </tbody>
-</table>
+    <table class="tabela">
+        <h2>Tabela de Clientes</h2>
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Cadastro</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($TbResponsavel as $TbResponsavel)
+                <tr class="pessoa">
+                    <th class="nome" scope>{{ $TbResponsavel->nm_responsavel }}</th>
+                    <th scope>{{ $TbResponsavel->cd_cadastro }}</th>
+                    <th class="botoes"><button class="ver">Vizualizar</button><button class="editar">Editar</button><button class="deletar"><i class="uil uil-trash-alt"></i></button></th>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection

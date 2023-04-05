@@ -11,7 +11,6 @@ body {
     width: 100%;
     height: 100%;
     font-size: 16px;
-    position: relative;
 }
 
 nav {
@@ -49,7 +48,6 @@ nav h3 {
     font-weight: 600;
 }
 .conteudo{
-    padding-top: 2em;
     margin: 6em;
     height: fit-content;
     border-radius: 2em;
@@ -68,9 +66,46 @@ nav h3 {
 .nome{
     text-align: inherit;
 }
-tbody{
-    margin: 20px;
+
+.editar{
+    background-color: rgb(31, 31, 219);
+    color: white;
+    border: none;
+    border-radius: 1em;
+    padding: 0.6em;
+    margin: auto;
+    margin-right:1em;
 }
-tr{
-    margin: 10px;
+.ver{
+    background-color: rgb(3, 182, 27);
+    color: white;
+    border: none;
+    border-radius: 1em;
+    padding: 0.6em;
+    margin: auto;
+    margin-right:1em;
+}
+.deletar{
+    background-color: #f13f3f;
+    color: white;
+    border: none;
+    border-radius: 5em;
+    margin: auto;
+    margin-bottom:1em;
+}
+.uil-trash-alt::before{
+    font-size: 2em;
+    padding: 0.25em;
+}
+.botoes{
+    display: flex;
+    margin: 0px;
+}
+h2{
+    text-align: center;
+    color: #fff;
+    padding: 1em;
+}
+.sub-titulo{
+    margin-top: 1em;
 }

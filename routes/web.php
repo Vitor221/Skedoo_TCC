@@ -56,6 +56,6 @@ Route::group(['prefix' => 'login'], function () {
 });
 
 Route::get('/clientes', [DadosController::class, 'cliente'])->name('clientes');
-
+Route::get('/ajuda', [DadosController::class, 'ajuda'])->name('ajuda');
 Route::get('/alunos', [DadosController::class, 'aluno'])->name('alunos');
 Route::get('/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');

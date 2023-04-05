@@ -33,6 +33,9 @@ class DadosController extends Controller
 
         return view('telas.alunos',['TbAluno'=>$TbAluno]); 
     }
+    public function ajuda(){
+        return view('telas.ajuda');
+    }
 
 
 }
