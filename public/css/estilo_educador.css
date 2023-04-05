@@ -1,6 +1,28 @@
+html::before {
+    content: "";
+    background-image: url("../img/img_contato/background_1-skedoo.svg"),
+        url("../img/img_contato/background_2-skedoo.svg"),
+        url("../img/img_contato/background_3-skedoo.svg"),
+        url("../img/img_contato/background_4-skedoo.svg");
+    background-size: 15%, 8%, 20%, 20%;
+    background-position: top 5% left, right top 0%, bottom -180% left,
+     bottom -10px right;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 140%;
+    position: absolute;
+    opacity: 0.5;
+}
+
 .menu-bar {
     background-color: #606cd6;
 }
 .card{
     background-color: #606cd6;
+}
+.card:hover{
+    border-color:#606cd6;
+}
+.card:hover i, .card:hover h3{
+    color: #606cd6;
 }

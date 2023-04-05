@@ -19,7 +19,7 @@ class DadosController extends Controller
         // Chamando a View/blade
         
 
-        return view('clientes',['TbResponsavel'=>$TbResponsavel]); 
+        return view('telas.clientes',['TbResponsavel'=>$TbResponsavel]); 
     }
 
     public function aluno(){
@@ -31,7 +31,7 @@ class DadosController extends Controller
         // Chamando a View/blade
         
 
-        return view('alunos',['TbAluno'=>$TbAluno]); 
+        return view('telas.alunos',['TbAluno'=>$TbAluno]); 
     }
 
 

@@ -12,10 +12,10 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
     </script>
     <!-- FontAwesome - Ícones -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/estilo_padrao_logins.css') }}">
     @yield('styles')
-    <title>{{$title}}</title>
+    <title>{{ $title }}</title>
 </head>
 
 <body>
@@ -26,16 +26,21 @@
     </nav>
 
     <div class="menu-bar">
-        <h2>{{$nomelogin}}</h2>
-        <div class="search">
-            <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-            <button type="submit">Pesquisar</button>
+        <h2>{{ $nomelogin }}</h2>
+        <div class="flex">
+            <a href="{{route('clientes')}}" style="text-decoration: none;">
+                <i class="uil uil-bell"><p>Notificações</p></i>
+            </a>
+            <div class="search">
+                <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                <button type="submit"><i class="uil uil-search"></i></button>
+            </div>
         </div>
     </div>
     <div class="conteudo">
         @yield('content')
+        <br>
     </div>
-
 </body>
 
 </html>

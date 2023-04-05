@@ -1,4 +1,4 @@
-<div class="card">
-    <a class="card-link"><img src="https://i.stack.imgur.com/Bzcs0.png" class="icon-card"></a>
-    <h3 class="texto-card">Text</h3>
+<div>
+    <a class="card card-link" href="{{$href}}"><i class="{{$icon}}"></i>
+    <h3 class="texto-card">{{$tituloCard}}</h3></a>  
 </div>

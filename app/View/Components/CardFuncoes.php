@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class CardFuncoes extends Component
 {
+    public $tituloCard;
+    public $href;
+    public $icon;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($tituloCard, $href, $icon)
     {
-        //
+        $this->tituloCard = $tituloCard;
+        $this->href = $href;
+        $this->icon = $icon;
     }
 
     /**
