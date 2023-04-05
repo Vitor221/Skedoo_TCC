@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class InstituicaoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('loginAccess');   
+    }
+    
     public function index()
     {
         if (session()->has('login')) {

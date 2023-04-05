@@ -29,7 +29,8 @@ class TbLogin extends Model
 
 	protected $casts = [
 		'cd_login' => 'int',
-		'cd_responsavel' => 'int'
+		'cd_responsavel' => 'int',
+		'cd_acesso'	=> 'int'
 	];
 
 	protected $fillable = [

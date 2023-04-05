@@ -29,15 +29,16 @@ class LoginController extends Controller
             'nm_login.required' =>  'Campo login é obrigatório!',
             'cd_senha.required' =>  'Campo senha é obrigatório!'
         ]);
+        
         $usuario = Login::where('nm_login', $data['nm_login'])->where('cd_senha', $data['cd_senha'])->first();
 
         if ($usuario) { //Se tiver todos os dados do usuário pesquisado e a senha do usuário for igual a senha do banco de dados.
             session()->put('login', $usuario);
-            if ($usuario['cd_acesso'] == '3') {
-                return redirect()->route('responsavel');
-            } else if ($usuario['cd_acesso'] == '2') {
-                return redirect()->route('profissional');
-            }
+            // if ($usuario['cd_acesso'] == '3') {
+            //     return redirect()->route('responsavel');
+            // } else if ($usuario['cd_acesso'] == '2') {
+            //     return redirect()->route('profissional');
+            // }
             return redirect()->route('instituicao');
         }
         return redirect()->back()->with('erro', 'Usuário ou senha inválido');
