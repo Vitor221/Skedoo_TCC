@@ -208,6 +208,21 @@ input[type="checkbox"]::before {
     font-weight: 700;
 }
 
+form {
+    animation: go-back 1s;
+  }
+  
+  @keyframes go-back {
+    from {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 100%;
+    }
+  }
+
 @media screen and (min-width: 1367px) {
     .login-block {
         padding: 3em;

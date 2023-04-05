@@ -40,11 +40,15 @@ nav {
     background-color: #87cac4;
 }
 
+.list {
+    margin-left: auto;
+}
+
 .menu_list {
     margin-bottom: 0;
     list-style: none;
     display: flex;
-    align-items: center;
+    margin-left: auto;
 }
 
 .menu_list li {
@@ -284,4 +288,8 @@ section img {
     background-color: #d9d9d9;
     padding: 1.3em;
     border-radius: 5em;
+}
+
+.titulo_foot {
+    color: #fff;
 }

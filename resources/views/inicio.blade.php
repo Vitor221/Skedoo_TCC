@@ -9,7 +9,7 @@
 <nav>
   <a href="{{ route('skedoo_pag')}}"><img id="logo_nav" src="{{ asset('img/Skedoo.png')}}" alt="logo da Skedoo"></a>
   <ul class="menu_list">
-    <li><a href="{{ route('contato_pag') }}">Contato</a></li>
+    <li class="list"><a href="{{ route('contato_pag') }}">Contato</a></li>
     <x-botao-app />
     <li><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
   </ul>
