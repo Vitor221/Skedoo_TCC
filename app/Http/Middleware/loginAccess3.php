@@ -5,9 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Login;
 
-class accessLogins
+class loginAccess3
 {
     /**
      * Handle an incoming request.
@@ -16,16 +15,12 @@ class accessLogins
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // return $next($request);
-        // session()->has('login.cd_acesso') && session()->('login.cd_acesso') == 1 ? return redirect()->route('instituicao') : abort(402, 'Acesso negado');
         $cd_acesso = session()->get('login.cd_acesso');
 
-        if(session()->has('login') && $cd_acesso == 1) {
+        if(session()->has('login') && $cd_acesso == 3) {
             return $next($request);
-        } else if($cd_acesso == 2 || $cd_acesso == 3){
+        } else if($cd_acesso == 1 || $cd_acesso == 2) {
             abort(403, 'Acesso Negado!');
         }
-
-
     }
 }

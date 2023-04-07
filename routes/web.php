@@ -34,26 +34,11 @@ Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 
-Route::group(['prefix' => 'login'], function () {
-    Route::get('/instituicao', [InstituicaoController::class, 'index'])->middleware('loginAccess')->name('instituicao');
-    Route::group(['prefix' => 'instituicao'], function() {
-        Route::get('/clientes', [DadosController::class, 'cliente'])->name('index.clientes');
-        Route::get('/alunos', [DadosController::class, 'aluno'])->name('index.alunos');
-        Route::get('/perfil', [PerfilController::class, 'perfilInstituicao'])->name('perfil_pag');
-    })->middleware('loginAccess');
-
-
-    Route::get('/responsavel', [ResponsavelController::class, 'responsavel'])->name('responsavel');
-    Route::group(['prefix' => 'responsavel'], function() {
-        Route::get('/perfil', [PerfilController::class, 'perfilResponsavel'])->name('perfil_pag');
-    });
-
-    Route::get('/educador', [ProfissionalController::class, 'profissional'])->name('profissional');
-    Route::group(['prefix' => 'educador'], function() {
-        Route::get('/perfil', [PerfilController::class, 'perfilEducador'])->name('perfil_pag');
-    });
+Route::get('/instituicao', [InstituicaoController::class, 'index'])->middleware('loginAccess')->name('instituicao');
     
-});
+Route::get('/responsavel', [ResponsavelController::class, 'responsavel'])->middleware('loginAccess3')->name('responsavel');
+
+Route::get('/educador', [ProfissionalController::class, 'profissional'])->middleware('loginAccess2')->name('profissional');
 
 Route::get('/clientes', [DadosController::class, 'cliente'])->name('clientes');
 Route::get('/ajuda', [DadosController::class, 'ajuda'])->name('ajuda');

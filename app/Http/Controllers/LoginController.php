@@ -34,12 +34,18 @@ class LoginController extends Controller
 
         if ($usuario) { //Se tiver todos os dados do usuário pesquisado e a senha do usuário for igual a senha do banco de dados.
             session()->put('login', $usuario);
-            // if ($usuario['cd_acesso'] == '3') {
-            //     return redirect()->route('responsavel');
-            // } else if ($usuario['cd_acesso'] == '2') {
-            //     return redirect()->route('profissional');
-            // }
-            return redirect()->route('instituicao');
+            
+            if($usuario['cd_acesso'] == 1){
+                return redirect()->route('instituicao');
+            }
+
+            if($usuario['cd_acesso'] == 2) {
+                return redirect()->route('profissional');
+            }
+
+            if($usuario['cd_acesso'] == 3) {
+                return redirect()->route('responsavel');
+            }
         }
         return redirect()->back()->with('erro', 'Usuário ou senha inválido');
     }
