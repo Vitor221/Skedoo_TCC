@@ -12,14 +12,13 @@ class DadosController extends Controller
     // public utilizada no DadosControllers
     public function cliente(){
       
+        $TbResponsaveis = TbResponsavel::paginate(6);
 
-
-        $TbResponsavel = TbResponsavel::all();
         // dd($TbResponsavel);
         // Chamando a View/blade
         
 
-        return view('telas.clientes',['TbResponsavel'=>$TbResponsavel]); 
+        return view('telas.clientes',['TbResponsaveis'=>$TbResponsaveis]); 
     }
 
     public function aluno(){

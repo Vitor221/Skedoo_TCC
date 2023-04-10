@@ -55,14 +55,17 @@ nav h3 {
     border-color:#87cac4;
     background-color: #87cac4;
 }
+ 
 .tabela{
-    width: 95%;
-    height: 80%;
+    width: 100%;
     margin: 0 auto;
+    height: 400px;
+    overflow: auto;
     background-color: #fff;
     border: none;
     border-radius: 2em;
 }
+
 .nome{
     text-align: inherit;
 }
@@ -95,11 +98,12 @@ nav h3 {
 }
 .uil-trash-alt::before{
     font-size: 2em;
-    'pa'dding: 0.25em;
+    padding: 0.15em;
 }
 .botoes{
     display: flex;
     margin: 0px;
+    cursor: pointer;
 }
 h2{
     text-align: center;
