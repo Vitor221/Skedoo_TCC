@@ -6,14 +6,14 @@
 
 @section('content')
 <div class="flex-cards">
-    <x-card-funcoes tituloCard="Mensagens" href="{{route('clientes')}}" icon="uil uil-comments"/>
-    <x-card-funcoes tituloCard="Saúde" href="{{route('clientes')}}" icon="uil uil-heart-medical"/>
-    <x-card-funcoes tituloCard="Serviços" href="{{route('clientes')}}" icon="uil uil-apps"/>
-    <x-card-funcoes tituloCard="Configurações" href="{{route('clientes')}}" icon="uil uil-setting"/>
+    <x-card-funcoes tituloCard="Mensagens" href="{{route('responsavel.clientes')}}" icon="uil uil-comments"/>
+    <x-card-funcoes tituloCard="Saúde" href="{{route('responsavel.clientes')}}" icon="uil uil-heart-medical"/>
+    <x-card-funcoes tituloCard="Serviços" href="{{route('responsavel.clientes')}}" icon="uil uil-apps"/>
+    <x-card-funcoes tituloCard="Configurações" href="{{route('responsavel.clientes')}}" icon="uil uil-setting"/>
 </div>
 <div class="flex-cards">
     
-    <x-card-funcoes tituloCard="Ajuda" href="{{route('clientes')}}" icon="uil uil-question"/>
+    <x-card-funcoes tituloCard="Ajuda" href="{{route('responsavel.ajuda')}}" icon="uil uil-question"/>
 </div>
 
 @endsection

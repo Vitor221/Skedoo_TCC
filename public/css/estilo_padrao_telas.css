@@ -95,7 +95,7 @@ nav h3 {
 }
 .uil-trash-alt::before{
     font-size: 2em;
-    padding: 0.25em;
+    'pa'dding: 0.25em;
 }
 .botoes{
     display: flex;
@@ -105,7 +105,44 @@ h2{
     text-align: center;
     color: #fff;
     padding: 1em;
+    text-decoration: underline;
 }
 .sub-titulo{
+    color: #fff;
     margin-top: 1em;
+    text-decoration: underline;
+}
+
+.paragrafo {
+    color: #222222;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.div-voltar{
+    margin: auto;
+    display: flex;
+}
+
+.div-voltar a {
+    background-color: #ffbf69;
+    border-radius: 1em;
+    transition: all .2s ease-in-out;
+}
+
+.div-voltar a:hover {
+    transform: scale(1.1);
+}
+
+.voltar-link {
+    padding: 0.2em 1em;
+    font-size: 1.5em;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
 }

@@ -1,4 +1,4 @@
-@extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responaveis dos Alunos'])
+@extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responsaveis dos Alunos'])
 
 @section('content')
     <table class="tabela">

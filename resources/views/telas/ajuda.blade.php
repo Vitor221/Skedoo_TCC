@@ -16,7 +16,7 @@
         <h3 class="sub-titulo">Financeiro</h3>
         <p class="paragrafo">A seção financeiro é um controle de pagamentos, possibilitando a instituição visualizar quais responsaveis realizaram o pagamento mensal para instituição.</p>
         <h3 class="sub-titulo">Serviços</h3>
-        <p class="paragrafo">Na area de serviçoes é possivel visualizar quais serviços separados como van escolar os responsaveis realizaram pagamento a parte</p>
+        <p class="paragrafo">Na area de serviços é possivel visualizar quais serviços separados como van escolar os responsaveis realizaram pagamento a parte</p>
         <h3 class="sub-titulo">Configurações</h3>
         <p class="paragrafo">Em configurações é possivel alterar as configuracões do software como tamanho de fontes e modos de daltonismo ou modo escuro.</p>
         <h2>Alguma duvida ou problema? Fale conosco.</h2>

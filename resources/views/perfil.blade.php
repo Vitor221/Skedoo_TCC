@@ -29,6 +29,9 @@
         <div class="div-sair">
             <a href="{{ route('logout') }}" class="sair-link">Sair</a>
         </div>
+        <div class="div-voltar">
+            <a href="{{ url()->previous() }}" class="voltar-link">Voltar</a>
+        </div>
     </div>
 
 </body>

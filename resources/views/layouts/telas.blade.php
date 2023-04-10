@@ -20,6 +20,11 @@
 
     <div class="menu-bar">
         <h2>{{ $nometela }}</h2>
+        <div class="flex">
+            <div class="div-voltar">
+                <a href="{{ url()->previous() }}" class="voltar-link">Voltar</a>
+            </div>
+        </div>
     </div>
     <div class="conteudo">
         @yield('content')

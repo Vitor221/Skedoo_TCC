@@ -34,11 +34,29 @@ Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 
 Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 
-Route::get('/instituicao', [InstituicaoController::class, 'index'])->middleware('loginAccess')->name('instituicao');
-    
-Route::get('/responsavel', [ResponsavelController::class, 'responsavel'])->middleware('loginAccess3')->name('responsavel');
+Route::group(['middleware' => ['loginAccess']], function() {
+    Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
+    Route::get('instituicao/clientes', [DadosController::class, 'cliente'])->name('instituicao.clientes');
+    Route::get('/instituicao/ajuda', [DadosController::class, 'ajuda'])->name('instituicao.ajuda');
+    Route::get('/instituicao/alunos', [DadosController::class, 'aluno'])->name('instituicao.alunos');
+    Route::get('/instituicao/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');    
+});
 
-Route::get('/educador', [ProfissionalController::class, 'profissional'])->middleware('loginAccess2')->name('profissional');
+Route::group(['middleware' => ['loginAccess3']], function() {
+    Route::get('/responsavel', [ResponsavelController::class, 'responsavel'])->name('responsavel');
+    Route::get('responsavel/mensagens', [DadosController::class, 'cliente'])->name('responsavel.clientes');
+    Route::get('responsavel/ajuda', [DadosController::class, 'ajuda'])->name('responsavel.ajuda');
+    Route::get('responsavel/saude', [DadosController::class, 'aluno'])->name('responsavel.alunos');
+    Route::get('responsavel/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
+});
+
+Route::group(['middleware' => ['loginAccess2']], function() {
+    Route::get('/educador', [ProfissionalController::class, 'profissional'])->name('profissional');
+    Route::get('educador/turmas', [DadosController::class, 'cliente'])->name('profissional.clientes');
+    Route::get('educador/saude', [DadosController::class, 'ajuda'])->name('profissional.ajuda');
+    Route::get('educador/mensagens', [DadosController::class, 'aluno'])->name('profissional.alunos');
+    Route::get('educador/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
+});
 
 Route::get('/clientes', [DadosController::class, 'cliente'])->name('clientes');
 Route::get('/ajuda', [DadosController::class, 'ajuda'])->name('ajuda');

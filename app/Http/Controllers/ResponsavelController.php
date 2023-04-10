@@ -18,7 +18,7 @@ class ResponsavelController extends Controller
         if (session()->has('login') && $cd_acesso == 3) {
             return view('login_pags.responsavel');
         } else {
-            abort(403, 'Acesso Negado!');
+            return redirect()->back();
         }
         
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');

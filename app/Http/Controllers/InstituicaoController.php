@@ -19,7 +19,7 @@ class InstituicaoController extends Controller
         if (session()->has('login') && $cd_acesso == 1) {
             return view('login_pags.instituicao');
         } else {
-            abort(403, 'Acesso Negado!');
+            return redirect()->back();
         }
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');

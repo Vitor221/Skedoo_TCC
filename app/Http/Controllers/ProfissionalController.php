@@ -18,7 +18,7 @@ class ProfissionalController extends Controller
         if (session()->has('login') && $cd_acesso == 2) {
             return view('login_pags.profissional');
         } else {
-            abort(403, 'Acesso Negado!');
+            return redirect()->back();
         }
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');

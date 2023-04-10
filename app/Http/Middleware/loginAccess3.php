@@ -20,7 +20,7 @@ class loginAccess3
         if(session()->has('login') && $cd_acesso == 3) {
             return $next($request);
         } else if($cd_acesso == 1 || $cd_acesso == 2) {
-            abort(403, 'Acesso Negado!');
+            return redirect()->back();
         }
     }
 }
