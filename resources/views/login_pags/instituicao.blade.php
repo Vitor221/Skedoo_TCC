@@ -14,7 +14,7 @@
 </div>
 <div class="flex-cards">
     <x-card-funcoes tituloCard="Financeiro" href="{{route('instituicao.clientes')}}" icon="uil uil-money-withdraw"/>
-    <x-card-funcoes tituloCard="Serviços" href="{{route('instituicao.clientes')}}" icon="uil uil-apps"/>
+    <x-card-funcoes tituloCard="Serviços" href="{{route('instituicao.servicos')}}" icon="uil uil-apps"/>
     <x-card-funcoes tituloCard="Configurações" href="{{route('instituicao.clientes')}}" icon="uil uil-setting"/>
     <x-card-funcoes tituloCard="Ajuda" href="{{route('instituicao.ajuda')}}" icon="uil uil-question"/>
 </div>

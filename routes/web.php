@@ -8,6 +8,7 @@ use App\Http\Controllers\ResponsavelController;
 use App\Http\Controllers\DadosController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ServicosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,10 @@ Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
 Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
     Route::get('instituicao/clientes', [DadosController::class, 'cliente'])->name('instituicao.clientes');
-    Route::get('/instituicao/ajuda', [DadosController::class, 'ajuda'])->name('instituicao.ajuda');
-    Route::get('/instituicao/alunos', [DadosController::class, 'aluno'])->name('instituicao.alunos');
-    Route::get('/instituicao/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');    
+    Route::get('instituicao/ajuda', [DadosController::class, 'ajuda'])->name('instituicao.ajuda');
+    Route::get('instituicao/alunos', [DadosController::class, 'aluno'])->name('instituicao.alunos');
+    Route::get('instituicao/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
+    Route::get('instituicao/servicos', [ServicosController::class, 'servicos'])->name('instituicao.servicos');  
 });
 
 Route::group(['middleware' => ['loginAccess3']], function() {
