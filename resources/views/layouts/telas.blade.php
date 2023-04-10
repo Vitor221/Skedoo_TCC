@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <nav>
+    <nav class="nav">
         <img src="{{ asset('../img/Skedoo.png') }}" alt="">
         <h3>Bem-vindo, {{ session('login')['nm_login'] }}</h3>
         <x-profile-button />

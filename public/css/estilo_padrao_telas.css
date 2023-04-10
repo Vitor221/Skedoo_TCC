@@ -14,6 +14,10 @@ body {
 }
 
 nav {
+    margin-top: 1rem;
+}
+
+.nav {
     position: relative;
     display: flex;
     align-items: center;
@@ -22,11 +26,11 @@ nav {
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
-nav img {
+.nav img {
     width: 11%;
 }
 
-nav h3 {
+.nav h3 {
     margin-right: 1em;
     margin-left: auto;
     font-size: 1.6em;
@@ -57,13 +61,44 @@ nav h3 {
 }
  
 .tabela{
-    width: 100%;
+    width: 95%;
     margin: 0 auto;
-    height: 400px;
-    overflow: auto;
+    height: 500px;
     background-color: #fff;
     border: none;
     border-radius: 2em;
+}
+
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    width: 120px;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #DCEBE6;
+}
+
+tr:hover:nth-child(1n + 2) {
+    background-color: #085F63;
+    color: #fff;
 }
 
 .nome{
@@ -77,7 +112,6 @@ nav h3 {
     border-radius: 1em;
     padding: 0.6em;
     margin: auto;
-    margin-right:1em;
 }
 .ver{
     background-color: rgb(3, 182, 27);
@@ -85,24 +119,19 @@ nav h3 {
     border: none;
     border-radius: 1em;
     padding: 0.6em;
-    margin: auto;
-    margin-right:1em;
 }
 .deletar{
     background-color: #f13f3f;
     color: white;
     border: none;
     border-radius: 5em;
-    margin: auto;
-    margin-bottom:1em;
 }
 .uil-trash-alt::before{
     font-size: 2em;
     padding: 0.15em;
 }
 .botoes{
-    display: flex;
-    margin: 0px;
+    width: 5%;
     cursor: pointer;
 }
 h2{
