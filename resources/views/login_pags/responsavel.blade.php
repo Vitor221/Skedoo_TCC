@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-<div class="flex-cards1 flex-cards2">
+<div class="flex-cards">
     <x-card-funcoes tituloCard="Mensagens" href="{{route('responsavel.clientes')}}" icon="uil uil-comments"/>
     <x-card-funcoes tituloCard="Saúde" href="{{route('responsavel.clientes')}}" icon="uil uil-heart-medical"/>
     <x-card-funcoes tituloCard="Transporte" href="{{route('profissional.clientes')}}" icon="uil uil-bus" />
     <x-card-funcoes tituloCard="Configurações" href="{{route('responsavel.clientes')}}" icon="uil uil-setting"/>
 </div>
-<div class="flex-cards2">
+<div class="flex-cards">
     <x-card-funcoes tituloCard="Ajuda" href="{{route('responsavel.ajuda')}}" icon="uil uil-question"/>
 </div>
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="flex-cards1 flex-cards2">
+<div class="flex-cards">
     <x-card-funcoes tituloCard="Mensagens" href="{{route('instituicao.mensagem')}}" class="icon" icon="uil uil-comments"/>
     <x-card-funcoes tituloCard="Clientes" href="{{route('instituicao.clientes')}}" class="icon" icon="uil uil-head-side"/>
     <x-card-funcoes tituloCard="Colaboradores" href="{{route('instituicao.colaborador')}}" class="icon" icon="uil uil-book-reader"/>

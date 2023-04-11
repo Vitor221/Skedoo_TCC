@@ -44,12 +44,3 @@ html::before {
     margin-top: 0.8rem;
     font-size: 1.5em;
 }
-
-.flex-cards1 {
-    margin-bottom: 4em;
-}
-
-.flex-cards2 {
-    display: flex;
-    justify-content: space-around;
-}

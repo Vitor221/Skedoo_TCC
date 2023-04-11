@@ -42,12 +42,3 @@ html::before {
     background-color: #87cac4;
 }
 
-
-.flex-cards1 {
-    margin-bottom: 4em;
-}
-
-.flex-cards2 {
-    display: flex;
-    justify-content: space-around;
-}

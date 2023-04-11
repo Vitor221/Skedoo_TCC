@@ -45,9 +45,6 @@ nav h3 {
     color: #fff;
     font-weight: 600;
 }
-.flex{
-    display: flex;
-}
 .search {
     display: flex;
     background-color: rgb(255, 255, 255);
@@ -189,28 +186,4 @@ nav h3 {
 .flex {
     display: flex;
     justify-content: center;
-}
-
-.div-voltar{
-    margin: auto;
-    display: flex;
-}
-
-.div-voltar a {
-    background-color: #ffbf69;
-    border-radius: 1em;
-    transition: all .2s ease-in-out;
-}
-
-.div-voltar a:hover {
-    transform: scale(1.1);
-}
-
-.voltar-link {
-    padding: 0.2em 1em;
-    font-size: 1.5em;
-    text-decoration: none;
-    text-align: center;
-    color: white;
-    font-weight: bold;
 }
