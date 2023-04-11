@@ -140,8 +140,7 @@ body {
 }
 
 .div-conteudo{
-    padding: 8em;
-    padding-top: 1em;
+    padding: 1em;
     border-radius: 2em;
 }
 
@@ -175,6 +174,16 @@ body {
     font: weight 60px;
     font-size: 10rem;
     margin:auto;
+}
+
+ 
+.tabela{
+    width: 95%;
+    margin: 0 auto;
+    height: 500px;
+    background-color: #fff;
+    border: none;
+    border-radius: 2em;
 }
 
 .tabela {
@@ -287,10 +296,14 @@ h2{
     color: #fff;
     margin-top: 1em;
     text-decoration: underline;
+    margin-left:4%;
+    margin-right:4%;
 }
 
 .paragrafo {
     color: #222222;
+    margin-left:4%;
+    margin-right:4%;
 }
 
 .flex {

@@ -12,6 +12,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\SaudeController;
+use App\Http\Controllers\TransporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/financeiros', [FinanceirosController::class, 'financeiro'])->name('instituicao.financeiro');
     Route::get('instituicao/colaborador', [ColaboradoresController::class, 'colaborador'])->name('instituicao.colaborador');
     Route::get('instituicao/mensagem', [MensagemController::class, 'mensagem'])->name('instituicao.mensagem');
+    Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
 });
 
 Route::group(['middleware' => ['loginAccess3']], function() {

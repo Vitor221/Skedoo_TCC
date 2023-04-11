@@ -1,4 +1,4 @@
-@extends('layouts.desenvolvimento', ['title'=>'Skedoo - Financeiros'], ['nomelogin' => 'Financeiros'])
+@extends('layouts.desenvolvimento', ['title'=>'Skedoo - Financeiros'], ['nomelogin' => 'Financeiro'])
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/estilo_desenvolvimento.css') }}">
