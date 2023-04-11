@@ -25,9 +25,20 @@ html::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: quicaquica 0.3s;
 }
 
 .texto-desenvolvimento {
     text-align: center;
     font-size: 2em;
+}
+@keyframes quicaquica {
+    from {
+      transform: translateX(5000px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 100%;
+    }
 }

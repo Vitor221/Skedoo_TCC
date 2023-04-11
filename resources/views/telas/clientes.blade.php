@@ -6,11 +6,22 @@
 
 @section('content')
 
-    {{-- <div class="search">
-        <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-        <button type="submit"><i class="uil uil-search"></i></button>
+    {{-- <div class="insert">
+        <form class="form-cadastro">
+            <label>Nome do Cliente</label>
+            <input type="text" class="texto">
+            <label>CPF</label>
+            <input type="text" class="texto">
+            <label>Email</label>
+            <input type="text" class="texto">
+            <label>Telefone</label>
+            <input type="text" class="texto">
+            <label>Celular</label>
+            <input type="text" class="texto">
+        </form>
     </div> --}}
 
+    <div class="div-tabela">
     <table class="tabela">
         <h2>Tabela de Clientes</h2>
         <thead>
@@ -35,6 +46,8 @@
     <div class="pagination justify-content-center">
         {{ $TbResponsaveis->links()}}
     </div>
+    <br>
+</div>
     
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection
