@@ -29,5 +29,6 @@
     <div class="pagination justify-content-center">
         {{ $TbResponsaveis->links()}}
     </div>
-        
+    
+    <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection

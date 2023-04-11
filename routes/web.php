@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\ColaboradoresController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControllerSkedoo;
 use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ResponsavelController;
 use App\Http\Controllers\DadosController;
+use App\Http\Controllers\FinanceirosController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MensagemController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\SaudeController;
 
@@ -43,6 +46,10 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
     Route::get('instituicao/saude', [SaudeController::class, 'saude'])->name('instituicao.saude'); 
     Route::get('instituicao/saude/problemassaude', [SaudeController::class, 'problemassaude'])->name('instituicao.problemassaude');  
+    Route::get('instituicao/transportes', [TransporteController::class, 'transporte'])->name('instituicao.transporte');
+    Route::get('instituicao/financeiros', [FinanceirosController::class, 'financeiro'])->name('instituicao.financeiro');
+    Route::get('instituicao/colaborador', [ColaboradoresController::class, 'colaborador'])->name('instituicao.colaborador');
+    Route::get('instituicao/mensagem', [MensagemController::class, 'mensagem'])->name('instituicao.mensagem');
 });
 
 Route::group(['middleware' => ['loginAccess3']], function() {

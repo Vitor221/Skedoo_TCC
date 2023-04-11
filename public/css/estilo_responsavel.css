@@ -20,6 +20,7 @@ html::before {
 
 .card{
     background-color: #ffbf69;
+    padding: 2.5em 2em;
 }
 .card:hover{
     border-color:#ffbf69;

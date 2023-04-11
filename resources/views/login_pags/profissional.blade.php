@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="flex-cards">
+<div class="flex-cards1 flex-cards2">
     <x-card-funcoes tituloCard="Mensagens" href="{{route('profissional.clientes')}}" icon="uil uil-comments"/>
     <x-card-funcoes tituloCard="Turmas" href="{{route('profissional.alunos')}}" icon="uil uil-kid"/>
     <x-card-funcoes tituloCard="Saúde" href="{{route('profissional.clientes')}}" icon="uil uil-heart-medical"/>
@@ -14,5 +14,7 @@
 <div class="flex-cards">
     <x-card-funcoes tituloCard="Ajuda" href="{{route('profissional.ajuda')}}" icon="uil uil-question"/>
 </div>
+
+<script src="{{ asset('js/config.js') }}"></script>
 
 @endsection

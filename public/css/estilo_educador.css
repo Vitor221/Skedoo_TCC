@@ -17,12 +17,16 @@ html::before {
 .menu-bar {
     background-color: #606cd6;
 }
+
 .card{
     background-color: #606cd6;
+    padding: 2.5em 2em;
 }
+
 .card:hover{
     border-color:#606cd6;
 }
+
 .card:hover i, .card:hover h3{
     color: #606cd6;
 }
@@ -34,4 +38,18 @@ html::before {
 }
 .paragrafo{
     color: white;
+}
+
+.texto-card {
+    margin-top: 0.8rem;
+    font-size: 1.5em;
+}
+
+.flex-cards1 {
+    margin-bottom: 4em;
+}
+
+.flex-cards2 {
+    display: flex;
+    justify-content: space-around;
 }
