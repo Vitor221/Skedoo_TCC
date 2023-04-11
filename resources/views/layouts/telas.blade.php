@@ -10,27 +10,23 @@
     <!-- FontAwesome - Ícones -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/estilo_padrao_telas.css') }}">
+    @yield('styles')
     <title>{{ $title }}</title>
 </head>
 
 <body>
     <nav class="nav">
-        <img src="{{ asset('../img/Skedoo.png') }}" alt="">
-        <h3>Bem-vindo, {{ session('login')['nm_login'] }}</h3>
+        <img class="logo" src="{{ asset('../img/Skedoo.png') }}" alt="">
+        <h3 style="margin-bottom: 0px;">Bem-vindo, {{ session('login')['nm_login'] }}</h3>
         <x-profile-button />
     </nav>
 
     <div class="menu-bar">
+        @yield('voltar')
         <h2>{{ $nometela }}</h2>
-        <div class="flex">
-            <div class="div-voltar">
-                <a href="{{ url()->previous() }}" class="voltar-link">Voltar</a>
-            </div>
-        </div>
     </div>
     <div class="conteudo">
         @yield('content')
-        <br>
     </div>
 </body>
 

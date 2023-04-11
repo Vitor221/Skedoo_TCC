@@ -8,7 +8,7 @@ use App\Http\Controllers\ResponsavelController;
 use App\Http\Controllers\DadosController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerfilController;
-use App\Http\Controllers\ServicosController;
+use App\Http\Controllers\SaudeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,22 +41,23 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/ajuda', [DadosController::class, 'ajuda'])->name('instituicao.ajuda');
     Route::get('instituicao/alunos', [DadosController::class, 'aluno'])->name('instituicao.alunos');
     Route::get('instituicao/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
-    Route::get('instituicao/servicos', [ServicosController::class, 'servicos'])->name('instituicao.servicos');  
+    Route::get('instituicao/saude', [SaudeController::class, 'saude'])->name('instituicao.saude'); 
+    Route::get('instituicao/saude/problemassaude', [SaudeController::class, 'problemassaude'])->name('instituicao.problemassaude');  
 });
 
 Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('/responsavel', [ResponsavelController::class, 'responsavel'])->name('responsavel');
-    Route::get('responsavel/mensagens', [DadosController::class, 'cliente'])->name('responsavel.clientes');
-    Route::get('responsavel/ajuda', [DadosController::class, 'ajuda'])->name('responsavel.ajuda');
-    Route::get('responsavel/saude', [DadosController::class, 'aluno'])->name('responsavel.alunos');
+    Route::get('responsavel/mensagens', [ResponsavelController::class, 'cliente'])->name('responsavel.clientes');
+    Route::get('responsavel/ajuda', [ResponsavelController::class, 'ajuda'])->name('responsavel.ajuda');
+    Route::get('responsavel/saude', [ResponsavelController::class, 'aluno'])->name('responsavel.alunos');
     Route::get('responsavel/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
 });
 
 Route::group(['middleware' => ['loginAccess2']], function() {
     Route::get('/educador', [ProfissionalController::class, 'profissional'])->name('profissional');
-    Route::get('educador/turmas', [DadosController::class, 'cliente'])->name('profissional.clientes');
-    Route::get('educador/saude', [DadosController::class, 'ajuda'])->name('profissional.ajuda');
-    Route::get('educador/mensagens', [DadosController::class, 'aluno'])->name('profissional.alunos');
+    Route::get('educador/turmas', [ProfissionalController::class, 'cliente'])->name('profissional.clientes');
+    Route::get('educador/saude', [ProfissionalController::class, 'ajuda'])->name('profissional.ajuda');
+    Route::get('educador/mensagens', [ProfissionalController::class, 'aluno'])->name('profissional.alunos');
     Route::get('educador/perfil', [PerfilController::class, 'perfil'])->name('perfil_pag');
 });
 

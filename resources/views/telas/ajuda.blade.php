@@ -1,7 +1,14 @@
 @extends('layouts.telas', ['title' => 'Skedoo - Ajuda'], ['nometela' => 'Como Utilizar o Software'])
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/estilo_instituicao.css') }}">
+@endsection
+@section('voltar')
+<x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>
+@endsection
+
 @section('content')
-    <div class="conteudo">
+    <div class="div-conteudo" style="margin-top: ;">
         <h2>Funções</h2>
         <h3 class="sub-titulo">Mensagens</h3>
         <p class="paragrafo">Na seção mensagens é possivel enviar e receber mensagens em chats privados ou de modo geral para educadores, responsaveis ou ambos.</p>

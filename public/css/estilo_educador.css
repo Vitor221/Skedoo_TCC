@@ -26,3 +26,12 @@ html::before {
 .card:hover i, .card:hover h3{
     color: #606cd6;
 }
+.menu-bar{
+    background-color: #606cd6;
+}
+.div-conteudo{
+    background-color: #606cd6;
+}
+.paragrafo{
+    color: white;
+}

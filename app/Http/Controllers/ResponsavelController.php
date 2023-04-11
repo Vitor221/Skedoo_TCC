@@ -23,4 +23,7 @@ class ResponsavelController extends Controller
         
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
+    public function ajuda() {
+        return view('telas.ajudaresponsavel');
+    }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responsaveis dos Alunos'])
 
+@section('voltar')
+<x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>
+@endsection
+
 @section('content')
     <table class="tabela">
         <h2>Tabela de Clientes</h2>

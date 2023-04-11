@@ -1,5 +1,10 @@
 @extends('layouts.telas', ['title' => 'Skedoo - Turmas'], ['nometela' => 'Turmas e Alunos'])
 
+
+@section('voltar')
+<x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>
+@endsection
+
 @section('content')
     <table class="tabela">
         <h2>Tabela de Alunos</h2>
@@ -13,9 +18,9 @@
             @foreach ($TbAluno as $TbAluno)
                 <tr class="pessoa">
                     <th class="nome" scope>{{ $TbAluno->nm_aluno }}</th>
-                    <th scope>{{ $TbAluno->cd_turma }}</th>
-                    <th class="botoes"><button class="ver">Vizualizar</button><button class="editar">Editar</button><button
-                            class="deletar"><i class="uil uil-trash-alt"></i></button></th>
+                    <th class="botoes"><button class="ver">Vizualizar</button>
+                    <th class="botoes"><button class="editar">Editar</button></th>
+                    <th class="botoes"><button class="deletar"><i class="uil uil-trash-alt"></i></button></th>
                 </tr>
             @endforeach
 
