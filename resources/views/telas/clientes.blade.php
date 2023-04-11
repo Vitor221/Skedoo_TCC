@@ -6,10 +6,10 @@
 
 @section('content')
 
-    <div class="search">
+    {{-- <div class="search">
         <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
         <button type="submit"><i class="uil uil-search"></i></button>
-    </div>
+    </div> --}}
 
     <table class="tabela">
         <h2>Tabela de Clientes</h2>

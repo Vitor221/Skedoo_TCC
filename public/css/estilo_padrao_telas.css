@@ -10,10 +10,6 @@ body::-webkit-scrollbar{
     display: none;
 }
 
-.teste {
-
-}
-
 body {
     width: 100%;
     height: 100%;
@@ -53,6 +49,7 @@ body {
     color: #fff;
     font-weight: 600;
 }
+
 .img-perfil {
     border-radius: 25px;
     width: 50px;
@@ -62,52 +59,61 @@ body {
 .img-perfil:hover {
     transform: scale(1.1);
 }
+
 .card{
     padding: 2em;
     border-radius: 50px;
     transition: all .2s ease-in-out;
 }
+
 .card i,.card h3{
     color: #fff;
 }
+
 .card:hover {
     background-color: #fff;
     border-width: 15px;
 }
+
 .card-link{
     text-decoration: none;
 }
+
 .conteudo{
-    margin: 6em;
-    height: fit-content;
-    border-radius: 2em;
-    position: relative;
+    background-image: linear-gradient(#ffe8ca, #ecab54);
 }
+
 .div-conteudo{
     padding: 1em;
     border-radius: 2em;
 }
+
 .icon-card{
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 1.8em;
 }
+
 .texto-card{
     text-align: center;
 }
+
 .flex-cards{
     display: flex;
     justify-content: space-between;
     margin-bottom: 4em;
 }
+
 .card-margin{
     margin-left: 20%;
     margin-right: 20%;
 }
+
 .uil{
     display: flex;
 }
+
 .uil::before{
     font: weight 60px;
     font-size: 10rem;
@@ -371,3 +377,4 @@ textarea:focus {
     width: 70%;
     margin: auto;
 }
+
