@@ -11,7 +11,7 @@
     <x-card-funcoes tituloCard="Transporte" href="{{route('profissional.clientes')}}" icon="uil uil-bus" />
     <x-card-funcoes tituloCard="Configurações" href="{{route('responsavel.clientes')}}" icon="uil uil-setting"/>
 </div>
-<div class="flex-cards">
+<div class="flex-cards" style="margin-bottom: 0px;">
     <x-card-funcoes tituloCard="Ajuda" href="{{route('responsavel.ajuda')}}" icon="uil uil-question"/>
 </div>
 

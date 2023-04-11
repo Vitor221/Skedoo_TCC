@@ -24,4 +24,7 @@ class InstituicaoController extends Controller
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
+    public function configuracoes(){
+        return view('telas.configuracoes');
+    }
 }

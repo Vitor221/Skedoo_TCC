@@ -84,8 +84,7 @@ body {
     position: relative;
 }
 .div-conteudo{
-    padding: 8em;
-    padding-top: 1em;
+    padding: 1em;
     border-radius: 2em;
 }
 .icon-card{
@@ -123,7 +122,6 @@ body {
     background-color: #fff;
     border: none;
     border-radius: 2em;
-}
 }
 
 .tabela {
@@ -236,10 +234,14 @@ h2{
     color: #fff;
     margin-top: 1em;
     text-decoration: underline;
+    margin-left:4%;
+    margin-right:4%;
 }
 
 .paragrafo {
     color: #222222;
+    margin-left:4%;
+    margin-right:4%;
 }
 
 .flex {
