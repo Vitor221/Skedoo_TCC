@@ -12,7 +12,6 @@
     <x-card-funcoes tituloCard="Configurações" href="{{route('responsavel.clientes')}}" icon="uil uil-setting"/>
 </div>
 <div class="flex-cards2">
-    
     <x-card-funcoes tituloCard="Ajuda" href="{{route('responsavel.ajuda')}}" icon="uil uil-question"/>
 </div>
 

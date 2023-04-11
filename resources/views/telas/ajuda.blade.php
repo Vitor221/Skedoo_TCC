@@ -23,4 +23,6 @@
         <p class="paragrafo">email: skedoo@skedoo.com</p>
         <p class="paragrafo">tel: (13) 996334709</p>
     </div>
+
+    <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection

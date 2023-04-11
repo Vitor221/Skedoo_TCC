@@ -21,4 +21,6 @@
 
         </tbody>
     </table>
+
+    <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection
