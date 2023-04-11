@@ -6,6 +6,9 @@
     list-style: none;
     font-family: "Poppins", sans-serif;
 }
+body::-webkit-scrollbar{
+    display: none;
+}
 
 body {
     width: 100%;

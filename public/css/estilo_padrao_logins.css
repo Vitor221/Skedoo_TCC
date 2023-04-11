@@ -3,8 +3,11 @@
     margin: 0;
     box-sizing: border-box;
     list-style: none;
+    
 }
-
+body::-webkit-scrollbar{
+    display: none;
+}
 body {
     width: 100%;
     height: 100%;
