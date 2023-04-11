@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+
+    <div class="search">
+        <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+        <button type="submit"><i class="uil uil-search"></i></button>
+    </div>
+
     <table class="tabela">
         <h2>Tabela de Clientes</h2>
         <thead>
@@ -16,11 +22,11 @@
         <tbody>
             @foreach ($TbResponsaveis as $TbResponsavel)
                 <tr class="pessoa">
-                    <th class="nome">{{ $TbResponsavel->nm_responsavel }}</th>
-                    <th scope>{{ $TbResponsavel->cd_cadastro }}</th>
-                    <th class="botoes"><button class="ver">Vizualizar</button>
-                    <th class="botoes"><button class="editar">Editar</button></th>
-                    <th class="botoes"><button class="deletar"><i class="uil uil-trash-alt"></i></button></th>
+                    <td class="nome">{{ $TbResponsavel->nm_responsavel }}</td>
+                    <td scope>{{ $TbResponsavel->cd_cadastro }}</td>
+                    <td class="botoes"><button class="ver">Vizualizar</button>
+                    <td class="botoes"><button class="editar">Editar</button></td>
+                    <td class="botoes"><button class="deletar"><i class="uil uil-trash-alt"></i></button></td>
                 </tr>
             @endforeach
         </tbody>
