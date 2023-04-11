@@ -20,10 +20,25 @@ html::before {
 
 .card{
     background-color: #ffbf69;
+    padding: 2.5em 2em;
 }
 .card:hover{
     border-color:#ffbf69;
 }
 .card:hover i, .card:hover h3{
     color: #ffbf69;
+}
+
+.flex-cards1 {
+    margin-bottom: 4em;
+}
+
+.flex-cards2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.texto-card {
+    margin-top: 0.8rem;
+    font-size: 1.5em;
 }

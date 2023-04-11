@@ -5,6 +5,7 @@
     box-sizing: border-box;
     list-style: none;
     font-family: "Poppins", sans-serif;
+    overflow: hidden;
 }
 
 body {
@@ -130,6 +131,8 @@ tr:hover:nth-child(1n + 2) {
     font-size: 2em;
     padding: 0.15em;
 }
+
+
 .botoes{
     width: 5%;
     cursor: pointer;
@@ -179,3 +182,5 @@ h2{
     color: white;
     font-weight: bold;
 }
+
+
