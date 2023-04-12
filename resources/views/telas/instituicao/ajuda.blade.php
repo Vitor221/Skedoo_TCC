@@ -1,7 +1,7 @@
 @extends('layouts.telas', ['title' => 'Skedoo - Ajuda'], ['nometela' => 'Como Utilizar o Software'])
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/estilo_instituicao.css') }}">
+<link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
 @endsection
 @section('voltar')
 <x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>

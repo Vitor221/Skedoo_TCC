@@ -1,9 +1,9 @@
 html::before {
     content: "";
-    background-image: url("../img/img_contato/background_1-skedoo.svg"),
-        url("../img/img_contato/background_2-skedoo.svg"),
-        url("../img/img_contato/background_3-skedoo.svg"),
-        url("../img/img_contato/background_4-skedoo.svg");
+    background-image: url("../../img/img_contato/background_1-skedoo.svg"),
+        url("../../img/img_contato/background_2-skedoo.svg"),
+        url("../../img/img_contato/background_3-skedoo.svg"),
+        url("../../img/img_contato/background_4-skedoo.svg");
     background-size: 15%, 8%, 20%, 20%;
     background-position: top 5% left, right top 0%, bottom -180% left,
      bottom -10px right;

@@ -13,7 +13,7 @@
     </script>
     <!-- FontAwesome - Ícones -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/estilo_padrao_logins.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/padroes/estilo_logins.css') }}">
     @yield('styles')
     <title>{{ $title }}</title>
 </head>

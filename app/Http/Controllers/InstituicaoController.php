@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\TbResponsavel;
+use App\Models\TbAluno;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,48 @@ class InstituicaoController extends Controller
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
+    public function saude() {
+        return view('telas.instituicao.saude');
+    }
+
+    public function problemassaude() {
+        return view('telas.instituicao.problemassaude');
+    }
+    public function cliente(){
+      
+        $TbResponsaveis = TbResponsavel::paginate(6);
+
+        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis]); 
+    }
+
+    public function aluno(){
+      
+        $TbAluno = TbAluno::all();
+
+        return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno]); 
+    }
+    public function ajuda(){
+        return view('telas.instituicao.ajuda');
+    }
+    public function mensagem(){
+        return view('telas.instituicao.mensagem');
+    }
+    public function colaborador(){
+        return view('telas.instituicao.colaborador');
+    }
     public function configuracoes(){
-        return view('telas.configuracoes');
+        return view('telas.instituicao.configuracoes');
+    }
+    public function financeiro(){
+        return view('telas.instituicao.financeiro');
+    }
+    public function transporte(){
+        return view('telas.instituicao.transporte');
+    }
+    public function calendario(){
+        return view('telas.instituicao.calendario');
+    }
+    public function refeicao(){
+        return view('telas.instituicao.refeicao');
     }
 }

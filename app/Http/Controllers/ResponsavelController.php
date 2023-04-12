@@ -24,6 +24,21 @@ class ResponsavelController extends Controller
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
     public function ajuda() {
-        return view('telas.ajudaresponsavel');
+        return view('telas.responsavel.ajuda');
+    }
+    public function saude() {
+        return view('telas.responsavel.saude');
+    }
+    public function configuracoes() {
+        return view('telas.responsavel.configuracoes');
+    }
+    public function mensagem() {
+        return view('telas.responsavel.mensagem');
+    }
+    public function calendario() {
+        return view('telas.responsavel.calendario');
+    }
+    public function transporte() {
+        return view('telas.responsavel.transporte');
     }
 }

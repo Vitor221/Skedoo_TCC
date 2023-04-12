@@ -1,7 +1,7 @@
 @extends('layouts.telas', ['title' => 'Skedoo - Ajuda'], ['nometela' => 'Como Utilizar o Software'])
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/estilo_responsavel.css') }}">
+<link rel="stylesheet" href="{{ asset('css/logins/estilo_responsavel.css') }}">
 @endsection
 
 @section('voltar')

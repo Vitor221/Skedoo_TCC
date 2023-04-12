@@ -13,7 +13,7 @@
     </script>
     <!-- FontAwesome - Ícones -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link rel="stylesheet" href="{{ asset('css/estilo_padrao_logins.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/padroes/estilo_telas.css') }}">
     @yield('styles')
     <title>{{ $title }}</title>
 </head>
@@ -26,7 +26,7 @@
     </nav>
 
     <div class="menu-bar">
-        <h2>{{ $nomelogin }}</h2>
+        <h2>{{ $nometela }}</h2>
         <div class="flex">
             <a href="{{route('clientes')}}" style="text-decoration: none;">
                 <i class="uil uil-bell"><p>Notificações</p></i>

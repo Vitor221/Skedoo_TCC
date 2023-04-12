@@ -1,11 +1,11 @@
 @extends('layouts.telas', ['title' => 'Skedoo - Ajuda'], ['nometela' => 'Como Utilizar o Software'])
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/estilo_educador.css') }}">
+<link rel="stylesheet" href="{{ asset('css/logins/estilo_educador.css') }}">
 @endsection
 
 @section('voltar')
-<x-button-back href="{{route('profissional')}}" icon="uil uil-estate"/>
+<x-button-back href="{{route('educador')}}" icon="uil uil-estate"/>
 @endsection
 
 @section('content')

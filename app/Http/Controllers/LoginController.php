@@ -40,7 +40,7 @@ class LoginController extends Controller
             }
 
             if($usuario['cd_acesso'] == 2) {
-                return redirect()->route('profissional');
+                return redirect()->route('educador');
             }
 
             if($usuario['cd_acesso'] == 3) {
