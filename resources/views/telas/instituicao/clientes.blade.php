@@ -3,6 +3,9 @@
 @section('voltar')
 <x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>
 @endsection
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+@endsection
 
 @section('content')
 
