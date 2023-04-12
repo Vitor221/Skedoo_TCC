@@ -9,20 +9,38 @@
 
 @section('content')
 
-    {{-- <div class="insert">
-        <form class="form-cadastro">
+    <div class="insert">
+        <form class="form-cadastro" id="form">
             <label>Nome do Cliente</label>
-            <input type="text" class="texto">
-            <label>CPF</label>
-            <input type="text" class="texto">
-            <label>Email</label>
-            <input type="text" class="texto">
-            <label>Telefone</label>
-            <input type="text" class="texto">
-            <label>Celular</label>
-            <input type="text" class="texto">
+            <input type="text" class="texto" style="width:100%"><br><br>
+            <div class="div-input-flex">
+                <div class="block" style="width:40%;">
+                    <label>CPF</label><br>
+                    <input type="text" class="texto" style="text-align:center; width:90%">
+                </div>
+                <div class="block" style="width:60%;">
+                    <label>Email</label><br>
+                <input type="text" class="texto" style="width:100%"><br><br>
+                </div>
+            </div>
+            <div class="div-input-flex">
+                <div class="block" style="width:50%;">
+                    <label>Telefone</label><br>
+                    <input type="text" class="texto">
+                </div>
+                <div  class="block" style="width:45%;">
+                    <label>Celular</label><br>
+                    <input type="text" class="texto" style="width:100%"><br><br>
+                </div>
+            </div>
+            <input type="submit" class="enviar">
+            <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
         </form>
-    </div> --}}
+    </div>
+    <div class="search" id="pesquisa" style="display:none;">
+        <input type="search" placeholder="Pesquisar responsavel" aria-label="Pesquisar">
+        <button type="submit"><i class="uil uil-search"></i></button>
+    </div>
 
     <div class="div-tabela">
     <table class="tabela">
@@ -31,6 +49,10 @@
             <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Cadastro</th>
+                <th scope="col"></th>
+                <th scope="col"><button class="inserir" onclick="inserir()">Inserir</button></th>
+                <th scope="col" id="abrePesquisa"  class="pesquisa-tabela"style="height:82px;"><button class="pesquisar" onclick="pesquisar()" ><i class="uil uil-search"></i></button></th>
+                <th scope="col" id="fechaPesquisa" class="pesquisa-tabela"style="display: none;"><button class="pesquisar" onclick="fechaPesquisar()" ><i class="uil uil-times"></i></button></th>
             </tr>
         </thead>
         <tbody>
