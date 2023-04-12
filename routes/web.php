@@ -19,20 +19,25 @@ use App\Http\Controllers\LoginController;
 |
 */
 
+//Tela Home
 Route::get('/', function () {
     return view('home');
 })->name('skedoo_pag');
 
+//Tela início
+Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
+
+//Tela de contato
 Route::get('/contato', function () {
     return view('contato');
 })->name('contato_pag');
 
+//Tela de login
 Route::get('/login', [LoginController::class, 'index'])->name('login_pag');
 Route::post('/login', [LoginController::class, 'autenticarLogin'])->name('login_pag');
 Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 
-Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
-
+//Rota de Instituição
 Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
     Route::get('instituicao/clientes', [InstituicaoController::class, 'cliente'])->name('instituicao.clientes');
@@ -50,6 +55,19 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
 });
 
+//Rota de Educador
+Route::group(['middleware' => ['loginAccess2']], function() {
+    Route::get('/educador', [EducadorController::class, 'educador'])->name('educador');
+    Route::get('educador/turmas', [EducadorController::class, 'aluno'])->name('educador.alunos');
+    Route::get('educador/saude', [EducadorController::class, 'saude'])->name('educador.saude');
+    Route::get('educador/ajuda', [EducadorController::class, 'ajuda'])->name('educador.ajuda');
+    Route::get('educador/mensagens', [EducadorController::class, 'mensagem'])->name('educador.mensagem');
+    Route::get('educador/calendario', [EducadorController::class, 'calendario'])->name('educador.calendario');
+    Route::get('educador/configuracoes', [EducadorController::class, 'configuracoes'])->name('educador.configuracoes');
+    Route::get('educador/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
+});
+
+//Rota de Responsáveis
 Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('/responsavel', [ResponsavelController::class, 'responsavel'])->name('responsavel');
     Route::get('responsavel/mensagens', [ResponsavelController::class, 'mensagem'])->name('responsavel.mensagens');
@@ -61,16 +79,7 @@ Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('responsavel/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
 });
 
-Route::group(['middleware' => ['loginAccess2']], function() {
-    Route::get('/educador', [EducadorController::class, 'educador'])->name('educador');
-    Route::get('educador/turmas', [EducadorController::class, 'aluno'])->name('educador.alunos');
-    Route::get('educador/saude', [EducadorController::class, 'saude'])->name('educador.saude');
-    Route::get('educador/ajuda', [EducadorController::class, 'ajuda'])->name('educador.ajuda');
-    Route::get('educador/mensagens', [EducadorController::class, 'mensagem'])->name('educador.mensagem');
-    Route::get('educador/calendario', [EducadorController::class, 'calendario'])->name('educador.calendario');
-    Route::get('educador/configuracoes', [EducadorController::class, 'configuracoes'])->name('educador.configuracoes');
-    Route::get('educador/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
-});
+
 
 Route::get('/clientes', [ControllerSkedoo::class, 'cliente'])->name('clientes');
 Route::get('/ajuda', [ControllerSkedoo::class, 'ajuda'])->name('ajuda');

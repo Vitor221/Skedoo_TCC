@@ -8,22 +8,28 @@
 @section('content')
 
 <nav>
-  <img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo">
-  <a href="{{ route('inicio_pag') }}">Acesse nosso site</a>
+    <img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo">
+    <a href="{{ route('inicio_pag') }}">Acesse nosso site </a>
 </nav>
 
 <section class="secao_inicio">
 
   <section class="topo-secao">
-    <h2>Facilitando comunicação e promovendo conforto</h2>
-    <div class="apres_text">
-      <p>Somos uma equipe do curso de Técnico em Desenvolvimento de Sistema que buscamos oferecer praticidade nos meios de comunicação entre Instituições e responsáveis, trazendo mais organização, segurança e comodidade para todos que utilizam nossas aplicações.</p>
-      <p>Buscamos realizar adaptações, com o desenvolvimento da tecnologia, e a oportunidade para entregar aos nossos usuários uma proposta mais adequada aos dias atuais.</p>
+    <div class="area-texto">
+      <div class="apres_text">
+        <h2>Facilitando comunicação e promovendo conforto</h2>
+
+        <p id="paragrafo-apres">Somos uma equipe do curso de Técnico em Desenvolvimento de Sistema que buscamos oferecer praticidade nos meios de comunicação entre Instituições e responsáveis, trazendo mais organização, segurança e comodidade para todos que utilizam nossas aplicações. <br> <br>
+        Buscamos realizar adaptações, com o desenvolvimento da tecnologia, e a oportunidade para entregar aos nossos usuários uma proposta mais adequada aos dias atuais.
+        </p>
+
+
+        <a href="{{ route('contato_pag') }}">Entre em contato <x-polaris-major-follow-up-email class="icon-carta"/></a>
+      </div>
 
     </div>
-
-    <a href="{{ route('contato_pag') }}">Entre em contato <i class="uil uil-arrow-right"></i></a>
   </section>
+
   <div class="img_balls">
     <img class="img_balls1" src="{{ asset('img/img_home/professora.jpg') }}" alt="">
     <img class="img_balls2" src="{{ asset('img/img_home/criancas1.jpg') }}" alt="">
@@ -133,9 +139,12 @@
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
+
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
+
+  <script src="{{ asset('js/scriptHome.js')}}"></script>
 </section>
 @endsection
