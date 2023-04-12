@@ -8,8 +8,8 @@
 @section('content')
 
 <nav>
-  <img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo">
-  <a href="{{ route('inicio_pag') }}">Acesse nosso site</a>
+    <img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo">
+    <a href="{{ route('inicio_pag') }}">Acesse nosso site </a>
 </nav>
 
 <section class="secao_inicio">
@@ -139,9 +139,12 @@
       <div class="vw-plugin-top-wrapper"></div>
     </div>
   </div>
+
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
+
+  <script src="{{ asset('js/scriptHome.js')}}"></script>
 </section>
 @endsection

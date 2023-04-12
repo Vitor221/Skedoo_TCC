@@ -8,12 +8,45 @@
     list-style: none;
 }
 
+html::before {
+    content: "";
+    background-image: url("../img/img_home/background-skedoo.svg"), url('../img/img_home/background-ball.svg');
+    background-size: 100% auto, 100% auto;
+    background-position: top, bottom;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 120%;
+    position: absolute;
+}
+
 body {
     position: relative;
     background-color: rgb(247, 247, 247);
     width: 100%;
-    height: 100%;
+    height: 100vh;
     font-size: 16px;
+}
+
+@keyframes load {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+    }
+    
+}
+
+.pre {
+    width: 80;
+    height: 80px;
+    background-image: url('../img/Skedoo.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: load 5s infinite ease-in-out alternate;
 }
 
 nav {
@@ -22,16 +55,6 @@ nav {
     width: 100%;
 }
 
-nav::before {
-    content: "";
-    background-image: url("../img/img_home/background-skedoo.svg");
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: top;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
 
 nav a {
     font-size: 1.6vw;
@@ -40,18 +63,29 @@ nav a {
     top: 1.2em;
     text-decoration: none;
     font-weight: 700;
+    box-shadow: 0 0 0 0;
+
+    --s: 0.1em;   /* the thickness of the line */
+    --c: #8396dc; /* the color */
     color: #fff;
-    transition: all 0.2s ease-in-out;
+    padding-bottom: var(--s);
+    background: 
+      linear-gradient(90deg,var(--c) 50%, var(--c) 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
 }
 
 nav a:hover {
     color: #8396dc;
+    --_p: 100%;
 }
 
 #logo-skedoo {
     width: 20%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 0.7em;
 }
 
 .apres_text {
@@ -67,7 +101,7 @@ nav a:hover {
     padding: 2em;
     box-shadow: -2px 3px 0px 8px #87cac4;
     border-radius: 0.5em;
-    transition: all .3s ease-in-out;
+    transition: all .5s ease-in-out;
 }
 
 .apres_text:hover {
@@ -136,7 +170,7 @@ i.uil.uil-arrow-right {
     width: 35%;
     display: flex;
     flex-direction: column;
-    margin-top: -11em;
+    margin-top: -8em;
 }
 
 .img_balls img {
