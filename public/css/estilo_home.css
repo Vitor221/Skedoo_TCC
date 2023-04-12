@@ -34,10 +34,10 @@ nav::before {
 }
 
 nav a {
-    font-size: 1.8vw;
+    font-size: 1.6vw;
     position: absolute;
     right: 0.5em;
-    top: 1.3em;
+    top: 1.2em;
     text-decoration: none;
     font-weight: 700;
     color: #fff;
@@ -49,7 +49,7 @@ nav a:hover {
 }
 
 #logo-skedoo {
-    width: 30%;
+    width: 20%;
     margin: auto;
     margin-top: 20px;
 }
@@ -62,10 +62,22 @@ nav a:hover {
     margin-bottom: 30px;
 }
 
-.apres_text p {
+.apres_text {
+    background-color: #fff;
+    padding: 2em;
+    box-shadow: -2px 3px 0px 8px #87cac4;
+    border-radius: 0.5em;
+    transition: all .3s ease-in-out;
+}
+
+.apres_text:hover {
+    transform: scale(1.1);
+}
+
+#paragrafo-apres {
     font-size: 1.1rem;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 2em;
 }
 
 .secao_inicio {
@@ -73,7 +85,6 @@ nav a:hover {
     display: flex;
     width: 100%;
 }
-
 .topo-secao {
     margin-top: 3%;
     position: relative;
@@ -82,14 +93,16 @@ nav a:hover {
 
 .topo-secao h2 {
     font-weight: 700;
-    font-size: 1.5rem;
-    margin-left: 5rem;
+    font-size: 1.6rem;
+}
+
+.area-texto {
+    padding: 0em 5em;
 }
 
 .topo-secao a {
     position: relative;
-    font-size: 1.5vw;
-    margin-left: 5rem;
+    font-size: 1.5em;
     background: #87cac4;
     text-decoration: none;
     color: #fff;
@@ -106,6 +119,12 @@ nav a:hover {
     box-shadow: 0px 0px 20px 1px rgba(150, 255, 246, 0.3);
 }
 
+.icon-carta {
+    margin-top: 0.1em;
+    margin-left: 0.3em;
+    width: 25px;
+}
+
 i.uil.uil-arrow-right {
     right: 3em;
     font-size: 1.3em;
@@ -117,7 +136,7 @@ i.uil.uil-arrow-right {
     width: 35%;
     display: flex;
     flex-direction: column;
-    margin-top: -2em;
+    margin-top: -11em;
 }
 
 .img_balls img {
@@ -127,16 +146,19 @@ i.uil.uil-arrow-right {
 .img_balls1 {
     width: 40%;
     object-fit: cover;
+    box-shadow: -7px 0px 0px 5px #8396dc;
 }
 
 .img_balls2 {
     width: 70%;
     object-fit: cover;
+    box-shadow: 10px -2px 0 5px #ecab54;
 }
 
 .img_balls3 {
     width: 40%;
     object-fit: cover;
+    box-shadow: -7px 0px 0px 5px #8396dc;
 }
 
 .carrosel_part {
