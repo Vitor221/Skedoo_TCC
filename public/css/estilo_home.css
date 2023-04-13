@@ -304,15 +304,15 @@ i.uil.uil-arrow-right {
         -webkit-transform: rotate(0);
     }
     50% {
-        transform: (45deg);
-        -webkit-transform: rotate(45deg);
+        transform: (20deg);
+        -webkit-transform: rotate(20deg);
     }
     80% {
-        transform: scale(1.1);
+        transform: (-20deg);
+        -webkit-transform: rotate(-20deg);
     }
     100% {
         transform: rotate(0);
-        transform: scale(1);
     }
 }
 
@@ -322,11 +322,12 @@ i.uil.uil-arrow-right {
         -webkit-transform: rotate(0);
     }
     50% {
-        transform: (45deg);
-        -webkit-transform: rotate(45deg);
+        transform: (20deg);
+        -webkit-transform: rotate(20deg);
     }
     80% {
-        transform: scale(1.1);
+        transform: (-20deg);
+        -webkit-transform: rotate(-20deg);
     }
     100% {
         transform: rotate(0);
@@ -353,25 +354,32 @@ i.uil.uil-arrow-right {
 .card_coment {
     position: relative;
     display: flex;
-    justify-content: space-around;
+    max-height: 100vh;
+    justify-content: space-between;
     margin-left: 2%;
-    margin-right: 2%;
+    margin-right: 4%;
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
 .cards {
     padding: 1em;
-    background-image: url("../img/img_home/card_bg_skedoo.svg");
+    background-image: url("../img/img_home/c-background.svg");
     background-size: 120% auto;
     background-repeat: no-repeat;
-    background-position: right -2em bottom -5em;
+    background-position: right -2em bottom -3em;
     margin-left: 2%;
     width: 25%;
+    min-height: 29vh;
     background-color: #fff;
     border-radius: 1em;
     position: relative;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all .3s ease-in-out;
+}
+
+.cards:hover {
+    transform:translateY(-1em);
 }
 
 .photo_icon {
@@ -389,23 +397,23 @@ i.uil.uil-arrow-right {
     margin-bottom: 0;
     margin-left: 1rem;
     font-size: 1.5em;
+    font-weight: 700;
 }
 
 .title_card p {
     font-size: 0.5em;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0;
 }
 
 .text_card {
-    margin-left: 34%;
-    margin-bottom: 0.2rem;
+    margin-top: 1.5em;
     text-align: center;
-    width: 60%;
 }
 
 .star_card img {
-    margin-left: 50%;
-    width: 50%;
+    display: flex;
+    margin: auto;
+    width: 45%;
 }
 
 /* Resoluções de telas */
