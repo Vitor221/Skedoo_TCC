@@ -37,6 +37,7 @@
   </div>
 </section>
 
+<div class="curve"></div>
 <section class="carrosel_part">
   <h2>Diferenciais</h2>
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
@@ -79,6 +80,7 @@
     </button>
   </div>
 </section>
+<div class="curve2"></div>
 
 <div class="comentarios_title">
   <h2>Quem utiliza, comenta!</h2>
