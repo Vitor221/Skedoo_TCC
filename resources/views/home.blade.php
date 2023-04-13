@@ -31,55 +31,55 @@
   </section>
 
   <div class="img_balls">
-    <img class="img_balls1" src="{{ asset('img/img_home/professora.jpg') }}" alt="">
-    <img class="img_balls2" src="{{ asset('img/img_home/criancas1.jpg') }}" alt="">
-    <img class="img_balls3" src="{{ asset('img/img_home/agenda.jpg') }}" alt="">
+    <img class="img_balls1" src="{{ asset('img/img_home/professora.jpg') }}">
+    <img class="img_balls2" src="{{ asset('img/img_home/criancas1.jpg') }}">
+    <img class="img_balls3" src="{{ asset('img/img_home/agenda.jpg') }}">
   </div>
 </section>
 
 <div class="curve"></div>
-<section class="carrosel_part">
-  <h2>Diferenciais</h2>
-  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
 
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<section class="section-carousel">
+  
+  <h2>Diferenças</h2>
+  <div class="carrosel_part">
+    <button id="prev-button"><img src="{{ asset('img/img_home/s-prev-button.png') }}"></button>
+    <div class="carousel">
+      <div class="slider on">
+        <img src="{{ asset('img/img_home/s-perfil-de-usuario.png') }}">
+        <div class="text-slide">
+          <h2>Usuários</h2>
+          <p>Nós proporcionamos a melhor experiência para nossos usuários! Permitindo a conexão entre responsáveis e instituição.</p>
+        </div>
+      </div>
+      <div class="slider">
+        <img src="{{ asset('img/img_home/s-otimizacao.png') }}">
+        <div class="text-slide">
+          <h2>Otimização</h2>
+          <p>Com a skedoo você não precisará mais se preocupar com agendas físicas!! Nós proporcionamos uma sistema completamente funcional e rápido!</p>
+        </div>
+      </div>
+      <div class="slider">
+        <img src="{{ asset('img/img_home/s-saude.png') }}">
+        <div class="text-slide">
+          <h2>Saúde</h2>
+          <p>É sempre importante cuidar da saúde das crianças, não é mesmo? Com a skedoo você poderá enviar mensagens diretamente para a instituição para avisar sobre quaisquer problemas de saúde da criança.</p>
+        </div>
+      </div>
+      <div class="slider">
+        <img src="{{ asset('img/img_home/s-cardapio.png') }}">
+        <div class="text-slide">
+          <h2>Cardápio</h2>
+          <p>Contamos com a presença de um cardápio (disponibilizado pela instituição) para que você responsável fique inteirado sobre a alimentação de seus pequenos!</p>
+        </div>
+      </div>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{{ asset('img/img_home/criancas1.jpg')}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{ asset('img/img_home/criancas1.jpg')}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Some representative placeholder content for the second slide.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="{{ asset('img/img_home/criancas1.jpg')}}" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Some representative placeholder content for the third slide.</p>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+
+    <button id="next-button"><img src="{{ asset('img/img_home/s-next-button.png') }}"></button>
   </div>
+
 </section>
+
 <div class="curve2"></div>
 
 <div class="comentarios_title">
@@ -147,6 +147,6 @@
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
-  <script src="{{ asset('js/scriptHome.js')}}"></script>
+  <script src="{{ asset('js/scriptHome.js')}}" defer></script>
 </section>
 @endsection

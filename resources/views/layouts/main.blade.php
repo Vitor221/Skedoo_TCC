@@ -11,6 +11,8 @@
     <!-- FontAwesome - Ícones -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/padroes/estilo_padrao.css') }}">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
 
     @yield('styles')
 
