@@ -70,7 +70,7 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.refeicao');
     }
 
-    public function store(Request $request){
+    public function inserir_cliente(Request $request){
         $responsavel = new TbResponsavel();
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
@@ -78,7 +78,7 @@ class InstituicaoController extends Controller
         $TbResponsaveis = TbResponsavel::paginate(6);
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis]); 
     }
-    public function delete($id){
+    public function deletar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
         $responsavel->tb_alunos()->delete();
         $responsavel->tb_contatos()->delete();

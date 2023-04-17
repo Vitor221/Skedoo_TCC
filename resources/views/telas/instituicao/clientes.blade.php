@@ -33,6 +33,28 @@
                     <input type="text" class="texto" style="width:100%" id="cel" name="cel"><br><br>
                 </div>
             </div>
+            <div class="div-input-flex">
+                <div class="block" style="width:90%;">
+                    <label>Endereço</label><br>
+                    <input type="text" class="texto" id="tel" name="tel" style="width:90%;">
+                </div>
+                <div class="block" style="width:25%;">
+                    <label>Numero</label></label><br>
+                    <input type="text" class="texto" style="width:100%" id="cel" name="cel"><br><br>
+                </div>
+            </div>
+            <div class="div-input-flex">
+                <div class="block" style="width:50%;">
+                    <label>CEP</label><br>
+                    <input type="text" class="texto" id="tel" name="tel">
+                </div>
+                <div class="block" style="width:45%;">
+                    <label>Bairro</label></label><br>
+                    <input type="text" class="texto" style="width:100%" id="cel" name="cel"><br><br>
+                </div>
+            </div>
+            <label>Nome do Aluno</label>
+            <input type="text" class="texto" style="width:100%" id="name" name="name"><br><br>
             <input type="submit" class="enviar">
             <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
         </form>
