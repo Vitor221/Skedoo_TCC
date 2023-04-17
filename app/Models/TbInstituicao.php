@@ -1,38 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbInstituicao
- * 
- * @property int $cd_instituicao
- * @property string|null $nm_instituicao
- * @property string|null $cd_cnpj
- * @property string|null $cd_cep
- * @property int|null $cd_profissional
- * @property string|null $nm_email
- * @property int|null $cd_contato
- * @property int|null $cd_endereco
- * @property int|null $cd_cadastro
- * @property int|null $cd_pagamento
- * 
- * @property TbCadastro|null $tb_cadastro
- * @property TbEndereco|null $tb_endereco
- * @property TbPagamento|null $tb_pagamento
- * @property Collection|TbAluno[] $tb_alunos
- * @property Collection|TbContato[] $tb_contatos
- * @property Collection|TbMensagem[] $tb_mensagems
- * @property Collection|TbProfissional[] $tb_profissionals
- *
- * @package App\Models
- */
 class TbInstituicao extends Model
 {
 	protected $table = 'tb_instituicao';

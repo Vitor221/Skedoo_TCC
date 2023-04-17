@@ -1,26 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbTurma
- * 
- * @property int $cd_turma
- * @property string|null $nm_turma
- * @property string|null $ds_periodo
- * 
- * @property Collection|TbAluno[] $tb_alunos
- * @property Collection|TbProfissional[] $tb_profissionals
- *
- * @package App\Models
- */
 class TbTurma extends Model
 {
 	protected $table = 'tb_turma';

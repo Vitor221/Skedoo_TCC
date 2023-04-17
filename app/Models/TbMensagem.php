@@ -1,31 +1,7 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class TbMensagem
- * 
- * @property int $cd_mensagem
- * @property string|null $ds_mensagem
- * @property Carbon|null $dt_mensagem
- * @property Carbon|null $hr_mensagem
- * @property int|null $cd_instituicao
- * @property int|null $cd_responsavel
- * @property int|null $cd_profissional
- * 
- * @property TbInstituicao|null $tb_instituicao
- * @property TbProfissional|null $tb_profissional
- * @property TbResponsavel|null $tb_responsavel
- *
- * @package App\Models
- */
 class TbMensagem extends Model
 {
 	protected $table = 'tb_mensagem';

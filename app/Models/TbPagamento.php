@@ -1,31 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbPagamento
- * 
- * @property int $cd_pagamento
- * @property int|null $cd_responsavel
- * @property float|null $vl_fatura
- * @property Carbon|null $dt_pagamento
- * @property int|null $cd_forma_pagamento
- * @property int|null $cd_status_pagamento
- * 
- * @property TbFormaPagamento|null $tb_forma_pagamento
- * @property TbStatusPagamento|null $tb_status_pagamento
- * @property Collection|TbInstituicao[] $tb_instituicaos
- *
- * @package App\Models
- */
 class TbPagamento extends Model
 {
 	protected $table = 'tb_pagamento';

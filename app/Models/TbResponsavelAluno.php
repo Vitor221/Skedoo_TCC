@@ -1,24 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbResponsavelAluno
- * 
- * @property int|null $cd_responsavel
- * @property int|null $cd_aluno
- * 
- * @property TbAluno|null $tb_aluno
- * @property TbResponsavel|null $tb_responsavel
- *
- * @package App\Models
- */
 class TbResponsavelAluno extends Model
 {
 	protected $table = 'tb_responsavel_aluno';

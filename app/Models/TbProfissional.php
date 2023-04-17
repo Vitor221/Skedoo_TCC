@@ -1,32 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbProfissional
- * 
- * @property int $cd_profissional
- * @property string|null $nm_profissional
- * @property string|null $cd_cpf
- * @property string|null $nm_funcao
- * @property int|null $cd_turma
- * @property int|null $cd_cadastro
- * @property int|null $cd_instituicao
- * 
- * @property TbCadastro|null $tb_cadastro
- * @property TbInstituicao|null $tb_instituicao
- * @property TbTurma|null $tb_turma
- * @property Collection|TbMensagem[] $tb_mensagems
- *
- * @package App\Models
- */
 class TbProfissional extends Model
 {
 	protected $table = 'tb_profissional';

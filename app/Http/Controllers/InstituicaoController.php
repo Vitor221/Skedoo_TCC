@@ -69,4 +69,21 @@ class InstituicaoController extends Controller
     public function refeicao(){
         return view('telas.instituicao.refeicao');
     }
+
+    public function store(Request $request){
+        $responsavel = new TbResponsavel();
+        $responsavel->nm_responsavel = $request->name;
+        $responsavel->cd_cpf = $request->cpf;
+        $responsavel->save();
+        $TbResponsaveis = TbResponsavel::paginate(6);
+        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis]); 
+    }
+    public function delete($id){
+        $responsavel = TbResponsavel::findOrFail($id);
+        $responsavel->tb_alunos()->delete();
+        $responsavel->tb_contatos()->delete();
+        $responsavel->tb_logins()->delete();
+        $responsavel->delete();
+        return back()->with('success','Responsavel deletado com sucesso.');
+    }
 }

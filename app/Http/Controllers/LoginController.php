@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Login;
+use App\Models\TbLogin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +30,7 @@ class LoginController extends Controller
             'cd_senha.required' =>  'Campo senha é obrigatório!'
         ]);
         
-        $usuario = Login::where('nm_login', $data['nm_login'])->where('cd_senha', $data['cd_senha'])->first();
+        $usuario = TbLogin::where('nm_login', $data['nm_login'])->where('cd_senha', $data['cd_senha'])->first();
 
         if ($usuario) { //Se tiver todos os dados do usuário pesquisado e a senha do usuário for igual a senha do banco de dados.
             session()->put('login', $usuario);

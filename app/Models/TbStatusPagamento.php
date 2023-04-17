@@ -1,24 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbStatusPagamento
- * 
- * @property int $cd_status_pagamento
- * @property string|null $nm_status_pagamento
- * 
- * @property Collection|TbPagamento[] $tb_pagamentos
- *
- * @package App\Models
- */
 class TbStatusPagamento extends Model
 {
 	protected $table = 'tb_status_pagamento';

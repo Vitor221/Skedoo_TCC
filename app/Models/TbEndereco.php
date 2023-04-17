@@ -1,29 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbEndereco
- * 
- * @property int $cd_endereco
- * @property string|null $nm_endereco
- * @property int|null $cd_cep
- * @property int|null $cd_bairro
- * @property int|null $cd_numcasa
- * 
- * @property TbBairro|null $tb_bairro
- * @property Collection|TbInstituicao[] $tb_instituicaos
- * @property Collection|TbResponsavel[] $tb_responsavels
- *
- * @package App\Models
- */
 class TbEndereco extends Model
 {
 	protected $table = 'tb_endereco';

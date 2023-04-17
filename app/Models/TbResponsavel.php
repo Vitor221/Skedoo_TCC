@@ -1,36 +1,14 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class TbResponsavel
- * 
- * @property int $cd_responsavel
- * @property string|null $nm_responsavel
- * @property string|null $cd_cpf
- * @property int|null $cd_endereco
- * @property int|null $cd_cadastro
- * 
- * @property TbCadastro|null $tb_cadastro
- * @property TbEndereco|null $tb_endereco
- * @property Collection|TbAluno[] $tb_alunos
- * @property Collection|TbContato[] $tb_contatos
- * @property Collection|TbLogin[] $tb_logins
- * @property Collection|TbMensagem[] $tb_mensagems
- * @property TbResponsavelAluno $tb_responsavel_aluno
- *
- * @package App\Models
- */
 class TbResponsavel extends Model
 {
-	protected $table = 'tb_responsavel';
+    use HasFactory;
+    protected $table = 'tb_responsavel';
 	protected $primaryKey = 'cd_responsavel';
 	public $incrementing = false;
 	public $timestamps = false;

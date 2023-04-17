@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\HttpRequ\est;
 
 class ResponsavelController extends Controller
 {

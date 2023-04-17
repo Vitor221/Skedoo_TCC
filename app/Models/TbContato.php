@@ -1,27 +1,6 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
-/**
- * Class TbContato
- * 
- * @property int $cd_contato
- * @property string|null $cd_telefone
- * @property string|null $ds_contato
- * @property int|null $cd_instituicao
- * @property int|null $cd_responsavel
- * 
- * @property TbInstituicao|null $tb_instituicao
- * @property TbResponsavel|null $tb_responsavel
- *
- * @package App\Models
- */
 class TbContato extends Model
 {
 	protected $table = 'tb_contato';

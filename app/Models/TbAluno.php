@@ -1,35 +1,7 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class TbAluno
- * 
- * @property int $cd_aluno
- * @property string|null $nm_aluno
- * @property Carbon|null $dt_nascimento
- * @property string|null $cd_certidao
- * @property string|null $im_vacinacao
- * @property string|null $im_aluno
- * @property string|null $cd_contato
- * @property int|null $cd_turma
- * @property int|null $cd_instituicao
- * @property int|null $cd_responsavel
- * 
- * @property TbInstituicao|null $tb_instituicao
- * @property TbResponsavel|null $tb_responsavel
- * @property TbTurma|null $tb_turma
- * @property TbResponsavelAluno $tb_responsavel_aluno
- *
- * @package App\Models
- */
 class TbAluno extends Model
 {
 	protected $table = 'tb_aluno';

@@ -1,26 +1,7 @@
 <?php
-
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class TbCidade
- * 
- * @property int $cd_cidade
- * @property string|null $nm_cidade
- * @property string|null $sg_uf
- * 
- * @property TbUf|null $tb_uf
- * @property Collection|TbBairro[] $tb_bairros
- *
- * @package App\Models
- */
 class TbCidade extends Model
 {
 	protected $table = 'tb_cidade';

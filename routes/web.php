@@ -41,6 +41,8 @@ Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
     Route::get('instituicao/clientes', [InstituicaoController::class, 'cliente'])->name('instituicao.clientes');
+    Route::post('instituicao/clientes', [InstituicaoController::class, 'store'])->name('instituicao.clientes');
+    Route::delete('instituicao/clientes/{id}', [InstituicaoController::class, 'delete'])->name('instituicao.clientes.delete');
     Route::get('instituicao/ajuda', [InstituicaoController::class, 'ajuda'])->name('instituicao.ajuda');
     Route::get('instituicao/alunos', [InstituicaoController::class, 'aluno'])->name('instituicao.alunos');
     Route::get('instituicao/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
