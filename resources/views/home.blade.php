@@ -24,7 +24,7 @@
         </p>
 
 
-        <a href="{{ route('contato_pag') }}">Entre em contato <x-polaris-major-follow-up-email class="icon-carta"/></a>
+        <a href="{{ route('contato_pag') }}">Entre em contato <i class="uil uil-envelope icon-carta"></i></a>
       </div>
 
     </div>
