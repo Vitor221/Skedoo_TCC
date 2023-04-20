@@ -5,54 +5,51 @@
 @endsection
 
 @section('content')
-
-<nav>
-    <a href="{{ route('skedoo_pag') }}"><img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo"></a>
-    <ul class="menu_list">
-        <li class="linkInicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
-        <x-botao-app />
-    </ul>
-</nav>
-
 <form method="post" action="{{ route('login_pag') }}">
     @csrf
-    <div class="login-block">
-        <h2>Área de Acesso</h2>
+    <div class="login-main">
+        <div class="left-login">
+            <h2>Área de Acesso</h2>
+            <img class="left-login-image" src="{{ asset('../img/img_login/bg-creche-criancas.svg') }}" alt="">
+        </div>
+        <div class="error">
             @if (session('mensagem'))
                 <div class="alert alert-warn">
                     <p>{{ session('mensagem') }}</p>
                 </div>
             @endif
+        </div>
         <div class="error">
             @if ($mensagem = Session::get('erro'))
                 {{ $mensagem }}
             @endif
         </div>
-        <div class="login-text">
-            <div class="error">
-                {{ $errors->first('nm_login') }}
+        <div class="right-login">
+            <div class="card-login">
+                <div class="textfield">
+                    <div class="error">
+                        {{ $errors->first('nm_login') }}
+                    </div>
+                    <label for="">Login:</label>
+                    <input type="text" name="nm_login" id="user">
+                </div>
+                <div class="textfield">
+                    <div class="error">
+                        {{ $errors->first('cd_senha') }}
+                    </div>
+                    <label for="">Senha:</label>
+                    <input type="password" name="cd_senha" id="password">
+                </div>
+                <div class="login-check">
+                    <input type="checkbox">&nbsp; Mantenha-me conectado
+                </div>
+
+                <button class="btn-entr" type="submit">Entrar</button>
+            
+                <span><a href=""> Esqueceu sua senha?</a></span>
             </div>
-            <label for="">Login:</label>
-            <br>
-            <input type="text" name="nm_login" id="user">
         </div>
-        <div class="login-passw">
-            <div class="error">
-                {{ $errors->first('cd_senha') }}
-            </div>
-            <label for="">Senha:</label>
-            <br>
-            <input type="password" name="cd_senha" id="password">
-        </div>
-        <div class="login-check">
-            <input type="checkbox">&nbsp; Mantenha-me conectado
-        </div>
-        <div class="btn-submit">
-            <div class="btn-entr">
-                <button type="submit">Entrar</button>
-            </div>
-        </div>
-        <span><a href=""> Esqueceu sua senha?</a></span>
     </div>
+    <a class="link-home" href="{{ route('skedoo_pag') }}">Voltar</a>
 </form>
 @endsection
