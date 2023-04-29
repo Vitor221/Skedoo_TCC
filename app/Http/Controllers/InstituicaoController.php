@@ -80,6 +80,7 @@ class InstituicaoController extends Controller
     }
     public function deletar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
+        $responsavel->tb_responsavel_aluno()->delete();
         $responsavel->tb_alunos()->delete();
         $responsavel->tb_contatos()->delete();
         $responsavel->tb_logins()->delete();

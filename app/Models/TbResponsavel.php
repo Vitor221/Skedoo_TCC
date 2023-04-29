@@ -13,12 +13,6 @@ class TbResponsavel extends Model
 	public $incrementing = false;
 	public $timestamps = false;
 
-	protected $casts = [
-		'cd_responsavel' => 'int',
-		'cd_endereco' => 'int',
-		'cd_cadastro' => 'int'
-	];
-
 	protected $fillable = [
 		'nm_responsavel',
 		'cd_cpf',
