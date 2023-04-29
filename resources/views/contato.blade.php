@@ -7,7 +7,7 @@
 @section('content')
 <nav>
   <ul class="menu_list">
-    <li class="link_inicio"><a href="{{ route('inicio_pag') }}">Início</a></li>
+    <li class="link_inicio"><a href="{{ route('skedoo_pag') }}">Início</a></li>
     <x-botao-app />
     <li class="link_login"><a href="{{ route('login_pag') }}">Login <i class="uil uil-user"></i></a></li>
   </ul>
@@ -15,7 +15,7 @@
 
 <main class="conteudo">
   <div class="logo_skedoo">
-    <a href="{{ route('skedoo_pag') }}" class="link_img"><img src="{{ asset('img/Skedoo.png') }}" alt="" class="logo_img"></a>
+    <img src="{{ asset('img/Skedoo.png') }}" alt="" class="logo_img">
   </div>
 
   <div class="texto_topo">

@@ -24,9 +24,6 @@ Route::get('/', function () {
     return view('home');
 })->name('skedoo_pag');
 
-//Tela início
-Route::get('/inicio', [ControllerSkedoo::class, 'inicio'])->name('inicio_pag');
-
 //Tela de contato
 Route::get('/contato', function () {
     return view('contato');

@@ -9,7 +9,7 @@
 
 <nav>
     <img id="logo-skedoo" src="{{ asset('img/Skedoo.png') }}" alt="logo skedoo">
-    <a href="{{ route('inicio_pag') }}">Acesse nosso site </a>
+    <a href="{{ route('login_pag') }}">Faça o login</a>
 </nav>
 
 <section class="secao_inicio">

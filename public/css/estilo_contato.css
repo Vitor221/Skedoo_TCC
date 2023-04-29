@@ -65,11 +65,6 @@ nav {
     color: #fff;
 }
 
-#logo_nav {
-    margin-left: 10%;
-    width: 60%;
-}
-
 .conteudo {
     position: relative;
 }
@@ -79,8 +74,9 @@ nav {
     justify-content: center;
     margin-top: 5em;
 }
+
 .logo_img {
-    width: 100%;
+    width: 20%;
 }
 
 .texto_topo {
