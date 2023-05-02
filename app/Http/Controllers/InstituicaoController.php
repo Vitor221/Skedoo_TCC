@@ -154,5 +154,19 @@ class InstituicaoController extends Controller
     }
     public function visualizar_turma(){
 
+    public function editar_cliente($id) {
+        $responsavel = TbResponsavel::findOrFail($id);
+        $endereco = $responsavel->tb_endereco;
+        return view('telas.instituicao.editar_cliente', compact('responsavel', 'endereco'));
+    }
+    public function update_cliente(Request $request, $id) {
+        $data = [
+            'nm_responsavel'  =>  $request->name,
+            'cd_cpf'   =>  $request->cpf,
+        ];
+
+        TbResponsavel::where('cd_responsavel', $id)->update($data);
+
+        return redirect()->route('instituicao.clientes');
     }
 }
