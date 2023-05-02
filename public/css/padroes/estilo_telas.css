@@ -586,3 +586,9 @@ textarea:focus {
     padding: 3em;
     color: white;
 }
+.visualizar{
+    background-image: white;
+    border-radius: 2em;
+    padding: 3em;
+    color: rgb(0, 0, 0);
+}

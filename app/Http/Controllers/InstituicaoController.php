@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
 use App\Models\TbUf;
+use App\Models\TbTurma;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -34,17 +35,17 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.problemassaude');
     }
     public function cliente(){
-      
         $TbResponsaveis = TbResponsavel::paginate(6);
-
-        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis]); 
+        $TbTurmas = TbTurma::all();
+        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas]); 
     }
 
     public function aluno(){
       
         $TbAluno = TbAluno::all();
+        $TbTurma = TbTurma::all();
 
-        return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno]); 
+        return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
     }
     public function ajuda(){
         return view('telas.instituicao.ajuda');
@@ -92,13 +93,15 @@ class InstituicaoController extends Controller
         $responsavel->tb_aluno()->delete();
         $responsavel->tb_contato()->delete();
         $responsavel->tb_login()->delete();
-        $responsavel->delete();
+        $responsavel->cd_endereco = null;
         $responsavel->tb_endereco()->delete();
+        $responsavel->delete();
         return back()->with('success','Responsavel deletado com sucesso.');
     }
     public function vizualizar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
-        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco'));
+        $aluno = $responsavel->tb_aluno[0];
+        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco', 'aluno'));
     }
 }

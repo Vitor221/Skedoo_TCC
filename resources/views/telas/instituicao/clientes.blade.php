@@ -8,7 +8,6 @@
 @endsection
 
 @section('content')
-<h1>Informações do cliente</h1>
     <div class="insert">
         <form class="form-cadastro" id="form" method="POST">
             @csrf
@@ -68,10 +67,34 @@
                     <input type="text" class="texto" style="width:100%" id="uf" name="uf"><br><br>
                 </div>
             </div>
-            <label>Nome do Aluno</label>
-            <input type="text" class="texto" style="width:100%" id="nomeAluno" name="nomeAluno"><br><br>
-            <input type="submit" class="enviar">
+            <label>Inserir novo aluno?</label><br>
+            <select id="select_form_value" onchange="selectForm()" class="texto">
+                <option value="#">Selecione</option>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+            </select><br><br>
+            <div class="div-input-flex" style="display:none;" id="select_form">
+                <div class="block" style="width:80%;">
+                    <label>Nome do Aluno</label><br>
+                    <input type="text" class="texto" style="width:100%" id="nome_aluno" name="nome_aluno"><br><br>
+                </div>
+                <div class="block" style="width:15%;">
+                    <label>Turma</label>
+                    <br>
+                    <select for="turma" class="texto">
+                        @foreach ($TbTurmas as $Turma)
+                            <option>{{$Turma->sg_turma}}</option>
+                        @endforeach
+                    </select><br><br>
+                </div>
+            </div>
+            <div class="block" style="width:80%; display:none;" id="select_form_2">
+                <label>Indique o aluno relacionado.</label><br>
+                <input type="text" class="texto" style="width:100%" id="nome_aluno" name="nome_aluno"
+                    placeholder="Pesquise o nome do aluno..."><br><br>
+            </div>
             <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
+            <input type="submit" class="enviar">
         </form>
     </div>
     <div class="search" id="pesquisa" style="display:none;">
@@ -81,8 +104,8 @@
 
     <div class="div-tabela">
         <table class="tabela">
-            <h2>Tabela de Clientes</h2>
             <thead>
+                <h2>Tabela de Clientes</h2>
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">Cadastro</th>
@@ -100,13 +123,15 @@
                         <td class="nome">{{ $TbResponsavel->nm_responsavel }}</td>
                         <td scope>{{ $TbResponsavel->cd_cadastro }}</td>
                         <td class="botoes">
-                            <form method="GET" action="{{route('instituicao.clientes.view', $TbResponsavel->cd_responsavel)}}">
+                            <form method="GET"
+                                action="{{ route('instituicao.clientes.view', $TbResponsavel->cd_responsavel) }}">
                                 <button type="submit" class="ver">Vizualizar</button>
                             </form>
                         </td>
                         <td class="botoes"><button class="editar">Editar</button></td>
                         <td class="botoes">
-                            <form method="POST" action="{{route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel)}}">
+                            <form method="POST"
+                                action="{{ route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
