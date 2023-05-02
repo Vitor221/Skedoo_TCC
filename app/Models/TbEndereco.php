@@ -5,7 +5,7 @@ class TbEndereco extends Model
 {
 	protected $table = 'tb_endereco';
 	protected $primaryKey = 'cd_endereco';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [
@@ -19,7 +19,8 @@ class TbEndereco extends Model
 		'nm_endereco',
 		'cd_cep',
 		'cd_bairro',
-		'cd_numcasa'
+		'cd_numcasa',
+		'ds_complemento'
 	];
 
 	public function tb_bairro()
@@ -27,12 +28,12 @@ class TbEndereco extends Model
 		return $this->belongsTo(TbBairro::class, 'cd_bairro');
 	}
 
-	public function tb_instituicaos()
+	public function tb_instituicao()
 	{
 		return $this->hasMany(TbInstituicao::class, 'cd_endereco');
 	}
 
-	public function tb_responsavels()
+	public function tb_responsavel()
 	{
 		return $this->hasMany(TbResponsavel::class, 'cd_endereco');
 	}

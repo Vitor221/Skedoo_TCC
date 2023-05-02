@@ -6,7 +6,7 @@ class TbAluno extends Model
 {
 	protected $table = 'tb_aluno';
 	protected $primaryKey = 'cd_aluno';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [

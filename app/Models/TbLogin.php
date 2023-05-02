@@ -10,7 +10,7 @@ class TbLogin extends Model
 
     protected $table = 'tb_login';
 	protected $primaryKey = 'cd_login';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [

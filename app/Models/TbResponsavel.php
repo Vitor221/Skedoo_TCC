@@ -10,7 +10,7 @@ class TbResponsavel extends Model
     use HasFactory;
     protected $table = 'tb_responsavel';
 	protected $primaryKey = 'cd_responsavel';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $fillable = [
@@ -30,22 +30,22 @@ class TbResponsavel extends Model
 		return $this->belongsTo(TbEndereco::class, 'cd_endereco');
 	}
 
-	public function tb_alunos()
+	public function tb_aluno()
 	{
 		return $this->hasMany(TbAluno::class, 'cd_responsavel');
 	}
 
-	public function tb_contatos()
+	public function tb_contato()
 	{
 		return $this->hasMany(TbContato::class, 'cd_responsavel');
 	}
 
-	public function tb_logins()
+	public function tb_login()
 	{
 		return $this->hasMany(TbLogin::class, 'cd_responsavel');
 	}
 
-	public function tb_mensagems()
+	public function tb_mensagem()
 	{
 		return $this->hasMany(TbMensagem::class, 'cd_responsavel');
 	}

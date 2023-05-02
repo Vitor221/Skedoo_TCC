@@ -6,7 +6,7 @@ class TbCidade extends Model
 {
 	protected $table = 'tb_cidade';
 	protected $primaryKey = 'cd_cidade';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [
@@ -23,7 +23,7 @@ class TbCidade extends Model
 		return $this->belongsTo(TbUf::class, 'sg_uf');
 	}
 
-	public function tb_bairros()
+	public function tb_bairro()
 	{
 		return $this->hasMany(TbBairro::class, 'cd_cidade');
 	}

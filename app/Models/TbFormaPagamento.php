@@ -16,7 +16,7 @@ class TbFormaPagamento extends Model
 		'nm_forma_pagamento'
 	];
 
-	public function tb_pagamentos()
+	public function tb_pagamento()
 	{
 		return $this->hasMany(TbPagamento::class, 'cd_forma_pagamento');
 	}

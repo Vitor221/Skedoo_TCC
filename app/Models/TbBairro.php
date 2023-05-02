@@ -6,13 +6,8 @@ class TbBairro extends Model
 {
 	protected $table = 'tb_bairro';
 	protected $primaryKey = 'cd_bairro';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
-
-	protected $casts = [
-		'cd_bairro' => 'int',
-		'cd_cidade' => 'int'
-	];
 
 	protected $fillable = [
 		'nm_bairro',
@@ -24,7 +19,7 @@ class TbBairro extends Model
 		return $this->belongsTo(TbCidade::class, 'cd_cidade');
 	}
 
-	public function tb_enderecos()
+	public function tb_endereco()
 	{
 		return $this->hasMany(TbEndereco::class, 'cd_bairro');
 	}

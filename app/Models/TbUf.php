@@ -12,7 +12,7 @@ class TbUf extends Model
 		'nm_uf'
 	];
 
-	public function tb_cidades()
+	public function tb_cidade()
 	{
 		return $this->hasMany(TbCidade::class, 'sg_uf');
 	}

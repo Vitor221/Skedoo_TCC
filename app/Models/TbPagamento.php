@@ -35,7 +35,7 @@ class TbPagamento extends Model
 		return $this->belongsTo(TbStatusPagamento::class, 'cd_status_pagamento');
 	}
 
-	public function tb_instituicaos()
+	public function tb_instituicao()
 	{
 		return $this->hasMany(TbInstituicao::class, 'cd_pagamento');
 	}

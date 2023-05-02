@@ -5,7 +5,7 @@ class TbProfissional extends Model
 {
 	protected $table = 'tb_profissional';
 	protected $primaryKey = 'cd_profissional';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [
@@ -39,7 +39,7 @@ class TbProfissional extends Model
 		return $this->belongsTo(TbTurma::class, 'cd_turma');
 	}
 
-	public function tb_mensagems()
+	public function tb_mensagem()
 	{
 		return $this->hasMany(TbMensagem::class, 'cd_profissional');
 	}

@@ -99,6 +99,7 @@ body {
     top:6em;
     display: none;
     transition: all.2s ease-in-out;
+    z-index: 5;
     -webkit-animation: animate-descer 0.4s;
 }
 @-webkit-keyframes animate-descer {
@@ -575,5 +576,13 @@ textarea:focus {
     font: weight 60px;
     font-size: 34px;
     margin-left: auto;
+    color: white;
+}
+.div-visualizar{
+    background-image: linear-gradient(#ecab54, #f5c78b );
+    box-shadow: 0 -1px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 4em;
+    border-radius: 2em;
+    padding: 3em;
     color: white;
 }

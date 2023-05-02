@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+<h1>Informações do cliente</h1>
     <div class="insert">
         <form class="form-cadastro" id="form" method="POST">
             @csrf
@@ -35,26 +36,40 @@
             </div>
             <div class="div-input-flex">
                 <div class="block" style="width:90%;">
-                    <label>Endereço</label><br>
-                    <input type="text" class="texto" id="tel" name="tel" style="width:90%;">
+                    <label>Cidade</label><br>
+                    <input type="text" class="texto" id="cidade" name="cidade" style="width:90%;">
+                </div>
+                <div class="block" style="width:90%;">
+                    <label>Logradouro</label><br>
+                    <input type="text" class="texto" id="logradouro" name="logradouro" style="width:90%;">
                 </div>
                 <div class="block" style="width:25%;">
                     <label>Numero</label></label><br>
-                    <input type="text" class="texto" style="width:100%" id="cel" name="cel"><br><br>
+                    <input type="text" class="texto" style="width:100%" id="num" name="num"><br><br>
                 </div>
             </div>
             <div class="div-input-flex">
                 <div class="block" style="width:50%;">
                     <label>CEP</label><br>
-                    <input type="text" class="texto" id="tel" name="tel">
+                    <input type="text" class="texto" id="cep" name="cep">
                 </div>
                 <div class="block" style="width:45%;">
                     <label>Bairro</label></label><br>
-                    <input type="text" class="texto" style="width:100%" id="cel" name="cel"><br><br>
+                    <input type="text" class="texto" style="width:100%" id="bairro" name="bairro"><br><br>
+                </div>
+            </div>
+            <div class="div-input-flex">
+                <div class="block" style="width:90%;">
+                    <label>Complemento</label><br>
+                    <input type="text" class="texto" id="complemento" name="complemento" style="width:90%;">
+                </div>
+                <div class="block" style="width:25%;">
+                    <label>UF</label></label><br>
+                    <input type="text" class="texto" style="width:100%" id="uf" name="uf"><br><br>
                 </div>
             </div>
             <label>Nome do Aluno</label>
-            <input type="text" class="texto" style="width:100%" id="name" name="name"><br><br>
+            <input type="text" class="texto" style="width:100%" id="nomeAluno" name="nomeAluno"><br><br>
             <input type="submit" class="enviar">
             <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
         </form>
@@ -84,7 +99,11 @@
                     <tr class="pessoa">
                         <td class="nome">{{ $TbResponsavel->nm_responsavel }}</td>
                         <td scope>{{ $TbResponsavel->cd_cadastro }}</td>
-                        <td class="botoes"><button class="ver">Vizualizar</button>
+                        <td class="botoes">
+                            <form method="GET" action="{{route('instituicao.clientes.view', $TbResponsavel->cd_responsavel)}}">
+                                <button type="submit" class="ver">Vizualizar</button>
+                            </form>
+                        </td>
                         <td class="botoes"><button class="editar">Editar</button></td>
                         <td class="botoes">
                             <form method="POST" action="{{route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel)}}">

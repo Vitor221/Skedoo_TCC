@@ -5,7 +5,7 @@ class TbContato extends Model
 {
 	protected $table = 'tb_contato';
 	protected $primaryKey = 'cd_contato';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [

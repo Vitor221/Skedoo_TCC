@@ -6,7 +6,7 @@ class TbMensagem extends Model
 {
 	protected $table = 'tb_mensagem';
 	protected $primaryKey = 'cd_mensagem';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [

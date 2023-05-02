@@ -5,7 +5,7 @@ class TbInstituicao extends Model
 {
 	protected $table = 'tb_instituicao';
 	protected $primaryKey = 'cd_instituicao';
-	public $incrementing = false;
+	public $incrementing = true;
 	public $timestamps = false;
 
 	protected $casts = [
@@ -44,22 +44,22 @@ class TbInstituicao extends Model
 		return $this->belongsTo(TbPagamento::class, 'cd_pagamento');
 	}
 
-	public function tb_alunos()
+	public function tb_aluno()
 	{
 		return $this->hasMany(TbAluno::class, 'cd_instituicao');
 	}
 
-	public function tb_contatos()
+	public function tb_contato()
 	{
 		return $this->hasMany(TbContato::class, 'cd_instituicao');
 	}
 
-	public function tb_mensagems()
+	public function tb_mensagem()
 	{
 		return $this->hasMany(TbMensagem::class, 'cd_instituicao');
 	}
 
-	public function tb_profissionals()
+	public function tb_profissional()
 	{
 		return $this->hasMany(TbProfissional::class, 'cd_instituicao');
 	}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
+use App\Models\TbUf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -74,6 +75,13 @@ class InstituicaoController extends Controller
         $responsavel = new TbResponsavel();
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
+        $cadastro = $responsavel->tb_cadastro()->create(['nm_login'=>'teste', 'cd_senha'=>'teste']);
+        $responsavel->cd_cadastro = $cadastro->cd_cadastro;
+        $uf = TbUf::find($request->uf);
+        $cidade = $uf->tb_cidade()->firstOrCreate(['nm_cidade' => $request->cidade]);
+        $bairro = $cidade->tb_bairro()->firstOrCreate(['nm_bairro' => $request->bairro, 'cd_cidade' => $cidade->cd_cidade]);
+        $endereco =$bairro->tb_endereco()->create(['cd_cep' => $request->cep,'cd_numcasa' => $request->num,'nm_endereco' => $request->logradouro,'ds_complemento' => $request->complemento,  'cd_bairro' => $bairro->cd_bairro]);
+        $responsavel->cd_endereco = $endereco->cd_endereco;
         $responsavel->save();
         $TbResponsaveis = TbResponsavel::paginate(6);
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis]); 
@@ -81,10 +89,16 @@ class InstituicaoController extends Controller
     public function deletar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
         $responsavel->tb_responsavel_aluno()->delete();
-        $responsavel->tb_alunos()->delete();
-        $responsavel->tb_contatos()->delete();
-        $responsavel->tb_logins()->delete();
+        $responsavel->tb_aluno()->delete();
+        $responsavel->tb_contato()->delete();
+        $responsavel->tb_login()->delete();
         $responsavel->delete();
+        $responsavel->tb_endereco()->delete();
         return back()->with('success','Responsavel deletado com sucesso.');
+    }
+    public function vizualizar_cliente($id){
+        $responsavel = TbResponsavel::findOrFail($id);
+        $endereco = $responsavel->tb_endereco;
+        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco'));
     }
 }

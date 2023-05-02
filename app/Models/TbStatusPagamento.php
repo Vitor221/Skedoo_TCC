@@ -16,7 +16,7 @@ class TbStatusPagamento extends Model
 		'nm_status_pagamento'
 	];
 
-	public function tb_pagamentos()
+	public function tb_pagamento()
 	{
 		return $this->hasMany(TbPagamento::class, 'cd_status_pagamento');
 	}
