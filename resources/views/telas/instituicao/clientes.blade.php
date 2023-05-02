@@ -128,7 +128,11 @@
                                 <button type="submit" class="ver">Vizualizar</button>
                             </form>
                         </td>
-                        <td class="botoes"><button class="editar">Editar</button></td>
+                        <td class="botoes">
+                            <form method="GET" action="{{ route('instituicao.clientes.edit', $TbResponsavel->cd_responsavel) }}">
+                                <button class="editar">Editar</button>
+                            </form>
+                        </td>
                         <td class="botoes">
                             <form method="POST"
                                 action="{{ route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel) }}">
