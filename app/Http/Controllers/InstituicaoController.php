@@ -91,6 +91,7 @@ class InstituicaoController extends Controller
     public function deletar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
         $enderecoCount = TbResponsavel::all()->where('cd_endereco', '=', $responsavel->cd_endereco)->count();
+        $Turma = TbTurma::all();
         $responsavel->tb_responsavel_aluno()->delete();
         $responsavel->tb_aluno()->delete();
         $responsavel->tb_contato()->delete();
@@ -99,7 +100,7 @@ class InstituicaoController extends Controller
         if($enderecoCount == 1){
             $responsavel->tb_endereco()->delete();
         }
-        return view('telas.instituicao.clientes');
+        return redirect()->route('instituicao.clientes');
     }
     public function visualizar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
@@ -120,14 +121,14 @@ class InstituicaoController extends Controller
         $aluno->save();
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
-        return view('telas.instituicao.alunos', ['TbTurma'=>$TbTurma, 'TbAluno'=>$TbAluno]); 
+        return redirect()->route('instituicao.alunos'); 
     }
     public function deletar_aluno($id){
         $aluno = TbAluno::findOrFail($id);
         $aluno->delete();
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
-        return view('telas.instituicao.alunos', ['TbTurma'=>$TbTurma, 'TbAluno'=>$TbAluno]); 
+        return redirect()->route('instituicao.alunos'); 
     }
     public function inserir_turma(Request $request){
         $turma = new TbTurma();
@@ -143,17 +144,15 @@ class InstituicaoController extends Controller
         $turma->save();
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
-        return view('telas.instituicao.alunos', ['TbTurma'=>$TbTurma, 'TbAluno'=>$TbAluno]); 
+        return redirect()->route('instituicao.alunos'); 
     }
     public function deletar_turma($id){
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
         $turma = TbTurma::findOrFail($id);
         $turma->delete();
-        return view('telas.instituicao.alunos', ['TbTurma'=> $TbTurma, 'TbAluno'=>$TbAluno]);
+        return redirect()->route('instituicao.alunos'); 
     }
-    public function visualizar_turma(){
-
     public function editar_cliente($id) {
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
