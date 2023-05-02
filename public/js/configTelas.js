@@ -10,6 +10,18 @@ function fechaForm(){
         document.getElementById('select_form_2').style = 'display:none;'
     }
 }
+function inserirTurma(){
+    setTimeout(() => {  document.getElementById('formTurma').style="display:block;"; }, 100);
+    fechaPesquisar();
+}
+function fechaFormTurma(){
+    setTimeout(() => {  document.getElementById('formTurma').style="display:none;"; }, 100);
+    document.getElementById('select_form').style = 'display:none;'
+    $sf2 = document.getElementById('select_form_value').value
+    if($sf2){
+        document.getElementById('select_form_2').style = 'display:none;'
+    }
+}
 function pesquisar(){
         setTimeout(() => {  document.getElementById('pesquisa').style="display:block;"; }, 100);
         document.getElementById('fechaPesquisa').style="display:auto;";

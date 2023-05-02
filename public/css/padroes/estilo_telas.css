@@ -102,6 +102,23 @@ body {
     z-index: 5;
     -webkit-animation: animate-descer 0.4s;
 }
+.form-alunos{
+    background-color: #ffffff;
+    height:fit-content;
+    border: 5px;
+    border-style:solid;
+    border-color: #f3a033;
+    border-radius: 2em;
+    padding: 2em;
+    width: 35em;
+    position: absolute;
+    right: 18%;
+    top:50em;
+    display: none;
+    transition: all.2s ease-in-out;
+    z-index: 5;
+    -webkit-animation: animate-descer 0.4s;
+}
 @-webkit-keyframes animate-descer {
     from { opacity: 0; margin-top: -150px;}
     to { opacity: 1;margin-top: 0px;}

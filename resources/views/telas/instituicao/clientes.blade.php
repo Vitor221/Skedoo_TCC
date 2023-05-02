@@ -83,7 +83,7 @@
                     <br>
                     <select for="turma" class="texto">
                         @foreach ($TbTurmas as $Turma)
-                            <option>{{$Turma->sg_turma}}</option>
+                            <option>{{ $Turma->sg_turma }}</option>
                         @endforeach
                     </select><br><br>
                 </div>
@@ -105,7 +105,9 @@
     <div class="div-tabela">
         <table class="tabela">
             <thead>
-                <h2>Tabela de Clientes</h2>
+                <h2>Tabela de Clientes 
+                </h2>
+
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">Cadastro</th>
