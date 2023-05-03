@@ -6,6 +6,7 @@ use App\Models\TbAluno;
 use App\Models\TbUf;
 use App\Models\TbTurma;
 use App\Models\TbEndereco;
+use App\Models\TbEventos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -66,9 +67,32 @@ class InstituicaoController extends Controller
     public function transporte(){
         return view('telas.instituicao.transporte');
     }
-    public function calendario(){
+
+    public function calendario(Request $request){
+        if($request->ajax()) {  
+            $data = TbEventos::whereDate('inicio', '>=', $request->inicio)
+                ->whereDate('fim',   '<=', $request->fim)
+                ->get(['cd_evento', 'titulo', 'inicio', 'inicio']);
+            return response()->json($data);
+        }
+
         return view('telas.instituicao.calendario');
     }
+
+    public function calendarioEventos(Request $request) {
+        switch ($request->type) {
+            case 'create':
+               $event = TbEventos::create([
+                   'titulo' => $request->titulo,
+                   'inicio' => $request->inicio,
+                   'fim' => $request->fim,
+               ]);
+  
+               return response()->json($event);
+              break;
+        }
+    }
+
     public function refeicao(){
         return view('telas.instituicao.refeicao');
     }
