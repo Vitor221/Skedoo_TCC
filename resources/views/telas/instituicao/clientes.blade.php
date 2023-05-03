@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="insert">
-        <form class="form-cadastro" id="form" method="POST">
+        <form class="form-cadastro" id="form" method="POST" >
             @csrf
             <label>Nome do Cliente</label>
             <input type="text" class="texto" style="width:100%" id="name" name="name"><br><br>
