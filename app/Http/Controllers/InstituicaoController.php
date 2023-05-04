@@ -71,13 +71,16 @@ class InstituicaoController extends Controller
     }
 
     public function calendario(Request $request){
-        if($request->ajax()) {  
-            $data = Event::whereDate('start_event', '>=', $request->start)
-                ->whereDate('end_event',   '<=', $request->end)
-                ->get(['id', 'title', 'start_event', 'end_event']);
-            return response()->json($data);
+        $eventos = array();
+        $diasEventos = Event::all();
+        foreach($diasEventos as $diaEvento) {
+            $eventos[] = [
+                'title'     =>      $diaEvento->title,
+                'start'     =>      $diaEvento->start_event,
+                'end'       =>      $diaEvento->end_event
+            ];
         }
-        return view('telas.instituicao.calendario');
+        return view('telas.instituicao.calendario', ['eventos' => $eventos]);
     }
 
     public function calendarioEventos(Request $request) {

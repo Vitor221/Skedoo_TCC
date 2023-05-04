@@ -15,7 +15,6 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
-<link rel="stylesheet" href="{{ asset('css/estilo_desenvolvimento.css') }}">
 @endsection
 
 @section('voltar')
@@ -24,24 +23,48 @@
 
 @section('content')
 
+<div class="modal fade" id="calendarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="title">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="saveBtn" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-5" style="max-width: 700px">
-    <h2 class="h2 text-center mb-5 border-bottom pb-3">Laravel FullCalender CRUD Events Example</h2>
+    <h2 class="h2 text-center mb-5 border-bottom pb-3">Calendário</h2>
     <div id='calendar'></div>
 </div>
 
 <script>
     $(document).ready(function() {
-        var SITEURL = "{{ url('/') }}"
+        var SITEURL = "{{ url('/') }}";
+        var evento = @json($eventos);
 
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        
         var calendar = $('#calendar').fullCalendar({
             editable: true,
-            events: SITEURL + "/instituicao/calendario",
+            header: {
+                left: 'prev, next today',
+                center: 'title',
+                right: 'month, agendaWeek, agendaDay'
+            },
+            events: evento,
             displayEventTime: true,
             editable: true,
             eventRender: function(event, element, view) {
@@ -54,7 +77,7 @@
             selectable: true,
             selectHelper: true,
             select: function(start_event, end_event, allDay) {
-                var title = prompt('Event Title:');
+                $('#calendarioModal').modal('toggle');
                 if(title) {
                     var start_event = $.fullCalendar.formatDate(start_event, "Y-MM-DD");
                     var end_event = $.fullCalendar.formatDate(end_event, "Y-MM-DD");
@@ -88,21 +111,25 @@
                     });
                 }
             },
-
+            editable: true,
             eventDrop: function(event, delta) {
                 var start_event = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
                 var end_event = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
-                
+                var title = event.title;
+                var id = event.id;
+
                 $.ajax({
                     url: SITEURL + '/instituicao/calendario',
                     data: {
-                        title: event.title,
+                        title: title,
                         start: start_event,
                         end: end_event,
-                        type: 'edit'
+                        id: id,
+                        type: 'edit',
                     },
                     type: "POST",
                     success: function(response) {
+                        calendar.fullCalendar('refetchEvents')
                         displayMessage("Event updated");
                     }
                 });
