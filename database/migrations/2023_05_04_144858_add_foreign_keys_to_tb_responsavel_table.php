@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tb_responsavel', function (Blueprint $table) {
-            $table->foreign(['cd_cadastro'], 'fk_responsavel_cadastro')->references(['cd_cadastro'])->on('tb_cadastro');
-            $table->foreign(['cd_endereco'], 'fk_responsavel_endereco')->references(['cd_endereco'])->on('tb_endereco');
+            $table->foreign(['cd_cadastro'], 'fk_responsavel_cadastro')->references(['cd_cadastro'])->on('tb_cadastro')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign(['cd_endereco'], 'fk_responsavel_endereco')->references(['cd_endereco'])->on('tb_endereco')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 

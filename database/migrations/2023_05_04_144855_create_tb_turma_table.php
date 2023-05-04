@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_cidade', function (Blueprint $table) {
-            $table->integer('cd_cidade')->primary();
-            $table->string('nm_cidade', 45)->nullable();
-            $table->char('sg_uf', 2)->nullable()->index('fk_cidade_uf');
+        Schema::create('tb_turma', function (Blueprint $table) {
+            $table->integer('cd_turma', true);
+            $table->string('nm_turma', 50)->nullable();
+            $table->string('ds_periodo', 30)->nullable();
+            $table->string('sg_turma', 5)->nullable();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_cidade');
+        Schema::dropIfExists('tb_turma');
     }
 };

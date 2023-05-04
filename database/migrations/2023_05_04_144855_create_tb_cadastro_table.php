@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_bairro', function (Blueprint $table) {
-            $table->integer('cd_bairro')->primary();
-            $table->string('nm_bairro', 45)->nullable();
-            $table->integer('cd_cidade')->nullable()->index('fk_bairro_cidade');
+        Schema::create('tb_cadastro', function (Blueprint $table) {
+            $table->integer('cd_cadastro', true);
+            $table->string('nm_login', 45)->nullable();
+            $table->string('cd_senha', 20)->nullable();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_bairro');
+        Schema::dropIfExists('tb_cadastro');
     }
 };

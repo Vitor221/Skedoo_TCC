@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tb_bairro', function (Blueprint $table) {
-            $table->foreign(['cd_cidade'], 'fk_bairro_cidade')->references(['cd_cidade'])->on('tb_cidade');
+            $table->foreign(['cd_cidade'], 'fk_bairro_cidade')->references(['cd_cidade'])->on('tb_cidade')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 

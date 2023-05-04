@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TbEventos extends Model
+class Event extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_eventos';
-    protected $fillable = ['titulo', 'inicio', 'fim'];
+    protected $table = 'events';
+    protected $fillable = [
+        'title', 'start_event', 'end_event'
+    ];
 }

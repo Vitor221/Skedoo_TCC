@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Event;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
 use App\Models\TbUf;
@@ -70,26 +72,43 @@ class InstituicaoController extends Controller
 
     public function calendario(Request $request){
         if($request->ajax()) {  
-            $data = TbEventos::whereDate('inicio', '>=', $request->inicio)
-                ->whereDate('fim',   '<=', $request->fim)
-                ->get(['cd_evento', 'titulo', 'inicio', 'inicio']);
+            $data = Event::whereDate('start_event', '>=', $request->start)
+                ->whereDate('end_event',   '<=', $request->end)
+                ->get(['id', 'title', 'start_event', 'end_event']);
             return response()->json($data);
         }
-
         return view('telas.instituicao.calendario');
     }
 
     public function calendarioEventos(Request $request) {
+
         switch ($request->type) {
-            case 'create':
-               $event = TbEventos::create([
-                   'titulo' => $request->titulo,
-                   'inicio' => $request->inicio,
-                   'fim' => $request->fim,
+            case 'add':
+
+               $event = Event::create([
+                   'title' => $request->title,
+                   'start_event' => $request->start_event,
+                   'end_event' => $request->end_event,
                ]);
-  
                return response()->json($event);
-              break;
+
+            break;
+
+            case 'edit':
+                $event = Event::find($request->id)->update([
+                    'title'         =>      $request->title,
+                    'start_event'   =>      $request->start_event,
+                    'end_event'     =>      $request->end_event
+                ]);
+                
+                return response()->json($event);
+            break;
+
+            case 'delete':
+                $event = Event::find($request->id)->delete();
+
+                return response()->json($event);
+            break;
         }
     }
 

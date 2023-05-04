@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_responsavel', function (Blueprint $table) {
-            $table->integer('cd_responsavel')->primary();
+            $table->integer('cd_responsavel', true);
             $table->string('nm_responsavel', 80)->nullable();
             $table->char('cd_cpf', 11)->nullable();
             $table->integer('cd_endereco')->nullable()->index('fk_responsavel_endereco');
