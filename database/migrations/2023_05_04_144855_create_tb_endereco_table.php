@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_endereco', function (Blueprint $table) {
-            $table->integer('cd_endereco')->primary();
+            $table->integer('cd_endereco', true);
             $table->string('nm_endereco', 100)->nullable();
             $table->integer('cd_cep')->nullable();
             $table->integer('cd_bairro')->nullable()->index('fk_endereco_bairro');
             $table->integer('cd_numcasa')->nullable();
+            $table->string('ds_complemento', 20)->nullable();
         });
     }
 

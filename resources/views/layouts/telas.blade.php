@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    @yield('meta')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     {{-- estilo padrao nas telas --}}
     <link rel="stylesheet" href="{{ asset('css/padroes/estilo_telas.css') }}">
+    @yield('links-scripts')
     @yield('styles')
     <title>{{ $title }}</title>
 </head>
@@ -29,6 +31,8 @@
     <div class="conteudo">
         @yield('content')
     </div>
+
+    
 </body>
 
 </html>

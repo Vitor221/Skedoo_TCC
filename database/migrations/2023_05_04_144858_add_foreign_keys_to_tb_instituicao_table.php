@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tb_instituicao', function (Blueprint $table) {
-            $table->foreign(['cd_cadastro'], 'fk_instituicao_cadastro')->references(['cd_cadastro'])->on('tb_cadastro');
-            $table->foreign(['cd_pagamento'], 'fk_instituicao_pagamento')->references(['cd_pagamento'])->on('tb_pagamento');
-            $table->foreign(['cd_endereco'], 'fk_instituicao_endereco')->references(['cd_endereco'])->on('tb_endereco');
+            $table->foreign(['cd_cadastro'], 'fk_instituicao_cadastro')->references(['cd_cadastro'])->on('tb_cadastro')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign(['cd_endereco'], 'fk_instituicao_endereco')->references(['cd_endereco'])->on('tb_endereco')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign(['cd_pagamento'], 'fk_instituicao_pagamento')->references(['cd_pagamento'])->on('tb_pagamento')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 
@@ -29,8 +29,8 @@ return new class extends Migration
     {
         Schema::table('tb_instituicao', function (Blueprint $table) {
             $table->dropForeign('fk_instituicao_cadastro');
-            $table->dropForeign('fk_instituicao_pagamento');
             $table->dropForeign('fk_instituicao_endereco');
+            $table->dropForeign('fk_instituicao_pagamento');
         });
     }
 };

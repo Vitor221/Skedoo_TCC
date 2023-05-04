@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_turma', function (Blueprint $table) {
-            $table->integer('cd_turma')->primary();
-            $table->string('nm_turma', 50)->nullable();
-            $table->string('ds_periodo', 30)->nullable();
+        Schema::table('tb_cidade', function (Blueprint $table) {
+            $table->foreign(['sg_uf'], 'fk_cidade_uf')->references(['sg_uf'])->on('tb_uf')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_turma');
+        Schema::table('tb_cidade', function (Blueprint $table) {
+            $table->dropForeign('fk_cidade_uf');
+        });
     }
 };

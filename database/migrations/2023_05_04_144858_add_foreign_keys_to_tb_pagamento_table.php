@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tb_pagamento', function (Blueprint $table) {
-            $table->foreign(['cd_forma_pagamento'], 'fk_forma_pagamento_pagamento')->references(['cd_forma_pagamento'])->on('tb_forma_pagamento');
-            $table->foreign(['cd_status_pagamento'], 'fk_status_pagamento_pagamento')->references(['cd_status_pagamento'])->on('tb_status_pagamento');
+            $table->foreign(['cd_forma_pagamento'], 'fk_forma_pagamento_pagamento')->references(['cd_forma_pagamento'])->on('tb_forma_pagamento')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+            $table->foreign(['cd_status_pagamento'], 'fk_status_pagamento_pagamento')->references(['cd_status_pagamento'])->on('tb_status_pagamento')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 

@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Event;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
 use App\Models\TbUf;
 use App\Models\TbTurma;
 use App\Models\TbEndereco;
+use App\Models\TbEventos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -66,9 +69,49 @@ class InstituicaoController extends Controller
     public function transporte(){
         return view('telas.instituicao.transporte');
     }
-    public function calendario(){
+
+    public function calendario(Request $request){
+        if($request->ajax()) {  
+            $data = Event::whereDate('start_event', '>=', $request->start)
+                ->whereDate('end_event',   '<=', $request->end)
+                ->get(['id', 'title', 'start_event', 'end_event']);
+            return response()->json($data);
+        }
         return view('telas.instituicao.calendario');
     }
+
+    public function calendarioEventos(Request $request) {
+
+        switch ($request->type) {
+            case 'add':
+
+               $event = Event::create([
+                   'title' => $request->title,
+                   'start_event' => $request->start_event,
+                   'end_event' => $request->end_event,
+               ]);
+               return response()->json($event);
+
+            break;
+
+            case 'edit':
+                $event = Event::find($request->id)->update([
+                    'title'         =>      $request->title,
+                    'start_event'   =>      $request->start_event,
+                    'end_event'     =>      $request->end_event
+                ]);
+                
+                return response()->json($event);
+            break;
+
+            case 'delete':
+                $event = Event::find($request->id)->delete();
+
+                return response()->json($event);
+            break;
+        }
+    }
+
     public function refeicao(){
         return view('telas.instituicao.refeicao');
     }

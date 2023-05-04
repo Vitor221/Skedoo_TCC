@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_cadastro', function (Blueprint $table) {
-            $table->integer('cd_cadastro')->primary();
-            $table->string('nm_login', 45)->nullable();
-            $table->string('cd_senha', 20)->nullable();
+        Schema::table('tb_login', function (Blueprint $table) {
+            $table->foreign(['cd_responsavel'], 'fk_login_responsavel')->references(['cd_responsavel'])->on('tb_responsavel')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_cadastro');
+        Schema::table('tb_login', function (Blueprint $table) {
+            $table->dropForeign('fk_login_responsavel');
+        });
     }
 };

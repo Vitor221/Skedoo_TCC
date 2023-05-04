@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tb_cidade', function (Blueprint $table) {
-            $table->foreign(['sg_uf'], 'fk_cidade_uf')->references(['sg_uf'])->on('tb_uf');
+        Schema::table('tb_endereco', function (Blueprint $table) {
+            $table->foreign(['cd_bairro'], 'fk_endereco_bairro')->references(['cd_bairro'])->on('tb_bairro')->onUpdate('NO ACTION')->onDelete('NO ACTION');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tb_cidade', function (Blueprint $table) {
-            $table->dropForeign('fk_cidade_uf');
+        Schema::table('tb_endereco', function (Blueprint $table) {
+            $table->dropForeign('fk_endereco_bairro');
         });
     }
 };

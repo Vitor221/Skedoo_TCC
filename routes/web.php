@@ -60,6 +60,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/colaborador', [InstituicaoController::class, 'colaborador'])->name('instituicao.colaborador');
     Route::get('instituicao/mensagem', [InstituicaoController::class, 'mensagem'])->name('instituicao.mensagem');
     Route::get('instituicao/calendario', [InstituicaoController::class, 'calendario'])->name('instituicao.calendario');
+    Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioEventos']);
     Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
 });
 

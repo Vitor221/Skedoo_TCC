@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tb_endereco', function (Blueprint $table) {
-            $table->foreign(['cd_bairro'], 'fk_endereco_bairro')->references(['cd_bairro'])->on('tb_bairro');
+        Schema::create('tb_bairro', function (Blueprint $table) {
+            $table->integer('cd_bairro', true);
+            $table->string('nm_bairro', 45)->nullable();
+            $table->integer('cd_cidade')->nullable()->index('fk_bairro_cidade');
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tb_endereco', function (Blueprint $table) {
-            $table->dropForeign('fk_endereco_bairro');
-        });
+        Schema::dropIfExists('tb_bairro');
     }
 };

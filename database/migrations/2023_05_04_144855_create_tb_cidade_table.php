@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tb_login', function (Blueprint $table) {
-            $table->foreign(['cd_responsavel'], 'fk_login_responsavel')->references(['cd_responsavel'])->on('tb_responsavel');
+        Schema::create('tb_cidade', function (Blueprint $table) {
+            $table->integer('cd_cidade', true);
+            $table->string('nm_cidade', 45)->nullable();
+            $table->char('sg_uf', 2)->nullable()->index('fk_cidade_uf');
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tb_login', function (Blueprint $table) {
-            $table->dropForeign('fk_login_responsavel');
-        });
+        Schema::dropIfExists('tb_cidade');
     }
 };

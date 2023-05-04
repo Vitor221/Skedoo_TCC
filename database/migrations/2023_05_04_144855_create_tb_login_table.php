@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_login', function (Blueprint $table) {
-            $table->integer('cd_login')->primary();
+            $table->integer('cd_login', true);
             $table->string('nm_login', 45)->nullable();
             $table->string('cd_senha', 20)->nullable();
             $table->integer('cd_responsavel')->nullable()->index('fk_login_responsavel');
+            $table->integer('cd_acesso')->nullable();
         });
     }
 

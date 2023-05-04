@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_instituicao', function (Blueprint $table) {
-            $table->integer('cd_instituicao')->primary();
+            $table->integer('cd_instituicao', true);
             $table->string('nm_instituicao', 80)->nullable();
             $table->char('cd_cnpj', 14)->nullable();
             $table->char('cd_cep', 8)->nullable();
