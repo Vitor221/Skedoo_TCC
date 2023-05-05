@@ -11,6 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/lang/pt-br.js"></script>
 @endsection
 
 @section('styles')
@@ -60,6 +61,7 @@
         });
         
         var calendar = $('#calendar').fullCalendar({
+            locale: 'pt-br',
             editable: true,
             header: {
                 left: 'prev, next today',
@@ -69,6 +71,7 @@
             events: evento,
             displayEventTime: true,
             editable: true,
+            columnFormat: 'ddd',
             eventRender: function(event, element, view) {
                 if(event.allDay === 'true') {
                     event.allDay = true;
