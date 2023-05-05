@@ -15,6 +15,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+<link rel="stylesheet" href="{{ asset('css/estilo_calendario.css') }}">
 @endsection
 
 @section('voltar')
@@ -144,13 +145,9 @@
                         url: "{{ route('instituicao.calendario.delete', '') }}" + '/' + id,
                         type: "DELETE",
                         dataType: 'json',
-                        data: {
-                            id: event.id,
-                            type: 'delete'
-                        },
                         success: function(response) 
                         {
-                            $('#calendar').fullCalendar('removeEvents', event.id);
+                            $('#calendar').fullCalendar('removeEvents', response);
                             displayMessage("Evento Deletado!");
                         },
                         error: function(error)
