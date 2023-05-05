@@ -32,6 +32,7 @@
       </div>
       <div class="modal-body">
         <input type="text" class="form-control" id="title">
+        <span id="titleError" class="text-danger"></span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -76,82 +77,87 @@
             },
             selectable: true,
             selectHelper: true,
-            select: function(start_event, end_event, allDay) {
+            select: function(start, end, allDay) {
                 $('#calendarioModal').modal('toggle');
-                if(title) {
-                    var start_event = $.fullCalendar.formatDate(start_event, "Y-MM-DD");
-                    var end_event = $.fullCalendar.formatDate(end_event, "Y-MM-DD");
+
+                $('#saveBtn').click(function() {
+                    var title = $('#title').val();
+                    var start_event = moment(start).format('YYYY-MM-DD');
+                    var end_event = moment(end).format('YYYY-MM-DD');
 
                     $.ajax({
-                        url: SITEURL + "/instituicao/calendario",
-                        data: {
-                            title: title,
-                            start_event: start_event,
-                            end_event: end_event,
-                            type: 'add'
-                        },
+                        url: "{{ route('instituicao.calendario.store') }}",
                         type: "POST",
-                        success: function(data) {
-                            displayMessage("Event Created Successfully");
-
-                            calendar.fullCalendar('renderEvent', {
-                                id: data.id,
-                                title: title,
-                                start: start_event,
-                                end: end_event,
-                                allDay: allDay
-                            }, true);
-                            console.log(data);
-
-                            calendar.fullCalendar('unselect');
+                        dataType: 'json',
+                        data: {
+                            title,
+                            start_event,
+                            end_event
                         },
-                        error: function(error){
-                            console.log(error)
+                        success: function(response) {
+                            $('#calendarioModal').modal('hide');
+                            $('#calendar').fullCalendar('renderEvent', {
+                                'title': response.title,
+                                'start' : response.start_event,
+                                'end'   : response.end_event
+                            });
+                            displayMessage("Evento criado!");
+                        },
+                        error: function(error) {
+                            if(error.responseJSON.errors) {
+                                $('#titleError').html(error.responseJSON.errors.title);
+                            }
                         }
-                    });
-                }
+                    })
+                });
             },
+
             editable: true,
-            eventDrop: function(event, delta) {
-                var start_event = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
-                var end_event = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
-                var title = event.title;
+
+            eventDrop: function(event) {
                 var id = event.id;
+                var start_event = moment(event.start).format('YYYY-MM-DD');
+                var end_event = moment(event.end).format('YYYY-MM-DD');
 
                 $.ajax({
-                    url: SITEURL + '/instituicao/calendario',
+                    url: "{{ route('instituicao.calendario.update', '') }}" + '/' + id,
+                    type: "PATCH",
+                    dataType: 'json',
                     data: {
-                        title: title,
-                        start: start_event,
-                        end: end_event,
-                        id: id,
-                        type: 'edit',
+                        start_event,
+                        end_event
                     },
-                    type: "POST",
                     success: function(response) {
-                        calendar.fullCalendar('refetchEvents')
-                        displayMessage("Event updated");
-                    }
+                        displayMessage("Evento atualizado!");
+                    },
+                    error: function(error)
+                    {
+                        console.log(error)
+                    },
                 });
             },
 
             eventClick: function(event) {
-                var eventDelete = confirm("Você tem certeza?");
-                if(eventDelete) {
+                var id = event.id;
+
+                if(confirm('Are you sure want to remove it?')) {
                     $.ajax({
-                        type:"POST",
-                        url: SITEURL + '/instituicao/calendario',
-                        data: {
-                            id: event.id,
-                            type: 'delete'
+                        url: "{{ route('instituicao.calendario.delete', '') }}" + '/' + id,
+                        type: "DELETE",
+                        dataType: 'json',
+                        success: function(response) 
+                        {
+                            $('#calendar').fullCalendar('removeEvents', response);
+                            displayMessage("Evento Deletado!");
                         },
-                        success: function(response) {
-                            calendar.fullCalendar('removeEvents', event.id);
-                            displayMessage("Event removed");
-                        }
-                    })
+                        error: function(error)
+                        {
+                            console.log(error)
+                        },
+                    });
                 }
             }
+            
 
         });
         
