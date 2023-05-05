@@ -70,46 +70,62 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.transporte');
     }
 
-    public function calendario(Request $request){
-        if($request->ajax()) {  
-            $data = Event::whereDate('start_event', '>=', $request->start)
-                ->whereDate('end_event',   '<=', $request->end)
-                ->get(['id', 'title', 'start_event', 'end_event']);
-            return response()->json($data);
+    public function calendario(){
+        $eventos = array();
+        $diasEventos = Event::all();
+        foreach($diasEventos as $diaEvento) {
+            $eventos[] = [
+                'id'        =>      $diaEvento->id,
+                'title'     =>      $diaEvento->title,
+                'start'     =>      $diaEvento->start_event,
+                'end'       =>      $diaEvento->end_event
+            ];
         }
-        return view('telas.instituicao.calendario');
+        return view('telas.instituicao.calendario', ['eventos' => $eventos]);
     }
 
-    public function calendarioEventos(Request $request) {
+    public function calendarioStore(Request $request) {
+        $request->validate([
+            'title' =>  'required|string',
+        ]);
+        
+        $calendario = Event::create([
+            'title'         =>  $request->title,
+            'start_event'   =>  $request->start_event,
+            'end_event'     =>  $request->end_event,
+        ]);
 
-        switch ($request->type) {
-            case 'add':
+        return response()->json($calendario);
+    }
 
-               $event = Event::create([
-                   'title' => $request->title,
-                   'start_event' => $request->start_event,
-                   'end_event' => $request->end_event,
-               ]);
-               return response()->json($event);
-
-            break;
-
-            case 'edit':
-                $event = Event::find($request->id)->update([
-                    'title'         =>      $request->title,
-                    'start_event'   =>      $request->start_event,
-                    'end_event'     =>      $request->end_event
-                ]);
-                
-                return response()->json($event);
-            break;
-
-            case 'delete':
-                $event = Event::find($request->id)->delete();
-
-                return response()->json($event);
-            break;
+    public function calendarioUpdate(Request $request, $id) {
+        $calendario = Event::find($id);
+        if(! $calendario) {
+            return response()->json([
+                'error' =>  'Não foi localizado o evento'
+            ], 404);
         }
+
+        $calendario->update([
+            'start_event'   =>  $request->start_event,
+            'end_event'     =>  $request->end_event,
+        ]);
+
+        return response()->json('Event updated');
+    }
+
+    public function calendarioDelete($id)
+    {
+        $calendario = Event::find($id);
+        if(! $calendario) {
+            return response()->json([
+                'error' => 'Não foi localizado o evento'
+            ], 404);
+        }
+
+        $calendario->delete();
+
+        return $id;
     }
 
     public function refeicao(){

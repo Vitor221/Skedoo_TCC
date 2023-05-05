@@ -15,7 +15,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
-<link rel="stylesheet" href="{{ asset('css/estilo_desenvolvimento.css') }}">
+<link rel="stylesheet" href="{{ asset('css/estilo_calendario.css') }}">
 @endsection
 
 @section('voltar')
@@ -24,24 +24,49 @@
 
 @section('content')
 
+<div class="modal fade" id="calendarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="title">
+        <span id="titleError" class="text-danger"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="saveBtn" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container mt-5" style="max-width: 700px">
-    <h2 class="h2 text-center mb-5 border-bottom pb-3">Laravel FullCalender CRUD Events Example</h2>
+    <h2 class="h2 text-center mb-5 border-bottom pb-3">Calendário</h2>
     <div id='calendar'></div>
 </div>
 
 <script>
     $(document).ready(function() {
-        var SITEURL = "{{ url('/') }}"
+        var SITEURL = "{{ url('/') }}";
+        var evento = @json($eventos);
 
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        
         var calendar = $('#calendar').fullCalendar({
             editable: true,
-            events: SITEURL + "/instituicao/calendario",
+            header: {
+                left: 'prev, next today',
+                center: 'title',
+                right: 'month, agendaWeek, agendaDay'
+            },
+            events: evento,
             displayEventTime: true,
             editable: true,
             eventRender: function(event, element, view) {
@@ -53,81 +78,92 @@
             },
             selectable: true,
             selectHelper: true,
-            select: function(start_event, end_event, allDay) {
-                var title = prompt('Event Title:');
-                if(title) {
-                    var start_event = $.fullCalendar.formatDate(start_event, "Y-MM-DD");
-                    var end_event = $.fullCalendar.formatDate(end_event, "Y-MM-DD");
+            select: function(start, end, allDay) {
+                $('#calendarioModal').modal('toggle');
+
+                $('#saveBtn').click(function() {
+                    var title = $('#title').val();
+                    var start_event = moment(start).format('YYYY-MM-DD');
+                    var end_event = moment(end).format('YYYY-MM-DD');
 
                     $.ajax({
-                        url: SITEURL + "/instituicao/calendario",
-                        data: {
-                            title: title,
-                            start_event: start_event,
-                            end_event: end_event,
-                            type: 'add'
-                        },
+                        url: "{{ route('instituicao.calendario.store') }}",
                         type: "POST",
-                        success: function(data) {
-                            displayMessage("Event Created Successfully");
-
-                            calendar.fullCalendar('renderEvent', {
-                                id: data.id,
-                                title: title,
-                                start: start_event,
-                                end: end_event,
-                                allDay: allDay
-                            }, true);
-                            console.log(data);
-
-                            calendar.fullCalendar('unselect');
+                        dataType: 'json',
+                        data: {
+                            title,
+                            start_event,
+                            end_event
                         },
-                        error: function(error){
-                            console.log(error)
+                        success: function(response) {
+                            $('#calendarioModal').modal('hide');
+                            $('#calendar').fullCalendar('renderEvent', {
+                                'title': response.title,
+                                'start' : response.start_event,
+                                'end'   : response.end_event
+                            });
+                            displayMessage("Evento criado!");
+                        },
+                        error: function(error) {
+                            if(error.responseJSON.errors) {
+                                $('#titleError').html(error.responseJSON.errors.title);
+                            }
                         }
-                    });
-                }
+                    })
+                });
             },
 
-            eventDrop: function(event, delta) {
-                var start_event = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
-                var end_event = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
-                
+            editable: true,
+
+            eventDrop: function(event) {
+                var id = event.id;
+                var start_event = moment(event.start).format('YYYY-MM-DD');
+                var end_event = moment(event.end).format('YYYY-MM-DD');
+
                 $.ajax({
-                    url: SITEURL + '/instituicao/calendario',
+                    url: "{{ route('instituicao.calendario.update', '') }}" + '/' + id,
+                    type: "PATCH",
+                    dataType: 'json',
                     data: {
-                        title: event.title,
-                        start: start_event,
-                        end: end_event,
-                        type: 'edit'
+                        start_event,
+                        end_event
                     },
-                    type: "POST",
                     success: function(response) {
-                        displayMessage("Event updated");
-                    }
+                        displayMessage("Evento atualizado!");
+                    },
+                    error: function(error)
+                    {
+                        console.log(error)
+                    },
                 });
             },
 
             eventClick: function(event) {
-                var eventDelete = confirm("Você tem certeza?");
-                if(eventDelete) {
+                var id = event.id;
+
                     $.ajax({
-                        type:"POST",
-                        url: SITEURL + '/instituicao/calendario',
-                        data: {
-                            id: event.id,
-                            type: 'delete'
+                        url: "{{ route('instituicao.calendario.delete', '') }}" + '/' + id,
+                        type: "DELETE",
+                        dataType: 'json',
+                        success: function(response) 
+                        {
+                            $('#calendar').fullCalendar('removeEvents', response);
+                            displayMessage("Evento Deletado!");
                         },
-                        success: function(response) {
-                            calendar.fullCalendar('removeEvents', event.id);
-                            displayMessage("Event removed");
-                        }
-                    })
-                }
+                        error: function(error)
+                        {
+                            console.log(error)
+                        },
+                    });
             }
+            
 
         });
         
+        $("#calendarioModal").on("hidden.bs.modal", function() {
+            $('#saveBtn').unbind();
+        });
+
         function displayMessage(message) {
             toastr.success(message, 'Event');
         }
