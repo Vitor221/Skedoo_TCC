@@ -140,14 +140,17 @@
             eventClick: function(event) {
                 var id = event.id;
 
-                if(confirm('Are you sure want to remove it?')) {
                     $.ajax({
                         url: "{{ route('instituicao.calendario.delete', '') }}" + '/' + id,
                         type: "DELETE",
                         dataType: 'json',
+                        data: {
+                            id: event.id,
+                            type: 'delete'
+                        },
                         success: function(response) 
                         {
-                            $('#calendar').fullCalendar('removeEvents', response);
+                            $('#calendar').fullCalendar('removeEvents', event.id);
                             displayMessage("Evento Deletado!");
                         },
                         error: function(error)
@@ -155,12 +158,15 @@
                             console.log(error)
                         },
                     });
-                }
             }
             
 
         });
         
+        $("#calendarioModal").on("hidden.bs.modal", function() {
+            $('#saveBtn').unbind();
+        });
+
         function displayMessage(message) {
             toastr.success(message, 'Event');
         }
