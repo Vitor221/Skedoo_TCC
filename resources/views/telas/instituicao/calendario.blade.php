@@ -105,7 +105,7 @@
                                 'start' : response.start_event,
                                 'end'   : response.end_event
                             });
-                            displayMessage("Evento criado!");
+                            displayMessage("Evento criado! Atualize a página");
                         },
                         error: function(error) {
                             if(error.responseJSON.errors) {
@@ -132,7 +132,7 @@
                         end_event
                     },
                     success: function(response) {
-                        displayMessage("Evento atualizado!");
+                        displayMessage("Evento atualizado! Atualize a página");
                     },
                     error: function(error)
                     {
@@ -151,7 +151,7 @@
                         success: function(response) 
                         {
                             $('#calendar').fullCalendar('removeEvents', response);
-                            displayMessage("Evento Deletado!");
+                            displayMessage("Evento Deletado! Atualize a página!");
                         },
                         error: function(error)
                         {
@@ -169,7 +169,7 @@
 
         function displayMessage(message) {
             toastr.success(message, 'Event');
-        }
+        };
         
     })
 </script>
