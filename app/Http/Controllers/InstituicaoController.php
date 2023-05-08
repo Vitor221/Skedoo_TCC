@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\TbCardapio;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
 use App\Models\TbUf;
@@ -226,5 +227,10 @@ class InstituicaoController extends Controller
         TbResponsavel::where('cd_responsavel', $id)->update($data);
 
         return redirect()->route('instituicao.clientes');
+    }
+    public function inserir_arquivo(Request $request){
+        $cardapio = new TbCardapio();
+        $cardapio->img = $request->url;
+        return back()->with('success', 'Cardapio enviado com sucesso!'); 
     }
 }
