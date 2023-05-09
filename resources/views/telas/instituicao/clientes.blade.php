@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="insert">
-        <form class="form-cadastro" id="form" method="POST" >
+        <form class="form-cadastro" id="form" method="POST" action=".">
             @csrf
             <label>Nome do Cliente</label>
             <input type="text" class="texto" style="width:100%" id="name" name="name"><br><br>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="block" style="width:90%;">
                     <label>Logradouro</label><br>
-                    <input type="text" class="texto" id="logradouro" name="logradouro" style="width:90%;">
+                    <input type="text" class="texto" id="rua" name="rua" style="width:90%;">
                 </div>
                 <div class="block" style="width:25%;">
                     <label>Numero</label></label><br>
@@ -50,7 +50,7 @@
             <div class="div-input-flex">
                 <div class="block" style="width:50%;">
                     <label>CEP</label><br>
-                    <input type="text" class="texto" id="cep" name="cep">
+                    <input type="text" class="texto" id="cep" value="" name="cep" onblur="pesquisacep(this.value);">
                 </div>
                 <div class="block" style="width:45%;">
                     <label>Bairro</label></label><br>
