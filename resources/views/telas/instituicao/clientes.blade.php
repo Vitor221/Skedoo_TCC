@@ -50,7 +50,7 @@
             <div class="div-input-flex">
                 <div class="block" style="width:50%;">
                     <label>CEP</label><br>
-                    <input type="text" class="texto" id="cep" name="cep">
+                    <input type="text" class="texto" id="cep" value="" name="cep" onblur="pesquisacep(this.value);">
                 </div>
                 <div class="block" style="width:45%;">
                     <label>Bairro</label></label><br>

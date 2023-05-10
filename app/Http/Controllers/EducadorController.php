@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event;
 
 class EducadorController extends Controller
 {
@@ -27,7 +28,20 @@ class EducadorController extends Controller
         return view('telas.educador.mensagem');
     }
     public function calendario() {
-        return view('telas.educador.calendario');
+
+        $eventos = array();
+        $diasEventos = Event::all();
+        foreach($diasEventos as $diaEvento) {
+            $eventos[] = [
+                'id'    =>  $diaEvento->id,
+                'title' =>  $diaEvento->title,
+                'start' =>  $diaEvento->start_event,
+                'end'   =>  $diaEvento->end_event,
+            ];
+        }
+
+        return view('telas.educador.calendario', ['eventos'  =>  $eventos]);
+
     }
     public function aluno() {
         return view('telas.educador.alunos');

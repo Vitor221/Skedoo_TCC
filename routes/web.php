@@ -60,8 +60,11 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/colaborador', [InstituicaoController::class, 'colaborador'])->name('instituicao.colaborador');
     Route::get('instituicao/mensagem', [InstituicaoController::class, 'mensagem'])->name('instituicao.mensagem');
     Route::get('instituicao/calendario', [InstituicaoController::class, 'calendario'])->name('instituicao.calendario');
-    Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioEventos']);
+    Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioStore'])->name('instituicao.calendario.store');
+    Route::patch('instituicao/calendario/update/{id}', [InstituicaoController::class, 'calendarioUpdate'])->name('instituicao.calendario.update');
+    Route::delete('instituicao/calendario/delete/{id}', [InstituicaoController::class, 'calendarioDelete'])->name('instituicao.calendario.delete');
     Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
+    Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_arquivo'])->name('instituicao.saude.refeicao.insert');
 });
 
 //Rota de Educador

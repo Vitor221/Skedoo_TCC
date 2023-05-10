@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\HttpRequ\est;
+use App\Models\Event;
 
 class ResponsavelController extends Controller
 {
@@ -41,7 +42,18 @@ class ResponsavelController extends Controller
     }
 
     public function calendario() {
-        return view('telas.responsavel.calendario');
+        $eventos = array();
+        $diasEventos = Event::all();
+        foreach($diasEventos as $diaEvento) {
+            $eventos[] = [
+                'id'    =>  $diaEvento->id,
+                'title' =>  $diaEvento->title,
+                'start' =>  $diaEvento->start_event,
+                'end'   =>  $diaEvento->end_event,
+            ];
+        }
+
+        return view('telas.responsavel.calendario', ['eventos'  =>  $eventos]);
     }
     
     public function transporte() {
