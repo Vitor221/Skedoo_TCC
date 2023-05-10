@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="insert">
-        <form class="form-cadastro" id="form" method="POST" >
+        <form class="form-cadastro" id="form" method="POST">
             @csrf
             <label>Nome do Cliente</label>
             <input type="text" class="texto" style="width:100%" id="name" name="name"><br><br>
@@ -67,31 +67,62 @@
                     <input type="text" class="texto" style="width:100%" id="uf" name="uf"><br><br>
                 </div>
             </div>
-            <label>Inserir novo aluno?</label><br>
-            <select id="select_form_value" onchange="selectForm()" class="texto">
-                <option value="#">Selecione</option>
-                <option value="1">Sim</option>
-                <option value="0">Não</option>
-            </select><br><br>
-            <div class="div-input-flex" style="display:none;" id="select_form">
-                <div class="block" style="width:80%;">
-                    <label>Nome do Aluno</label><br>
-                    <input type="text" class="texto" style="width:100%" id="nome_aluno" name="nome_aluno"><br><br>
+            <button type="button" class="enviar" style="background-color:#f3a033;" onclick="inserirAluno()">Adcionar aluno</button><br><br>
+            <div class="form-aluno" id="form_aluno" style="display:none;">
+                <div class="div-input-flex">
+                    <div class="block" style="width:75%;">
+                        <label>Nome do Aluno</label><br>
+                        <input type="text" class="texto" style="width:100%" id="nomeAluno" name="nomeAluno"><br><br>
+                    </div>
+                    <div class="block" style="width:20%;">
+                        <label>Turma</label>
+                        <br>
+                        <select for="turma" class="texto" name="turma" id="turma">
+                            @foreach ($TbTurmas as $Turma)
+                                <option value="{{ $Turma->cd_turma }}">{{ $Turma->sg_turma }}</option>
+                            @endforeach
+                        </select><br><br>
+                    </div>
                 </div>
-                <div class="block" style="width:15%;">
+                <label>O aluno possui algum problema de saúde? </label>
+                <select name="ps" class="texto" for="problemasaude" id="select_form_value"
+                    onchange="selectForm()">
+                    <option value="0">Não</option>
+                    <option value="1">Sim</option>
+                </select><br><br>
+                <div style="display: none;" id="select_form">
+                    <div class="div-input-flex">
+                        <div class="block" style="width:40%;">
+                            <label>Tipos de Problema</label><br>
+                            <select name="tipos" id="tipos" class="texto">
+                                <option class="opcao-alunos" value="0">Selecione...</option>
+                                <option class="opcao-alunos" value="cardiaco">Cardíaco</option>
+                                <option class="opcao-alunos" value="respiratorio">Respiratório</option>
+                                <option class="opcao-alunos" value="alergico">Alérgico</option>
+                                <option class="opcao-alunos" value="outro">Outro</option>
+                            </select><br><br>
+                        </div>
+                        <div class="block" style="width:70%;">
+                            <label>Nome do Problema</label><br>
+                            <input type="text" style="width:100%" class="texto" name="nomePS">
+                        </div>
+                    </div>
+                    <label id="label_duv">Descrição do Problema e Cuidados</label>
+                    <textarea name="descricaoPS" id="textarea_div" cols="30" rows="10" style="width:100%" name="descPS"></textarea><br><br>
+                </div>
+                <input type="button" value="Cancelar" class="cancelar" onclick="fechaFormAluno()">
+                <input type="button" value="Adicionar aluno ao responsavel" class="enviar" onclick="adicionarAlunoResponsavel()">
+            </div>
+            <div class="div-input-flex" id="infoAluno" style="display:none;">
+                <div class="block" style="width:75%;">
+                    <label>Nome do Aluno</label><br>
+                    <label type="text" class="texto" style="width:100%" id="infoAlunoNome"></label><br><br>
+                </div>
+                <div class="block" style="width:20%;">
                     <label>Turma</label>
                     <br>
-                    <select for="turma" class="texto">
-                        @foreach ($TbTurmas as $Turma)
-                            <option>{{ $Turma->sg_turma }}</option>
-                        @endforeach
-                    </select><br><br>
+                    <label type="text" class="texto" style="width:100%" id="infoAlunoTurma"></label><br><br><br><br>
                 </div>
-            </div>
-            <div class="block" style="width:80%; display:none;" id="select_form_2">
-                <label>Indique o aluno relacionado.</label><br>
-                <input type="text" class="texto" style="width:100%" id="nome_aluno" name="nome_aluno"
-                    placeholder="Pesquise o nome do aluno..."><br><br>
             </div>
             <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
             <input type="submit" class="enviar">
@@ -105,7 +136,7 @@
     <div class="div-tabela">
         <table class="tabela">
             <thead>
-                <h2>Tabela de Clientes 
+                <h2>Tabela de Clientes
                 </h2>
 
                 <tr>
@@ -131,7 +162,8 @@
                             </form>
                         </td>
                         <td class="botoes">
-                            <form method="GET" action="{{ route('instituicao.clientes.edit', $TbResponsavel->cd_responsavel) }}">
+                            <form method="GET"
+                                action="{{ route('instituicao.clientes.edit', $TbResponsavel->cd_responsavel) }}">
                                 <button class="editar">Editar</button>
                             </form>
                         </td>

@@ -102,21 +102,20 @@ body {
     z-index: 5;
     -webkit-animation: animate-descer 0.4s;
 }
-.form-alunos{
+.form-aluno{
     background-color: #ffffff;
+    width: 35em;
     height:fit-content;
     border: 5px;
     border-style:solid;
     border-color: #f3a033;
     border-radius: 2em;
     padding: 2em;
-    width: 35em;
     position: absolute;
     right: 18%;
-    top:50em;
-    display: none;
+    top:-2em;
     transition: all.2s ease-in-out;
-    z-index: 5;
+    z-index: 6;
     -webkit-animation: animate-descer 0.4s;
 }
 @-webkit-keyframes animate-descer {
