@@ -56,7 +56,8 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.ajuda');
     }
     public function mensagem(){
-        return view('telas.instituicao.mensagem');
+        $TbResponsavel = TbResponsavel::all();
+        return view('telas.instituicao.mensagem', ['TbResponsavel'=>$TbResponsavel]);
     }
     public function colaborador(){
         return view('telas.instituicao.colaborador');
