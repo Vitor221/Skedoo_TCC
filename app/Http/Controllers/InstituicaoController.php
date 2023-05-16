@@ -61,9 +61,6 @@ class InstituicaoController extends Controller
     public function colaborador(){
         return view('telas.instituicao.colaborador');
     }
-    public function configuracoes(){
-        return view('telas.instituicao.configuracoes');
-    }
     public function financeiro(){
         return view('telas.instituicao.financeiro');
     }

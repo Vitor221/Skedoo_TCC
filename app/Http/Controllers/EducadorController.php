@@ -49,9 +49,6 @@ class EducadorController extends Controller
     public function saude() {
         return view('telas.educador.saude');
     }
-    public function configuracoes() {
-        return view('telas.educador.configuracoes');
-    }
     public function ajuda() {
         return view('telas.educador.ajuda');
     }

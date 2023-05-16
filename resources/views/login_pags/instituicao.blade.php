@@ -16,7 +16,6 @@
     <x-card-funcoes tituloCard="Financeiro" href="{{route('instituicao.financeiro')}}" icon="uil uil-money-withdraw"/>
     <x-card-funcoes tituloCard="Calendário" href="{{route('instituicao.calendario')}}" icon="uil uil-calendar-alt"/>
     <x-card-funcoes tituloCard="Transporte" href="{{route('instituicao.transporte')}}" icon="uil uil-bus" />
-    <x-card-funcoes tituloCard="Configurações" href="{{route('instituicao.configuracoes')}}" icon="uil uil-setting"/>
     <x-card-funcoes tituloCard="Ajuda" href="{{route('instituicao.ajuda')}}" icon="uil uil-question"/>
 </div>
 
