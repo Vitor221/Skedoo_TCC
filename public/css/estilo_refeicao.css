@@ -1,0 +1,43 @@
+.div-refeicao{
+    background-color: white;
+    width: 95%;
+    margin: auto;
+    border-radius: 2em;
+    padding: 1em;
+}
+.insert-refeicao{
+    padding: 2em;
+    background-color: white;
+    position: absolute;
+    width: 40em;
+    height: max-content;
+    border: 1em solid;
+    border-radius: 2em;
+    border-color: #87cac4;
+    top: -1em;
+    left: 12em;
+}
+.insert-refeicao input{
+    padding: 0.2em;
+    padding-inline: 0.5em;
+    border-radius: 2em;
+    border: 2px solid;
+    border-color: #7ab1ac;
+}
+.block{
+    display: block;
+}
+.block textarea{
+    margin-inline: 5%;
+    width: 90%;
+}
+.flex{
+    display: flex;
+}
+.nome-prato{
+    width: 100%;
+}
+.label-desc{
+    width: 100%;
+    text-align: center;
+}
