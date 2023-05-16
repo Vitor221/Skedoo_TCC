@@ -425,27 +425,50 @@ i.uil.uil-arrow-right {
 
 /* Resoluções de telas */
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 1100px) {
     .img_balls {
         display: none;
     }
-
-    .card_coment {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .cards {
-        margin-top: 5%;
-        margin-left: 0;
-        width: 50%;
-        height: 50%;
-        margin: auto;
-        margin-top: 5%;
+    #prev-button, #next-button {
+        display: none;
     }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 970px) {
+
+    .card_coment {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-height: 100vh;
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .cards {
+        padding: 1em;
+        background-image: url("../img/img_home/c-background.svg");
+        background-size: 120% auto;
+        background-repeat: no-repeat;
+        background-position: right -2em bottom -3em;
+        margin-left: 2%;
+        width: 35%;
+        margin: auto;
+        margin-top: 4%;
+        min-height: 29vh;
+        background-color: #fff;
+        border-radius: 1em;
+        position: relative;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: all .3s ease-in-out;
+    }
+
+}
+
+
+@media screen and (max-width: 640px) {
     .text_card {
         width: 90%;
         margin-left: 15%;
@@ -459,7 +482,6 @@ i.uil.uil-arrow-right {
     .topo-secao h2 {
         font-weight: 700;
         font-size: 1rem;
-        margin-left: 5rem;
     }
 
     .apres_text p {
@@ -469,7 +491,7 @@ i.uil.uil-arrow-right {
     }
 
     .topo-secao a {
-        font-size: 1em;
+        font-size: 10px;
     }
 
     .img_balls {
@@ -490,6 +512,17 @@ i.uil.uil-arrow-right {
         border-radius: 1em;
     }
 
+    .text-slide {
+        text-align: center;
+        margin-left: 0;
+        width: 80%;
+        margin: auto;
+        margin-top: 2em;
+        background-color: #fff;
+        border-radius: 1em;
+        box-shadow: -4px 4px 0 5px #ecab54;
+    }
+
     .cards_coment {
         display: flex;
         flex-direction: column;
@@ -497,11 +530,126 @@ i.uil.uil-arrow-right {
     }
 
     .cards {
-        margin-top: 10%;
         margin-left: 0;
-        width: 80%;
-        height: 250px;
+        width: 70%;
+        height: 160px;
         margin: auto;
-        margin-top: 10%;
+        margin-top: 5%;
+    }
+
+    #prev-button, #next-button {
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width: 460px) {
+
+    .area-texto {
+        padding: 0;
+    }
+
+    #logo-skedoo {
+        margin-top: 0.3em;
+        width: 25%;
+    }
+
+    nav a {
+        font-size: 9px;
+    }
+
+    #paragrafo-apres {
+        font-size: 10px;
+        margin-top: 20px;
+        margin-bottom: 2em;
+    }
+
+    .apres_text {
+        margin-left: 1em;
+        padding: 1em;
+    }
+
+    .apres_text p {
+        font-size: 2px;
+    }
+
+    .img_balls {
+        display: none;
+    }
+
+    .card_coment {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cards {
+        margin-top: 5%;
+        margin-left: 0;
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        margin-top: 5%;
+    }
+
+    .section-carousel h2{
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        font-size: 2em;
+        letter-spacing: 4px;
+        text-decoration: underline;
+    }
+
+    .carrosel_part {
+        display: flex;
+        width: 100%;
+        min-height: 78vh;
+        margin-top: 2em;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5%;
+    }
+
+    .carousel img {
+        width: 110%;
+    }
+    
+    .text-slide {
+        text-align: center;
+        margin-left: 0;
+        width: 100%;
+        margin: auto;
+        margin-top: 2em;
+        background-color: #fff;
+        border-radius: 1em;
+        box-shadow: -4px 4px 0 5px #ecab54;
+    }
+
+    .slider {
+        margin-left: 0;
+    }
+    
+    .text-slide h2 {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #8396dc;
+    }
+    
+    .text-slide p {
+        font-size: 10px;
+        font-weight: 500;
+        color: #8396dc;
+    }
+
+    #prev-button, #next-button {
+        display: none;
     }
 }
