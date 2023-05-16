@@ -67,7 +67,7 @@
                     <input type="text" class="texto" style="width:100%" id="uf" name="uf"><br><br>
                 </div>
             </div>
-            <button type="button" class="enviar" style="background-color:#f3a033;" onclick="inserirAluno()">Adcionar aluno</button><br><br>
+            <button type="button" class="enviar" style="background-color:#f3a033;" onclick="inserirAluno()">Adicionar aluno</button><br><br>
             <div class="form-aluno" id="form_aluno" style="display:none;">
                 <div class="div-input-flex">
                     <div class="block" style="width:75%;">
