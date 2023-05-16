@@ -33,10 +33,6 @@ class ResponsavelController extends Controller
         return view('telas.responsavel.saude');
     }
 
-    public function configuracoes() {
-        return view('telas.responsavel.configuracoes');
-    }
-
     public function mensagem() {
         return view('telas.responsavel.mensagem');
     }

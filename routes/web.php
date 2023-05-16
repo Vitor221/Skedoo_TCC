@@ -63,7 +63,6 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioStore'])->name('instituicao.calendario.store');
     Route::patch('instituicao/calendario/update/{id}', [InstituicaoController::class, 'calendarioUpdate'])->name('instituicao.calendario.update');
     Route::delete('instituicao/calendario/delete/{id}', [InstituicaoController::class, 'calendarioDelete'])->name('instituicao.calendario.delete');
-    Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
     Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_arquivo'])->name('instituicao.saude.refeicao.insert');
 });
 
@@ -75,7 +74,6 @@ Route::group(['middleware' => ['loginAccess2']], function() {
     Route::get('educador/ajuda', [EducadorController::class, 'ajuda'])->name('educador.ajuda');
     Route::get('educador/mensagens', [EducadorController::class, 'mensagem'])->name('educador.mensagem');
     Route::get('educador/calendario', [EducadorController::class, 'calendario'])->name('educador.calendario');
-    Route::get('educador/configuracoes', [EducadorController::class, 'configuracoes'])->name('educador.configuracoes');
     Route::get('educador/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
 });
 
@@ -85,7 +83,6 @@ Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('responsavel/mensagens', [ResponsavelController::class, 'mensagem'])->name('responsavel.mensagens');
     Route::get('responsavel/ajuda', [ResponsavelController::class, 'ajuda'])->name('responsavel.ajuda');
     Route::get('responsavel/saude', [ResponsavelController::class, 'saude'])->name('responsavel.saude');
-    Route::get('responsavel/configuracoes', [ResponsavelController::class, 'configuracoes'])->name('responsavel.configuracoes');
     Route::get('responsavel/calendario', [ResponsavelController::class, 'calendario'])->name('responsavel.calendario');
     Route::get('responsavel/transporte', [ResponsavelController::class, 'transporte'])->name('responsavel.transporte');
     Route::get('responsavel/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
