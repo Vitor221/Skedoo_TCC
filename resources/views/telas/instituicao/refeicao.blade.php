@@ -11,12 +11,37 @@
 <div class="div-conteudo">
     <h1 style="color:white; margin-left: 28%;">CONTROLE DE CARDÁPIO</h1>
     <br>
-    <form method="POST" action="{{ route('instituicao.saude.refeicao.insert') }}" enctype="multipart/form-data">
+    <div class="insert">
+    <form method="POST" id="form" enctype="multipart/form-data">
     @csrf
-    <label>Arquivo:</label>
-    <input type="file" id="url" name="url" />
+    <label>Arquivo PDF do Mês:</label>
+    <input type="file" id="imgdopdf" name="imgdopdf" /><br>
+    <label>Data:</label>
+    <input id="data" type="date" name="data">
+    <label>Dia da semana:</label>
+    <select name="ddSemana" id="ddSemana" class="texto">
+       <option class="Data-semana" value="0">Selecione</option>
+       <option class="Data-semana" value="Segunda-feira">Segunda-feira</option>
+       <option class="Data-semana" value="Terça-feira">Terça-feira</option>
+       <option class="Data-semana" value="Quarta-feira">Quarta-feira</option>
+       <option class="Data-semana" value="Quinta-feira">Quinta-feira</option>
+       <option class="Data-semana" value="Sexta-feira">Sexta-feira</option>
+     </select><br><br>
+    <label>Nome do prato:</label>
+    <input id="nmPrato" type="text" name="nmPrato"><br><br>
+    <label>Descrição do prato:</label>
+    <textarea id="DescPrato" type="text" cols="30" rows="10" name="DescPrato"></textarea><br>
+    <label>Imagem do Prato:</label>
+    <input type="file" id="imgPrato" name="imgPrato" /><br><br>
+    <label>Nome da Sobremessa:</label>
+    <input id="nmSobremessa" type="text" name="nmSobremessa"><br><br>
+    <label>Descrição da sobremessa:</label>
+    <textarea id="DescSobremessa" type="text" cols="30" rows="10" name="DescSobremessa"></textarea><br>
+    <label>Imagem da Sobremessa:</label>
+    <input type="file" id="imgSobremessa" name="imgSobremessa" /><br>
+    <button type="reset" class="cancelar" onclick="LimparForm()">Cancelar</button>
     <input type="submit" value="Enviar" />
     </form>
-
+</div>
 </div>
 @endsection

@@ -64,7 +64,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::patch('instituicao/calendario/update/{id}', [InstituicaoController::class, 'calendarioUpdate'])->name('instituicao.calendario.update');
     Route::delete('instituicao/calendario/delete/{id}', [InstituicaoController::class, 'calendarioDelete'])->name('instituicao.calendario.delete');
     Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
-    Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_arquivo'])->name('instituicao.saude.refeicao.insert');
+    Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_cardapio'])->name('instituicao.saude.refeicao.insert');
 });
 
 //Rota de Educador

@@ -24,7 +24,8 @@ class TbCardapio extends Model
         'img_prato',
         'nm_sobremessa',
         'desc_sobremessa',
-        'img_sobremssa'
+        'img_sobremssa',
+        'img_pdf'
     ];
 };
 

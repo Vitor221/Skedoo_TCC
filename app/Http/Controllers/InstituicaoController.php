@@ -248,17 +248,27 @@ class InstituicaoController extends Controller
     // CARDAPIO
 
     public function inserir_cardapio (Request $request){
+      
+      
+
+      
+      
+      
+      
+      
         $cardapio = new TbCardapio();
         $cardapio->dt_cardapio = $request -> data;
         $cardapio ->nm_ddsemana = $request ->ddSemana;
-        $cardapio ->nm_prato = $request->nomeprato;
-        $cardapio ->desc_prato = $request->descprato;
-        $cardapio ->img_prato = $request->imgprato;
-        $cardapio ->nm_sobremessa = $request->nomesobremessa;
-        $cardapio ->desc_sobremessa = $request->descsobremessa;
-        $cardapio ->img_sobremssa = $request->imgsobremessa;
+        $cardapio ->nm_prato = $request->nmPrato;
+        $cardapio ->desc_prato = $request->DescPrato;
+        $cardapio ->img_prato = $request->imgPrato;
+        $cardapio ->nm_sobremessa = $request->nmSobremessa;
+        $cardapio ->desc_sobremessa = $request->DescSobremessa;
+        $cardapio ->img_sobremssa = $request->imgSobremessa;
+        $cardapio -> img_pdf = $request -> imgdopdf;
+      
     }
-    public function visualizar_cardaio($id){
+    public function visualizar_cardapio($id){
         $cardapio = TbCardapio::findOrFail($id);
         return view('telas.instituicao.visualizar_cardapio');
     }
