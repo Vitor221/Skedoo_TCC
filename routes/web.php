@@ -42,7 +42,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::delete('instituicao/clientes/{id}', [InstituicaoController::class, 'deletar_cliente'])->name('instituicao.clientes.delete');
     Route::get('instituicao/clientes/{id}', [InstituicaoController::class, 'visualizar_cliente'])->name('instituicao.clientes.view');
     Route::get('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'editar_cliente'])->name('instituicao.clientes.edit');
-    Route::put('instituicao/clientes/{id}', [InstituicaoController::class, 'update_cliente'])->name('instituicao.clientes.update');
+    Route::patch('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'update_cliente'])->name('instituicao.clientes.update');
     Route::get('instituicao/ajuda', [InstituicaoController::class, 'ajuda'])->name('instituicao.ajuda');
     Route::get('instituicao/alunos', [InstituicaoController::class, 'aluno'])->name('instituicao.alunos');
     Route::post('instituicao/aluno', [InstituicaoController::class, 'inserir_aluno'])->name('instituicao.aluno.insert');

@@ -13,7 +13,7 @@
     <div class="div-visualizar">
       <h1 style="text-align: center;">Informações do cliente</h1><br>
       <form method="POST" action="{{ route('instituicao.clientes.update', ['id'=>$responsavel->cd_responsavel]) }}">
-        @method('PUT')
+        @method('PATCH')
         @csrf
         <label for="">Nome do responsável:</label>
         <input type="text" name="name" value="{{ $responsavel->nm_responsavel }}">
