@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\TbCardapio;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
+use App\Models\TbCadastro;
 use App\Models\TbUf;
 use App\Models\TbTurma;
 use App\Models\TbEndereco;
@@ -33,6 +34,7 @@ class InstituicaoController extends Controller
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
+
     public function saude() {
         return view('telas.instituicao.saude');
     }
@@ -222,6 +224,7 @@ class InstituicaoController extends Controller
         $responsavel = new TbResponsavel();
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
+
         $cadastro = $responsavel->tb_cadastro()->create(['nm_login'=>'teste', 'cd_senha'=>'teste']);
         $responsavel->cd_cadastro = $cadastro->cd_cadastro;
         $uf = TbUf::find($request->uf);
@@ -274,13 +277,17 @@ class InstituicaoController extends Controller
     }
 
     public function update_cliente(Request $request, $id) {
-        $data = [
-            'nm_responsavel'  =>  $request->name,
-            'cd_cpf'   =>  $request->cpf,
-        ];
+        $responsavel = TbResponsavel::findOrFail($id);
+        
+        $responsavel->nm_responsavel = $request->name;
+        $responsavel->cd_cpf = $request->cpf;
 
-        TbResponsavel::where('cd_responsavel', $id)->update($data);
+        $responsavel->tb_cadastro()->update(['nm_login' => $request->nm_login, 'cd_senha' => $request->cd_senha]);
+        
 
+        $responsavel->save();
+
+        
         return redirect()->route('instituicao.clientes');
     }
     //CRUD - Cliente - FIM
