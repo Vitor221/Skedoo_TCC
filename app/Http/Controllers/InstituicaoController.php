@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\TbCardapio;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
+use App\Models\TbBairro;
 use App\Models\TbCadastro;
 use App\Models\TbUf;
 use App\Models\TbTurma;
@@ -14,6 +15,7 @@ use App\Models\TbEventos;
 use App\Models\TbProfissional;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\TbCidade;
 
 class InstituicaoController extends Controller
 {
@@ -282,9 +284,37 @@ class InstituicaoController extends Controller
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
 
-        $responsavel->tb_cadastro()->update(['nm_login' => $request->nm_login, 'cd_senha' => $request->cd_senha]);
-        
+        $responsavel->tb_cadastro()->update([
+            'nm_login' => $request->nm_login, 
+            'cd_senha' => $request->cd_senha
+        ]);
 
+        $responsavel->tb_endereco()->update([
+            'nm_endereco' => $request->nm_endereco, 
+            'cd_cep' => $request->cd_cep, 
+            'cd_numcasa' => $request->cd_numcasa, 
+            'ds_complemento' => $request->ds_complemento
+        ]);
+
+        $endereco = $responsavel->tb_endereco;
+
+        if ($endereco) {
+            $bairro = TbBairro::find($endereco->cd_bairro);
+    
+            if ($bairro) {
+                $bairro->nm_bairro = $request->nm_bairro;
+                $bairro->save();
+    
+                $cidade = TbCidade::find($bairro->cd_cidade);
+    
+                if ($cidade) {
+                    $cidade->nm_cidade = $request->nm_cidade;
+                    $cidade->sg_uf = $request->sg_uf;
+                    $cidade->save();
+                }
+            }
+        }
+         
         $responsavel->save();
 
         
