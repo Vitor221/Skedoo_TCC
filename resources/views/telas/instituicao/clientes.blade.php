@@ -1,4 +1,4 @@
-  @extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responsaveis dos Alunos'])
+@extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responsaveis dos Alunos'])
 
 @section('voltar')
     <x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
