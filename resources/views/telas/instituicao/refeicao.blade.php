@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/estilo_refeicao.css') }}">
 @endsection
 @section('voltar')
-    <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+<x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
 @endsection
 
 @section('content')
