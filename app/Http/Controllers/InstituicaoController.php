@@ -12,6 +12,7 @@ use App\Models\TbEndereco;
 use App\Models\TbEventos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InstituicaoController extends Controller
 {
@@ -70,6 +71,8 @@ class InstituicaoController extends Controller
     public function transporte(){
         return view('telas.instituicao.transporte');
     }
+
+    
 
     public function calendario(){
         $eventos = array();
@@ -239,25 +242,41 @@ class InstituicaoController extends Controller
 
         return redirect()->route('instituicao.clientes');
     }
-    public function inserir_arquivo(Request $request){
-        $cardapio = new TbCardapio();
-        $cardapio->img = $request->url;
-        return back()->with('success', 'Cardapio enviado com sucesso!'); 
-    }
+  
 
     // CARDAPIO
 
+    public function cardapio(){
+        return view('telas.instituicao.cardapio');  
+    } 
     public function inserir_cardapio (Request $request){
         $cardapio = new TbCardapio();
-        $cardapio->dt_cardapio = $request -> data;
-        $cardapio ->nm_ddsemana = $request ->ddSemana;
-        $cardapio ->nm_prato = $request->nomeprato;
-        $cardapio ->desc_prato = $request->descprato;
-        $cardapio ->img_prato = $request->imgprato;
-        $cardapio ->nm_sobremessa = $request->nomesobremessa;
-        $cardapio ->desc_sobremessa = $request->descsobremessa;
-        $cardapio ->img_sobremssa = $request->imgsobremessa;
-    }
+        // $cardapio->dt_cardapio = $request -> data;
+        // $cardapio ->nm_ddsemana = $request ->ddSemana;
+        // $cardapio ->nm_prato = $request->nomeprato;
+        // $cardapio ->desc_prato = $request->descprato;
+        // $cardapio ->img_prato = $request->imgprato;
+        // $cardapio ->nm_sobremessa = $request->nomesobremessa;
+        // $cardapio ->desc_sobremessa = $request->descsobremessa;
+        // $cardapio ->img_sobremssa = $request->imgsobremessa;
+
+        if($request ->imgdopdf){
+            
+            $NovoName = Str::of(date('M'))->slug('-').'.'.$request->imgdopdf->getClientOriginalExtension();
+
+            $imagem = $request -> imgdopdf -> storeAs('Cardapio', $NovoName);
+            $cardapio ['img_pdf'] = $imagem;
+
+
+            $cardapio -> save();
+            
+        }else{
+            return redirect()->route('instituicao.refeicao');
+        }
+
+        
+        
+    }   
     public function visualizar_cardaio($id){
         $cardapio = TbCardapio::findOrFail($id);
         return view('telas.instituicao.visualizar_cardapio');

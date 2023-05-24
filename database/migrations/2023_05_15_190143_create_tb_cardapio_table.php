@@ -14,15 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_cardapio', function (Blueprint $table) {
-            $table->integer('id_cardapio', true);
-            $table->date('dt_cardapio');
-            $table->string('nm_ddsemana', 20);
-            $table->string('nm_prato', 70);
-            $table->string('desc_prato', 150);
-            $table->string('img_prato', 100);
-            $table->string('nm_sobremessa', 30);
-            $table->string('desc_sobremessa', 100);
-            $table->string('img_sobremssa', 70);
+             $table->integer('id_cardapio', true);
+            // $table->date('dt_cardapio');
+            // $table->string('nm_ddsemana', 20);
+            // $table->string('nm_prato', 70);
+            // $table->string('desc_prato', 150);
+            // $table->string('img_prato', 100);
+            // $table->string('nm_sobremessa', 30);
+            // $table->string('desc_sobremessa', 100);
+            // $table->string('img_sobremssa', 70);
+            $table->string('img_pdf', 100);
         });
     }
 

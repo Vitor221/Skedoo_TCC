@@ -10,6 +10,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "fullcalendar": "^6.1.6"
+        "fullcalendar": "^6.1.6",
+        "pdfobject": "^2.2.11"
     }
 }
