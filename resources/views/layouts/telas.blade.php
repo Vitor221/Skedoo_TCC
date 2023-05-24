@@ -18,10 +18,17 @@
 </head>
 
 <body>
-    <nav class="nav">
-        <img class="logo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-        <h3 style="margin-bottom: 0px;">Bem-vindo, {{ session('login')['nm_login'] }}</h3>
-        <x-profile-button />
+    <nav>
+        <div class="nav">
+            <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
+            
+            <div class="perfil-bg">
+            <h3>
+                Bem-vindo, {{ session('login')['nm_login'] }}
+                <x-profile-button/>
+            </h3>
+            </div>
+        </div>
     </nav>
 
     <div class="menu-bar">
