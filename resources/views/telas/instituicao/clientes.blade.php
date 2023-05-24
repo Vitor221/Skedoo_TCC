@@ -128,10 +128,15 @@
             <input type="submit" class="enviar">
         </form>
     </div>
+    
     <div class="search" id="pesquisa" style="display:none;">
-        <input type="search" placeholder="Pesquisar responsavel" aria-label="Pesquisar">
-        <button type="submit"><i class="uil uil-search"></i></button>
+    <form action="{{route('instituicao.clientes')}}" method="get">
+        <input type="search" name="s"  placeholder="Pesquisar responsavel" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
+        <button  type="submit"><i class="uil uil-search"></i></button>
+    </form>
     </div>
+
+
 
     <div class="div-tabela">
         <table class="tabela">
@@ -171,20 +176,28 @@
                             <form method="POST"
                                 action="{{ route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel) }}">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
+                                @method('DELETE')                                                                             
+                                                                                                                         <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
-                        </td>
+                        </td>                 
                     </tr>
-                @endforeach
+                @endforeach          
             </tbody>
-        </table>
+        </table>                         
 
         <div class="pagination justify-content-center">
-            {{ $TbResponsaveis->links() }}
+           
+
+            @if (request()->input('s'))                                                                                                                                                                                                                                  
+            {{ $TbResponsaveis->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
+            @else 
+                {{ $TbResponsaveis->links() }}
+            
+            @endif
         </div>
         <br>
     </div>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection
+                                                                       

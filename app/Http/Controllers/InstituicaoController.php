@@ -45,9 +45,18 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.problemassaude');
     }
     
-    public function cliente(){
+    public function cliente(Request $request){
         $TbResponsaveis = TbResponsavel::paginate(6);
         $TbTurmas = TbTurma::all();
+
+
+        if ($request->input('s')) {
+            $TbResponsaveis = TbResponsavel::search($request->input('s'));
+        } else {
+            $TbResponsaveis = TbResponsavel::paginate(6);
+        }
+
+
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas]); 
     }
 
