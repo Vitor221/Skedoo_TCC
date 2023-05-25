@@ -251,14 +251,7 @@ class InstituicaoController extends Controller
     } 
     public function inserir_cardapio (Request $request){
         $cardapio = new TbCardapio();
-        // $cardapio->dt_cardapio = $request -> data;
-        // $cardapio ->nm_ddsemana = $request ->ddSemana;
-        // $cardapio ->nm_prato = $request->nomeprato;
-        // $cardapio ->desc_prato = $request->descprato;
-        // $cardapio ->img_prato = $request->imgprato;
-        // $cardapio ->nm_sobremessa = $request->nomesobremessa;
-        // $cardapio ->desc_sobremessa = $request->descsobremessa;
-        // $cardapio ->img_sobremssa = $request->imgsobremessa;
+        
 
         if($request ->imgdopdf){
             
@@ -274,8 +267,7 @@ class InstituicaoController extends Controller
             return redirect()->route('instituicao.refeicao');
         }
 
-        
-        
+
     }   
     public function visualizar_cardaio($id){
         $cardapio = TbCardapio::findOrFail($id);
