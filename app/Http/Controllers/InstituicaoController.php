@@ -182,7 +182,6 @@ class InstituicaoController extends Controller
             'start_event'   =>  $request->start_event,
             'end_event'     =>  $request->end_event,
         ]);
-
         return response()->json($calendario);
     }
 

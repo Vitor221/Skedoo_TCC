@@ -17,17 +17,22 @@
     @yield('styles')
     <title>{{ $title }}</title>
 </head>
+@php
+    use Carbon\Carbon;
+    Carbon::setlocale(config('app.locale'));
+@endphp
 
 <body>
     <nav>
         <div class="nav">
             <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-            
+            <h2 style="color: black;">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i') }}</h2>
+
             <div class="perfil-bg">
-            <h3>
-                Bem-vindo, {{ session('login')['nm_login'] }}
-                <x-profile-button/>
-            </h3>
+                <h3>
+                    Bem-vindo, {{ session('login')['nm_login'] }}
+                    <x-profile-button />
+                </h3>
             </div>
         </div>
     </nav>
@@ -35,8 +40,10 @@
     <div class="menu-bar">
         <h2>{{ $nomelogin }}</h2>
         <div class="flex">
-            <a href="{{route('clientes')}}" style="text-decoration: none;">
-                <i class="uil uil-bell"><p>Notificações</p></i>
+            <a href="{{ route('clientes') }}" style="text-decoration: none;">
+                <i class="uil uil-bell">
+                    <p>Notificações</p>
+                </i>
             </a>
             <div class="search">
                 <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
