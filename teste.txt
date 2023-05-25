@@ -1,2 +1,0 @@
-$icon='uil uil-setting'
-<i class="uil uil-setting">

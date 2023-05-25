@@ -13,13 +13,11 @@ class TbCardapio extends Model
 
     protected $casts = [
         'id_cardapio'=> 'int',
-        // 'dt_cardapio'=> 'date',
         
     ];
 
     protected $fillable = [
         'dt_cardapio',
-        'nm_ddsemana',
         'nm_prato',
        'desc_prato',
         'img_prato',

@@ -1,0 +1,101 @@
+p{
+    margin: 0px;
+}
+.div-conteudo{
+    display: flex;
+}
+.div-usuarios{
+    width: 20%;
+    max-height: 30em;
+}
+.usuarios{
+    max-height: 90%;
+    background-color: white;
+    border-radius: 2em;
+    overflow:scroll;
+}
+.usuario{
+    padding-left: 1em;
+    height: 3em;
+    display: flex;
+}
+.usuario:hover{
+    background-color: rgba(128, 128, 128, 0.096);
+    border: 1px solid;
+    border-color: rgba(128, 128, 128, 0.24);
+    overflow: hidden;
+}
+.usuario p{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.div-mensagens{
+    width: 100%;
+    margin-left: 1em;
+    height: 27em;
+    
+}
+.mensagens{
+    padding: 1em;
+    background-color: white;
+    border-radius: 2em;
+    height: 100%;
+}
+.mensagem{
+    padding: 0.5em;
+    padding-inline: 1em;
+    width: fit-content;
+    border-radius: 25%;
+    margin-bottom: 0.5em;
+}
+.mensagem span{
+    font-size: small;
+    color: gray;
+}
+.enviada{
+    background-color: aquamarine;
+    margin-left: auto;
+}
+.recebida{
+    background-color: rgb(211, 211, 211);
+}
+.div-form{
+    display: block;
+    position: relative;
+    width: 100%;
+    top: 53%;
+}
+.form-mensagem {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5em;
+    width: 100%;
+}
+
+.form-mensagem input {
+    width: 100%;
+    height: 2.5em;
+    border: 0.3em solid;
+    border-color: #87cac4;
+    border-radius: 2em;
+    outline-color: #6da39e;
+    background: rgba(0,0,0,0.0);
+    padding-left: 1em;
+    padding-right: 5em;
+}
+
+.form-mensagem button {
+    border: none;
+    border-radius: 2.5em;
+    height: 2.5em;
+    width: 5em;
+    position: absolute;
+    right: 0em;
+    color: white;
+    background-color: #87cac4;
+}
+
+.form-mensagem button:hover {
+    transition: all .3s ease-in-out;
+    background-color: rgb(88, 88, 235);
+} 

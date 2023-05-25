@@ -37,46 +37,52 @@ Route::get('/logout', [LoginController::class, 'logoutLogin'])->name('logout');
 //Rota de Instituição
 Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
+    
     Route::get('instituicao/clientes', [InstituicaoController::class, 'cliente'])->name('instituicao.clientes');
     Route::post('instituicao/clientes', [InstituicaoController::class, 'inserir_cliente'])->name('instituicao.clientes.insert');
     Route::delete('instituicao/clientes/{id}', [InstituicaoController::class, 'deletar_cliente'])->name('instituicao.clientes.delete');
     Route::get('instituicao/clientes/{id}', [InstituicaoController::class, 'visualizar_cliente'])->name('instituicao.clientes.view');
     Route::get('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'editar_cliente'])->name('instituicao.clientes.edit');
-    Route::put('instituicao/clientes/{id}', [InstituicaoController::class, 'update_cliente'])->name('instituicao.clientes.update');
+    Route::patch('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'update_cliente'])->name('instituicao.clientes.update');
+    
     Route::get('instituicao/ajuda', [InstituicaoController::class, 'ajuda'])->name('instituicao.ajuda');
+    
     Route::get('instituicao/alunos', [InstituicaoController::class, 'aluno'])->name('instituicao.alunos');
     Route::post('instituicao/aluno', [InstituicaoController::class, 'inserir_aluno'])->name('instituicao.aluno.insert');
     Route::delete('instituicao/alunos/{id}', [InstituicaoController::class, 'deletar_aluno'])->name('instituicao.aluno.delete');
     Route::get('instituicao/alunos/{id}', [InstituicaoController::class, 'visualizar_aluno'])->name('instituicao.aluno.view');
+    
     Route::post('instituicao/turma', [InstituicaoController::class, 'inserir_turma'])->name('instituicao.turma.insert');
     Route::delete('instituicao/turmas/{id}', [InstituicaoController::class, 'deletar_turma'])->name('instituicao.turma.delete');
     Route::get('instituicao/turmas/{id}', [InstituicaoController::class, 'visualizar_turma'])->name('instituicao.turma.view');
+    
     Route::get('instituicao/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
+    
     Route::get('instituicao/saude', [InstituicaoController::class, 'saude'])->name('instituicao.saude'); 
-    Route::get('instituicao/saude/problemassaude', [InstituicaoController::class, 'problemassaude'])->name('instituicao.problemassaude');  
     Route::get('instituicao/transportes', [InstituicaoController::class, 'transporte'])->name('instituicao.transporte');
     Route::get('instituicao/financeiros', [InstituicaoController::class, 'financeiro'])->name('instituicao.financeiro');
+    
     Route::get('instituicao/colaborador', [InstituicaoController::class, 'colaborador'])->name('instituicao.colaborador');
+    Route::post('instituicao/colaborador', [InstituicaoController::class, 'inserir_colaborador'])->name('instituicao.colaborador');
+    Route::get('instituicao/colaborador/{id}', [InstituicaoController::class, 'visualizar_colaborador'])->name('instituicao.colaborador.view');
+    Route::delete('instituicao/colaborador/{id}', [InstituicaoController::class, 'deletar_colaborador'])->name('instituicao.colaborador.delete');
+    Route::get('instituicao/colaborador/editar/{id}', [InstituicaoController::class, 'atualizar_colaborador'])->name('instituicao.colaborador.atualizar');
+    Route::patch('instituicao/colaborador/editar/{id}', [InstituicaoController::class, 'update_colaborador'])->name('instituicao.colaborador.atualizar');
+    
     Route::get('instituicao/mensagem', [InstituicaoController::class, 'mensagem'])->name('instituicao.mensagem');
+    
     Route::get('instituicao/calendario', [InstituicaoController::class, 'calendario'])->name('instituicao.calendario');
     Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioStore'])->name('instituicao.calendario.store');
-    Route::patch('instituicao/calendario/update/{id}', [InstituicaoController::class, 'calendarioUpdate'])->name('instituicao.calendario.update');
-    Route::delete('instituicao/calendario/delete/{id}', [InstituicaoController::class, 'calendarioDelete'])->name('instituicao.calendario.delete');
-    Route::get('instituicao/configuracoes', [InstituicaoController::class, 'configuracoes'])->name('instituicao.configuracoes');
-    Route::get('instituicao/saude/refeicao', [InstituicaoController::class, 'refeicao'])->name('instituicao.refeicao'); 
-    Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_cardapio'])->name('instituicao.saude.refeicao.insert');
-
 });
 
 //Rota de Educador
 Route::group(['middleware' => ['loginAccess2']], function() {
     Route::get('/educador', [EducadorController::class, 'educador'])->name('educador');
     Route::get('educador/turmas', [EducadorController::class, 'aluno'])->name('educador.alunos');
-    Route::get('educador/saude', [EducadorController::class, 'saude'])->name('educador.saude');
+    Route::get('educador/refeicao', [EducadorController::class, 'visualizar_cardapio'])->name('instituicao.refeicao'); 
     Route::get('educador/ajuda', [EducadorController::class, 'ajuda'])->name('educador.ajuda');
     Route::get('educador/mensagens', [EducadorController::class, 'mensagem'])->name('educador.mensagem');
     Route::get('educador/calendario', [EducadorController::class, 'calendario'])->name('educador.calendario');
-    Route::get('educador/configuracoes', [EducadorController::class, 'configuracoes'])->name('educador.configuracoes');
     Route::get('educador/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
 });
 
@@ -86,9 +92,9 @@ Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('responsavel/mensagens', [ResponsavelController::class, 'mensagem'])->name('responsavel.mensagens');
     Route::get('responsavel/ajuda', [ResponsavelController::class, 'ajuda'])->name('responsavel.ajuda');
     Route::get('responsavel/saude', [ResponsavelController::class, 'saude'])->name('responsavel.saude');
-    Route::get('responsavel/configuracoes', [ResponsavelController::class, 'configuracoes'])->name('responsavel.configuracoes');
     Route::get('responsavel/calendario', [ResponsavelController::class, 'calendario'])->name('responsavel.calendario');
     Route::get('responsavel/transporte', [ResponsavelController::class, 'transporte'])->name('responsavel.transporte');
+    Route::get('responsavel/refeicao', [ResponsavelController::class, 'visualizar_cardapio'])->name('responsavel.refeicao');
     Route::get('responsavel/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
 });
 

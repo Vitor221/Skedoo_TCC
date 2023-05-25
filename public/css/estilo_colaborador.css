@@ -1,0 +1,57 @@
+table,
+th,
+td {
+    border: 2px solid #606cd6;
+}
+
+th {
+    background-color: #606cd6; 
+}
+
+tr:nth-child(even) {
+    background-color: #d0d4fd;
+}
+
+tr:hover:nth-child(1n + 2) {
+    background-color: #87cac4;
+}
+
+.inserir{
+  color: #606cd6;
+}
+
+.form-cadastro{
+  background-color: #ffffff;
+  border-color: #606cd6;
+}
+
+.search button:hover {
+  transition: all .3s ease-in-out;
+  background-color: #9da4e8;
+}
+
+.texto{
+  border-color: #606cd6;
+}
+
+.search {
+  border-color: #606cd6;
+}
+
+.pesquisar:hover{
+  background-color: #9da4e8;
+  font-size: 20px;
+  color: white;
+}
+
+.search button {
+  background-color: #606cd6;
+}
+
+.pagination{
+    background-color: #606cd6;
+    padding: 5px;
+    width: fit-content;
+    margin: auto;
+    border-radius: 2em;
+}

@@ -208,6 +208,7 @@ i.uil.uil-arrow-right {
 
 .section-carousel {
     background-color: #8396dc;
+
 }
 
 .section-carousel h2{
@@ -222,7 +223,7 @@ i.uil.uil-arrow-right {
 .carrosel_part {
     display: flex;
     width: 100%;
-    min-height: 78vh;
+    height: 85vh;
     margin-top: 2em;
     align-items: center;
     justify-content: center;
@@ -276,7 +277,6 @@ i.uil.uil-arrow-right {
 
 #prev-button, #next-button {
     width: 4%;
-    height: 4%;
     border: none;
     background-color: #fff;
     padding: 0.5em;
@@ -425,7 +425,161 @@ i.uil.uil-arrow-right {
 
 /* Resoluções de telas */
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 1100px) {
+    .img_balls {
+        display: none;
+    }
+    #prev-button, #next-button {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 970px) {
+
+    .card_coment {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-height: 100vh;
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .cards {
+        padding: 1em;
+        background-image: url("../img/img_home/c-background.svg");
+        background-size: 120% auto;
+        background-repeat: no-repeat;
+        background-position: right -2em bottom -3em;
+        margin-left: 2%;
+        width: 35%;
+        margin: auto;
+        margin-top: 4%;
+        min-height: 29vh;
+        background-color: #fff;
+        border-radius: 1em;
+        position: relative;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: all .3s ease-in-out;
+    }
+
+}
+
+
+@media screen and (max-width: 640px) {
+    .text_card {
+        width: 90%;
+        margin-left: 15%;
+        margin-top: 5%;
+    }
+
+    .comentarios_title h2 {
+        font-size: 1.5em;
+    }
+
+    .topo-secao h2 {
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .apres_text p {
+        font-size: 0.8rem;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .topo-secao a {
+        font-size: 10px;
+    }
+
+    .img_balls {
+        display: none;
+    }
+
+    .carousel img {
+        border-radius: 1em;
+    }
+
+    .carrosel_part {
+        display: flex;
+        width: 100%;
+        min-height: 84vh;
+        margin-top: 2em;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .text-slide {
+        text-align: center;
+        margin-left: 0;
+        width: 80%;
+        margin: auto;
+        margin-top: 2em;
+        background-color: #fff;
+        border-radius: 1em;
+        box-shadow: -4px 4px 0 5px #ecab54;
+    }
+
+    .cards_coment {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .cards {
+        margin-left: 0;
+        width: 70%;
+        height: 160px;
+        margin: auto;
+        margin-top: 5%;
+    }
+
+    #prev-button, #next-button {
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width: 570px) {
+
+    .area-texto {
+        padding: 0;
+    }
+
+    #logo-skedoo {
+        margin-top: 0.3em;
+        width: 25%;
+    }
+
+    nav a {
+        font-size: 9px;
+    }
+
+    #paragrafo-apres {
+        font-size: 10px;
+        margin-top: 20px;
+        margin-bottom: 2em;
+    }
+
+    .apres_text {
+        margin-left: 0;
+        margin: auto;
+        width: 90%;
+        padding: 1em;
+    }
+
+    .apres_text p {
+        font-size: 1px;
+    }
+
+    .apres_text h2 {
+        font-size: 13px;
+    }
+
     .img_balls {
         display: none;
     }
@@ -443,65 +597,117 @@ i.uil.uil-arrow-right {
         margin: auto;
         margin-top: 5%;
     }
-}
 
-@media screen and (max-width: 620px) {
-    .text_card {
-        width: 90%;
-        margin-left: 15%;
-        margin-top: 5%;
+    .cards p {
+        font-size: 10px;
     }
 
-    .comentarios_title h2 {
-        font-size: 1.5em;
+    .title_card h3 {
+        font-size: 16px;
     }
 
-    .topo-secao h2 {
+    .section-carousel h2{
+        color: #fff;
         font-weight: 700;
-        font-size: 1rem;
-        margin-left: 5rem;
-    }
-
-    .apres_text p {
-        font-size: 0.8rem;
-        margin-top: 20px;
-        margin-bottom: 10px;
-    }
-
-    .topo-secao a {
-        font-size: 1em;
-    }
-
-    .img_balls {
-        display: none;
+        text-align: center;
+        font-size: 2em;
+        letter-spacing: 4px;
+        text-decoration: underline;
     }
 
     .carrosel_part {
-        background-size: 250% auto;
+        display: flex;
+        width: 100%;
+
+        margin-top: 2em;
+        align-items: center;
+        justify-content: center;
     }
 
-    .carousel {
-        position: relative;
-        margin: auto;
-        width: 100%;
-    }
 
     .carousel img {
+        width: 110%;
+    }
+    
+    .text-slide {
+        text-align: center;
+        margin-left: 0;
+        width: 100%;
+        margin: auto;
+        margin-top: 0;
+        background-color: #fff;
         border-radius: 1em;
+        padding: 0.5em 2.3em;
+        box-shadow: -4px 4px 0 5px #ecab54;
     }
 
-    .cards_coment {
-        display: flex;
-        flex-direction: column;
-        margin: auto;
+    .slider {
+        margin-left: 0;
+    }
+    
+    .text-slide h2 {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #8396dc;
+    }
+    
+    .text-slide p {
+        font-size: 10px;
+        font-weight: 500;
+        color: #8396dc;
+    }
+
+    #prev-button, #next-button {
+        display: none;
+    }
+
+    .social_img a img {
+        width: 21px;
+        height: 21px;
+    }
+
+    .titulo_foot h3 {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .section-carousel {
+        height: 83vh;
     }
 
     .cards {
-        margin-top: 10%;
-        margin-left: 0;
-        width: 80%;
-        height: 250px;
-        margin: auto;
-        margin-top: 10%;
+        background-size: 180% auto;
+        min-height: 22vh;
+        background-color: #fff;
+        border-radius: 1em;
+        position: relative;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: all .3s ease-in-out;
+    }
+
+    .photo_icon {
+        width: 35px;
+        height: 35px;
     }
 }
+
+@media screen and (max-width: 380px) {
+    .section-carousel {
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .cards {
+        background-size: 220% auto;
+        min-height: 5vh;
+        width: 70%;
+    }
+
+    nav a {
+        font-size: 7px;
+    }
+}
+
+
