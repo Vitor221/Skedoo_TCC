@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="div-conteudo">
-        <h1 style="color:white; text-align:center;">CONTROLE DE CARDÁPIO</h1>
+        <h1>CONTROLE DE CARDÁPIO</h1>
         <div class="div-refeicao">
             <br>
             <h3>Insira manualmente o cardapio escolar</h3>
@@ -24,7 +24,7 @@
                             <label>Dia da refeição:</label>
                             <input id="data" type="date" name="data">
                             <label style="margin-left: 2em;">Cor da Refeição</label>
-                            <input type="color">
+                            <input id="cor" name="cor" type="color">
                         </div>
                     </div><br>
 
@@ -33,16 +33,17 @@
                         <input id="nmPrato" type="text" name="nmPrato" class="nome-prato">
                     </div><br>
                     <div class="block">
-                        <textarea id="DescPrato" type="text" cols="50" rows="4" name="DescPrato" placeholder="Insira uma descrição para o prato aqui..."></textarea>
+                        <textarea id="DescPrato" type="text" cols="50" rows="4" name="DescPrato"
+                            placeholder="Insira uma descrição para o prato aqui..."></textarea>
                     </div><br>
 
                     <div class="block">
-                      <label>Nome da Sobremessa</label><br>
-                      <input id="nmSobremessa" type="text" name="nmSobremessa" class="nome-prato">
-                      <input type="">
+                        <label>Nome da Sobremessa</label><br>
+                        <input id="nmSobremessa" type="text" name="nmSobremessa" class="nome-prato">
                     </div><br>
                     <div class="block">
-                      <textarea id="DescSobremessa" type="text" cols="50" rows="4" name="DescSobremessa" placeholder="Insira uma descrição para a sobremesa aqui..."></textarea>
+                        <textarea id="DescSobremessa" type="text" cols="50" rows="4" name="DescSobremessa"
+                            placeholder="Insira uma descrição para a sobremesa aqui..."></textarea>
                     </div><br>
 
                     <button type="reset" class="cancelar" onclick="formRefeicaoFechar()">Cancelar</button>
@@ -53,6 +54,107 @@
                 <input type="file" id="imgdopdf" name="imgdopdf" /><br>
             </div><br>
         </div><br>
+    </div><br><br>
+    <div class="div-conteudo">
+        @if ($cardapioHoje)
+            <h1>Refeição de Hoje</h1>
+            <div class="div-refeicao">
+                <div class="item-cardapio" style="background-color:{{ $cardapioHoje->cd_cor }}">
+                    <div class="flex">
+                        <div class="block">
+                            <h3>{{ $cardapioHoje->nm_prato }}</h3>
+                            <p>{{ $cardapioHoje->desc_prato }}</p>
+                        </div>
+                        <div class="block">
+                            <h3>{{ $cardapioHoje->nm_sobremessa }}</h3>
+                            <p>{{ $cardapioHoje->desc_sobremessa }}</p>
+                        </div>
+                        <div class="block">
+                            <p>{{ $cardapioHoje->nm_ddsemana }}</p>
+                            {{ \Carbon\Carbon::parse($cardapioHoje->dt_cardapio)->format('d/m/Y') }}<br>
+                            {{-- <form method="GET" action="{{route('instituicao.saude.refeicao.update,' $cardapio->id_cardapio)}}">
+                                
+                            </form> --}}
+                            <form method="POST"
+                                action="{{ route('instituicao.saude.refeicao.delete', $cardapio->id_cardapio)}}">
+                                @csrf
+                                @method('DELETE')
+                                <button><i class="uil uil-times"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+        @endif
+        <h1>Proximas Refeições</h1>
+        <div class="div-refeicao">
+            @if ($TbCardapio->count() > 0)
+                @foreach ($TbCardapio as $TbCardapio)
+                    <div class="item-cardapio" style="background-color:{{ $TbCardapio->cd_cor }}">
+                        <div class="flex">
+                            <div class="block">
+                                <h3>{{ $TbCardapio->nm_prato }}</h3>
+                                <p>{{ $TbCardapio->desc_prato }}</p>
+                            </div>
+                            <div class="block">
+                                <h3>{{ $TbCardapio->nm_sobremessa }}</h3>
+                                <p>{{ $TbCardapio->desc_sobremessa }}</p>
+                            </div>
+                            <div class="block">
+                                <p>{{ $TbCardapio->nm_ddsemana }}</p>
+                                {{ \Carbon\Carbon::parse($TbCardapio->dt_cardapio)->format('d/m/Y') }}<br>
+                                
+                                <form method="POST"
+                                    action="{{ route('instituicao.saude.refeicao.delete', $TbCardapio->id_cardapio) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button><i class="uil uil-times"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+            <h2 style="color:black;">Sem cadastros.</h2>
+
+            @endif
+        </div>
+        <h1>Refeições Anteriores</h1>
+        <div class="div-refeicao">
+            @if ($cardapioAnterior->count() > 0)
+                @foreach ($cardapioAnterior as $cardapioAnterior)
+                    <div class="item-cardapio" style="background-color:gray">
+                        <div class="flex">
+                            <div class="block">
+                                <h3>{{ $cardapioAnterior->nm_prato }}</h3>
+                                <p>{{ $cardapioAnterior->desc_prato }}</p>
+                            </div>
+                            <div class="block">
+                                <h3>{{ $cardapioAnterior->nm_sobremessa }}</h3>
+                                <p>{{ $cardapioAnterior->desc_sobremessa }}</p>
+                            </div>
+                            <div class="block">
+                                <p>{{ $cardapioAnterior->nm_ddsemana }}</p>
+                                {{ \Carbon\Carbon::parse($cardapioAnterior->dt_cardapio)->format('d/m/Y') }}<br>
+                                <form method="GET">
+
+                                </form>
+                                
+                                <form method="POST"
+                                    action="{{ route('instituicao.saude.refeicao.delete', $cardapioAnterior->id_cardapio) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button><i class="uil uil-times"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                @else
+                <h2 style="color:black;">Sem cadastros.</h1>
+            @endif
+        </div>
+        <br>
     </div>
     <script src="{{ asset('js/configRefeicao.js') }}"></script>
 @endsection

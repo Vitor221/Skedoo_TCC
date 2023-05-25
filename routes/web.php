@@ -54,16 +54,18 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
     Route::get('instituicao/saude', [InstituicaoController::class, 'saude'])->name('instituicao.saude'); 
     Route::get('instituicao/saude/problemassaude', [InstituicaoController::class, 'problemassaude'])->name('instituicao.problemassaude');  
-    Route::get('instituicao/saude/refeicao', [InstituicaoController::class, 'refeicao'])->name('instituicao.refeicao');  
+    Route::get('instituicao/saude/refeicao', [InstituicaoController::class, 'visualizar_cardapio'])->name('instituicao.refeicao');  
     Route::get('instituicao/transportes', [InstituicaoController::class, 'transporte'])->name('instituicao.transporte');
     Route::get('instituicao/financeiros', [InstituicaoController::class, 'financeiro'])->name('instituicao.financeiro');
     Route::get('instituicao/colaborador', [InstituicaoController::class, 'colaborador'])->name('instituicao.colaborador');
     Route::get('instituicao/mensagem', [InstituicaoController::class, 'mensagem'])->name('instituicao.mensagem');
     Route::get('instituicao/calendario', [InstituicaoController::class, 'calendario'])->name('instituicao.calendario');
     Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioStore'])->name('instituicao.calendario.store');
-    Route::patch('instituicao/calendario/update/{id}', [InstituicaoController::class, 'calendarioUpdate'])->name('instituicao.calendario.update');
-    Route::delete('instituicao/calendario/delete/{id}', [InstituicaoController::class, 'calendarioDelete'])->name('instituicao.calendario.delete');
-    Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_arquivo'])->name('instituicao.saude.refeicao.insert');
+    Route::patch('instituicao/calendario/{id}', [InstituicaoController::class, 'calendarioUpdate'])->name('instituicao.calendario.update');
+    Route::delete('instituicao/calendario/{id}', [InstituicaoController::class, 'calendarioDelete'])->name('instituicao.calendario.delete');
+    Route::post('instituicao/saude/refeicao', [InstituicaoController::class, 'inserir_cardapio'])->name('instituicao.saude.refeicao.insert');
+    Route::delete('instituicao/saude/refeicao/{id}', [InstituicaoController::class, 'deletar_cardapio'])->name('instituicao.saude.refeicao.delete');
+    Route::get('instituicao/saude/refeicao/{id}', [InstituicaoController::class, 'editar_cardapio'])->name('instituicao.saude.refeicao.update');
 });
 
 //Rota de Educador
