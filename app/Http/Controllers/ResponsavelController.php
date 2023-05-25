@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\HttpRequ\est;
 use App\Models\Event;
+use App\Models\TbCardapio;
+use Carbon\Carbon;
 
 class ResponsavelController extends Controller
 {
@@ -54,5 +56,18 @@ class ResponsavelController extends Controller
     
     public function transporte() {
         return view('telas.responsavel.transporte');
+    }
+
+    public function refeicao() {
+        return view('telas.responsavel.refeicao');
+    }
+
+    public function visualizar_cardapio(){
+        $cardapio = TbCardapio::all();
+        $dataAtual = Carbon::now()->format('Y-m-d');
+        $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
+        $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','<', $dataAtual)->get();
+        $cardapioHoje = TbCardapio::where('dt_cardapio', $dataAtual)->first();
+        return view('telas.responsavel.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior,'cardapio'=>$cardapio]);
     }
 }

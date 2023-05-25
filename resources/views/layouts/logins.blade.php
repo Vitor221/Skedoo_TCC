@@ -26,6 +26,8 @@
     <nav>
         <div class="nav">
             <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
+            <h4>{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
+
             <div class="perfil-bg">
                 <h3>
                     Bem-vindo, {{ session('login')['nm_login'] }}
@@ -43,7 +45,7 @@
                     <p>Notificações</p>
                 </i>
             </a>
-            <h2 id="data-atual" style="margin:auto; font-size:1.7em;">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i:s') }}</h2>
+            <h2 id="hora-atual" style="margin:auto; font-size:1.7em;">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('H:i:s') }}</h2>
         </div>
     </div>
     <div class="conteudo">

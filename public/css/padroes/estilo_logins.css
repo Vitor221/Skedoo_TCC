@@ -20,6 +20,10 @@ body {
     position: relative;
 }
 
+.horario-nav {
+    color: red;
+    text-align: center;
+}
 
 
 .nav {
@@ -41,6 +45,20 @@ body {
     margin-left: 0;
     margin-bottom: 0;
     font-size: 1.4em;
+}
+
+.nav h4 {
+    position: absolute;
+    text-align: center;
+    z-index: -1;
+    right: 0;
+    left: 0;
+    margin-top: 0.7rem;
+    display: flex;
+    color: #ffa939;
+    font-weight: 700;
+    font-size: 2rem;
+    justify-content: center;
 }
 
 .img-perfil {
