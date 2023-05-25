@@ -47,6 +47,7 @@ class EducadorController extends Controller
         return view('telas.educador.calendario', ['eventos'  =>  $eventos]);
 
     }
+    
 
     
     public function aluno() {

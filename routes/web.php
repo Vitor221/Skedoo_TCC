@@ -104,6 +104,7 @@ Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('responsavel/saude', [ResponsavelController::class, 'saude'])->name('responsavel.saude');
     Route::get('responsavel/calendario', [ResponsavelController::class, 'calendario'])->name('responsavel.calendario');
     Route::get('responsavel/transporte', [ResponsavelController::class, 'transporte'])->name('responsavel.transporte');
+    Route::get('responsavel/refeicao', [ResponsavelController::class, 'visualizar_cardapio'])->name('responsavel.refeicao');
     Route::get('responsavel/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
 });
 
