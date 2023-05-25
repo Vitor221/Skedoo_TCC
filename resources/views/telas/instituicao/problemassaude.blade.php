@@ -5,7 +5,7 @@
 @endsection
 
 @section('voltar')
-<x-button-back href="{{route('instituicao.saude')}}" icon="uil uil-angle-left"/>
+<x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
 @endsection
 
 @section('content')

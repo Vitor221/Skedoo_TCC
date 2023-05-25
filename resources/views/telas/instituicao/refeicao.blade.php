@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/estilo_refeicao.css') }}">
 @endsection
 @section('voltar')
-    <x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
+<x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
 @endsection
 
 @section('content')
@@ -51,7 +51,8 @@
                 </form>
                 <h3>Ou insira um arquivo em pdf</h3>
                 <label>Arquivo PDF do Mês:</label>
-                <input type="file" id="imgdopdf" name="imgdopdf" /><br>
+                <input type="file" id="imgdopdf" name="arquivo" /><br>
+                <button type="submit" class="enviar" value="Enviar">Enviar</button>
             </div><br>
         </div><br>
     </div><br><br>

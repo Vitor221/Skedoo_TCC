@@ -13,7 +13,7 @@
     <div class="div-visualizar">
       <h1 style="text-align: center;">Informações do cliente</h1><br>
       <form method="POST" action="{{ route('instituicao.clientes.update', ['id'=>$responsavel->cd_responsavel]) }}">
-        @method('PUT')
+        @method('PATCH')
         @csrf
         <label for="">Nome do responsável:</label>
         <input type="text" name="name" value="{{ $responsavel->nm_responsavel }}">
@@ -25,19 +25,19 @@
         <input type="text" name="cd_senha" value="{{ $responsavel->tb_cadastro->cd_senha }}">
 
         <label for="">Endereço do responsável:</label>
-        <input type="text" name="EnderecoResponsavel" value="{{ $endereco->nm_endereco }}">
+        <input type="text" name="nm_endereco" value="{{ $endereco->nm_endereco }}">
         <label for="">Número da casa do responsável:</label>
-        <input type="text" name="NumeroCasaResponsavel" value="{{ $endereco->cd_numcasa }}">
+        <input type="text" name="cd_numcasa" value="{{ $endereco->cd_numcasa }}">
         <label for="">Complemento do responsável:</label>
-        <input type="text" name="ComplementoResponsavel" value="{{ $endereco->ds_complemento }}">
+        <input type="text" name="ds_complemento" value="{{ $endereco->ds_complemento }}">
         <label for="">Bairro do responsável:</label>
-        <input type="text" name="BairroResponsavel" value="{{ $endereco->tb_bairro->nm_bairro }}">
+        <input type="text" name="nm_bairro" value="{{ $endereco->tb_bairro->nm_bairro }}">
         <label for="">Cidade do responsável:</label>
-        <input type="text" name="CidadeResponsavel" value="{{ $endereco->tb_bairro->tb_cidade->nm_cidade }}">
+        <input type="text" name="nm_cidade" value="{{ $endereco->tb_bairro->tb_cidade->nm_cidade }}">
         <label for="">Estado do responsável:</label>
-        <input type="text" name="EstadoResponsavel" value="{{ $endereco->tb_bairro->tb_cidade->tb_uf->sg_uf }}">
+        <input type="text" name="sg_uf" value="{{ $endereco->tb_bairro->tb_cidade->tb_uf->sg_uf }}">
         <label for="">CEP do responsável:</label>
-        <input type="text" name="CepResponsavel" value="{{ $endereco->cd_cep }}">
+        <input type="text" name="cd_cep" value="{{ $endereco->cd_cep }}">
 
         <button type="submit">Salvar</button>
       </form>

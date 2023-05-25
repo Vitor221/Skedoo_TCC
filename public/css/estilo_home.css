@@ -208,6 +208,7 @@ i.uil.uil-arrow-right {
 
 .section-carousel {
     background-color: #8396dc;
+
 }
 
 .section-carousel h2{
@@ -222,7 +223,7 @@ i.uil.uil-arrow-right {
 .carrosel_part {
     display: flex;
     width: 100%;
-    min-height: 78vh;
+    height: 85vh;
     margin-top: 2em;
     align-items: center;
     justify-content: center;
@@ -276,7 +277,6 @@ i.uil.uil-arrow-right {
 
 #prev-button, #next-button {
     width: 4%;
-    height: 4%;
     border: none;
     background-color: #fff;
     padding: 0.5em;
@@ -498,19 +498,19 @@ i.uil.uil-arrow-right {
         display: none;
     }
 
-    .carrosel_part {
-        background-size: 250% auto;
-    }
-
-    .carousel {
-        position: relative;
-        margin: auto;
-        width: 100%;
-    }
-
     .carousel img {
         border-radius: 1em;
     }
+
+    .carrosel_part {
+        display: flex;
+        width: 100%;
+        min-height: 84vh;
+        margin-top: 2em;
+        align-items: center;
+        justify-content: center;
+    }
+
 
     .text-slide {
         text-align: center;
@@ -544,7 +544,7 @@ i.uil.uil-arrow-right {
 
 
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 570px) {
 
     .area-texto {
         padding: 0;
@@ -566,12 +566,18 @@ i.uil.uil-arrow-right {
     }
 
     .apres_text {
-        margin-left: 1em;
+        margin-left: 0;
+        margin: auto;
+        width: 90%;
         padding: 1em;
     }
 
     .apres_text p {
-        font-size: 2px;
+        font-size: 1px;
+    }
+
+    .apres_text h2 {
+        font-size: 13px;
     }
 
     .img_balls {
@@ -592,6 +598,14 @@ i.uil.uil-arrow-right {
         margin-top: 5%;
     }
 
+    .cards p {
+        font-size: 10px;
+    }
+
+    .title_card h3 {
+        font-size: 16px;
+    }
+
     .section-carousel h2{
         color: #fff;
         font-weight: 700;
@@ -604,19 +618,12 @@ i.uil.uil-arrow-right {
     .carrosel_part {
         display: flex;
         width: 100%;
-        min-height: 78vh;
+
         margin-top: 2em;
         align-items: center;
         justify-content: center;
     }
 
-    .carousel {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 5%;
-    }
 
     .carousel img {
         width: 110%;
@@ -627,9 +634,10 @@ i.uil.uil-arrow-right {
         margin-left: 0;
         width: 100%;
         margin: auto;
-        margin-top: 2em;
+        margin-top: 0;
         background-color: #fff;
         border-radius: 1em;
+        padding: 0.5em 2.3em;
         box-shadow: -4px 4px 0 5px #ecab54;
     }
 
@@ -652,4 +660,54 @@ i.uil.uil-arrow-right {
     #prev-button, #next-button {
         display: none;
     }
+
+    .social_img a img {
+        width: 21px;
+        height: 21px;
+    }
+
+    .titulo_foot h3 {
+        font-size: 12px;
+    }
 }
+
+@media screen and (max-width: 420px) {
+    .section-carousel {
+        height: 83vh;
+    }
+
+    .cards {
+        background-size: 180% auto;
+        min-height: 22vh;
+        background-color: #fff;
+        border-radius: 1em;
+        position: relative;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition: all .3s ease-in-out;
+    }
+
+    .photo_icon {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .section-carousel {
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .cards {
+        background-size: 220% auto;
+        min-height: 5vh;
+        width: 70%;
+    }
+
+    nav a {
+        font-size: 7px;
+    }
+}
+
+

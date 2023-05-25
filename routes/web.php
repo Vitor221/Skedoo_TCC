@@ -42,7 +42,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::delete('instituicao/clientes/{id}', [InstituicaoController::class, 'deletar_cliente'])->name('instituicao.clientes.delete');
     Route::get('instituicao/clientes/{id}', [InstituicaoController::class, 'visualizar_cliente'])->name('instituicao.clientes.view');
     Route::get('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'editar_cliente'])->name('instituicao.clientes.edit');
-    Route::put('instituicao/clientes/{id}', [InstituicaoController::class, 'update_cliente'])->name('instituicao.clientes.update');
+    Route::patch('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'update_cliente'])->name('instituicao.clientes.update');
     Route::get('instituicao/ajuda', [InstituicaoController::class, 'ajuda'])->name('instituicao.ajuda');
     Route::get('instituicao/alunos', [InstituicaoController::class, 'aluno'])->name('instituicao.alunos');
     Route::post('instituicao/aluno', [InstituicaoController::class, 'inserir_aluno'])->name('instituicao.aluno.insert');
@@ -58,6 +58,11 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/transportes', [InstituicaoController::class, 'transporte'])->name('instituicao.transporte');
     Route::get('instituicao/financeiros', [InstituicaoController::class, 'financeiro'])->name('instituicao.financeiro');
     Route::get('instituicao/colaborador', [InstituicaoController::class, 'colaborador'])->name('instituicao.colaborador');
+    Route::post('instituicao/colaborador', [InstituicaoController::class, 'inserir_colaborador'])->name('instituicao.colaborador');
+    Route::get('instituicao/colaborador/{id}', [InstituicaoController::class, 'visualizar_colaborador'])->name('instituicao.colaborador.view');
+    Route::delete('instituicao/colaborador/{id}', [InstituicaoController::class, 'deletar_colaborador'])->name('instituicao.colaborador.delete');
+    Route::get('instituicao/colaborador/editar/{id}', [InstituicaoController::class, 'atualizar_colaborador'])->name('instituicao.colaborador.atualizar');
+    Route::patch('instituicao/colaborador/editar/{id}', [InstituicaoController::class, 'update_colaborador'])->name('instituicao.colaborador.atualizar');
     Route::get('instituicao/mensagem', [InstituicaoController::class, 'mensagem'])->name('instituicao.mensagem');
     Route::get('instituicao/calendario', [InstituicaoController::class, 'calendario'])->name('instituicao.calendario');
     Route::post('instituicao/calendario', [InstituicaoController::class, 'calendarioStore'])->name('instituicao.calendario.store');
