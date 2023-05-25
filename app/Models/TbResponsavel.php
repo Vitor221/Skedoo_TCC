@@ -54,4 +54,15 @@ class TbResponsavel extends Model
 	{
 		return $this->hasOne(TbResponsavelAluno::class, 'cd_responsavel');
 	}
-}
+
+
+	public static function search ($search) {
+
+			return self::where('nm_responsavel', "like","%{$search}%")
+			->orWhere('cd_cadastro', "like","%{$search}%")
+			->paginate(6);
+
+			}
+
+	}
+	
