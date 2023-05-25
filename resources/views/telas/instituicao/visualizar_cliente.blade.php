@@ -15,7 +15,7 @@
         <p>Nome: {{ $responsavel->nm_responsavel }}</p>
         <p>CPF: {{ $responsavel->cd_cpf }}</p>
         <p>Login: {{ $responsavel->tb_cadastro->nm_login }}</p>
-        <p>Senha: {{ $responsavel->tb_cadastro->cd_senha }}</p>
+        {{-- <p>Senha: {{ $responsavel->tb_cadastro->cd_senha }}</p> --}}
         <p>Endereço: {{ $endereco->nm_endereco }}, {{ $endereco->cd_numcasa }} -
             {{ $endereco->ds_complemento }} - {{ $endereco->tb_bairro->nm_bairro }} -
             {{ $endereco->tb_bairro->tb_cidade->nm_cidade }} -

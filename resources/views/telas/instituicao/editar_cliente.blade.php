@@ -21,8 +21,8 @@
         <input type="text" name="cpf" value="{{ $responsavel->cd_cpf }}">
         <label for="">Login do responsável:</label>
         <input type="text" name="nm_login" value="{{ $responsavel->tb_cadastro->nm_login }}">
-        <label for="">Senha do responsável:</label>
-        <input type="text" name="cd_senha" value="{{ $responsavel->tb_cadastro->cd_senha }}">
+        {{-- <label for="">Senha do responsável:</label>
+        <input type="text" name="cd_senha" value="{{ $responsavel->tb_cadastro->cd_senha }}"> --}}
 
         <label for="">Endereço do responsável:</label>
         <input type="text" name="nm_endereco" value="{{ $endereco->nm_endereco }}">
