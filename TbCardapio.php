@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TbCardapio extends Model
 {
@@ -13,11 +12,13 @@ class TbCardapio extends Model
 
     protected $casts = [
         'id_cardapio'=> 'int',
+        'dt_cardapio'=> 'date',
         
     ];
 
     protected $fillable = [
         'dt_cardapio',
+        // 'nm_ddsemana',
         'nm_prato',
        'desc_prato',
         'img_prato',
