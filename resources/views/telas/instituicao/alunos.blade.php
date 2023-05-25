@@ -11,57 +11,6 @@
 @section('content')
     <div class="insert">
 
-
-        <form class="form-alunos" id="form" method="POST" action="{{ route('instituicao.aluno.insert') }}">
-            @csrf
-            <label>Nome do Aluno</label>
-            <input type="text" class="texto" style="width:100%" id="nomeAluno" name="nomeAluno"><br><br>
-            <div class="div-input-flex">
-                <div class="block" style="width:20%;">
-                    <label>Turma</label>
-                    <br>
-                    <select for="turma" class="texto" name="turma" id="turma">
-                        @foreach ($TbTurma as $Turma)
-                            <option value="{{ $Turma->cd_turma }}">{{ $Turma->sg_turma }}</option>
-                        @endforeach
-                    </select><br><br>
-                </div>
-                <div class="block" style="width:80%;">
-                    <label>Indique o responsavel pelo aluno</label><br>
-                    <input type="search" class="texto" style="width:100%" id="pesquisar" name="nomeResponsavel"
-                        placeholder="Pesquisar nome..." onchange="pesquisaResponsavel()"><br><br>
-                </div>
-            </div>
-            <label>O aluno possui algum problema de saúde? </label>
-            <select name="ps" class="texto" for="problemasaude" id="select_form_value" onchange="selectForm()">
-                <option value="0">Não</option>
-                <option value="1">Sim</option>
-            </select><br><br>
-            <div style="display: none;" id="select_form">
-                <div class="div-input-flex">
-                    <div class="block" style="width:40%;">
-                        <label>Tipos de Problema</label><br>
-                        <select name="tipos" id="tipos" class="texto">
-                            <option class="opcao-alunos" value="0">Selecione...</option>
-                            <option class="opcao-alunos" value="cardiaco">Cardíaco</option>
-                            <option class="opcao-alunos" value="respiratorio">Respiratório</option>
-                            <option class="opcao-alunos" value="alergico">Alérgico</option>
-                            <option class="opcao-alunos" value="outro">Outro</option>
-                        </select><br><br>
-                    </div>
-                    <div class="block" style="width:70%;">
-                        <label>Nome do Problema</label><br>
-                        <input type="text" style="width:100%" class="texto" name="nomePS">
-                    </div>
-                </div>
-                <label id="label_duv">Descrição do Problema e Cuidados</label>
-                <textarea name="descricaoPS" id="textarea_div" cols="30" rows="10" style="width:100%" name="descPS"></textarea><br><br>
-            </div>
-            <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
-            <input type="submit" class="enviar">
-        </form>
-
-
         <form class="form-cadastro" id="formTurma" method="POST" action="{{route('instituicao.turma.insert')}}">
             @csrf
             <label>Nome da Turma</label>
@@ -141,7 +90,7 @@
                     <th class="nome">Nome</th>
                     <th>Turma</th>
                     <th></th>
-                    <th scope="col"><button class="inserir" onclick="inserir()">Inserir</button></th>
+                    <th></th></th>
                     <th scope="col" id="abrePesquisa" class="pesquisa-tabela"style="height:82px;"><button
                             class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button></th>
                     <th scope="col" id="fechaPesquisa" class="pesquisa-tabela"style="display: none;"><button

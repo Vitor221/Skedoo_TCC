@@ -38,6 +38,7 @@
     <div class="conteudo">
         @yield('content')
     </div>
+    <br>
 
     
 </body>

@@ -1,177 +1,188 @@
-@extends('layouts.telas', ['title'=>'Skedoo - Calendário'], ['nometela' => 'Calendário'])
+@extends('layouts.telas', ['title' => 'Skedoo - Calendário'], ['nometela' => 'Calendário'])
 
 @section('meta')
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('links-scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/lang/pt-br.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/lang/pt-br.js"></script>
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
-<link rel="stylesheet" href="{{ asset('css/estilo_calendario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilo_calendario.css') }}">
 @endsection
 
 @section('voltar')
-<x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>
+    <x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
 @endsection
 
 @section('content')
-
-<div class="modal fade" id="calendarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Evento</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" id="title">
-        <span id="titleError" class="text-danger"></span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" id="saveBtn" class="btn btn-primary">Salvar</button>
-      </div>
+    <div class="modal fade" id="calendarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Adicionar Evento</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="title">
+                    <span id="titleError" class="text-danger"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="saveBtn" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div class="container mt-5" style="max-width: 700px">
-    <h2 class="h2 text-center mb-5 border-bottom pb-3">Calendário</h2>
-    <div id='calendar'></div>
-</div>
+    <div class="div-conteudo container mt-5" style="max-width: 700px;">
+        <h1 class="h2 text-center" style="color:white; font-size:2.5em;">Calendário</h1>
+        <div id='calendar'></div>
+    </div>
 
-<script>
-    $(document).ready(function() {
-        var SITEURL = "{{ url('/') }}";
-        var evento = @json($eventos);
+    <script>
+        $(document).ready(function() {
+    var SITEURL = "{{ url('/') }}";
+    var evento = @json($eventos);
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    // Definir as traduções personalizadas para os botões
+    var customTranslations = {
+        ptBr: {
+            prev: " < ",
+            next: ' > ',
+            today: 'Hoje',
+            month: 'Mês',
+            week: 'Semana',
+            day: 'Dia'
+        }
+    };
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var calendar = $('#calendar').fullCalendar({
+        locale: 'pt-br',
+        editable: true,
+        header: {
+            left: 'prev, next today',
+            center: 'title',
+            right: 'month, agendaWeek, agendaDay'
+        },
+        buttonIcons: false, 
+        buttonText: customTranslations.ptBr, 
+        events: evento,
+        displayEventTime: true,
+        editable: true,
+        columnFormat: 'ddd',
+        eventRender: function(event, element, view) {
+            if (event.allDay === 'true') {
+                event.allDay = true;
+            } else {
+                event.allDay = false;
             }
-        });
-        
-        var calendar = $('#calendar').fullCalendar({
-            locale: 'pt-br',
-            editable: true,
-            header: {
-                left: 'prev, next today',
-                center: 'title',
-                right: 'month, agendaWeek, agendaDay'
-            },
-            events: evento,
-            displayEventTime: true,
-            editable: true,
-            columnFormat: 'ddd',
-            eventRender: function(event, element, view) {
-                if(event.allDay === 'true') {
-                    event.allDay = true;
-                } else {
-                    event.allDay = false;
-                }
-            },
-            selectable: true,
-            selectHelper: true,
-            select: function(start, end, allDay) {
-                $('#calendarioModal').modal('toggle');
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+                    $('#calendarioModal').modal('toggle');
 
-                $('#saveBtn').click(function() {
-                    var title = $('#title').val();
-                    var start_event = moment(start).format('YYYY-MM-DD');
-                    var end_event = moment(end).format('YYYY-MM-DD');
+                    $('#saveBtn').click(function() {
+                        var title = $('#title').val();
+                        var start_event = moment(start).format('YYYY-MM-DD');
+                        var end_event = moment(end).format('YYYY-MM-DD');
+
+                        $.ajax({
+                            url: "{{ route('instituicao.calendario.store') }}",
+                            type: "POST",
+                            dataType: 'json',
+                            data: {
+                                title,
+                                start_event,
+                                end_event
+                            },
+                            success: function(response) {
+                                $('#calendarioModal').modal('hide');
+                                $('#calendar').fullCalendar('renderEvent', {
+                                    'title': response.title,
+                                    'start': response.start_event,
+                                    'end': response.end_event
+                                });
+                                displayMessage("Evento criado! Atualize a página");
+                            },
+                            error: function(error) {
+                                if (error.responseJSON.errors) {
+                                    $('#titleError').html(error.responseJSON.errors
+                                        .title);
+                                }
+                            }
+                        })
+                    });
+                },
+
+                editable: true,
+
+                eventDrop: function(event) {
+                    var id = event.id;
+                    var start_event = moment(event.start).format('YYYY-MM-DD');
+                    var end_event = moment(event.end).format('YYYY-MM-DD');
 
                     $.ajax({
-                        url: "{{ route('instituicao.calendario.store') }}",
-                        type: "POST",
+                        url: "{{ route('instituicao.calendario.update', '') }}" + '/' + id,
+                        type: "PATCH",
                         dataType: 'json',
                         data: {
-                            title,
                             start_event,
                             end_event
                         },
                         success: function(response) {
-                            $('#calendarioModal').modal('hide');
-                            $('#calendar').fullCalendar('renderEvent', {
-                                'title': response.title,
-                                'start' : response.start_event,
-                                'end'   : response.end_event
-                            });
-                            displayMessage("Evento criado! Atualize a página");
+                            displayMessage("Evento atualizado! Atualize a página");
                         },
                         error: function(error) {
-                            if(error.responseJSON.errors) {
-                                $('#titleError').html(error.responseJSON.errors.title);
-                            }
-                        }
-                    })
-                });
-            },
+                            console.log(error)
+                        },
+                    });
+                },
 
-            editable: true,
-
-            eventDrop: function(event) {
-                var id = event.id;
-                var start_event = moment(event.start).format('YYYY-MM-DD');
-                var end_event = moment(event.end).format('YYYY-MM-DD');
-
-                $.ajax({
-                    url: "{{ route('instituicao.calendario.update', '') }}" + '/' + id,
-                    type: "PATCH",
-                    dataType: 'json',
-                    data: {
-                        start_event,
-                        end_event
-                    },
-                    success: function(response) {
-                        displayMessage("Evento atualizado! Atualize a página");
-                    },
-                    error: function(error)
-                    {
-                        console.log(error)
-                    },
-                });
-            },
-
-            eventClick: function(event) {
-                var id = event.id;
+                eventClick: function(event) {
+                    var id = event.id;
 
                     $.ajax({
                         url: "{{ route('instituicao.calendario.delete', '') }}" + '/' + id,
                         type: "DELETE",
                         dataType: 'json',
-                        success: function(response) 
-                        {
+                        success: function(response) {
                             $('#calendar').fullCalendar('removeEvents', response);
                             displayMessage("Evento Deletado! Atualize a página!");
                         },
-                        error: function(error)
-                        {
+                        error: function(error) {
                             console.log(error)
                         },
                     });
-            }
-            
+                }
 
-        });
-        
-        $("#calendarioModal").on("hidden.bs.modal", function() {
-            $('#saveBtn').unbind();
-        });
 
-        function displayMessage(message) {
-            toastr.success(message, 'Event');
-        };
-        
-    })
-</script>
+            });
 
+            $("#calendarioModal").on("hidden.bs.modal", function() {
+                $('#saveBtn').unbind();
+            });
+
+            function displayMessage(message) {
+                toastr.success(message, 'Event');
+            };
+
+        })
+    </script>
+    <script src="{{asset ('js/configCalendario.js')}}"></script>
 @endsection

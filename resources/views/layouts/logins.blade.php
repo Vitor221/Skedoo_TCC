@@ -26,8 +26,6 @@
     <nav>
         <div class="nav">
             <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-            <h2 style="color: black;">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i') }}</h2>
-
             <div class="perfil-bg">
                 <h3>
                     Bem-vindo, {{ session('login')['nm_login'] }}
@@ -45,10 +43,7 @@
                     <p>Notificações</p>
                 </i>
             </a>
-            <div class="search">
-                <input type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                <button type="submit"><i class="uil uil-search"></i></button>
-            </div>
+            <h2 id="data-atual" style="margin:auto; font-size:1.7em;">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i:s') }}</h2>
         </div>
     </div>
     <div class="conteudo">
@@ -56,5 +51,7 @@
         <br>
     </div>
 </body>
+<script src="{{ asset('js/configLogins.js') }}"></script>
+
 
 </html>

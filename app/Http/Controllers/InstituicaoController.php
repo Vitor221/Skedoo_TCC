@@ -396,23 +396,18 @@ class InstituicaoController extends Controller
         $cardapio ->desc_prato = $request->DescPrato;
         $cardapio ->cd_cor = $request->cor;
         $cardapio ->nm_ddsemana = $ddsemana[$ddsemananum];
-        // $cardapio ->img_prato = $request->imgPrato;
         $cardapio ->nm_sobremessa = $request->nmSobremessa;
         $cardapio ->desc_sobremessa = $request->DescSobremessa;
-        // $cardapio ->img_sobremssa = $request->imgSobremessa;
-        // $cardapio -> img_pdf = $caminhoCompleto;
-
         $cardapio -> save();
         
         return back()->with('success', 'Cardapio enviado com sucesso!'); 
     }
     public function visualizar_cardapio(){
-        $cardapio = TbCardapio::all();
         $dataAtual = Carbon::now()->format('Y-m-d');
         $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
         $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','<', $dataAtual)->get();
         $cardapioHoje = TbCardapio::where('dt_cardapio', $dataAtual)->first();
-        return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior,'cardapio'=>$cardapio]);
+        return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior]);
     }
     public function deletar_cardapio($id){
         $refeicao = TbCardapio::findOrFail($id);

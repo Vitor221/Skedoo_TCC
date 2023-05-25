@@ -2,10 +2,37 @@ h2{
   color: #000;
   padding: 0;
   margin-bottom: 0px;
+  text-decoration: none;
+  color: white;
 }
 
+#calendar{
+  background: rgb(255,214,162);
+background: linear-gradient(0deg, rgba(255,214,162,1) 0%, rgba(255,175,72,1) 73%);
+}
 .fc {
-  background-color: #87cac4;
+  background-color: #fcf8e5;
   padding: 1rem;
   border-radius: .5em;
+}
+.fc-view-container {
+  background-color: #f3ecc8;
+}
+.fc-state-default.fc-corner-right {
+  border-top-right-radius: 2em; 
+  border-bottom-right-radius: 2em;
+}
+.fc-state-default.fc-corner-left {
+   border-top-left-radius: 2em; 
+   border-bottom-left-radius: 2em; 
+}
+.fc-right button{
+  border-style: solid;
+  border: 2px;
+  background-color: white;
+}
+.fc-right button:hover{
+  border-style: solid;
+  border: 2px;
+  border: orange;
 }

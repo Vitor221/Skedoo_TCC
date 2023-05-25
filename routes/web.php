@@ -18,7 +18,10 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/obter-nova-data', function () {
+    $novaData = \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i:s');
+    return response($novaData);
+});
 //Tela Home
 Route::get('/', function () {
     return view('home');
