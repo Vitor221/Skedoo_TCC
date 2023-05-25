@@ -43,10 +43,6 @@
     <button type="reset" class="cancelar" onclick="LimparForm()">Cancelar</button>
     <input type="submit" value="Enviar" />
     </form>
-
-    <h1>Arquivos DPF.</h1>
-    
-    
 </div>
 </div>
 

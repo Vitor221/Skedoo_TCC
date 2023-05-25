@@ -1315,7 +1315,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< Updated upstream
             "version": "v10.12.0",
             "source": {
                 "type": "git",
@@ -1326,18 +1325,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/9e6dcff23ab1d4b522bef56074c31625cf077576",
                 "reference": "9e6dcff23ab1d4b522bef56074c31625cf077576",
-=======
-            "version": "v10.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "21a5b6d9b669f32c10cc8ba776511b5f62599fea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/21a5b6d9b669f32c10cc8ba776511b5f62599fea",
-                "reference": "21a5b6d9b669f32c10cc8ba776511b5f62599fea",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
@@ -1524,11 +1511,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-<<<<<<< Updated upstream
             "time": "2023-05-23T18:04:16+00:00"
-=======
-            "time": "2023-05-16T13:59:23+00:00"
->>>>>>> Stashed changes
         },
         {
             "name": "laravel/sanctum",
