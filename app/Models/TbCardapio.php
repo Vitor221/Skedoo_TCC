@@ -18,14 +18,14 @@ class TbCardapio extends Model
     ];
 
     protected $fillable = [
-    //     'dt_cardapio',
-    //     'nm_ddsemana',
-    //     'nm_prato',
-    //    'desc_prato',
-    //     'img_prato',
-    //     'nm_sobremessa',
-    //     'desc_sobremessa',
-    //     'img_sobremssa',
+        'dt_cardapio',
+        'nm_ddsemana',
+        'nm_prato',
+       'desc_prato',
+        'img_prato',
+        'nm_sobremessa',
+        'desc_sobremessa',
+        'img_sobremssa',
         'img_pdf'
     ];
 };
