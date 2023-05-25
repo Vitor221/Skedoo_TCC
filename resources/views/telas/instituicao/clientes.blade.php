@@ -177,7 +177,7 @@
                                 action="{{ route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel) }}">
                                 @csrf
                                 @method('DELETE')                                                                             
-                                                                                                                         <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
+                     <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
                         </td>                 
                     </tr>
