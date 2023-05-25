@@ -22,19 +22,6 @@ html::before {
     color: #fff;
 }
 
-.nav::before {
-    content: "";
-    background-image: 
-    url('../../img/img_telas/bg-nav.svg');
-    background-size: 200%;
-    z-index: -10;
-    background-position: center 29%;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 95%;
-    height: 100%;
-}
-
 .perfil-bg {
     position: absolute;
     background-color: #f7b662;

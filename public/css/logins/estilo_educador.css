@@ -4,12 +4,12 @@ html::before {
         url("../../img/img_contato/background_2-skedoo.svg"),
         url("../../img/img_contato/background_3-skedoo.svg"),
         url("../../img/img_contato/background_4-skedoo.svg");
-    background-size: 15%, 8%, 20%, 20%;
+    background-size: 15%, 20%, 20%, 20%;
     background-position: top 5% left, right top 0%, bottom -180% left,
      bottom -10px right;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     width: 100%;
-    height: 140%;
+    height: 100%;
     position: absolute;
     opacity: 0.5;
 }
@@ -43,4 +43,23 @@ html::before {
 .texto-card {
     margin-top: 0.8rem;
     font-size: 1.5em;
+}
+
+.perfil-bg {
+    position: absolute;
+    background-color: #f7b662;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+    width: auto;
+    padding: 0 1rem;
+    height: 100%;
+    z-index: -1;
+    right: 0;
+    top: 0;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.nav {
+    position: relative;
+    color: #fff;
 }

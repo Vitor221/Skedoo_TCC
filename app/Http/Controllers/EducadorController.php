@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\TbAluno;
+use App\Models\TbTurma;
 
 class EducadorController extends Controller
 {
@@ -24,9 +26,11 @@ class EducadorController extends Controller
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
+
     public function mensagem() {
         return view('telas.educador.mensagem');
     }
+
     public function calendario() {
 
         $eventos = array();
@@ -43,8 +47,13 @@ class EducadorController extends Controller
         return view('telas.educador.calendario', ['eventos'  =>  $eventos]);
 
     }
+
+    
     public function aluno() {
-        return view('telas.educador.alunos');
+        $TbAluno = TbAluno::all();
+        $TbTurma = TbTurma::all();
+
+        return view('telas.educador.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
     }
     public function saude() {
         return view('telas.educador.saude');

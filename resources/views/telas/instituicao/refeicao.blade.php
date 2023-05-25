@@ -77,7 +77,7 @@
                                 
                             </form> --}}
                             <form method="POST"
-                                action="{{ route('instituicao.saude.refeicao.delete', $cardapio->id_cardapio)}}">
+                                action="{{ route('instituicao.refeicao.delete', $cardapio->id_cardapio)}}">
                                 @csrf
                                 @method('DELETE')
                                 <button><i class="uil uil-times"></i></button>
@@ -106,7 +106,7 @@
                                 {{ \Carbon\Carbon::parse($TbCardapio->dt_cardapio)->format('d/m/Y') }}<br>
                                 
                                 <form method="POST"
-                                    action="{{ route('instituicao.saude.refeicao.delete', $TbCardapio->id_cardapio) }}">
+                                    action="{{ route('instituicao.refeicao.delete', $TbCardapio->id_cardapio) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button><i class="uil uil-times"></i></button>
@@ -142,7 +142,7 @@
                                 </form>
                                 
                                 <form method="POST"
-                                    action="{{ route('instituicao.saude.refeicao.delete', $cardapioAnterior->id_cardapio) }}">
+                                    action="{{ route('instituicao.refeicao.delete', $cardapioAnterior->id_cardapio) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button><i class="uil uil-times"></i></button>

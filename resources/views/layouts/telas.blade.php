@@ -21,12 +21,13 @@
     <nav>
         <div class="nav">
             <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-            
+            <h4>{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i') }}</h4>
+
             <div class="perfil-bg">
-            <h3>
-                Bem-vindo, {{ session('login')['nm_login'] }}
-                <x-profile-button/>
-            </h3>
+                <h3>
+                    Bem-vindo, {{ session('login')['nm_login'] }}
+                    <x-profile-button/>
+                </h3>
             </div>
         </div>
     </nav>

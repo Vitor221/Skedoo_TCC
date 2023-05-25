@@ -42,7 +42,7 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.saude');
     }
 
-    public function problemassaude() {
+    public function  problemassaude() {
         return view('telas.instituicao.problemassaude');
     }
     
