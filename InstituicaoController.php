@@ -6,13 +6,10 @@ use App\Models\Event;
 use App\Models\TbCardapio;
 use App\Models\TbResponsavel;
 use App\Models\TbAluno;
-use App\Models\TbBairro;
-use App\Models\TbCadastro;
 use App\Models\TbUf;
 use App\Models\TbTurma;
 use App\Models\TbEndereco;
 use App\Models\TbEventos;
-use App\Models\TbProfissional;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -35,7 +32,6 @@ class InstituicaoController extends Controller
 
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
-
     public function saude() {
         return view('telas.instituicao.saude');
     }
@@ -43,19 +39,9 @@ class InstituicaoController extends Controller
     public function problemassaude() {
         return view('telas.instituicao.problemassaude');
     }
-    
-    public function cliente(Request $request){
+    public function cliente(){
         $TbResponsaveis = TbResponsavel::paginate(6);
         $TbTurmas = TbTurma::all();
-
-
-        if ($request->input('s')) {
-            $TbResponsaveis = TbResponsavel::search($request->input('s'));
-        } else {
-            $TbResponsaveis = TbResponsavel::paginate(6);
-        }
-
-
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas]); 
     }
 
@@ -66,23 +52,24 @@ class InstituicaoController extends Controller
 
         return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
     }
-
     public function ajuda(){
         return view('telas.instituicao.ajuda');
     }
-
     public function mensagem(){
-        $TbResponsavel = TbResponsavel::all();
-        return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel]);
+        return view('telas.instituicao.mensagem');
+    }
+    public function colaborador(){
+        return view('telas.instituicao.colaborador');
+    }
+    public function configuracoes(){
+        return view('telas.instituicao.configuracoes');
     }
     public function financeiro(){
         return view('telas.instituicao.financeiro');
     }
-
     public function transporte(){
         return view('telas.instituicao.transporte');
     }
-
 
     public function calendario(){
         $eventos = array();
@@ -108,7 +95,8 @@ class InstituicaoController extends Controller
             'start_event'   =>  $request->start_event,
             'end_event'     =>  $request->end_event,
         ]);
-        return view('telas.instituicao.calendario')->with(response()->json($calendario));
+
+        return response()->json($calendario);
     }
 
     public function calendarioUpdate(Request $request, $id) {
@@ -140,18 +128,15 @@ class InstituicaoController extends Controller
 
         return $id;
     }
-    //CRUD - Calendário - FIM
 
     public function refeicao(){
         return view('telas.instituicao.refeicao');
     }
 
-    //CRUD - Cliente - INICIO
     public function inserir_cliente(Request $request){
         $responsavel = new TbResponsavel();
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
-
         $cadastro = $responsavel->tb_cadastro()->create(['nm_login'=>'teste', 'cd_senha'=>'teste']);
         $responsavel->cd_cadastro = $cadastro->cd_cadastro;
         $uf = TbUf::find($request->uf);
@@ -174,7 +159,6 @@ class InstituicaoController extends Controller
         $TbResponsaveis = TbResponsavel::paginate(6);
         return back()->with('success', 'Responsavel cadastrado com sucesso!'); 
     }
-
     public function deletar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
         $enderecoCount = TbResponsavel::all()->where('cd_endereco', '=', $responsavel->cd_endereco)->count();
@@ -189,65 +173,12 @@ class InstituicaoController extends Controller
         }
         return redirect()->route('instituicao.clientes');
     }
-
     public function visualizar_cliente($id){
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
         $aluno = $responsavel->tb_aluno[0];
         return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco', 'aluno'));
     }
-
-    public function editar_cliente($id) {
-        $responsavel = TbResponsavel::findOrFail($id);
-        $endereco = $responsavel->tb_endereco;
-        return view('telas.instituicao.editar_cliente', compact('responsavel', 'endereco'));
-    }
-
-    public function update_cliente(Request $request, $id) {
-        $responsavel = TbResponsavel::findOrFail($id);
-        
-        $responsavel->nm_responsavel = $request->name;
-        $responsavel->cd_cpf = $request->cpf;
-
-        $responsavel->tb_cadastro()->update([
-            'nm_login' => $request->nm_login, 
-            'cd_senha' => $request->cd_senha
-        ]);
-
-        $responsavel->tb_endereco()->update([
-            'nm_endereco' => $request->nm_endereco, 
-            'cd_cep' => $request->cd_cep, 
-            'cd_numcasa' => $request->cd_numcasa, 
-            'ds_complemento' => $request->ds_complemento
-        ]);
-
-        $endereco = $responsavel->tb_endereco;
-
-        if ($endereco) {
-            $bairro = TbBairro::find($endereco->cd_bairro);
-    
-            if ($bairro) {
-                $bairro->nm_bairro = $request->nm_bairro;
-                $bairro->save();
-    
-                $cidade = TbCidade::find($bairro->cd_cidade);
-    
-                if ($cidade) {
-                    $cidade->nm_cidade = $request->nm_cidade;
-                    $cidade->sg_uf = $request->sg_uf;
-                    $cidade->save();
-                }
-            }
-        }
-         
-        $responsavel->save();
-
-        
-        return redirect()->route('instituicao.clientes');
-    }
-    //CRUD - Cliente - FIM
-
-    //CRUD - Aluno - INICIO
     public function inserir_aluno(Request $request){
         $aluno = new TbAluno();
         $aluno->nm_aluno = $request->nomeAluno;
@@ -270,9 +201,6 @@ class InstituicaoController extends Controller
         $TbAluno = TbAluno::all();
         return redirect()->route('instituicao.alunos'); 
     }
-    //CRUD - Aluno - FIM
-
-    //CRUD - Turma - INICIO
     public function inserir_turma(Request $request){
         $turma = new TbTurma();
         $turma->nm_turma = $request->nomeTurma;
@@ -296,46 +224,52 @@ class InstituicaoController extends Controller
         $turma->delete();
         return redirect()->route('instituicao.alunos'); 
     }
-    //CRUD - Turma - FIM
-
-        $cardapio = new TbCardapio();
-        
-
-        if($request ->imgdopdf){
-            
-            $NovoName = Str::of(date('M'))->slug('-').'.'.$request->imgdopdf->getClientOriginalExtension();
-
-            $imagem = $request -> imgdopdf -> storeAs('Cardapio', $NovoName);
-            $cardapio ['img_pdf'] = $imagem;
-
-
-            $cardapio -> save();
-            
-        }else{
-            return redirect()->route('instituicao.refeicao');
-        }
-
-
-    }   
-    public function visualizar_cardaio($id){
-        $cardapio = TbCardapio::findOrFail($id);
-        return view('telas.instituicao.visualizar_cardapio');
+    public function editar_cliente($id) {
+        $responsavel = TbResponsavel::findOrFail($id);
+        $endereco = $responsavel->tb_endereco;
+        return view('telas.instituicao.editar_cliente', compact('responsavel', 'endereco'));
     }
+    public function update_cliente(Request $request, $id) {
+        $data = [
+            'nm_responsavel'  =>  $request->name,
+            'cd_cpf'   =>  $request->cpf,
+        ];
 
-    public function editar_cardapio($id) {
-        $cardapio = TbCardapio::findOrFail($id);
-        return view('telas.instituicao.editar_cardapio');
+        TbResponsavel::where('cd_responsavel', $id)->update($data);
+
+        return redirect()->route('instituicao.clientes');
     }
+    // public function inserir_arquivo(Request $request){
+    //     $cardapio = new TbCardapio();
+    //     $cardapio->img = $request->url;
+    //     return back()->with('success', 'Cardapio enviado com sucesso!'); 
+    // }
+
+    // CARDAPIO
 
     public function inserir_cardapio (Request $request){
-        $ddsemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
-        $ddsemananum = date('w', strtotime($request->data));
+        
+    //     // Define o diretório de destino
+    //     $diretorioDestino = 'app/public/img/img_cardapio/';
+
+    //     // Gera um nome único para o arquivo
+    //     $nomeArquivo = uniqid() . '_' . $img_pdf['name'];
+
+    //     // Move o arquivo para o diretório de destino
+    // if (move_uploaded_file($arquivo['tmp_name'], $diretorioDestino . $nomeArquivo)) {
+    //     // Grava o caminho completo no banco de dados
+    //     $caminhoCompleto = $diretorioDestino . $nomeArquivo;
+    //     // Salve o caminho no banco de dados ou faça qualquer outra operação necessária
+    //     // ...} else {
+    //     echo 'Ocorreu um erro ao fazer o upload do arquivo.';
+    // }
+
+        // dd($request);
         $cardapio = new TbCardapio();
         $cardapio->dt_cardapio = $request -> data;
+        // $cardapio ->nm_ddsemana = $request ->ddSemana;
         $cardapio ->nm_prato = $request->nmPrato;
         $cardapio ->desc_prato = $request->DescPrato;
-        $cardapio ->cd_cor = $request->cor;
-        $cardapio ->nm_ddsemana = $ddsemana[$ddsemananum];
         // $cardapio ->img_prato = $request->imgPrato;
         $cardapio ->nm_sobremessa = $request->nmSobremessa;
         $cardapio ->desc_sobremessa = $request->DescSobremessa;
@@ -346,19 +280,11 @@ class InstituicaoController extends Controller
         
         return back()->with('success', 'Cardapio enviado com sucesso!'); 
     }
-    public function visualizar_cardapio(){
-        $cardapio = TbCardapio::all();
-        $dataAtual = Carbon::now()->format('Y-m-d');
-        $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
-        $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','<', $dataAtual)->get();
-        $cardapioHoje = TbCardapio::where('dt_cardapio', $dataAtual)->first();
-        return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior,'cardapio'=>$cardapio]);
+    public function visualizar_cardapio($id){
+        $cardapio = TbCardapio::findOrFail($id);
+        return view('telas.instituicao.visualizar_cardapio');
     }
-    public function deletar_cardapio($id){
-        $refeicao = TbCardapio::findOrFail($id);
-        $refeicao->delete();
-        return redirect()->back();
-    }
+
     public function editar_cardapio($id) {
         $cardapio = TbCardapio::findOrFail($id);
         return view('telas.instituicao.editar_cardapio');
