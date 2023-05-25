@@ -17,6 +17,7 @@ class TbCardapio extends Model
     ];
 
     protected $fillable = [
+        //teste
         'dt_cardapio',
         // 'nm_ddsemana',
         'nm_prato',
