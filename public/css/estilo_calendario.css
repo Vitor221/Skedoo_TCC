@@ -1,11 +1,60 @@
 h2{
-  color: #000;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
   padding: 0;
+  text-decoration: none;
+  margin-left: 1rem;
   margin-bottom: 0px;
 }
 
 .fc {
-  background-color: #87cac4;
+  background-color: rgba( 96, 108, 214);
+  border-bottom-left-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   padding: 1rem;
-  border-radius: .5em;
+  width: 100%;
+}
+
+.area-calendario {
+  width: 50%;
+  margin: auto;
+}
+
+.fc-day-number {
+  color: #fff;
+  font-weight: 700;
+}
+
+.fc-unthemed td .fc-today {
+  background-color: rgb(171, 180, 255);
+}
+
+.conteudo {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.menu-bar {
+  z-index: 1;
+}
+
+.nav {
+  z-index: 10;
+}
+
+.conteudo {
+  animation: go-back 1s;
+}
+
+@keyframes go-back {
+  0% {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

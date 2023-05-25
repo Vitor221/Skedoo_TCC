@@ -191,7 +191,7 @@ class InstituicaoController extends Controller
             'start_event'   =>  $request->start_event,
             'end_event'     =>  $request->end_event,
         ]);
-        return response()->json($calendario);
+        return view('telas.instituicao.calendario')->with(response()->json($calendario));
     }
 
     public function calendarioUpdate(Request $request, $id) {

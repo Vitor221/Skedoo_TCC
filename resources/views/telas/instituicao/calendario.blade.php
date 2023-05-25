@@ -38,14 +38,13 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" id="saveBtn" class="btn btn-primary">Salvar</button>
+        <a href="{{ route('instituicao.calendario') }}"><button type="button" id="saveBtn" class="btn btn-primary">Salvar</button></a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container mt-5" style="max-width: 700px">
-    <h2 class="h2 text-center mb-5 border-bottom pb-3">Calendário</h2>
+<div class="area-calendario">
     <div id='calendar'></div>
 </div>
 
@@ -66,9 +65,13 @@
             header: {
                 left: 'prev, next today',
                 center: 'title',
-                right: 'month, agendaWeek, agendaDay'
+                right: ''
+            },
+            buttonText: {
+                today: "Hoje",
             },
             events: evento,
+            eventColor: '#ecab54',
             displayEventTime: true,
             editable: true,
             columnFormat: 'ddd',
