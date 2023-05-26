@@ -18,11 +18,10 @@
 </head>
 
 <body>
-    <nav></nav>
+    <nav>
         <div class="nav">
             <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-            <h4>{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y H:i') }}</h4>
-
+            <h4 id="data-atual">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
             <div class="perfil-bg">
                 <h3>
                     Bem-vindo, {{ session('login')['nm_login'] }}
@@ -35,6 +34,7 @@
     <div class="menu-bar">
         @yield('voltar')
         <h2>{{ $nometela }}</h2>
+        <h2 id="hora-atual" style="text-decoration: none;margin-left:auto; font-size:1.7em;">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('H:i:s') }}</h2>
     </div>
     <div class="conteudo">
         @yield('content')
@@ -43,5 +43,5 @@
 
     
 </body>
-
+    <script src="{{asset('js/configDataHora.js')}}"></script>
 </html>
