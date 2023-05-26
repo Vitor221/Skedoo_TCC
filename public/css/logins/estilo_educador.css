@@ -63,3 +63,6 @@ html::before {
     position: relative;
     color: #fff;
 }
+.footer-color{
+    color: #626ed2;
+}
