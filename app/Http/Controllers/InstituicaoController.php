@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\TbCidade;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class InstituicaoController extends Controller
 {
@@ -398,10 +401,26 @@ class InstituicaoController extends Controller
         $cardapio ->nm_ddsemana = $ddsemana[$ddsemananum];
         $cardapio ->nm_sobremessa = $request->nmSobremessa;
         $cardapio ->desc_sobremessa = $request->DescSobremessa;
+
+        if($request->imgdopdf){
+            $novoNome = $slug = Str::of(date('M')).'.'.$request->imgdopdf->getClientOriginalExtension();
+            
+            $image = $request->imgdopdf->StoreAS('cardapio', $novoNome);
+            $cardapio['img_pdf'] = $image;
+            
+            }
+
         $cardapio -> save();
         
         return back()->with('success', 'Cardapio enviado com sucesso!'); 
     }
+    public function download_pdf ($file){
+
+            $files = storage::files('public/cardapio');
+
+        return response()->download("Storage/cardapio/$files");
+    }
+
     public function visualizar_cardapio(){
         $dataAtual = Carbon::now()->format('Y-m-d');
         $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
