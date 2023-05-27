@@ -26,7 +26,7 @@
     <nav>
         <div class="nav">
             <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-            <h4>{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
+            <h4 id="data-atual">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
 
             <div class="perfil-bg">
                 <h3>
@@ -50,10 +50,15 @@
     </div>
     <div class="conteudo">
         @yield('content')
-        <br>
+        <br><br>
+        <footer>
+            <div class="titulo_foot">
+                <h4 style="width:100%; text-align:center; font-weight: bold;" class="footer-color">Copyright & 2023 Skedoo - Todos os direitos reservados</h4>
+            </div>
+        </footer>
     </div>
 </body>
-<script src="{{ asset('js/configLogins.js') }}"></script>
+<script src="{{ asset('js/configDataHora.js') }}"></script>
 
 
 </html>
