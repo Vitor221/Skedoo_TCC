@@ -48,4 +48,12 @@ class TbAluno extends Model
 	{
 		return $this->hasOne(TbResponsavelAluno::class, 'cd_aluno');
 	}
+
+	public static function search ($search) {
+
+		return self::where('nm_aluno', "like","%{$search}%")
+		->orWhere('cd_aluno', "like","%{$search}%")
+		->paginate(6);
+
+		}
 }
