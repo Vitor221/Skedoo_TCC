@@ -39,8 +39,10 @@
 
     </div>
     <div class="search" id="pesquisa" style="display:none;">
-        <input type="search" placeholder="Pesquisar responsavel" aria-label="Pesquisar">
-        <button type="submit"><i class="uil uil-search"></i></button>
+        <form action="{{route('instituicao.alunos')}}" method="get">
+            <input type="search" name="s"  placeholder="Pesquisar alunos" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
+            <button  type="submit"><i class="uil uil-search"></i></button>
+        </form>
     </div>
 
     @if (session('success'))
@@ -117,6 +119,15 @@
             </tbody>
         </table>
         <br>
+        <div>
+        @if (request()->input('s'))                                                                                                                                                                                                                                  
+            {{ $TbAlunos->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
+            @else 
+                {{ $TbAluno->links() }}
+            
+            @endif
+        </div>
+    
     </div>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>

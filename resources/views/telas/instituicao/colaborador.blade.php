@@ -45,8 +45,10 @@
     </div>
     
     <div class="search" id="pesquisa" style="display:none;">
-        <input type="search" placeholder="Pesquisar responsavel" aria-label="Pesquisar">
-        <button type="submit"><i class="uil uil-search"></i></button>
+        <form action="{{route('instituicao.colaborador')}}" method="get">
+            <input type="search" name="s"  placeholder="Pesquisar colaborador" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
+            <button  type="submit"><i class="uil uil-search"></i></button>
+        </form>
     </div>
 
     <div>
@@ -97,7 +99,14 @@
         </table>
 
         <div class="pagination justify-content-center">
-            {{ $TbEducadores->links() }}
+
+            @if (request()->input('s'))                                                                                                                                                                                                                                  
+            {{ $TbEducadores->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
+            @else 
+                {{ $TbEducadores->links() }}
+            
+            @endif
+         
         </div>
         
     </div>

@@ -64,11 +64,18 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas]); 
     }
 
-    public function aluno(){
+    public function aluno(Request $request){
       
         $TbAluno = TbAluno::all();
-        $TbTurma = TbTurma::all();
+        $TbTurma = TbTurma::all();  
 
+        if ($request->input('s')) {
+            $TbAlunos = TbAluno::search($request->input('s'));
+        } else {
+            $TbAlunos = TbAluno::paginate(6);
+        }
+
+        
         return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
     }
 
@@ -88,10 +95,17 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.transporte');
     }
 
-    public function colaborador(){
+    public function colaborador(Request $request){
 
         $TbEducadores = TbProfissional::paginate(6);
         $TbTurmas = TbTurma::all();
+
+        if ($request->input('s')) {
+            $TbEducadores = TbProfissional::search($request->input('s'));
+        } else {
+            $TbEducadores = TbProfissional::paginate(6);
+        }
+
         return view('telas.instituicao.colaborador', ['TbEducadores' => $TbEducadores, 'TbTurmas' => $TbTurmas]);
     }
 
