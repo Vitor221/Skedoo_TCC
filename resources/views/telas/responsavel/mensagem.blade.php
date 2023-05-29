@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/mensagens.css') }}">
 @endsection
 @section('voltar')
-    <x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
+    <x-button-back href="{{route('responsavel')}}" icon="uil uil-estate"/>
 @endsection
 
 
