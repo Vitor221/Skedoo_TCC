@@ -16,7 +16,7 @@
     <div class="perfil-bg">
         <h3>
             Bem-vindo, {{ session('login')['nm_login'] }}
-            <a href="{{ route('educador.perfil') }}">
+            <a href="{{ route('responsavel.perfil') }}">
                 @if($login->img_perfil)
                     <img name="image" class="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
                 @else

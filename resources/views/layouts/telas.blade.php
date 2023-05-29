@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     {{-- estilo padrao nas telas --}}
     <link rel="stylesheet" href="{{ asset('css/padroes/estilo_telas.css') }}">
-    @yield('links-scripts')
-    @yield('styles')
+    {{-- @yield('links-scripts')--}}
+    @yield('styles') 
     <title>{{ $title }}</title>
 </head>
 

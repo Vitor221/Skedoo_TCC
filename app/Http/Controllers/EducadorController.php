@@ -33,7 +33,8 @@ class EducadorController extends Controller
 
     public function mensagem(){
         $TbInstituicao = TbInstituicao::all();
-        return view('telas.responsavel.mensagem',['TbInstituicao'=>$TbInstituicao]);
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.educador.mensagem',['TbInstituicao'=>$TbInstituicao, 'login'=>$login]);
     }
 
     public function calendario() {

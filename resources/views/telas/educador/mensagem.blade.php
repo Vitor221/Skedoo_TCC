@@ -1,12 +1,13 @@
-@extends('layouts.telas', ['title' => 'Skedoo - Calendário'], ['nometela' => 'Mensagens'])
+@extends('layouts.telas', ['title' => 'Skedoo - Chat'], ['nometela' => 'Mensagens'])
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/logins/estilo_colaborador.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logins/estilo_educador.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mensagens.css') }}">
 @endsection
 @section('voltar')
     <x-button-back href="{{ route('educador') }}" icon="uil uil-estate" />
 @endsection
+
 
 @section('nav-telas')
 <div class="nav">
@@ -32,27 +33,20 @@
         <div class="div-usuarios">
             <h3>Usuários</h3>
             <div class="usuarios">
-                {{-- @foreach ($TbResponsavel as $TbResponsavel)
-                    <div class="usuario">
-                        <p>{{ $TbResponsavel->nm_responsavel }}</p>
-                    </div>
-                @endforeach --}}
+                @foreach ($TbInstituicao as $TbInstituicao)
+                    <button class="usuario" onclick="getID({{ $TbInstituicao->cd_cadastro }})">
+                        <p id="nm{{ $TbInstituicao->cd_cadastro }}">{{ $TbInstituicao->nm_instituicao }}</p>
+                    </button>
+                @endforeach
             </div>
         </div>
         <div class="block">
             <div class="div-mensagens">
                 <div class="topo-mensagens">
-                    <h3>Nome do destinatario</h3>
+                    <h3 id="nomeChat">Nome do destinatario</h3>
                 </div>
                 <div id="div-mensagens" class="mensagens">
-                    <div class="mensagem enviada">
-                        <p>Ola</p>
-                        <span>03/01/21</span>
-                    </div>
-                    <div class="mensagem recebida">
-                        <p>Oi</p>
-                        <span>03/01/21</span>
-                    </div>
+                    <h3 style="height:100%; width:100%; text-align:center; margin-top:10%">Carregando...</h3>
                 </div>
             </div>
             <div class="div-form">
