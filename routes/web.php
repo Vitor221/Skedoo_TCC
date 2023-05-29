@@ -18,6 +18,10 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/remetente', function (){
+    $id_remetente = session()->get('login.cd_login');
+    return response($id_remetente);
+});
 Route::get('/novadata', function () {
     $novaData = \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y');
     return response($novaData);

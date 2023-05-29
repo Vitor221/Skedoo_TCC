@@ -1,8 +1,19 @@
 p{
     margin: 0px;
 }
+.mensagens::-webkit-scrollbar{
+    display: none;
+}
+.usuarios::-webkit-scrollbar{
+    display: none;
+}
+.block{
+    display: block;
+    width: 100%;
+}
 .div-conteudo{
     display: flex;
+    height: 30em;
 }
 .div-usuarios{
     width: 20%;
@@ -12,7 +23,7 @@ p{
     max-height: 90%;
     background-color: white;
     border-radius: 2em;
-    overflow:scroll;
+    overflow:auto;
 }
 .usuario{
     padding-left: 1em;
@@ -30,16 +41,15 @@ p{
     margin-bottom: auto;
 }
 .div-mensagens{
-    width: 100%;
-    margin-left: 1em;
-    height: 27em;
-    
+    height: 25em;
+    padding-left: 1em;
 }
 .mensagens{
+    height: 90%;
+    overflow: auto;
     padding: 1em;
     background-color: white;
     border-radius: 2em;
-    height: 100%;
 }
 .mensagem{
     padding: 0.5em;
@@ -61,15 +71,15 @@ p{
 }
 .div-form{
     display: block;
-    position: relative;
     width: 100%;
-    top: 53%;
+    height: max-content;
+    margin: 1em;
+    margin-right: 2em;
 }
 .form-mensagem {
-    display: flex;
     background-color: rgb(255, 255, 255);
     border-radius: 5em;
-    width: 100%;
+    width: 90%;
 }
 
 .form-mensagem input {
@@ -81,7 +91,7 @@ p{
     outline-color: #6da39e;
     background: rgba(0,0,0,0.0);
     padding-left: 1em;
-    padding-right: 5em;
+    padding-right: 1em;
 }
 
 .form-mensagem button {
@@ -90,9 +100,9 @@ p{
     height: 2.5em;
     width: 5em;
     position: absolute;
-    right: 0em;
+    right: 1em;
     color: white;
-    background-color: #87cac4;
+    background-color: #3a8d86;
 }
 
 .form-mensagem button:hover {
