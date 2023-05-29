@@ -472,7 +472,7 @@ class InstituicaoController extends Controller
 
             $path=storage_path('/cardapio/May.doc');
 
-        return back()->Response::download($path);
+        return back()->response::download($path);
     }
 
     public function visualizar_cardapio(){
