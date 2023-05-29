@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\TbCidade;
+use App\Models\TbLogin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,9 +32,10 @@ class InstituicaoController extends Controller
     public function index()
     {
         $cd_acesso = session()->get('login.cd_acesso');
+        $login = TbLogin::find(session('login'))->first();
 
         if (session()->has('login') && $cd_acesso == 1) {
-            return view('login_pags.instituicao');
+            return view('login_pags.instituicao', ['login' => $login]);
         } else {
             return redirect()->back();
         }
@@ -93,6 +95,37 @@ class InstituicaoController extends Controller
 
     public function transporte(){
         return view('telas.instituicao.transporte');
+    }
+
+    public function perfil()
+    {
+        if (session()->has('login')) {
+            $login = TbLogin::find(session('login'))->first();
+            return view('telas.instituicao.perfil', compact('login'));
+        }
+        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
+    }
+
+    public function atualizarPerfil(Request $request) {
+        $request->validate([
+            'image' =>  'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $login = TbLogin::find(session('login'))->first();
+    
+        if($login->img_perfil) {
+            Storage::disk('public')->delete($login->img_perfil);
+        }
+
+        if($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('storage', 'public');
+            $login->img_perfil = $imagePath;    
+            $login->save();
+        }
+
+        
+        
+        return view('telas.instituicao.perfil', ['login' => $login]);
     }
 
     public function colaborador(Request $request){
