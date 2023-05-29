@@ -7,6 +7,9 @@ use App\Models\Event;
 use App\Models\TbCardapio;
 use Carbon\Carbon;
 use App\Models\TbInstituicao;
+use App\Models\TbLogin;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ResponsavelController extends Controller
 {
@@ -18,9 +21,10 @@ class ResponsavelController extends Controller
     public function responsavel()
     {
         $cd_acesso = session()->get('login.cd_acesso');
-
+        $login = TbLogin::find(session('login'))->first();
+        
         if (session()->has('login') && $cd_acesso == 3) {
-            return view('login_pags.responsavel');
+            return view('login_pags.responsavel', ['login' => $login]);
         } else {
             return redirect()->back();
         }
@@ -71,5 +75,36 @@ class ResponsavelController extends Controller
         $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','<', $dataAtual)->get();
         $cardapioHoje = TbCardapio::where('dt_cardapio', $dataAtual)->first();
         return view('telas.responsavel.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior,'cardapio'=>$cardapio]);
+    }
+
+    public function perfil()
+    {
+        if (session()->has('login')) {
+            $login = TbLogin::find(session('login'))->first();
+            return view('telas.responsavel.perfil', compact('login'));
+        }
+        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
+    }
+
+    public function atualizarPerfil(Request $request) {
+        $request->validate([
+            'image' =>  'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $login = TbLogin::find(session('login'))->first();
+    
+        if($login->img_perfil) {
+            Storage::disk('public')->delete($login->img_perfil);
+        }
+
+        if($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('storage', 'public');
+            $login->img_perfil = $imagePath;    
+            $login->save();
+        }
+
+        
+        
+        return view('telas.responsavel.perfil', ['login' => $login]);
     }
 }

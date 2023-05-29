@@ -24,17 +24,7 @@
 
 <body>
     <nav>
-        <div class="nav">
-            <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
-            <h4 id="data-atual">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
-
-            <div class="perfil-bg">
-                <h3>
-                    Bem-vindo, {{ session('login')['nm_login'] }}
-                    <x-profile-button />
-                </h3>
-            </div>
-        </div>
+        @yield('conteudo-nav')
     </nav>
 
     <div class="menu-bar">
