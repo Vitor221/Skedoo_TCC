@@ -43,4 +43,12 @@ class TbProfissional extends Model
 	{
 		return $this->hasMany(TbMensagem::class, 'cd_profissional');
 	}
+
+	public static function search ($search) {
+
+		return self::where('nm_profissional', "like","%{$search}%")
+		->orWhere('cd_profissional', "like","%{$search}%")
+		->paginate(6);
+
+		}
 }

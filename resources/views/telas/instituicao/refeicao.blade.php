@@ -50,12 +50,19 @@
                     <button type="submit" class="enviar" value="Enviar">Enviar</button>
                 </form>
                 <h3>Ou insira um arquivo em pdf</h3>
+                <form action="" method="POST"  enctype="multipart/form-data">
+                @csrf
                 <label>Arquivo PDF do Mês:</label>
-                <input type="file" id="imgdopdf" name="arquivo" /><br>
+                <input type="file" id="imgdopdf" name="imgdopdf" /><br>
                 <button type="submit" class="enviar" value="Enviar">Enviar</button>
+                </form>
             </div><br>
         </div><br>
     </div><br><br>
+        <div class="div-conteudo">
+            <h1>PDF DO MÊS</h1>
+            <a href="{{ route('download.arquivo') }}">Clique aqui para baixar o arquivo</a>
+        </div>
     <div class="div-conteudo">
         @if ($cardapioHoje)
             <h1>Refeição de Hoje</h1>

@@ -20,6 +20,7 @@ class TbCardapio extends Model
         'dt_cardapio',
         'nm_prato',
        'desc_prato',
+        'cd_cor',
         'img_prato',
         'nm_sobremessa',
         'desc_sobremessa',

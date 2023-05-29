@@ -50,7 +50,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
     
     Route::get('instituicao/clientes', [InstituicaoController::class, 'cliente'])->name('instituicao.clientes');
-    Route::post('instituicao/clientes', [InstituicaoController::class, 'inserir_cliente'])->name('instituicao.clientes.insert');
+    Route::post('instituicao/clientes', [InstituicaoController::class, 'insercir_cliente'])->name('instituicao.clientes.insert');
     Route::delete('instituicao/clientes/{id}', [InstituicaoController::class, 'deletar_cliente'])->name('instituicao.clientes.delete');
     Route::get('instituicao/clientes/{id}', [InstituicaoController::class, 'visualizar_cliente'])->name('instituicao.clientes.view');
     Route::get('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'editar_cliente'])->name('instituicao.clientes.edit');
@@ -93,6 +93,8 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::post('instituicao/refeicao', [InstituicaoController::class, 'inserir_cardapio'])->name('instituicao.refeicao.insert');
     Route::delete('instituicao/refeicao/{id}', [InstituicaoController::class, 'deletar_cardapio'])->name('instituicao.refeicao.delete');
     Route::get('instituicao/refeicao/{id}', [InstituicaoController::class, 'editar_cardapio'])->name('instituicao.refeicao.update');
+    Route::get('instituicao/refeicao/download_arquivo/',[InstituicaoController::class, 'download_pdf'])->name('download.arquivo');
+
 });
 
 //Rota de Educador

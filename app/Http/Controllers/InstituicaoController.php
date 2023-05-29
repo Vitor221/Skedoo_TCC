@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\TbCidade;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class InstituicaoController extends Controller
 {
@@ -61,11 +64,18 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas]); 
     }
 
-    public function aluno(){
+    public function aluno(Request $request){
       
         $TbAluno = TbAluno::all();
-        $TbTurma = TbTurma::all();
+        $TbTurma = TbTurma::all();  
 
+        if ($request->input('s')) {
+            $TbAlunos = TbAluno::search($request->input('s'));
+        } else {
+            $TbAlunos = TbAluno::paginate(6);
+        }
+
+        
         return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
     }
 
@@ -85,10 +95,17 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.transporte');
     }
 
-    public function colaborador(){
+    public function colaborador(Request $request){
 
         $TbEducadores = TbProfissional::paginate(6);
         $TbTurmas = TbTurma::all();
+
+        if ($request->input('s')) {
+            $TbEducadores = TbProfissional::search($request->input('s'));
+        } else {
+            $TbEducadores = TbProfissional::paginate(6);
+        }
+
         return view('telas.instituicao.colaborador', ['TbEducadores' => $TbEducadores, 'TbTurmas' => $TbTurmas]);
     }
 
@@ -398,10 +415,26 @@ class InstituicaoController extends Controller
         $cardapio ->nm_ddsemana = $ddsemana[$ddsemananum];
         $cardapio ->nm_sobremessa = $request->nmSobremessa;
         $cardapio ->desc_sobremessa = $request->DescSobremessa;
+
+        if($request->imgdopdf){
+            $novoNome = $slug = Str::of(date('M')).'.'.$request->imgdopdf->getClientOriginalExtension();
+            
+            $image = $request->imgdopdf->StoreAS('cardapio', $novoNome);
+            $cardapio['img_pdf'] = $image;
+            
+            }
+
         $cardapio -> save();
         
         return back()->with('success', 'Cardapio enviado com sucesso!'); 
     }
+    public function download_pdf ($file){
+
+            $files = storage::files('public/cardapio');
+
+        return response()->download("Storage/cardapio/$files");
+    }
+
     public function visualizar_cardapio(){
         $dataAtual = Carbon::now()->format('Y-m-d');
         $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
