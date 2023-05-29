@@ -8,6 +8,25 @@
 <x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
 @endsection
 
+@section('nav-telas')
+<div class="nav">
+    <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
+    <h4 id="data-atual">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
+    <div class="perfil-bg">
+        <h3>
+            Bem-vindo, {{ session('login')['nm_login'] }}
+            <a href="{{ route('instituicao.perfil') }}">
+                @if($login->img_perfil)
+                    <img name="image" class="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
+                @else
+                    <img name="image" class="img-perfil" src="https://i.stack.imgur.com/Bzcs0.png" alt="">
+                @endif
+            </a>
+        </h3>
+    </div>
+</div>
+@endsection
+
 @section('content')
     <div class="div-conteudo">
         <h1>CONTROLE DE CARDÁPIO</h1>
@@ -59,10 +78,14 @@
             </div><br>
         </div><br>
     </div><br><br>
-        <div class="div-conteudo">
-            <h1>PDF DO MÊS</h1>
-            <a href="{{ route('download.arquivo') }}">Clique aqui para baixar o arquivo</a>
+    <div class="div-conteudo">
+        <h1>PDF DO MÊS</h1>
+        <div class="div-refeicao">
+            <a href="{{ route('download.arquivo') }}" style="margin-left: 41.5%;">Clique aqui para baixar o arquivo</a>
         </div>
+    </div>
+    <br>
+    <br>
     <div class="div-conteudo">
         @if ($cardapioHoje)
             <h1>Refeição de Hoje</h1>
