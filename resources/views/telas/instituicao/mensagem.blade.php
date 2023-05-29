@@ -14,26 +14,19 @@
             <h3>Usuários</h3>
             <div class="usuarios">
                 @foreach ($TbResponsavel as $TbResponsavel)
-                    <div class="usuario">
-                        <p>{{ $TbResponsavel->nm_responsavel }}</p>
-                    </div>
+                    <button class="usuario" onclick="getID({{$TbResponsavel->cd_cadastro}})">
+                        <p id="nm{{$TbResponsavel->cd_cadastro}}">{{ $TbResponsavel->nm_responsavel }}</p>
+                    </button>
                 @endforeach
             </div>
         </div>
         <div class="block">
             <div class="div-mensagens">
                 <div class="topo-mensagens">
-                    <h3>Nome do destinatario</h3>
+                    <h3 id="nomeChat">Nome do destinatario</h3>
                 </div>
                 <div id="div-mensagens" class="mensagens">
-                    <div class="mensagem enviada">
-                        <p>Ola</p>
-                        <span>03/01/21</span>
-                    </div>
-                    <div class="mensagem recebida">
-                        <p>Oi</p>
-                        <span>03/01/21</span>
-                    </div>
+                    <h3 style="height:100%; width:100%; text-align:center; margin-top:10%">Carregando...</h3>
                 </div>
             </div>
             <div class="div-form">

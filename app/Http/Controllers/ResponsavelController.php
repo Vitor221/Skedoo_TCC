@@ -6,6 +6,7 @@ use Illuminate\HttpRequ\est;
 use App\Models\Event;
 use App\Models\TbCardapio;
 use Carbon\Carbon;
+use App\Models\TbInstituicao;
 
 class ResponsavelController extends Controller
 {
@@ -35,8 +36,9 @@ class ResponsavelController extends Controller
         return view('telas.responsavel.saude');
     }
 
-    public function mensagem() {
-        return view('telas.responsavel.mensagem');
+    public function mensagem(){
+        $TbInstituicao = TbInstituicao::all();
+        return view('telas.responsavel.mensagem',['TbInstituicao'=>$TbInstituicao]);
     }
 
     public function calendario() {

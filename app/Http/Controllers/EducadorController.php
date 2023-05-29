@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\TbAluno;
+use App\Models\TbInstituicao;
 use App\Models\TbTurma;
 
 class EducadorController extends Controller
@@ -27,8 +28,9 @@ class EducadorController extends Controller
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
 
-    public function mensagem() {
-        return view('telas.educador.mensagem');
+    public function mensagem(){
+        $TbInstituicao = TbInstituicao::all();
+        return view('telas.responsavel.mensagem',['TbInstituicao'=>$TbInstituicao]);
     }
 
     public function calendario() {
