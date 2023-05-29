@@ -15,8 +15,24 @@
 
 <body class="conteudo">
     <x-button-back href="{{ url()->previous() }}" icon="uil uil-angle-left"/>
+    
+    <form class="form-cadastro" method="POST" id="form" enctype="multipart/form-data" action="{{ route('responsavel.perfil.atualizar') }}">
+        @csrf
+        <input type="file" id="image" name="image" class="form-control-file">
+        <br>
+        <br>
+        <button type="reset" class="cancelar" onclick="fechaForm()">Cancelar</button>
+        <button type="submit" class="enviar">Enviar</button>
+    </form>
+
     <div class="img_div">
-        <x-profile-button/>
+        <div onclick="inserir()" >
+            @if($login->img_perfil)
+                <img name="image" id="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
+            @else
+                <img name="image" class="img-perfil" src="https://i.stack.imgur.com/Bzcs0.png" alt="">
+            @endif
+        </div>
     </div>
 
     <div class="informacoes">
@@ -35,6 +51,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/configTelas.js') }}"></script>
 </body>
 
 </html>
