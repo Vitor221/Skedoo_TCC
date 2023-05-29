@@ -37,7 +37,7 @@ class EducadorController extends Controller
     }
 
     public function calendario() {
-
+        $login = TbLogin::find(session('login'))->first();
         $eventos = array();
         $diasEventos = Event::all();
         foreach($diasEventos as $diaEvento) {
@@ -49,7 +49,7 @@ class EducadorController extends Controller
             ];
         }
 
-        return view('telas.educador.calendario', ['eventos'  =>  $eventos]);
+        return view('telas.educador.calendario', ['eventos'  =>  $eventos, 'login' => $login]);
 
     }
     
@@ -58,14 +58,16 @@ class EducadorController extends Controller
     public function aluno() {
         $TbAluno = TbAluno::all();
         $TbTurma = TbTurma::all();
+        $login = TbLogin::find(session('login'))->first();
 
-        return view('telas.educador.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
+        return view('telas.educador.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma, 'login' => $login]); 
     }
     public function saude() {
         return view('telas.educador.saude');
     }
     public function ajuda() {
-        return view('telas.educador.ajuda');
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.educador.ajuda', ['login' => $login]);
     }
 
     public function perfil()
