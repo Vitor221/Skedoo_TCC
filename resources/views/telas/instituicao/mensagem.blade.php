@@ -20,26 +20,29 @@
                 @endforeach
             </div>
         </div>
-        <div class="div-mensagens">
-            <div class="topo-mensagens">
-                <h3>Nome do destinatario</h3>
+        <div class="block">
+            <div class="div-mensagens">
+                <div class="topo-mensagens">
+                    <h3>Nome do destinatario</h3>
+                </div>
+                <div id="div-mensagens" class="mensagens">
+                    <div class="mensagem enviada">
+                        <p>Ola</p>
+                        <span>03/01/21</span>
+                    </div>
+                    <div class="mensagem recebida">
+                        <p>Oi</p>
+                        <span>03/01/21</span>
+                    </div>
+                </div>
             </div>
-            <div class="mensagens">
-                <div class="mensagem enviada">
-                    <p>Ola</p>
-                    <span>03/01/21</span>
-                </div>
-                <div class="mensagem recebida">
-                    <p>Oi</p>
-                    <span>03/01/21</span>
-                </div>
-                <div class="div-form">
-                    <form class="form-mensagem">
-                        <input type="text">
-                        <button type="submit">Enviar</button>
-                    </form>
+            <div class="div-form">
+                <div class="form-mensagem" action="">
+                    <input type="text" id="mensagem">
+                    <button onclick="enviarMensagem()">Enviar</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/configChat.js') }}"></script>
 @endsection

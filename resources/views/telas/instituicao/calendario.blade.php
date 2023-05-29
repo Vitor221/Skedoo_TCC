@@ -37,14 +37,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" id="saveBtn" class="btn btn-primary">Salvar</button>
+                    <a href="{{ route('instituicao.calendario') }}"><button type="button" id="saveBtn" class="btn btn-primary">Salvar</button></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="div-conteudo container mt-5" style="max-width: 700px;">
-        <h1 class="h2 text-center" style="color:white; font-size:2.5em;">Calendário</h1>
+    <div class="area-calendario">
         <div id='calendar'></div>
     </div>
 
@@ -59,9 +58,6 @@
             prev: " < ",
             next: ' > ',
             today: 'Hoje',
-            month: 'Mês',
-            week: 'Semana',
-            day: 'Dia'
         }
     };
 
@@ -77,9 +73,9 @@
         header: {
             left: 'prev, next today',
             center: 'title',
-            right: 'month, agendaWeek, agendaDay'
+            right: ''
         },
-        buttonIcons: false, 
+        buttonIcons: false,
         buttonText: customTranslations.ptBr, 
         events: evento,
         displayEventTime: true,
