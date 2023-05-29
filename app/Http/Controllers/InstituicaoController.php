@@ -398,10 +398,12 @@ class InstituicaoController extends Controller
     }
     //CRUD - Turma - FIM
 
-    public function inserir_arquivo(Request $request){
-        $cardapio = new TbCardapio();
-        $cardapio->img = $request->url;
-        return back()->with('success', 'Cardapio enviado com sucesso!'); 
+
+    public function inserir_arquivo(){
+
+    
+        $files = Storage::files('public/cardapio');
+    
     }
 
     public function inserir_cardapio (Request $request){
@@ -428,11 +430,11 @@ class InstituicaoController extends Controller
         
         return back()->with('success', 'Cardapio enviado com sucesso!'); 
     }
-    public function download_pdf ($file){
+    public function download (){
 
-            $files = storage::files('public/cardapio');
+            $path=storage_path('/cardapio/May.doc');
 
-        return response()->download("Storage/cardapio/$files");
+        return back()->Response::download($path);
     }
 
     public function visualizar_cardapio(){
@@ -443,7 +445,7 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior]);
     }
     public function deletar_cardapio($id){
-        $refeicao = TbCardapio::findOrFail($id);
+        $refeicao = TbCardapio::findOrFail($id);  
         $refeicao->delete();
         return redirect()->back();
     }
