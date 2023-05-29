@@ -14,7 +14,8 @@ class TbTurma extends Model
 
 	protected $fillable = [
 		'nm_turma',
-		'ds_periodo'
+		'ds_periodo',
+		'cd_total_aluno'
 	];
 
 	public function tb_aluno()

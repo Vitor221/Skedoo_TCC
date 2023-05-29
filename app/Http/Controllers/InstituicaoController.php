@@ -432,7 +432,7 @@ class InstituicaoController extends Controller
     }
     public function download (){
 
-            $path=storage_path('/cardapio/May.doc');
+            $path=storagep_path('/cardapio/May.doc');
 
         return back()->Response::download($path);
     }
@@ -452,5 +452,24 @@ class InstituicaoController extends Controller
     public function editar_cardapio($id) {
         $cardapio = TbCardapio::findOrFail($id);
         return view('telas.instituicao.editar_cardapio');
+    }
+
+
+    // DASHBORD
+
+    public function dashbord(Request $request){
+            $TbTurmas = TbTurma::all();
+            $TbAlunos = TbAluno::all();
+            $TbPagamento = TbPagamento::all();
+            $Tbstatuspagamento = TbStatusPagamento::all();
+            $TbResponsavel = TbResponsavel::all();
+
+            // Fazendo contagem - Quantos em cada sala matriculados
+            $alunosPorTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
+            ->groupBy('cd_turma')
+            ->get()
+            ->keyBy('cd_turma');
+
+        return view('telas.instituicao.dashbord',['TbTurmas' =>$TbTurmas, 'TbAlunos' => $TbAlunos, 'alunosPorTurma' => $alunosPorTurma]);
     }
 }

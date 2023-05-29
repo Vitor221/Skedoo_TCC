@@ -95,6 +95,10 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/refeicao/{id}', [InstituicaoController::class, 'editar_cardapio'])->name('instituicao.refeicao.update');
     Route::get('instituicao/refeicao/download',[InstituicaoController::class, 'download'])->name('download.arquivo');
 
+    Route::get('instituicao/dashbord', [InstituicaoController::class, 'dashbord'])->name('instituicao.dashbord');
+
+    
+
 });
 
 //Rota de Educador
