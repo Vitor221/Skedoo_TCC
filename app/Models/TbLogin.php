@@ -24,6 +24,7 @@ class TbLogin extends Model
 		'cd_senha',
 		'cd_responsavel',
 		'cd_acesso',
+		'img_perfil'
 	];
 
 	public function tb_responsavel()

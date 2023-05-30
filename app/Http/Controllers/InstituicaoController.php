@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\TbCidade;
+use App\Models\TbLogin;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,9 +32,10 @@ class InstituicaoController extends Controller
     public function index()
     {
         $cd_acesso = session()->get('login.cd_acesso');
+        $login = TbLogin::find(session('login'))->first();
 
         if (session()->has('login') && $cd_acesso == 1) {
-            return view('login_pags.instituicao');
+            return view('login_pags.instituicao', ['login' => $login]);
         } else {
             return redirect()->back();
         }
@@ -46,12 +48,14 @@ class InstituicaoController extends Controller
     }
 
     public function problemassaude() {
-        return view('telas.instituicao.problemassaude');
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.instituicao.problemassaude', ['login' => $login]);
     }
     
     public function cliente(Request $request){
         $TbResponsaveis = TbResponsavel::paginate(6);
         $TbTurmas = TbTurma::all();
+        $login = TbLogin::find(session('login'))->first();
 
 
         if ($request->input('s')) {
@@ -61,13 +65,14 @@ class InstituicaoController extends Controller
         }
 
 
-        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas]); 
+        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas, 'login' => $login]); 
     }
 
     public function aluno(Request $request){
       
         $TbAluno = TbAluno::all();
-        $TbTurma = TbTurma::all();  
+        $TbTurma = TbTurma::all();
+        $login = TbLogin::find(session('login'))->first();
 
         if ($request->input('s')) {
             $TbAlunos = TbAluno::search($request->input('s'));
@@ -76,11 +81,12 @@ class InstituicaoController extends Controller
         }
 
         
-        return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma]); 
+        return view('telas.instituicao.alunos',['TbAluno'=>$TbAluno, 'TbTurma'=>$TbTurma, 'login' => $login]); 
     }
 
     public function ajuda(){
-        return view('telas.instituicao.ajuda');
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.instituicao.ajuda', ['login' => $login]);
     }
 
     public function mensagem(){
@@ -88,15 +94,47 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel]);
     }
     public function financeiro(){
-        return view('telas.instituicao.financeiro');
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.instituicao.financeiro', ['login' => $login]);
     }
 
     public function transporte(){
         return view('telas.instituicao.transporte');
     }
 
-    public function colaborador(Request $request){
+    public function perfil()
+    {
+        if (session()->has('login')) {
+            $login = TbLogin::find(session('login'))->first();
+            return view('telas.instituicao.perfil', compact('login'));
+        }
+        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
+    }
 
+    public function atualizarPerfil(Request $request) {
+        $request->validate([
+            'image' =>  'image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $login = TbLogin::find(session('login'))->first();
+    
+        if($login->img_perfil) {
+            Storage::disk('public')->delete($login->img_perfil);
+        }
+
+        if($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('storage', 'public');
+            $login->img_perfil = $imagePath;    
+            $login->save();
+        }
+
+        
+        
+        return view('telas.instituicao.perfil', ['login' => $login]);
+    }
+
+    public function colaborador(Request $request){
+        $login = TbLogin::find(session('login'))->first();
         $TbEducadores = TbProfissional::paginate(6);
         $TbTurmas = TbTurma::all();
 
@@ -106,7 +144,7 @@ class InstituicaoController extends Controller
             $TbEducadores = TbProfissional::paginate(6);
         }
 
-        return view('telas.instituicao.colaborador', ['TbEducadores' => $TbEducadores, 'TbTurmas' => $TbTurmas]);
+        return view('telas.instituicao.colaborador', ['TbEducadores' => $TbEducadores, 'TbTurmas' => $TbTurmas, 'login' => $login]);
     }
 
     //CRUD - Colaborador - INICIO
@@ -187,6 +225,7 @@ class InstituicaoController extends Controller
     public function calendario(){
         $eventos = array();
         $diasEventos = Event::all();
+        $login = TbLogin::find(session('login'))->first();
         foreach($diasEventos as $diaEvento) {
             $eventos[] = [
                 'id'        =>      $diaEvento->id,
@@ -195,7 +234,7 @@ class InstituicaoController extends Controller
                 'end'       =>      $diaEvento->end_event
             ];
         }
-        return view('telas.instituicao.calendario', ['eventos' => $eventos]);
+        return view('telas.instituicao.calendario', ['eventos' => $eventos, 'login' => $login]);
     }
 
     public function calendarioStore(Request $request) {
@@ -242,10 +281,6 @@ class InstituicaoController extends Controller
     }
     //CRUD - Calendário - FIM
 
-    public function refeicao(){
-        return view('telas.instituicao.refeicao');
-    }
-
     //CRUD - Cliente - INICIO
     public function inserir_cliente(Request $request){
         $responsavel = new TbResponsavel();
@@ -291,16 +326,18 @@ class InstituicaoController extends Controller
     }
 
     public function visualizar_cliente($id){
+        $login = TbLogin::find(session('login'))->first();
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
         $aluno = $responsavel->tb_aluno[0];
-        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco', 'aluno'));
+        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco', 'aluno', 'login'));
     }
 
     public function editar_cliente($id) {
+        $login = TbLogin::find(session('login'))->first();
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
-        return view('telas.instituicao.editar_cliente', compact('responsavel', 'endereco'));
+        return view('telas.instituicao.editar_cliente', compact('responsavel', 'endereco', 'login'));
     }
 
     public function update_cliente(Request $request, $id) {
@@ -438,11 +475,12 @@ class InstituicaoController extends Controller
     }
 
     public function visualizar_cardapio(){
+        $login = TbLogin::find(session('login'))->first();
         $dataAtual = Carbon::now()->format('Y-m-d');
         $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
         $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','<', $dataAtual)->get();
         $cardapioHoje = TbCardapio::where('dt_cardapio', $dataAtual)->first();
-        return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior]);
+        return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior, 'login' => $login]);
     }
     public function deletar_cardapio($id){
         $refeicao = TbCardapio::findOrFail($id);  
@@ -451,7 +489,8 @@ class InstituicaoController extends Controller
     }
     public function editar_cardapio($id) {
         $cardapio = TbCardapio::findOrFail($id);
-        return view('telas.instituicao.editar_cardapio');
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.instituicao.editar_cardapio', ['login' => $login]);
     }
 
 

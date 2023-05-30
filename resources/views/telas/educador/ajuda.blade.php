@@ -8,6 +8,25 @@
 <x-button-back href="{{route('educador')}}" icon="uil uil-estate"/>
 @endsection
 
+@section('nav-telas')
+<div class="nav">
+    <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
+    <h4 id="data-atual">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
+    <div class="perfil-bg">
+        <h3>
+            Bem-vindo, {{ session('login')['nm_login'] }}
+            <a href="{{ route('educador.perfil') }}">
+                @if($login->img_perfil)
+                    <img name="image" class="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
+                @else
+                    <img name="image" class="img-perfil" src="https://i.stack.imgur.com/Bzcs0.png" alt="">
+                @endif
+            </a>
+        </h3>
+    </div>
+</div>
+@endsection
+
 @section('content')
     <div class="div-conteudo" style="margin-top: 0px;">
         <h2>Funções</h2>

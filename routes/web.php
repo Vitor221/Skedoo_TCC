@@ -67,8 +67,6 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::delete('instituicao/turmas/{id}', [InstituicaoController::class, 'deletar_turma'])->name('instituicao.turma.delete');
     Route::get('instituicao/turmas/{id}', [InstituicaoController::class, 'visualizar_turma'])->name('instituicao.turma.view');
     
-    Route::get('instituicao/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
-    
     Route::get('instituicao/saude', [InstituicaoController::class, 'problemassaude'])->name('instituicao.problemassaude');  
 
     
@@ -96,9 +94,11 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/refeicao/download',[InstituicaoController::class, 'download'])->name('download.arquivo');
 
     Route::get('instituicao/dashbord', [InstituicaoController::class, 'dashbord'])->name('instituicao.dashbord');
-
+                        
     
 
+    Route::get('instituicao/perfil', [InstituicaoController::class, 'perfil'])->name('instituicao.perfil');
+    Route::post('instituicao/perfil', [InstituicaoController::class, 'atualizarPerfil'])->name('instituicao.perfil.atualizar');
 });
 
 //Rota de Educador
@@ -109,7 +109,9 @@ Route::group(['middleware' => ['loginAccess2']], function() {
     Route::get('educador/ajuda', [EducadorController::class, 'ajuda'])->name('educador.ajuda');
     Route::get('educador/mensagens', [EducadorController::class, 'mensagem'])->name('educador.mensagem');
     Route::get('educador/calendario', [EducadorController::class, 'calendario'])->name('educador.calendario');
-    Route::get('educador/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
+
+    Route::get('educador/perfil', [EducadorController::class, 'perfil'])->name('educador.perfil');
+    Route::post('educador/perfil', [EducadorController::class, 'atualizarPerfil'])->name('educador.perfil.atualizar');
 });
 
 //Rota de Responsáveis
@@ -121,7 +123,9 @@ Route::group(['middleware' => ['loginAccess3']], function() {
     Route::get('responsavel/calendario', [ResponsavelController::class, 'calendario'])->name('responsavel.calendario');
     Route::get('responsavel/transporte', [ResponsavelController::class, 'transporte'])->name('responsavel.transporte');
     Route::get('responsavel/refeicao', [ResponsavelController::class, 'visualizar_cardapio'])->name('responsavel.refeicao');
-    Route::get('responsavel/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
+
+    Route::get('responsavel/perfil', [ResponsavelController::class, 'perfil'])->name('responsavel.perfil');
+    Route::post('responsavel/perfil', [ResponsavelController::class, 'atualizarPerfil'])->name('responsavel.perfil.atualizar');
 });
 
 
@@ -129,4 +133,3 @@ Route::group(['middleware' => ['loginAccess3']], function() {
 Route::get('/clientes', [ControllerSkedoo::class, 'cliente'])->name('clientes');
 Route::get('/ajuda', [ControllerSkedoo::class, 'ajuda'])->name('ajuda');
 Route::get('/alunos', [ControllerSkedoo::class, 'aluno'])->name('alunos');
-Route::get('/perfil', [ControllerSkedoo::class, 'perfil'])->name('perfil_pag');
