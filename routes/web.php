@@ -93,6 +93,10 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/refeicao/{id}', [InstituicaoController::class, 'editar_cardapio'])->name('instituicao.refeicao.update');
     Route::get('instituicao/refeicao/download',[InstituicaoController::class, 'download'])->name('download.arquivo');
 
+    Route::get('instituicao/dashbord', [InstituicaoController::class, 'dashbord'])->name('instituicao.dashbord');
+                        
+    
+
     Route::get('instituicao/perfil', [InstituicaoController::class, 'perfil'])->name('instituicao.perfil');
     Route::post('instituicao/perfil', [InstituicaoController::class, 'atualizarPerfil'])->name('instituicao.perfil.atualizar');
 });

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nm_turma', 50)->nullable();
             $table->string('ds_periodo', 30)->nullable();
             $table->string('sg_turma', 5)->nullable();
+            $table->integer('cd_total_aluno', 2)->nullable();
         });
     }
 

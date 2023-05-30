@@ -137,16 +137,14 @@
 
             </tbody>
         </table>
-        <br>
-        <div>
-        @if (request()->input('s'))                                                                                                                                                                                                                                  
-            {{ $TbAlunos->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
-            @else 
+        <div class="pagination justify-content-center">
+            @if (request()->input('s'))                                                                                                                                                                                                                                  
+                {{ $TbAluno->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
+                @else 
                 {{ $TbAluno->links() }}
-            
-            @endif
+                @endif
         </div>
-    
+
     </div>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
