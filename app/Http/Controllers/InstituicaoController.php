@@ -67,10 +67,10 @@ class InstituicaoController extends Controller
 
     public function aluno(){
         $login = TbLogin::find(session('login'))->first();
-        $TbAluno = TbAluno::paginate(3);
+        $TbAlunos = TbAluno::paginate(6);
         $TbTurma = TbTurma::all();
 
-        return view('telas.instituicao.alunos', ['TbAluno' => $TbAluno, 'TbTurma' => $TbTurma, 'login' => $login]); 
+        return view('telas.instituicao.alunos', ['TbAlunos' => $TbAlunos, 'TbTurma' => $TbTurma, 'login' => $login]); 
     }
 
     public function ajuda(){
@@ -124,18 +124,20 @@ class InstituicaoController extends Controller
     public function visualizar_colaborador($id) {
         $educador = TbProfissional::findOrFail($id);
         $turma = $educador->tb_turma;
+        $login = TbLogin::find(session('login'))->first();
 
-        return view('telas.instituicao.visualizar_educador', compact('educador', 'turma'));
+        return view('telas.instituicao.visualizar_educador', ['educador' => $educador, 'turma' => $turma, 'login' => $login]);
         
     }
 
     public function atualizar_colaborador($id) {
         $educador = TbProfissional::findOrFail($id);
+        $login = TbLogin::find(session('login'))->first();
 
         if(!$educador->cd_turma || $educador->cd_turma){
             $turma = $educador->tb_turma;
             $tbturmas = TbTurma::all();
-            return view('telas.instituicao.editar_educador', compact('educador', 'turma', 'tbturmas'));
+            return view('telas.instituicao.editar_educador', compact('educador', 'turma', 'tbturmas', 'login'));
         }
     }
 

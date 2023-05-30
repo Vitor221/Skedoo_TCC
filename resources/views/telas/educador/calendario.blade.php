@@ -13,6 +13,7 @@
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_educador.css') }}">
 <link rel="stylesheet" href="{{ asset('css/estilo_calendario.css') }}">
+<link rel="stylesheet" href="{{ asset('css/config/config.css') }}">
 @endsection
 
 @section('voltar')

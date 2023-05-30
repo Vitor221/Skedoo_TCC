@@ -35,9 +35,9 @@
     <table class="tabela">
         <thead>
             <tr>
-                <th class="nome">Nome</th>
-                <th class="nome">Periodo</th>
-                <th class="nome">Sigla</th>
+                <th class="nome t-head-title ">Nome</th>
+                <th class="nome t-head-title ">Periodo</th>
+                <th class="nome t-head-title ">Sigla</th>
             </tr>
         </thead>
         <tbody>
@@ -55,8 +55,8 @@
     <table class="tabela">
         <thead>
             <tr class="pessoa">
-                <th class="nome">Nome</th>
-                <th>Turma</th>
+                <th class="nome t-head-title">Nome</th>
+                <th class="t-head-title">Turma</th>
                 <th scope="col" id="abrePesquisa" class="pesquisa-tabela"style="height:82px;"><button
                         class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button></th>
                 <th scope="col" id="fechaPesquisa" class="pesquisa-tabela"style="display: none;"><button

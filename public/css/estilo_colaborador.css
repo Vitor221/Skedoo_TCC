@@ -4,6 +4,21 @@ td {
     border: 2px solid #606cd6;
 }
 
+.tabela {
+  animation: go-back 1s;
+}
+
+@keyframes go-back {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 100%;
+  }
+}
+
 th {
     background-color: #606cd6; 
 }
@@ -54,4 +69,11 @@ tr:hover:nth-child(1n + 2) {
     width: fit-content;
     margin: auto;
     border-radius: 2em;
+}
+
+h4 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff9e1f;
+  font-weight: 700;
 }

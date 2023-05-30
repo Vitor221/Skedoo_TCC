@@ -31,8 +31,8 @@
         @yield('content')
     </div>
     <br>
-
     
+
 </body>
     <script src="{{asset('js/configDataHora.js')}}"></script>
 </html>
