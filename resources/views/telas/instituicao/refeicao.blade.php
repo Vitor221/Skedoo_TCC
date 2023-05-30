@@ -78,10 +78,14 @@
             </div><br>
         </div><br>
     </div><br><br>
-        <div class="div-conteudo">
-            <h1>PDF DO MÊS</h1>
-            <a href="{{ route('download.arquivo') }}">Clique aqui para baixar o arquivo</a>
+    <div class="div-conteudo">
+        <h1>PDF DO MÊS</h1>
+        <div class="div-refeicao">
+            <a href="{{ route('download.arquivo') }}" style="margin-left: 41.5%;">Clique aqui para baixar o arquivo</a>
         </div>
+    </div>
+    <br>
+    <br>
     <div class="div-conteudo">
         @if ($cardapioHoje)
             <h1>Refeição de Hoje</h1>

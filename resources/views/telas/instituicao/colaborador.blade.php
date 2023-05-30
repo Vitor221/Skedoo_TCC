@@ -1,4 +1,4 @@
-@extends('layouts.telas', ['title'=>'Skedoo - Colaboradores'], ['nometela' => 'Colaboradores'])
+@extends('layouts.telas', ['title'=>'Skedoo - Colaboradores'], ['nometela' => 'Colaboradores - Educadores'])
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">

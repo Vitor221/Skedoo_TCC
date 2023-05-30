@@ -20,7 +20,7 @@ function getID(id) {
         "nm" + id
     ).innerHTML;
     divMensagens.innerHTML =
-        "<h3 style='height:100%; width:100%; text-align:center; margin-top:10%'>Carregando...</h3>";
+        "<h3 style='height:100%; width:100%; text-align:center;'>Carregando...</h3>";
     atualizarMensagens();
     setTimeout(autoScroll,1000)
 }
@@ -81,13 +81,12 @@ function atualizarMensagens() {
                 }
             });
             if(divMensagens.innerHTML !="" || novaMensagem != ""){
-              console.log("entrou aqui"+divMensagens.innerHTML+", "+novaMensagem)
               divMensagens.innerHTML = novaMensagem;
               novaMensagem = "";
             }
             if(divMensagens.innerHTML =="" && novaMensagem == ""){
               divMensagens.innerHTML =
-              "<h3 style='height:100%; width:100%; text-align:center; margin-top:10%'>Sem mensagens...</h3>";
+              "<h3 style='height:100%; width:100%; text-align:center;'>Sem mensagens...</h3>";
             }
         })
         .catch((error) => {

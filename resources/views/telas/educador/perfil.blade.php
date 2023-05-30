@@ -14,7 +14,7 @@
 </head>
 
 <body class="conteudo">
-    <x-button-back href="{{ url()->previous() }}" icon="uil uil-angle-left"/>
+    <x-button-back href="{{ route('educador') }}" icon="uil uil-angle-left"/>
     
     <form class="form-cadastro" method="POST" id="form" enctype="multipart/form-data" action="{{ route('educador.perfil.atualizar') }}">
         @csrf

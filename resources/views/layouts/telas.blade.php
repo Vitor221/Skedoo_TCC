@@ -13,7 +13,7 @@
     {{-- estilo padrao nas telas --}}
     <link rel="stylesheet" href="{{ asset('css/padroes/estilo_telas.css') }}">
     @yield('links-scripts')
-    @yield('styles')
+    @yield('styles') 
     <title>{{ $title }}</title>
 </head>
 

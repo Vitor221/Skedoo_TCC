@@ -91,16 +91,17 @@ class InstituicaoController extends Controller
 
     public function mensagem(){
         $TbResponsavel = TbResponsavel::all();
-        return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel]);
+        $login = TbLogin::find(session('login'))->first();
+        return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel, 'login' => $login]);
     }
     public function financeiro(){
         $login = TbLogin::find(session('login'))->first();
         return view('telas.instituicao.financeiro', ['login' => $login]);
     }
 
-    public function transporte(){
-        return view('telas.instituicao.transporte');
-    }
+    // public function transporte(){
+    //     return view('telas.instituicao.transporte');
+    // }
 
     public function perfil()
     {
@@ -471,7 +472,7 @@ class InstituicaoController extends Controller
 
             $path=storagep_path('/cardapio/May.doc');
 
-        return back()->Response::download($path);
+        return back()->response::download($path);
     }
 
     public function visualizar_cardapio(){
