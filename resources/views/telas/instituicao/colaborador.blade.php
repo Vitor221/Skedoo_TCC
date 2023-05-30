@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
 <link rel="stylesheet" href="{{ asset('css/estilo_colaborador.css') }}">
 @endsection
+
 @section('voltar')
 <x-button-back href="{{route('instituicao')}}" icon="uil uil-estate"/>
 @endsection
@@ -73,12 +74,11 @@
     <div>
         <table class="tabela">
             <thead>
-                <h2>Tabela de Clientes
-                </h2>
+                <h4>Tabela de Clientes</h4>
 
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Cadastro</th>
+                    <th scope="col" class="t-head-title">Nome</th>
+                    <th scope="col" class="t-head-title">Cadastro</th>
                     <th scope="col"></th>
                     <th scope="col"><button class="inserir" onclick="inserir()">Inserir</button></th>
                     <th scope="col" id="abrePesquisa" class="pesquisa-tabela"style="height:82px;"><button
@@ -117,7 +117,7 @@
             </tbody>
         </table>
 
-        <div class="pagination justify-content-center">
+        <div>
 
             @if (request()->input('s'))                                                                                                                                                                                                                                  
             {{ $TbEducadores->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             

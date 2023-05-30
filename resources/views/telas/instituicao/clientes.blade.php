@@ -3,8 +3,10 @@
 @section('voltar')
     <x-button-back href="{{ route('instituicao') }}" icon="uil uil-estate" />
 @endsection
+
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/config/config.css') }}">
 @endsection
 
 @section('nav-telas')
@@ -164,8 +166,8 @@
                 </h2>
 
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Cadastro</th>
+                    <th scope="col" class="t-head-title">Nome</th>
+                    <th scope="col" class="t-head-title">Cadastro</th>
                     <th scope="col"></th>
                     <th scope="col"><button class="inserir" onclick="inserir()">Inserir</button></th>
                     <th scope="col" id="abrePesquisa" class="pesquisa-tabela"style="height:82px;"><button
@@ -206,7 +208,7 @@
 
         <div class="pagination justify-content-center">
            
-
+    
             @if (request()->input('s'))                                                                                                                                                                                                                                  
             {{ $TbResponsaveis->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
             @else 

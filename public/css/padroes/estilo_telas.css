@@ -209,7 +209,6 @@ body {
 .div-tabela{
     background-image: linear-gradient(#ecab54, #ffe8ca );
     box-shadow: 0 -1px 12px rgba(0, 0, 0, 0.3);
-    margin-bottom: 4em;
     border-radius: 2em;
 }
 .pagination{
@@ -219,6 +218,21 @@ body {
     margin: auto;
     border-radius: 2em;
 }
+
+.page-item:last-child .page-link {
+    /* border-top-right-radius: var(--bs-pagination-border-radius); */
+    /* border-bottom-right-radius: var(--bs-pagination-border-radius); */
+    border-radius: 0;
+    border-radius: 100%;
+}
+
+.page-item:first-child .page-link {
+    /* border-top-right-radius: var(--bs-pagination-border-radius); */
+    /* border-bottom-right-radius: var(--bs-pagination-border-radius); */
+    border-radius: 0;
+    border-radius: 100%;
+}
+
 
 .page-item {
     margin: 0 1em;
@@ -293,14 +307,28 @@ body {
 
  
 .tabela{
-    width: 95%;
     margin: 0 auto;
-    height: 500px;
     background-color: #ffffff;
     border: none;
-    border-radius: 2em;
+
     margin-bottom: 2em;
 }
+
+.tabela {
+    animation: go-back 1s;
+}
+
+@keyframes go-back {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 100%;
+  }
+}
+
 .pesquisa-tabela{
     width: 820px;
 }
@@ -328,7 +356,10 @@ th {
     background-color: #ffbf69;
     color: white;
     font-weight: bold;
-    
+}
+
+.t-head-title {
+    font-size: 1.3em;
 }
 
 tr:nth-child(even) {

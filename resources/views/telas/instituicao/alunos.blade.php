@@ -76,9 +76,9 @@
         <table class="tabela">
             <thead>
                 <tr>
-                    <th class="nome">Nome</th>
-                    <th class="nome">Periodo</th>
-                    <th class="nome">Sigla</th>
+                    <th class="nome t-head-title">Nome</th>
+                    <th class="nome t-head-title">Periodo</th>
+                    <th class="nome t-head-title">Sigla</th>
                     <th></th>
                     <th></th>
                     <th scope="col"><button class="inserir" onclick="inserirTurma()">Inserir</button></th>
@@ -108,8 +108,8 @@
         <table class="tabela">
             <thead>
                 <tr class="pessoa">
-                    <th class="nome">Nome</th>
-                    <th>Turma</th>
+                    <th class="nome t-head-title">Nome</th>
+                    <th class="t-head-title">Turma</th>
                     <th></th>
                     <th></th></th>
                     <th scope="col" id="abrePesquisa" class="pesquisa-tabela"style="height:82px;"><button
@@ -119,7 +119,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($TbAluno as $TbAluno)
+                @foreach ($TbAlunos as $TbAluno)
                     <tr class="pessoa">
                         <td class="nome" scope style="width:70%;">{{ $TbAluno->nm_aluno }}</td>
                         <td style="width: 20%;">{{ $TbAluno->tb_turma->nm_turma }}</td>
@@ -137,16 +137,16 @@
 
             </tbody>
         </table>
-        <br>
-        <div>
-        @if (request()->input('s'))                                                                                                                                                                                                                                  
-            {{ $TbAlunos->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
+        
+        <div class="pagination justify-content-center">
+            @if (request()->input('s'))                                                                                                                                                                                                                                  
+                {{ $TbAlunos->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
             @else 
-                {{ $TbAluno->links() }}
-            
+                {{ $TbAlunos->links() }}
             @endif
         </div>
-    
+
+        <br>
     </div>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>

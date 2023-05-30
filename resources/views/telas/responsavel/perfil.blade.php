@@ -30,7 +30,7 @@
             @if($login->img_perfil)
                 <img name="image" id="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
             @else
-                <img name="image" class="img-perfil" src="https://i.stack.imgur.com/Bzcs0.png" alt="">
+                <img name="image" class="img-perfil" src="{{ url('./img/perfil-padrao.png')}}" alt="">
             @endif
         </div>
     </div>

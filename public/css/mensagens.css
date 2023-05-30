@@ -27,7 +27,7 @@ p{
     overflow:auto;
 }
 .usuario{
-    padding-left: 1em;
+    padding-inline: 1em;
     height: 3em;
     display: flex;
     border: none;
@@ -116,3 +116,9 @@ p{
     transition: all .3s ease-in-out;
     background-color: rgb(88, 88, 235);
 } 
+.tt-usuarios{
+    width:100%;
+    text-align: center;
+    margin-bottom: 0px;
+    padding: 0.5em;
+}

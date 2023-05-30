@@ -9,6 +9,9 @@
 #calendar{
   background: rgb(255,214,162);
   background: linear-gradient(0deg, rgba(255,214,162,1) 0%, rgba(255,175,72,1) 73%);
+  width: 50%;
+  margin: auto;
+  animation: go-back 1s;
 }
 
 .fc {
@@ -36,4 +39,15 @@
   border-style: solid;
   border: 2px;
   border: orange;
+}
+
+@keyframes go-back {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 100%;
+  }
 }

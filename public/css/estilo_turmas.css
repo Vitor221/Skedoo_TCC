@@ -1,4 +1,3 @@
-html::before {
-  width: 100%;
-  height: 348%;
+.div-tabela {
+  background-image: linear-gradient(#606cd6, #cbcaff );
 }
