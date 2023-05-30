@@ -58,9 +58,11 @@
         <th scope="col">Quant.</th>
         <th scope="col">Visualizar</th>
       </thead>
+       
       <tbody>
-        
+   
       </tbody>
+      
     </table>
   </div>
 </div>

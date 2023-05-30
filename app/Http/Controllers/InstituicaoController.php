@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\TbCidade;
 use App\Models\TbLogin;
+use App\Models\TbPagamento;
+use App\Models\TbStatusPagamento;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -500,7 +502,7 @@ class InstituicaoController extends Controller
     public function dashbord(Request $request){
             $TbTurmas = TbTurma::all();
             $TbAlunos = TbAluno::all();
-            $TbPagamento = TbPagamento::all();
+            $Tbpagamentos = TbPagamento::all();
             $Tbstatuspagamento = TbStatusPagamento::all();
             $TbResponsavel = TbResponsavel::all();
 
@@ -510,6 +512,9 @@ class InstituicaoController extends Controller
             ->get()
             ->keyBy('cd_turma');
 
-        return view('telas.instituicao.dashbord',['TbTurmas' =>$TbTurmas, 'TbAlunos' => $TbAlunos, 'alunosPorTurma' => $alunosPorTurma]);
+
+    
+
+        return view('telas.instituicao.dashbord',['TbTurmas' =>$TbTurmas, 'TbAlunos' => $TbAlunos, 'alunosPorTurma' => $alunosPorTurma, 'statusPagamento' => $statusPagamento, 'TbResponsavel' => $tbResponsavel]);
     }
 }
