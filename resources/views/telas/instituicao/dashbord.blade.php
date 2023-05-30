@@ -47,7 +47,53 @@
           </table>
       </div>
     </div><br><br>
+
+       <!-- Cotando total de clientes responsaveis -->
+     <div class="container">
+      <div class="card">
+       <h4> Total Clientes</h4>  
+      <p>
+    {{ $clienteCadastrados->total_Clientes}}
+      </p>
+      </div>
+     </div><br><br>
+
+     <div class="container">
+      <div class="card">
+       <h4> Total Recebido</h4>  
+      <p>
+    {{ $RecebimentoTotal->total_recebido}}
+      </p>
+      </div>
+     </div><br><br>
+
+     <!-- RECEBIMENTO POR MES -->
+     <div class="container">
+    <div class="card">
+        <h4>Recebimento por Mês</h4>  
+        <ul>
+            @foreach ($RecebimentoPorMes as $recebimento)
+            <li>{{ $recebimento->mes_ano }}: {{ $recebimento->quantidade }} registros de contrato, Total: {{ $recebimento->total_recebido }}</li>
+            @endforeach
+        </ul>
+    </div>
+</div><br><br>
+
+
+<!-- localização do grupo de responsaveis -->
+    <div class="container">
+      <div class="card">
+      <ul>
+      <ul>
+    @foreach($bairros as $bairro)
+        <li>{{ $bairro->nome_bairro }} - Total de Responsáveis: {{ $bairro->total_responsaveis }}</li>
+    @endforeach
+</ul>
+</ul>
+      </div>
+    </div>
     
+
 <!-- Div Pagamento -->
 <div class="container">
       <H3>  PAGAMENTO </H3>  
@@ -60,7 +106,10 @@
       </thead>
        
       <tbody>
-   
+      @foreach($responsaveis as $responsavel)
+    <p>Status: {{ $responsavel->nm_status_pagamento }}</p>
+    <p>Quantidade: {{ $responsavel->quantidade }}</p>
+      @endforeach
       </tbody>
       
     </table>

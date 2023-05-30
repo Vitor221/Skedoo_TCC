@@ -1,9 +1,13 @@
 <?php
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TbAluno extends Model
 {
+	use HasFactory;
 	protected $table = 'tb_aluno';
 	protected $primaryKey = 'cd_aluno';
 	public $incrementing = true;

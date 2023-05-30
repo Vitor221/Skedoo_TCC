@@ -503,7 +503,7 @@ class InstituicaoController extends Controller
             $TbTurmas = TbTurma::all();
             $TbAlunos = TbAluno::all();
             $Tbpagamentos = TbPagamento::all();
-            $Tbstatuspagamento = TbStatusPagamento::all();
+            $TbStatusPagamento = TbStatusPagamento::all();
             $TbResponsavel = TbResponsavel::all();
 
             // Fazendo contagem - Quantos em cada sala matriculados
@@ -511,10 +511,50 @@ class InstituicaoController extends Controller
             ->groupBy('cd_turma')
             ->get()
             ->keyBy('cd_turma');
+ 
+            // Fazendo contagem - Quantos responsaveis cadastrados
+            $clienteCadastrados = TbResponsavel::selectRaw('count(*) as total_Clientes')
+            ->first();
 
 
-    
+            //Fazendo Contagem Anual de Recebimento
 
-        return view('telas.instituicao.dashbord',['TbTurmas' =>$TbTurmas, 'TbAlunos' => $TbAlunos, 'alunosPorTurma' => $alunosPorTurma, 'statusPagamento' => $statusPagamento, 'TbResponsavel' => $tbResponsavel]);
+            $RecebimentoTotal = TbResponsavel::selectRaw("CONCAT('R$ ', FORMAT(ROUND(SUM(vl_fatura), 2), 2, 'de_DE')) AS total_recebido")
+            ->from('tb_pagamento')
+            ->first();
+
+            // separando por mês e quantidade de contratos.
+            $recebimentoPorMes = TbPagamento::selectRaw("DATE_FORMAT(dt_pagamento, '%m/%Y') as mes_ano, COUNT(*) as quantidade, CONCAT('R$ ', FORMAT(SUM(vl_fatura), 2, 'de_DE')) AS total_recebido")
+            ->groupBy('mes_ano')
+            ->orderBy('mes_ano')
+            ->get();
+
+            // Separando por bairro as quantidade de responsaveis
+            $bairros = TbResponsavel::select('tb_bairro.nm_bairro as nome_bairro', DB::raw('COUNT(*) as total_responsaveis'))
+            ->join('Tb_endereco', 'Tb_responsavel.cd_endereco', '=', 'tb_endereco.cd_endereco')
+            ->join('tb_bairro', 'Tb_endereco.cd_bairro', '=', 'Tb_bairro.cd_bairro')
+            ->groupBy('nome_bairro')
+            ->get();
+
+
+         $responsaveis = TbResponsavel::join('tb_pagamento', 'tb_responsavel.cd_responsavel', '=', 'tb_pagamento.cd_pagamento')
+            ->join('Tb_status_pagamento', 'tb_pagamento.cd_status_pagamento', '=', 'tb_status_pagamento.cd_status_pagamento')
+            ->select('tb_status_pagamento.nm_status_pagamento', DB::raw('COUNT(tb_responsavel.cd_responsavel) AS quantidade'))
+            ->groupBy('tb_status_pagamento.nm_status_pagamento')
+            ->get();
+
+            dd($responsaveis);
+           
+
+        return view('telas.instituicao.dashbord',[
+            'TbTurmas' =>$TbTurmas, 
+            'TbAlunos' => $TbAlunos,
+            'alunosPorTurma' => $alunosPorTurma,
+            'clienteCadastrados' => $clienteCadastrados,
+            'RecebimentoTotal' => $RecebimentoTotal,
+            'RecebimentoPorMes' => $recebimentoPorMes,
+            'bairros' => $bairros,
+            'responsaveis' => $responsaveis
+        ]);
     }
 }
