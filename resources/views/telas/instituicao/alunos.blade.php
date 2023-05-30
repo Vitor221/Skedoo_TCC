@@ -144,6 +144,9 @@
             @else 
                 {{ $TbAlunos->links() }}
             @endif
+        <br>
+        <div  class="pagination justify-content-center">
+      
         </div>
 
         <br>
