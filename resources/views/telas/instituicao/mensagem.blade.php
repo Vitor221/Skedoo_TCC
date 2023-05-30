@@ -32,9 +32,16 @@
         <div class="div-usuarios">
             <h3>Usuários</h3>
             <div class="usuarios">
+                <h5 class="tt-usuarios">Responsaveis</h5>
                 @foreach ($TbResponsavel as $TbResponsavel)
                     <button class="usuario" onclick="getID({{$TbResponsavel->cd_cadastro}})">
                         <p id="nm{{$TbResponsavel->cd_cadastro}}">{{ $TbResponsavel->nm_responsavel }}</p>
+                    </button>
+                @endforeach
+                <h5 class="tt-usuarios">Educadores</h5>
+                @foreach ($TbEducadores as $TbEducador)
+                    <button class="usuario" onclick="getID({{$TbEducador->cd_cadastro}})">
+                        <p id="nm{{$TbEducador->cd_cadastro}}">{{ $TbEducador->nm_profissional }}</p>
                     </button>
                 @endforeach
             </div>

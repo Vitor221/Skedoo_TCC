@@ -49,7 +49,8 @@ class InstituicaoController extends Controller
 
     public function problemassaude() {
         $login = TbLogin::find(session('login'))->first();
-        return view('telas.instituicao.problemassaude', ['login' => $login]);
+        $TbAlunos = TbAluno::all();
+        return view('telas.instituicao.problemassaude', ['login' => $login, 'TbAlunos' => $TbAlunos]);
     }
     
     public function cliente(Request $request){
@@ -91,8 +92,9 @@ class InstituicaoController extends Controller
 
     public function mensagem(){
         $TbResponsavel = TbResponsavel::all();
+        $TbEducadores = TbProfissional::all();
         $login = TbLogin::find(session('login'))->first();
-        return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel, 'login' => $login]);
+        return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel, 'login' => $login, 'TbEducadores'=>$TbEducadores]);
     }
     public function financeiro(){
         $login = TbLogin::find(session('login'))->first();

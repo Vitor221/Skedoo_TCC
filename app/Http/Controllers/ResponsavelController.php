@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\TbCardapio;
 use Carbon\Carbon;
 use App\Models\TbInstituicao;
+use App\Models\TbProfissional;
 use App\Models\TbLogin;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -44,8 +45,9 @@ class ResponsavelController extends Controller
 
     public function mensagem(){
         $TbInstituicao = TbInstituicao::all();
+        $TbEducadores = TbProfissional::all();
         $login = TbLogin::find(session('login'))->first();
-        return view('telas.responsavel.mensagem',['TbInstituicao'=>$TbInstituicao, 'login'=>$login]);
+        return view('telas.responsavel.mensagem',['TbInstituicao'=>$TbInstituicao, 'login'=>$login, 'TbEducadores'=>$TbEducadores]);
     }
 
     public function calendario() {

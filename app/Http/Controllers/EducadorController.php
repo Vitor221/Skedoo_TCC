@@ -8,6 +8,7 @@ use App\Models\TbAluno;
 use App\Models\TbInstituicao;
 use App\Models\TbTurma;
 use App\Models\TbLogin;
+use App\Models\TbResponsavel;
 use Illuminate\Support\Facades\Storage;
 
 class EducadorController extends Controller
@@ -33,8 +34,9 @@ class EducadorController extends Controller
 
     public function mensagem(){
         $TbInstituicao = TbInstituicao::all();
+        $TbResponsaveis = TbResponsavel::all();
         $login = TbLogin::find(session('login'))->first();
-        return view('telas.educador.mensagem',['TbInstituicao'=>$TbInstituicao, 'login'=>$login]);
+        return view('telas.educador.mensagem',['TbInstituicao'=>$TbInstituicao, 'login'=>$login, 'TbResponsaveis'=>$TbResponsaveis]);
     }
 
     public function calendario() {
