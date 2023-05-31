@@ -6,7 +6,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/config/config.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/config/config.css') }}"> --}}
 @endsection
 
 @section('nav-telas')

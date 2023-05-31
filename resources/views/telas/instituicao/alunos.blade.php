@@ -148,9 +148,8 @@
         <div  class="pagination justify-content-center">
       
         </div>
-
-        <br>
     </div>
+    <br>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection

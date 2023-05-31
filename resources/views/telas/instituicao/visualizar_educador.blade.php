@@ -29,7 +29,7 @@
 @section('content')
     <div class="div-visualizar">
         <h1 style="text-align: center;">Informações do cliente</h1><br>
-        <div class="visualizar" style="background-color: white;">
+        <div class="visualizar2" style="background-color: white;">
         <h4>Colaborador</h4><br>
         <p>Nome: {{ $educador->nm_profissional }}</p>
         <p>CPF: {{ $educador->cd_cpf }}</p>
