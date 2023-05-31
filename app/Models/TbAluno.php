@@ -56,7 +56,7 @@ class TbAluno extends Model
 	public static function search ($search) {
 
 		return self::where('nm_aluno', "like","%{$search}%")
-		->orWhere('cd_aluno', "like","%{$search}%")
+		->orWhere('cd_turma', "like","%{$search}%")
 		->paginate(6);
 
 		}

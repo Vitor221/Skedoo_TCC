@@ -49,6 +49,11 @@
                     <input type="text" class="texto" style="width:100%" id="sigla" name="sigla"
                         placeholder="Digite até 5 (cinco) letras..."><br><br>
                 </div>
+                <div class="block" style="width:100%">
+                    <label>Quant. Max de Aluno</label>
+                    <input type="text" class="texto" style="width:100%" id="qtdMax" name="qtdMax"
+                        placeholder="Nº máximo de alunos permitido"><br><br>
+                </div>
             </div>
             <button type="reset" class="cancelar" onclick="fechaFormTurma()">Cancelar</button>
             <input type="submit" class="enviar">
@@ -90,7 +95,12 @@
                         <td class="nome" scope style="width:70%;">{{ $TbTurma->nm_turma }}</td>
                         <td class="nome" scope style="width:20%;">{{ $TbTurma->ds_periodo }}</td>
                         <td class="nome" scope style="width:20%;">{{ $TbTurma->sg_turma }}</td>
-                        <td class="botoes"><button class="ver">Vizualizar</button>
+                        <td class="botoes">
+                            <form method="GET"
+                                action="{{ route('instituicao.turma.view', $TbTurma->cd_turma) }}">
+                                <button type="submit" class="ver">Vizualizar</button>
+                            </form>
+                        </td>
                         <td class="botoes"><button class="editar">Editar</button></td>
                         <td>
                             <form method="POST" action="{{ route('instituicao.turma.delete', $TbTurma->cd_turma) }}">
@@ -144,12 +154,7 @@
             @else 
                 {{ $TbAlunos->links() }}
             @endif
-        <br>
-        <div  class="pagination justify-content-center">
-      
-        </div>
     </div>
-    <br>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection

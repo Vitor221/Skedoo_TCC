@@ -13,6 +13,8 @@ use App\Models\TbTurma;
 use App\Models\TbEndereco;
 use App\Models\TbEventos;
 use App\Models\TbProfissional;
+use App\Models\TbPagamento;
+use App\Models\TbStatusPagamento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -65,12 +67,28 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas, 'login' => $login]); 
     }
 
-    public function aluno(){
+    public function aluno(Request $request){
         $login = TbLogin::find(session('login'))->first();
         $TbAlunos = TbAluno::paginate(6);
         $TbTurma = TbTurma::all();
 
+        if ($request->input('s')) {
+            $TbAlunos = TbAluno::search($request->input('s'));
+        } else {
+            $TbAlunos = TbAluno::paginate(6);
+        }
+
         return view('telas.instituicao.alunos', ['TbAlunos' => $TbAlunos, 'TbTurma' => $TbTurma, 'login' => $login]); 
+    }
+
+     public function visualizar_turma($id) {
+        $turma = TbTurma::findOrFail($id);
+        $aluno = TbAluno::all();
+        $login = TbLogin::find(session('login'))->first();
+
+
+        return view('telas.instituicao.visualizar_turma', compact('turma', 'aluno','login'));
+        
     }
 
     public function ajuda(){
@@ -370,6 +388,7 @@ class InstituicaoController extends Controller
     public function inserir_turma(Request $request){
         $turma = new TbTurma();
         $turma->nm_turma = $request->nomeTurma;
+        $turma->cd_total_aluno = $request ->qtdMax;
         $turma->sg_turma = $request->sigla;
         if($request->periodo == "M"){
             $turma->ds_periodo = "Manhã";
@@ -486,7 +505,8 @@ class InstituicaoController extends Controller
             ->groupBy('tb_status_pagamento.nm_status_pagamento')
             ->get();
 
-            dd($responsaveis);
+            
+        
            
 
         return view('telas.instituicao.dashbord',[
