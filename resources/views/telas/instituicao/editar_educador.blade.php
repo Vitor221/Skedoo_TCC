@@ -29,27 +29,33 @@
 
 @section('content')
 
-    <div class="div-visualizar">
-      <h1 style="text-align: center;">Informações do cliente</h1><br>
-      <form method="POST" action="{{ route('instituicao.colaborador.atualizar', ['id'=>$educador->cd_profissional]) }}">
+    <div class="div-visualizar2">
+      <h1 style="text-align: center;">Informações do educador</h1><br>
+      <form class="form2" method="POST" action="{{ route('instituicao.colaborador.atualizar', ['id'=>$educador->cd_profissional]) }}">
         @method('PATCH')
         @csrf
+        <div>
         <label for="">Nome do educador:</label>
-        <input type="text" name="name" value="{{ $educador->nm_profissional }}">
-        <label for="">CPF do educador:</label>
-        <input type="text" name="cpf" value="{{ $educador->cd_cpf }}">
-        <label for="">Função do educador:</label>
-        <input type="text" name="funcao" value="{{ $educador->nm_funcao }}">
+            <input type="text" name="name" value="{{ $educador->nm_profissional }}">
 
-        <select for="turma" class="texto" name="turma" id="turma">
+
+        <label for="">CPF do educador:</label>
+            <input type="text" name="cpf" value="{{ $educador->cd_cpf }}">
+
+            <label for="">Função do educador:</label>
+            <input type="text" name="funcao" value="{{ $educador->nm_funcao }}">
+
+        <select for="turma" class="texto2" name="turma" id="turma">
               <option value="{{ $turma->cd_turma }}" selected disabled>{{ $turma->sg_turma }} - Atual</option>
           @foreach ($tbturmas as $Turma)
               <option value="{{ $Turma->cd_turma }}">{{ $Turma->sg_turma }}</option>
           @endforeach
         </select>
+        <br>
+        <button type="submit" class="btnUpdateEducador">Salvar</button>
+        </div>
 
-        <button type="submit">Salvar</button>
-      </form>
+    </form>
     </div>
 
 

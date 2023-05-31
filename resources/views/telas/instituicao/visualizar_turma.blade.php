@@ -1,7 +1,7 @@
-@extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Colaboradores -  Dados'])
+@extends('layouts.telas', ['title' => 'Skedoo - Responsaveis'], ['nometela' => 'Clientes - Responsaveis dos Alunos'])
 
 @section('voltar')
-    <x-button-back href="{{ route('instituicao.colaborador') }}" icon="uil uil-angle-left" />
+    <x-button-back href="{{ route('instituicao.clientes') }}" icon="uil uil-angle-left" />
 @endsection
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
@@ -28,12 +28,19 @@
 
 @section('content')
     <div class="div-visualizar">
-        <h1 style="text-align: center;">Informações do cliente</h1><br>
-        <div class="visualizar2" style="background-color: white;">
-        <h4>Colaborador</h4><br>
-        <p>Nome: {{ $educador->nm_profissional }}</p>
-        <p>CPF: {{ $educador->cd_cpf }}</p>
-        <p>Turma: {{$educador->tb_turma->nm_turma}}  -  {{$educador->tb_turma->ds_periodo}}</p>
+        <h1 style="text-align: center;">Informações da Turma</h1><br>
+        <div class="visualizar" style="background-color: white;">
+        <h4>Turma</h4><br>
+        <p>Nome: {{ $turma->nm_turma }}</p>
+        <p>Periodo: {{ $turma->ds_periodo }}</p>
+        <p>Sigla: {{ $turma->sg_turma }}</p>
+        <p>Quantidade de alunos: quant. do banco - {{$turma->cd_total_aluno}}</p>
+        <br>
+
+        {{-- <h4>Alunos</h4><br>
+        <p>Nome: {{ $aluno->nm_aluno }}</p>
+        <p>Registro: {{$aluno->dt_nascimento}}</p>
+        <p>Status 'Manipulação': {{$aluno->tb_turma->nm_turma}}  -  {{$aluno->tb_turma->ds_periodo}}</p> --}}
         </div>
     </div>
 
