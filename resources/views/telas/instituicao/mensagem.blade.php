@@ -33,17 +33,19 @@
             <h3>Usuários</h3>
             <div class="usuarios">
                 <h5 class="tt-usuarios">Responsaveis</h5>
-                @foreach ($TbResponsavel as $TbResponsavel)
-                    <button class="usuario" onclick="getID({{$TbResponsavel->cd_cadastro}})">
-                        <p id="nm{{$TbResponsavel->cd_cadastro}}">{{ $TbResponsavel->nm_responsavel }}</p>
-                    </button>
-                @endforeach
+                @for($i = 0; $i < count($TbResponsavel); $i++)
+                @foreach ($TbResponsavel[$i] as $Responsavel[$i])    
+                <button class="usuario" onclick="getID({{$Responsavel[$i]->cd_cadastro}})">
+                    <p id="nm{{$Responsavel[$i]->cd_cadastro}}">{{ $Responsavel[$i]->nm_responsavel }}</p>
+                </button>
+                @endforeach 
+                @endfor
                 <h5 class="tt-usuarios">Educadores</h5>
-                @foreach ($TbEducadores as $TbEducador)
-                    <button class="usuario" onclick="getID({{$TbEducador->cd_cadastro}})">
-                        <p id="nm{{$TbEducador->cd_cadastro}}">{{ $TbEducador->nm_profissional }}</p>
-                    </button>
-                @endforeach
+                @foreach ($TbEducadores as $Educador)    
+                <button class="usuario" onclick="getID({{$Educador->nm_profissional}})">
+                    <p id="nm{{$Educador->cd_cadastro}}">{{ $Educador->nm_profissional }}</p>
+                </button>
+                @endforeach 
             </div>
         </div>
         <div class="block">

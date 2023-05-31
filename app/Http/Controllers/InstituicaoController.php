@@ -13,10 +13,13 @@ use App\Models\TbTurma;
 use App\Models\TbEndereco;
 use App\Models\TbEventos;
 use App\Models\TbProfissional;
+use App\Models\TbPagamento;
+use App\Models\TbStatusPagamento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\TbCidade;
+use App\Models\TbInstituicao;
 use App\Models\TbLogin;
 use Illuminate\Support\Facades\Storage;
 
@@ -79,8 +82,13 @@ class InstituicaoController extends Controller
     }
 
     public function mensagem(){
-        $TbResponsavel = TbResponsavel::all();
-        $TbEducadores = TbProfissional::all();
+        $cdLoginInstituicao = session()->get('login.cd_login');
+        $Instituicao = TbInstituicao::where('cd_cadastro', $cdLoginInstituicao)->first();
+        $TbAlunos = TbAluno::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
+        foreach($TbAlunos as $Aluno){
+            $TbResponsavel[] = TbResponsavel::where('cd_responsavel', $Aluno->cd_responsavel)->get();
+        }
+        $TbEducadores = TbProfissional::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
         $login = TbLogin::find(session('login'))->first();
         return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel, 'login' => $login, 'TbEducadores'=>$TbEducadores]);
     }
@@ -486,7 +494,7 @@ class InstituicaoController extends Controller
             ->groupBy('tb_status_pagamento.nm_status_pagamento')
             ->get();
 
-            dd($responsaveis);
+            // dd($responsaveis);
            
 
         return view('telas.instituicao.dashbord',[
