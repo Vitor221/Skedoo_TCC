@@ -467,7 +467,7 @@ class InstituicaoController extends Controller
 
     // DASHBORD
 
-    public function dashbord(Request $request){
+    public function dashboard(Request $request){
             $TbTurmas = TbTurma::all();
             $TbAlunos = TbAluno::all();
             $Tbpagamentos = TbPagamento::all();
@@ -515,7 +515,7 @@ class InstituicaoController extends Controller
         
            
 
-        return view('telas.instituicao.dashbord',[
+        return view('telas.instituicao.dashboard',[
             'TbTurmas' =>$TbTurmas, 
             'TbAlunos' => $TbAlunos,
             'alunosPorTurma' => $alunosPorTurma,

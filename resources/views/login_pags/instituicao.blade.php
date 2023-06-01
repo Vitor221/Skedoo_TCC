@@ -34,7 +34,7 @@
 </div>
 <div class="flex-cards" style="margin-bottom: 0px;">
     <x-card-funcoes tituloCard="Refeição" href="{{route('instituicao.refeicao.insert')}}" icon="uil uil-crockery"/>
-    <x-card-funcoes tituloCard="Financeiro" href="{{route('instituicao.financeiro')}}" icon="uil uil-money-withdraw"/>
+    <x-card-funcoes tituloCard="Dashboard" href="{{route('instituicao.dashboard')}}" icon="uil uil-money-withdraw"/>
     <x-card-funcoes tituloCard="Calendário" href="{{route('instituicao.calendario')}}" icon="uil uil-calendar-alt"/>
     <x-card-funcoes tituloCard="Ajuda" href="{{route('instituicao.ajuda')}}" icon="uil uil-question"/>
 </div>
