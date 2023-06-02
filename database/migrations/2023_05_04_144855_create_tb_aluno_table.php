@@ -23,6 +23,7 @@ return new class extends Migration
             $table->char('cd_contato', 14)->nullable();
             $table->integer('se_problema_saude')->nullable();
             $table->string('nm_problema_saude', 20)->nullable();
+            $table->string('nm_grav_saude',12)->nullable();
             $table->string('ds_problema_saude', 150)->nullable();
             $table->string('nm_tipo_ps', 20)->nullable();
             $table->integer('cd_turma')->nullable()->index('fk_aluno_turma');
