@@ -29,7 +29,6 @@
 
 @section('content')
     <div class="insert">
-
         <form class="form-cadastro" id="formTurma" method="POST" action="{{route('instituicao.turma.insert')}}">
             @csrf
             <label>Nome da Turma</label>
