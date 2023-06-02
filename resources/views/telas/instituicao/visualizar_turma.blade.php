@@ -34,30 +34,36 @@
         <h4>Turma</h4><br>
         <p>Nome: {{ $turma->nm_turma }}</p>
         <p>Periodo: {{ $turma->ds_periodo }}</p>
-        <p>Sigla: {{ $turma->sg_turma }}</p>
-        @foreach ($TbAlunos as $TbAluno)
-        <p>Quantidade de alunos:{{$qtdalunosNaTurma[$TbAluno->cd_turma]->total_alunos}} - {{$turma->cd_total_aluno}}</p>
+        <p>Sigla: {{ $turma->sg_turma }}</p >
+        @foreach($professoresnaturma as $professoresnaturma)
+        <p>Professor(es): {{ $professoresnaturma->nm_profissional }}</p >
         @endforeach
+        <p>Quantidade de alunos: {{$qtdalunosNaTurma->total_alunos}} -{{$turma->cd_total_aluno}}</p>
+    
         <br>
-        
+        </thead>
+           
 
        
-            {{$alunosnaturma}}
-        @foreach ($TbAlunos as $TbAluno)
+            <h4>Alunos</h4><br>
+            <table class="tabela">
+            <thead>
+                <tr class="pessoa">
+                    <th class="nome t-head-title">Nome</th>
+                    <th class="t-head-title">Registro</th>
+                    <th></th></th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach ($alunosnaturma as $TbAluno)
         <tr class="pessoa">
             <td class="nome" scope style="width:70%;">{{ $TbAluno->nm_aluno }}</td>
             <td style="width: 20%;">{{ $TbAluno->cd_aluno }}</td>
-            <td class="botoes"><button class="ver">Vizualizar</button>
-            <td class="botoes"><button class="editar">Editar</button></td>
-            <td>
-                <form action="{{ route('instituicao.aluno.delete', $TbAluno->cd_aluno) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
-                </form>
-            </td>
+            <td class="botoes"><button class="ver">Direcionar</button>
+           
+           
         </tr>
-    @endforeach
+        @endforeach
         </div>
     </div>
 

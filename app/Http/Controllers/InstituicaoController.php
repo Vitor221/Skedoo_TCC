@@ -86,20 +86,27 @@ class InstituicaoController extends Controller
         $TbTurma = TbTurma::findOrFail($id);
         $TbAluno = TbAluno::all();
         $login = TbLogin::find(session('login'))->first();
+        $Profissionais = TbProfissional::all();
 
-        //Contando quantidade de alunos da sala
+
+        //Verificando turma selecionada
+
+        $cdTurmaSelecionada = $TbTurma->cd_turma;
+
+       //Contando quantidade de alunos da sala
         $qtdalunosNaTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
-            ->groupBy('cd_turma')
-            ->get()
-            ->keyBy('cd_turma');
+            ->where('cd_turma', $cdTurmaSelecionada)
+            ->groupBy('cd_turma')             
+            ->first();
 
-
-        //Monstrando alunos da sala
-        $alunosnaturma = TbAluno::
-        join('tb_turma', 'tb_aluno.cd_aluno', '=' , 'tb_turma.cd_turma')
-        ->select('tb_aluno.nm_aluno')
+            
+        //Monstrando professores da sala
+        $professoresnaturma = TbProfissional::where('cd_turma',$cdTurmaSelecionada)
         ->get();
 
+        //Monstrando alunos da sala
+        $alunosnaturma = TbAluno::where('cd_turma', $cdTurmaSelecionada)
+        ->get();
 
 
         return view('telas.instituicao.visualizar_turma', [
@@ -107,7 +114,8 @@ class InstituicaoController extends Controller
             'TbAlunos' => $TbAluno,
             'login' => $login,
             'qtdalunosNaTurma' => $qtdalunosNaTurma,
-            'alunosnaturma' => $alunosnaturma
+            'alunosnaturma' => $alunosnaturma,
+            'professoresnaturma'=>$professoresnaturma
         ]);
         
     }
