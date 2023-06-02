@@ -54,14 +54,14 @@
                     <h3 id="nomeChat">Nome do destinatario</h3>
                 </div>
                 <div id="div-mensagens" class="mensagens">
-                    <h3 style="height:100%; width:100%; text-align:center; margin-top:10%">Carregando...</h3>
+                    <h3 style='height:100%; width:100%; text-align:center; display: flex; justify-content: center; align-items: center;'>Carregando...</h3>
                 </div>
             </div>
             <div class="div-form">
                 <div class="form-mensagem" action="">
-                    <input type="text" id="mensagem">
+                    <input type="text" id="mensagem" onblur="removerTagsHTML(this)">
                     <button onclick="enviarMensagem()">Enviar</button>
-                </div>
+                </div>  
             </div>
         </div>
     </div>

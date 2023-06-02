@@ -83,12 +83,40 @@ class InstituicaoController extends Controller
     }
 
      public function visualizar_turma($id) {
-        $turma = TbTurma::findOrFail($id);
-        $aluno = TbAluno::all();
+        $TbTurma = TbTurma::findOrFail($id);
+        $TbAluno = TbAluno::all();
         $login = TbLogin::find(session('login'))->first();
+        $Profissionais = TbProfissional::all();
 
 
-        return view('telas.instituicao.visualizar_turma', compact('turma', 'aluno','login'));
+        //Verificando turma selecionada
+
+        $cdTurmaSelecionada = $TbTurma->cd_turma;
+
+       //Contando quantidade de alunos da sala
+        $qtdalunosNaTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
+            ->where('cd_turma', $cdTurmaSelecionada)
+            ->groupBy('cd_turma')             
+            ->first();
+
+            
+        //Monstrando professores da sala
+        $professoresnaturma = TbProfissional::where('cd_turma',$cdTurmaSelecionada)
+        ->get();
+
+        //Monstrando alunos da sala
+        $alunosnaturma = TbAluno::where('cd_turma', $cdTurmaSelecionada)
+        ->get();
+
+
+        return view('telas.instituicao.visualizar_turma', [
+            'turma' => $TbTurma,
+            'TbAlunos' => $TbAluno,
+            'login' => $login,
+            'qtdalunosNaTurma' => $qtdalunosNaTurma,
+            'alunosnaturma' => $alunosnaturma,
+            'professoresnaturma'=>$professoresnaturma
+        ]);
         
     }
 
@@ -117,10 +145,16 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.transporte');
     }
 
-    public function colaborador(){
+    public function colaborador(Request $request){
         $login = TbLogin::find(session('login'))->first();
         $TbEducadores = TbProfissional::paginate(6);
         $TbTurmas = TbTurma::all();
+
+        if ($request->input('s')) {
+            $TbEducadores = TbProfissional::search($request->input('s'));
+        } else {
+            $TbEducadores = TbProfissional::paginate(6);
+        }
         return view('telas.instituicao.colaborador', ['TbEducadores' => $TbEducadores, 'TbTurmas' => $TbTurmas, 'login' => $login]);
     }
 
@@ -467,7 +501,7 @@ class InstituicaoController extends Controller
 
     // DASHBORD
 
-    public function dashbord(Request $request){
+    public function dashboard(Request $request){
             $TbTurmas = TbTurma::all();
             $TbAlunos = TbAluno::all();
             $Tbpagamentos = TbPagamento::all();
@@ -515,7 +549,7 @@ class InstituicaoController extends Controller
         
            
 
-        return view('telas.instituicao.dashbord',[
+        return view('telas.instituicao.dashboard',[
             'TbTurmas' =>$TbTurmas, 
             'TbAlunos' => $TbAlunos,
             'alunosPorTurma' => $alunosPorTurma,

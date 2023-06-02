@@ -1,4 +1,4 @@
-@extends('layouts.telas', ['title'=>'Skedoo - Dashbord'], ['nometela' => 'Dashbord'])
+@extends('layouts.telas', ['title'=>'Skedoo - Dashboard'], ['nometela' => 'Dashboard'])
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
