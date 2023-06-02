@@ -83,12 +83,32 @@ class InstituicaoController extends Controller
     }
 
      public function visualizar_turma($id) {
-        $turma = TbTurma::findOrFail($id);
-        $aluno = TbAluno::all();
+        $TbTurma = TbTurma::findOrFail($id);
+        $TbAluno = TbAluno::all();
         $login = TbLogin::find(session('login'))->first();
 
+        //Contando quantidade de alunos da sala
+        $qtdalunosNaTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
+            ->groupBy('cd_turma')
+            ->get()
+            ->keyBy('cd_turma');
 
-        return view('telas.instituicao.visualizar_turma', compact('turma', 'aluno','login'));
+
+        //Monstrando alunos da sala
+        $alunosnaturma = TbAluno::
+        join('tb_turma', 'tb_aluno.cd_aluno', '=' , 'tb_turma.cd_turma')
+        ->select('tb_aluno.nm_aluno')
+        ->get();
+
+
+
+        return view('telas.instituicao.visualizar_turma', [
+            'turma' => $TbTurma,
+            'TbAlunos' => $TbAluno,
+            'login' => $login,
+            'qtdalunosNaTurma' => $qtdalunosNaTurma,
+            'alunosnaturma' => $alunosnaturma
+        ]);
         
     }
 
@@ -117,10 +137,16 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.transporte');
     }
 
-    public function colaborador(){
+    public function colaborador(Request $request){
         $login = TbLogin::find(session('login'))->first();
         $TbEducadores = TbProfissional::paginate(6);
         $TbTurmas = TbTurma::all();
+
+        if ($request->input('s')) {
+            $TbEducadores = TbProfissional::search($request->input('s'));
+        } else {
+            $TbEducadores = TbProfissional::paginate(6);
+        }
         return view('telas.instituicao.colaborador', ['TbEducadores' => $TbEducadores, 'TbTurmas' => $TbTurmas, 'login' => $login]);
     }
 
