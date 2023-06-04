@@ -47,11 +47,31 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.saude');
     }
 
-    public function problemassaude() {
+    public function problemassaude(Request $request) {
         $login = TbLogin::find(session('login'))->first();
         $TbAlunos = TbAluno::all();
-        return view('telas.instituicao.problemassaude', ['login' => $login, 'TbAlunos' => $TbAlunos]);
-    }
+        $TbResponsaveis = TbResponsavel::all();
+
+        $verificarNome = $request->input('nome');
+        $verificarCd = $request->input('cd');
+
+        $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
+        $cdExiste = TbAluno::where('cd_aluno', $verificarCd)->first();
+
+
+        if($alunoExiste || $cdExiste){
+            $saude =new TbAluno();
+            $saude->nm_grave_saude = $request->grav;
+            $saude->nm_tipo_ps = $request->tipos;
+            $saude->nm_problema_saude = $request->nomedoproblema;
+            $saude->ds_problema_saude = $request->textarea_div;
+          
+        }
+        
+        return view('telas.instituicao.problemassaude', [
+            'login' => $login, 'TbAlunos' => $TbAlunos
+    
+    ]);}
     
     public function cliente(Request $request){
         $TbResponsaveis = TbResponsavel::paginate(6);

@@ -28,6 +28,10 @@ class TbAluno extends Model
 		'im_vacinacao',
 		'im_aluno',
 		'cd_contato',
+		'se_problema_saude',
+		'nm_problema_saude',
+		'nm_grav_saude',
+		'nm_tipo_ps',
 		'cd_turma',
 		'cd_instituicao',
 		'cd_responsavel'
