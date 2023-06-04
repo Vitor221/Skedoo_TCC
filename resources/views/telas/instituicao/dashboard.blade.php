@@ -30,10 +30,9 @@
                 <canvas id="myChart"></canvas>
             </div>
             <div class="col-6">
-              <canvas id=""></canvas>
+              <canvas id="myBar"></canvas>
             </div>
         </div>
-
 
 
         <!-- Div Alunos-->
@@ -139,5 +138,32 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+      
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: [ 'Alunos por turma'],
+            datasets: [{
+              label: '# of Votes',
+              data: [ $turmaTotal ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
     <script src="{{ asset('js/configFinance.js') }}"></script>
 @endsection
+
+@push('graficos')
+
+@endpush

@@ -582,17 +582,20 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.perfil', ['login' => $login]);
     }
 
-    public function dadosGrafico(){
-    $dados = // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
+    // public function dadosGrafico(){
 
-    // Formate os dados em um formato adequado para o Chart.js
-    $labels = $dados->pluck('label');
-    $valores = $dados->pluck('valor');
+    // // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
+    // $turmaData = TbTurma::all();
+    // foreach($turmaData as $turma){
+    //     $turmaNome[] = "'".$turma -> nome."'";
+    //     $turmaTotal[] = TbAluno::where('cd_turma', $turma->cd)->count();
+    // }
 
-    return response()->json([
-        'labels' => $labels,
-        'valores' => $valores,
-    ]);
-    }
+    // // Formatar p/ ChartJS 
+    // $turmaLabel = implode(',', $turmaNome);
+    // $turmaTotal = implode(',', $turmaTotal);
 
+    // return view('resources.dashboard', compact('turmaLabel', 'turmaTotal'));
+    // }
+    
 }
