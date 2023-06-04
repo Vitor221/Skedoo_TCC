@@ -601,4 +601,18 @@ class InstituicaoController extends Controller
         
         return view('telas.instituicao.perfil', ['login' => $login]);
     }
+
+    public function dadosGrafico(){
+    $dados = // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
+
+    // Formate os dados em um formato adequado para o Chart.js
+    $labels = $dados->pluck('label');
+    $valores = $dados->pluck('valor');
+
+    return response()->json([
+        'labels' => $labels,
+        'valores' => $valores,
+    ]);
+    }
+
 }

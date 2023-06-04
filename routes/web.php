@@ -94,7 +94,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/refeicao/download',[InstituicaoController::class, 'download'])->name('download.arquivo');
 
     Route::get('instituicao/dashboard', [InstituicaoController::class, 'dashboard'])->name('instituicao.dashboard');
-                        
+    Route::get('/dados-grafico', 'ChartController@dadosGrafico');
     
 
     Route::get('instituicao/perfil', [InstituicaoController::class, 'perfil'])->name('instituicao.perfil');
