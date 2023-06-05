@@ -59,9 +59,9 @@
                         <label>Gravidade</label>
                         <select class="dropdown" name="grav" id="grav">
                             <option class="opcao" value="0">Selecione</option>
-                            <option class="opcao" value="cardiaco">Gravíssima</option>
-                            <option class="opcao" value="respiratorio">Grave</option>
-                            <option class="opcao" value="alergico">Moderada</option>
+                            <option class="opcao" value="Gravissima">Gravíssima</option>
+                            <option class="opcao" value="Grave">Grave</option>
+                            <option class="opcao" value="Moderada">Moderada</option>
                         </select>
                     </div>
 
@@ -87,5 +87,102 @@
         <div style="background-color: white;border-radius: 2em;padding:3em;">
             <h3>Quadro de Saúde</h3>
         </div>
+
+        @if(isset($TbAlunos))
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Gravidade</th>
+                <th><th>Opções</th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($TbAlunos as $aluno)
+                @if($aluno->nm_grav_saude === 'Gravissima')
+
+                    <tr class="gravissima">
+                        <td>{{ $aluno->nm_aluno }}</td>
+                        <td>{{ $aluno->nm_grav_saude }}</td>
+                        <td class="botoes">
+                            <form method="GET"
+                                action="">
+                                <button type="submit" class="ver">Vizualizar</button>
+                            </form>
+                        </td>
+                        <td class="botoes">
+                            <form method="GET"
+                                action="">
+                                <button class="editar">Editar</button>
+                            </form>
+                        </td>
+                        <td class="botoes">
+                            <form method="POST"
+                                action="">
+                                @csrf
+                                @method('DELETE')                                                                             
+                     <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
+                            </form>
+                        </td>      
+                    </tr>
+                @elseif($aluno->nm_grav_saude === 'Grave')
+                    <tr class="grave">
+                        <td>{{ $aluno->nm_aluno }}</td>
+                        <td>{{ $aluno->nm_grav_saude }}</td>
+                       <td class="botoes">
+                            <form method="GET"
+                                action="">
+                                <button type="submit" class="ver">Vizualizar</button>
+                            </form>
+                        </td>
+                        <td class="botoes">
+                            <form method="GET"
+                                action="">
+                                <button class="editar">Editar</button>
+                            </form>
+                        </td>
+                        <td class="botoes">
+                            <form method="POST"
+                                action="">
+                                @csrf
+                                @method('DELETE')                                                                             
+                     <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
+                            </form>
+                        </td>       
+
+                    </tr>
+                @elseif($aluno->nm_grav_saude === 'Moderada')
+                    <tr class="moderada">
+                        <td>{{ $aluno->nm_aluno }}</td>
+                        <td>{{ $aluno->nm_grav_saude }}</td>
+                        <td class="botoes">
+                            <form method="GET"
+                                action="">
+                                <button type="submit" class="ver">Vizualizar</button>
+                            </form>
+                        </td>
+                        <td class="botoes">
+                            <form method="GET"
+                                action="">
+                                <button class="editar">Editar</button>
+                            </form>
+                        </td>
+                        <td class="botoes">
+                            <form method="POST"
+                                action="">
+                                @csrf
+                                @method('DELETE')                                                                             
+                     <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
+                            </form>
+                        </td>      
+
+                    </tr>
+                @endif
+            @endforeach
+        </tbody>
+    </table>
+@endif
     </div>
 @endsection
