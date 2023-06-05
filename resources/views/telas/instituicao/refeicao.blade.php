@@ -81,7 +81,7 @@
     <div class="div-conteudo">
         <h1>PDF DO MÊS</h1>
         <div class="div-refeicao">
-            <a href="{{ route('download.arquivo') }}" style="margin-left: 41.5%;">Clique aqui para baixar o arquivo</a>
+        <a href="{{ route('download.arquivo') }}" style="margin-left: 41.5%;">Clique aqui para baixar o último arquivo</a>
         </div>
     </div>
     <br>

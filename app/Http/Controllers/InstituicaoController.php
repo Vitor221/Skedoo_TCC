@@ -17,6 +17,7 @@ use App\Models\TbPagamento;
 use App\Models\TbStatusPagamento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\TbCidade;
 use App\Models\TbInstituicao;
@@ -47,11 +48,39 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.saude');
     }
 
-    public function problemassaude() {
-        $login = TbLogin::find(session('login'))->first();
-        $TbAlunos = TbAluno::all();
-        return view('telas.instituicao.problemassaude', ['login' => $login, 'TbAlunos' => $TbAlunos]);
+    public function problemassaude(Request $request)
+{
+    $login = TbLogin::find(session('login'))->first();
+    $TbAlunos = TbAluno::all();
+    $TbResponsaveis = TbResponsavel::all();
+
+    $verificarNome = $request->input('nome');
+    $verificarCd = $request->input('cd');
+
+    $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
+    $cdExiste = TbAluno::where('cd_aluno', $verificarCd)->first();
+
+
+    if ($alunoExiste || $cdExiste) {
+        if ($alunoExiste !== null) {
+            $saude = $alunoExiste;
+        } elseif ($cdExiste !== null) {
+            $saude = $cdExiste;
+        }
+
+        $saude->nm_grav_saude = $request->grav;
+        $saude->nm_tipo_ps = $request->tipos;
+        $saude->nm_problema_saude = $request->nomedoproblema;
+        $saude->ds_problema_saude = $request->textarea_div;
+
+        $saude->save(); // Salvar as alterações no registro existente
     }
+
+    return view('telas.instituicao.problemassaude', [
+        'login' => $login,
+        'TbAlunos' => $TbAlunos,
+    ]);
+}
     
     public function cliente(Request $request){
         $TbResponsaveis = TbResponsavel::paginate(6);
@@ -451,11 +480,21 @@ class InstituicaoController extends Controller
     }
     //CRUD - Turma - FIM
 
-    public function inserir_arquivo(Request $request){
-        $cardapio = new TbCardapio();
-        $cardapio->img = $request->url;
-        return back()->with('success', 'Cardapio enviado com sucesso!'); 
+    public function download()
+{
+    $cardapio = TbCardapio::whereNotNull('img_pdf')->latest()->first();
+
+    if ($cardapio) {
+        $filePath = storage_path('app/public/' . $cardapio->img_pdf);
+
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        }
     }
+
+    // Caso o arquivo não exista ou nenhum Cardapio válido seja encontrado
+    return redirect()->route('instituicao.refeicao')->with('error', 'Arquivo não encontrado.');
+}
 
     public function inserir_cardapio (Request $request){
         $ddsemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
@@ -468,9 +507,16 @@ class InstituicaoController extends Controller
         $cardapio ->nm_ddsemana = $ddsemana[$ddsemananum];
         $cardapio ->nm_sobremessa = $request->nmSobremessa;
         $cardapio ->desc_sobremessa = $request->DescSobremessa;
-        $cardapio -> save();
-        
-        return back()->with('success', 'Cardapio enviado com sucesso!'); 
+
+        if ($request->hasFile('imgdopdf')) {
+            $novoNome = Str::slug(date('M'), '-') . '.' . $request->imgdopdf->getClientOriginalExtension();
+            $imagem = $request->file('imgdopdf')->storeAs('public/cardapio', $novoNome);
+            $cardapio->img_pdf = 'cardapio/' . $novoNome;
+        }
+    
+        $cardapio->save();
+    
+        return back()->with('success', 'Cardapio enviado com sucesso!');
     }
     public function visualizar_cardapio(){
         $dataAtual = Carbon::now()->format('Y-m-d');
@@ -491,7 +537,7 @@ class InstituicaoController extends Controller
     }
 
     public function perfil()
-    {
+ {
         if (session()->has('login')) {
             $login = TbLogin::find(session('login'))->first();
             return view('telas.instituicao.perfil', compact('login'));
@@ -581,4 +627,21 @@ class InstituicaoController extends Controller
         
         return view('telas.instituicao.perfil', ['login' => $login]);
     }
+
+    // public function dadosGrafico(){
+
+    // // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
+    // $turmaData = TbTurma::all();
+    // foreach($turmaData as $turma){
+    //     $turmaNome[] = "'".$turma -> nome."'";
+    //     $turmaTotal[] = TbAluno::where('cd_turma', $turma->cd)->count();
+    // }
+
+    // // Formatar p/ ChartJS 
+    // $turmaLabel = implode(',', $turmaNome);
+    // $turmaTotal = implode(',', $turmaTotal);
+
+    // return view('resources.dashboard', compact('turmaLabel', 'turmaTotal'));
+    // }
+    
 }
