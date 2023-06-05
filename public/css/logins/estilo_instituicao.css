@@ -1,20 +1,17 @@
-html::before {
+body::before {
     content: "";
-    background-image: url("../../img/img_logins/background_1-skedoo-inst.svg"),
-        url("../../img/img_logins/background_2-skedoo-inst.svg"),
-        url("../../img/img_logins/background_3-skedoo-inst.svg"),
-        url("../../img/img_logins/background_4-skedoo-inst.svg"), 
-        url('../../img/img_telas/nav-background2.svg'), 
-        url('../../img/img_telas/nav-background.svg'),
-        url('../../img/img_telas/bg-instituicao.svg');
-    background-size: 15%, 8%, 100%, 30%, 80%, 130%, 125%;
-    background-position: top left, right top 0%, bottom -180% left,
-     bottom -10px right, left, right, bottom left, left;
+    background-image: url("../../img/img_logins/bg-instituicao-wave.svg"),
+    url("../../img/img_logins/bg-instituicao-wave-right.svg"),
+    url("../../img/img_logins/bg-instituicao-ball-left.svg"),
+    url("../../img/img_logins/bg-instituicao-ball-right.svg");
+    background-size: 100%;
     background-repeat: no-repeat;
+    background-position: center;
     width: 100%;
     height: 100%;
     position: absolute;
-    opacity: 0.7;
+    top: 0;
+    opacity: 0.6;
 }
 
 .nav {
@@ -65,4 +62,5 @@ html::before {
 }
 .footer-color{
     color: #4fbbb2;
+    position: relative;
 }
