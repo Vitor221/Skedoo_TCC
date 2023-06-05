@@ -22,6 +22,7 @@ function getID(id) {
     divMensagens.innerHTML =
         "<h3 style='height:100%; width:100%; text-align:center; display: flex; justify-content: center; align-items: center;'>Carregando...</h3>";
     atualizarMensagens();
+    fechaPesquisar()
     setTimeout(autoScroll, 1000);
 }
 
@@ -52,6 +53,7 @@ function enviarMensagem() {
                 remetente: id_remetente,
                 destinatario: id_destinatario,
                 chat: id_chat,
+                visualizada: false
             }),
         }
     );
@@ -65,26 +67,42 @@ function atualizarMensagens() {
     } else {
         id_chat = id_destinatario.toString() + id_remetente.toString();
     }
-    campo = "chat";
-    campoCodificado = encodeURIComponent(campo);
-    chatCodificado = encodeURIComponent(id_chat);
-    mensagensURL = `${baseURL}/mensagens.json?orderBy="${campoCodificado}"&equalTo="${chatCodificado}"&print='pretty'`;
-    console.log(mensagensURL)
+    mensagensURL = `${baseURL}/mensagens.json`;
     fetch(mensagensURL)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            Object.values(data).forEach((mensagem) => {
+            Object.entries(data).forEach(([key, mensagem]) => {             
                 if (
-                    mensagem.remetente == id_remetente &&
-                    mensagem.destinatario == id_destinatario
+                    mensagem.remetente == id_destinatario &&
+                    mensagem.destinatario == id_remetente &&
+                    mensagem.visualizada == false
                 ) {
-                    novaMensagem +=
-                        "<div class='mensagem enviada'><p>" +
-                        mensagem.mensagem +
-                        "</p><span>" +
-                        mensagem.data +
-                        "</span></div>";
+                    const mensagemURL = `${baseURL}/mensagens/${key}.json`;
+                    fetch(mensagemURL, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            visualizada: true
+                        })
+                    });
+                }
+                if (mensagem.remetente == id_remetente && mensagem.destinatario == id_destinatario) {
+                    if (mensagem.visualizada == true) {
+                        novaMensagem +=
+                            "<div class='mensagem enviada'><p>" +
+                            mensagem.mensagem +
+                            "</p><span class='infomensagem'>" +
+                            mensagem.data +
+                            "<i class='uil uil-eye'></i></span></div>";
+                    } else {
+                        novaMensagem +=
+                            "<div class='mensagem enviada'><p>" +
+                            mensagem.mensagem +
+                            "</p><span class='infomensagem'>" +
+                            mensagem.data +
+                            "<i class='uil uil-eye-slash'></i></span></div>";
+                    }
                 }
                 if (
                     mensagem.remetente == id_destinatario &&
@@ -122,4 +140,60 @@ function removerTagsHTML(input) {
     input.value = textoSemTags;
 }
 
-setInterval(atualizarMensagens, 1000);
+// setInterval(atualizarMensagens, 1000);
+
+//js pesquisa 
+
+function pesquisar() {
+    document.getElementById('pesquisa').style = "display:auto;"
+    document.getElementById('abrePesquisa').style = "display:none;"
+    document.getElementById('fechaPesquisa').style = "display:auto;"
+    document.getElementById('resultados').style = "display:auto;"
+}
+function fechaPesquisar() {
+    document.getElementById('pesquisa').style = "display:none;"
+    document.getElementById('abrePesquisa').style = "display:auto;"
+    document.getElementById('fechaPesquisa').style = "display:none;"
+    document.getElementById('resultados').style = "display:none;"
+    document.getElementById('search-input').value = ""
+    pesquisando();
+}
+
+let pesquisaAtiva = false;
+
+function pesquisando() {
+    if (pesquisaAtiva) {
+        return;
+    }
+
+    pesquisaAtiva = true;
+
+    const nome = document.getElementById('search-input').value;
+    document.getElementById('resultados').innerHTML = "";
+
+    fetch(`/chat/usuarios?nome=${nome}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const resultadosElement = document.getElementById('resultados');
+            Object.values(data).forEach((item) => {
+                const cdCadastro = item.cd_cadastro;
+                const buttonElement = document.createElement('button');
+                buttonElement.className = 'usuario resultado';
+                buttonElement.value = cdCadastro;
+                buttonElement.setAttribute('onclick', `getID(${cdCadastro})`);
+                const pElement = document.createElement('p');
+                pElement.id = `nm${cdCadastro}`;
+                pElement.textContent = item.nm_responsavel;
+                buttonElement.appendChild(pElement);
+                resultadosElement.appendChild(buttonElement);
+            });
+
+            pesquisaAtiva = false;
+        })
+        .catch(error => {
+            pesquisaAtiva = false;
+            console.error(error);
+        });
+}
+

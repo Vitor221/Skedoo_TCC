@@ -10,6 +10,9 @@ p{
 .usuarios::-webkit-scrollbar{
     display: none;
 }
+.resultados::-webkit-scrollbar{
+    display: none;
+}
 .block{
     display: block;
     width: 100%;
@@ -147,4 +150,31 @@ p{
 .search{
     top: 4em;
     left: 20%;
+}
+.resultados{
+    position: absolute;
+    top: 7em;
+    left: 20%;
+    max-height: 18em;
+    overflow: scroll;
+}
+.uil-eye{
+    width: fit-content;
+    margin-left: auto;
+    padding-left: 0.5em;
+}
+.uil-eye-slash{
+    width: fit-content;
+    margin-left: auto;
+    padding-left: 0.5em;
+}
+.uil-eye::before{
+    font-size: 1.5em;
+    color: rgb(46, 136, 255);
+}
+.uil-eye-slash::before{
+    font-size: 1.5em;
+}
+.infomensagem{
+    display: flex;
 }

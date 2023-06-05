@@ -35,10 +35,10 @@
                 <button id="abrePesquisa" class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button>
                 <button id="fechaPesquisa"class="pesquisar" onclick="fechaPesquisar()" style="display:none;"><i class="uil uil-times"></i></button>
                 <div class="search" id="pesquisa" style="display:none;">
-                    <form action="{{route('instituicao.alunos')}}" method="get">
-                        <input type="text" id="search-input" placeholder="Pesquisar usuários" data-search-route="{{ route('usuarios.search') }}">
-                    </form>
-                </div>
+                        <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()">
+                    </div>
+                    <div class="resultados" id="resultados">
+                    </div>
             </div>
             <div class="usuarios">
                 <h5 class="tt-usuarios">Responsaveis</h5>

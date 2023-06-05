@@ -6,7 +6,11 @@ use App\Http\Controllers\InstituicaoController;
 use App\Http\Controllers\EducadorController;
 use App\Http\Controllers\ResponsavelController;
 use App\Http\Controllers\LoginController;
-
+use App\Models\TbResponsavel;
+use App\Models\TbInstituicao;
+use App\Models\TbAluno;
+use App\Models\TbProfissional;
+use App\Models\TbLogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +34,20 @@ Route::get('/novahora', function () {
     $novaHora = \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('H:i:s');
     return response($novaHora);
 });
+Route::get('/chat/usuarios', function (\Illuminate\Http\Request $request) {
+    $nomeResponsavel = $request->input('nome');
+    $responsaveis = TbResponsavel::where('nm_responsavel', 'like', '%' . $nomeResponsavel . '%')->get();
+    // $cdLoginInstituicao = session()->get('login.cd_login');
+    //     $Instituicao = TbInstituicao::where('cd_cadastro', $cdLoginInstituicao)->first();
+    //     $TbAlunos = TbAluno::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
+    //     foreach($TbAlunos as $Aluno){
+    //         $TbResponsavel[] = TbResponsavel::where('cd_responsavel', $Aluno->cd_responsavel)->get();
+    //     }
+    //     $TbEducadores = TbProfissional::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
+    //     $login = TbLogin::find(session('login'))->first();
+    return response($responsaveis);
+});
+
 //Tela Home
 Route::get('/', function () {
     return view('home');
