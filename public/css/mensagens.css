@@ -4,6 +4,9 @@ p{
 .mensagens::-webkit-scrollbar{
     display: none;
 }
+.flex{
+    display: flex;
+}
 .usuarios::-webkit-scrollbar{
     display: none;
 }
@@ -28,7 +31,7 @@ p{
 }
 .usuario{
     padding-inline: 1em;
-    height: 3em;
+    height: 4em;
     display: flex;
     border: none;
     width: 100%;
@@ -42,6 +45,7 @@ p{
 .usuario p{
     margin-top: auto;
     margin-bottom: auto;
+    text-align: left;
 }
 .div-mensagens{
     height: 25em;
@@ -123,4 +127,24 @@ p{
     text-align: center;
     margin-bottom: 0px;
     padding: 0.5em;
+}
+.pesquisar{
+    width: 2em;
+    height: 2em;
+    padding: 0px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+.uil-search::before{
+    font-size: 1em;
+}
+.uil-search{
+    width: 1em;
+    height: 1em;
+    margin: auto;
+}
+
+.search{
+    top: 4em;
+    left: 20%;
 }

@@ -30,12 +30,21 @@
 @section('content')
     <div class="div-conteudo">
         <div class="div-usuarios">
-            <h3>Usuários</h3>
+            <div class="flex">
+                <h3>Usuários</h3>
+                <button id="abrePesquisa" class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button>
+                <button id="fechaPesquisa"class="pesquisar" onclick="fechaPesquisar()" style="display:none;"><i class="uil uil-times"></i></button>
+                <div class="search" id="pesquisa" style="display:none;">
+                    <form action="{{route('instituicao.alunos')}}" method="get">
+                        <input type="text" id="search-input" placeholder="Pesquisar usuários" data-search-route="{{ route('usuarios.search') }}">
+                    </form>
+                </div>
+            </div>
             <div class="usuarios">
                 <h5 class="tt-usuarios">Responsaveis</h5>
                 @for($i = 0; $i < count($TbResponsavel); $i++)
                 @foreach ($TbResponsavel[$i] as $Responsavel[$i])    
-                <button class="usuario" onclick="getID({{$Responsavel[$i]->cd_cadastro}})">
+                <button class="usuario" id="responsavel_{{$i}}" value="{{$Responsavel[$i]->cd_cadastro}}" onclick="getID({{$Responsavel[$i]->cd_cadastro}})">
                     <p id="nm{{$Responsavel[$i]->cd_cadastro}}">{{ $Responsavel[$i]->nm_responsavel }}</p>
                 </button>
                 @endforeach 
@@ -65,5 +74,6 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/configChat.js') }}"></script>
 @endsection
