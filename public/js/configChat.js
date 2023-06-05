@@ -140,7 +140,7 @@ function removerTagsHTML(input) {
     input.value = textoSemTags;
 }
 
-// setInterval(atualizarMensagens, 1000);
+setInterval(atualizarMensagens, 1000);
 
 //js pesquisa 
 
