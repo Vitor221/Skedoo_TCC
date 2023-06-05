@@ -54,8 +54,13 @@ class InstituicaoController extends Controller
     $TbAlunos = TbAluno::all();
     $TbResponsaveis = TbResponsavel::all();
 
-    $verificarNome = $request->input('nome');
+    $term = $request->get('nome');
+    $results = TbAluno::where('nm_aluno', 'LIKE', '%'.$term.'%')->pluck('nm_aluno');
+
+ $verificarNome = $request->input('nome');
     $verificarCd = $request->input('cd');
+
+    
 
     $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
     $cdExiste = TbAluno::where('cd_aluno', $verificarCd)->first();
@@ -76,11 +81,13 @@ class InstituicaoController extends Controller
         $saude->save(); // Salvar as alterações no registro existente
     }
 
+    $response = response()->json($results);
     return view('telas.instituicao.problemassaude', [
         'login' => $login,
         'TbAlunos' => $TbAlunos,
-    ]);
-}
+        ])->with('response', $results);}
+
+
     
     public function cliente(Request $request){
         $TbResponsaveis = TbResponsavel::paginate(6);
@@ -628,20 +635,43 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.perfil', ['login' => $login]);
     }
 
-    // public function dadosGrafico(){
+    public function dadosGrafico(){
+        $TbAlunos = TbAluno::all();
+        // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
+        $alunosGf = TbAluno::all()->count();
 
-    // // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
-    // $turmaData = TbTurma::all();
-    // foreach($turmaData as $turma){
-    //     $turmaNome[] = "'".$turma -> nome."'";
-    //     $turmaTotal[] = TbAluno::where('cd_turma', $turma->cd)->count();
-    // }
+        // GRÁFICO 01 - Alunos
+        $alunosDados = TbAluno::select([
+            'cd_turma', DB::raw('count(*) as total_alunos')
+        ])
+        ->groupBy('cd_turma')
+        ->orderBy('cd_turma', 'asc')
+        ->get();
 
-    // // Formatar p/ ChartJS 
-    // $turmaLabel = implode(',', $turmaNome);
-    // $turmaTotal = implode(',', $turmaTotal);
+        // Preparar arrays
+        foreach($alunosDados as $alunoUser){
+            $cd_turma[] = $alunoUser -> cd_turma;
+            $total[] = $alunoUser -> total;
+        }
 
-    // return view('resources.dashboard', compact('turmaLabel', 'turmaTotal'));
-    // }
+        // p/ ChartJS
+        $turmaUser = implode(',', $cd_turma);
+        $totalUser = implode(',', $total);
+
+        // GRÁFICO 02 - Turmas
+        $turmDados = TbTurma::all();
+
+        // array
+        foreach($turmDados as $turm){
+            $turmNome[] = "'".$turm->nome."'";
+            $turmTotal[] = TbAluno::where('cd_turma', $turm->cd)->count();
+        }
+
+        // formatar
+        $turmLabel = implode(',', $turmNome);
+        $turmTotal = implode(',', $turmTotal);
+
+        return view('telas.instituicao.dashboard', compact('alunosGf', 'turmaUser', 'totalUser', 'turmLabel', 'turmTotal'));
+    }
     
 }

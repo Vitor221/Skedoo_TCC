@@ -16,7 +16,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Financeiro</title>
+        <title>Dashboard</title>
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -26,14 +26,22 @@
     <body>
         {{-- Gráficos com ChartJS --}}
         <div class="container">
+            <div class="row">
+            <h3>Relatórios</h3>
             <div class="col-6">
-                <canvas id="myChart"></canvas>
+                <div class="card">
+                    <canvas id="myChart"></canvas>
+                </div>
             </div>
             <div class="col-6">
-              <canvas id="myBar"></canvas>
+                <div class="card">
+                    <canvas id="myBar"></canvas>
+                </div>
             </div>
         </div>
+        </div>
 
+        <br>
 
         <!-- Div Alunos-->
         <div class="container">
@@ -139,31 +147,49 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
 
-    <script>
-        const ctx = document.getElementById('myChart');
-      
-        new Chart(ctx, {
-          type: 'pie',
-          data: {
-            labels: [ 'Alunos por turma'],
-            datasets: [{
-              label: '# of Votes',
-              data: [ $turmaTotal ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+    <script src="{{ asset('js/configFinance.js') }}"></script>
+   
+<script>
+    var ctx = document.getElementById('myChart');  
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Alunos por turma',
+            data: [{{ $Turmas->cd_total_aluno }}],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
             }
           }
-        });
-      </script>
-    <script src="{{ asset('js/configFinance.js') }}"></script>
+        }
+      });
+
+    var ctb = document.getElementById('myBar');  
+    var myBar = new Chart(ctb, {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Alunos por bairro',
+            data: [{{ $bairro -> total_responsaveis }}],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+</script>
+
 @endsection
 
-@push('graficos')
-
-@endpush

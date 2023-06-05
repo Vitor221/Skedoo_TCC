@@ -41,7 +41,8 @@
                     </div>
                     <div class="input_box">
                         <label>Nome do Aluno</label>
-                        <input type="text" id="nome" name="nome">
+                        <input type="text" id="nome" name="nome" autocomplete="off" >
+                        <ul id="saude-results"></ul> 
                     </div>
 
                     <div class="input_box">
@@ -185,4 +186,34 @@
     </table>
 @endif
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.4.1.js"></script>
+    <script>
+$(document).ready(function() {
+    $('#nome').on('input', function() {
+        var query = $(this).val();
+
+        if (query.length >= 2) {
+            $.ajax({
+                url: '/saude',
+                dataType: 'json',
+                data: {
+                    term: query
+                },
+                success: function(data) {
+                    $('#saude-results').empty();
+
+                    $.each(data, function(key, value) {
+                        $('#saude-results').append('<li>' + value + '</li>');
+                    });
+                }
+            });
+        } else {
+            $('#saude-results').empty();
+        }
+    });
+});
+</script>
 @endsection
