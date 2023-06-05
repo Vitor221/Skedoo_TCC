@@ -54,8 +54,13 @@ class InstituicaoController extends Controller
     $TbAlunos = TbAluno::all();
     $TbResponsaveis = TbResponsavel::all();
 
-    $verificarNome = $request->input('nome');
+    $term = $request->get('nome');
+    $results = TbAluno::where('nm_aluno', 'LIKE', '%'.$term.'%')->pluck('nm_aluno');
+
+ $verificarNome = $request->input('nome');
     $verificarCd = $request->input('cd');
+
+    
 
     $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
     $cdExiste = TbAluno::where('cd_aluno', $verificarCd)->first();
@@ -76,11 +81,13 @@ class InstituicaoController extends Controller
         $saude->save(); // Salvar as alterações no registro existente
     }
 
+    $response = response()->json($results);
     return view('telas.instituicao.problemassaude', [
         'login' => $login,
         'TbAlunos' => $TbAlunos,
-    ]);
-}
+        ])->with('response', $results);}
+
+
     
     public function cliente(Request $request){
         $TbResponsaveis = TbResponsavel::paginate(6);
