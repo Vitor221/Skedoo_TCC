@@ -99,6 +99,7 @@ body::-webkit-scrollbar{
     position: relative;
     margin: auto;
     margin: 4em;
+    border-radius: 2em;
 }
 .form-cadastro{
     background-color: #ffffff;

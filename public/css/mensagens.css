@@ -9,6 +9,8 @@ p{
 }
 #nomeChat{
     margin-right: 2em;
+    color: white;
+    font-weight: bold;
 }
 .usuarios::-webkit-scrollbar{
     display: none;
@@ -184,6 +186,10 @@ p{
 }
 .infomensagem{
     display: flex;
+}
+.div-usuarios .flex h3{
+    color: white;
+    font-weight: bold;
 }
 @media (max-width: 980px)
 {

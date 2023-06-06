@@ -9,7 +9,10 @@ body {
     z-index: -10;
     height: 100vh;
 }
+.div-conteudo{
+    background-image: linear-gradient(to left, #4fa39c, #71cec6 );
 
+}
 .nav {
     position: relative;
     color: #fff;
@@ -69,7 +72,7 @@ body {
 
 .conteudo-ajuda {
     width: 100%;
-    background-image: linear-gradient(to left, #70e0d7, #9eebe4 );
+    background-image: linear-gradient(to left, #4fa39c, #71cec6 );
     padding: 0.8em;
     border-radius: 0.8em;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
