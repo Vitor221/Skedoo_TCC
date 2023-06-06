@@ -68,13 +68,13 @@
                     <button type="reset" class="cancelar" onclick="formRefeicaoFechar()">Cancelar</button>
                     <button type="submit" class="enviar" value="Enviar">Enviar</button>
                 </form>
-                <h3>Ou insira um arquivo em pdf</h3>
+                <!-- <h3>Ou insira um arquivo em pdf</h3>
                 <form action="" method="POST"  enctype="multipart/form-data">
                 @csrf
                 <label>Arquivo PDF do Mês:</label><br>
                 <input type="file" id="imgdopdf" name="imgdopdf"/><br><br>
                 <button type="submit" class="enviar" value="Enviar">Enviar</button>
-                </form>
+                </form> -->
             </div><br>
         </div><br>
     </div><br><br>

@@ -74,7 +74,7 @@
     <div>
         <table class="tabela">
             <thead>
-                <h4>Tabela de Clientes</h4>
+                <h4>Tabela de Educadores</h4>
 
                 <tr>
                     <th scope="col" class="t-head-title">Nome</th>
