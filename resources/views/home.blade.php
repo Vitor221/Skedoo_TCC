@@ -41,7 +41,7 @@
 
 <section class="section-carousel">
 
-  <h2>Diferenças</h2>
+  <h2>Diferenciais</h2>
   <div class="carrosel_part">
     <button id="prev-button"><img src="{{ asset('img/img_home/s-prev-button.png') }}"></button>
     <div class="carousel">
