@@ -30,7 +30,7 @@ class InstituicaoController extends Controller
     {
         $this->middleware('loginAccess')->except('logoutLogin', 'index');
     }
-    
+
     public function index()
     {
         $cd_acesso = session()->get('login.cd_acesso');
@@ -44,52 +44,62 @@ class InstituicaoController extends Controller
         return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
 
-    public function saude() {
-        return view('telas.instituicao.saude');
-    }
 
     public function problemassaude(Request $request)
-{
-    $login = TbLogin::find(session('login'))->first();
-    $TbAlunos = TbAluno::all();
-    $TbResponsaveis = TbResponsavel::all();
+    {
+        $login = TbLogin::find(session('login'))->first();
+        $TbAlunos = TbAluno::all();
+        $TbResponsaveis = TbResponsavel::all();
+        $verificarNome = $request->input('nome');
+        $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
+        if ($alunoExiste) {
+            if ($alunoExiste !== null) {
+                $saude = $alunoExiste;
+            }
 
-    $term = $request->get('nome');
-    $results = TbAluno::where('nm_aluno', 'LIKE', '%'.$term.'%')->pluck('nm_aluno');
+            $saude->nm_grav_saude = $request->grav;
+            $saude->nm_tipo_ps = $request->tipos;
+            $saude->nm_problema_saude = $request->nomedoproblema;
+            $saude->ds_problema_saude = $request->textarea_div;
 
- $verificarNome = $request->input('nome');
-    $verificarCd = $request->input('cd');
+            $saude->save(); // Salvar as alterações no registro existente
+        }
+        return view('telas.instituicao.problemassaude', [
+            'login' => $login,
+            'TbAlunos' => $TbAlunos,
+        ]);
+    }
+    public function problemassaude_insert(Request $request)
+    {
+        $term = $request->get('nome');
+        $results = TbAluno::where('nm_aluno', 'LIKE', '%' . $term . '%')->pluck('nm_aluno');
+        $verificarNome = $request->input('nome');
+        $verificarCd = $request->input('cd');
+        $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
+        $cdExiste = TbAluno::where('cd_aluno', $verificarCd)->first();
+        if ($alunoExiste || $cdExiste) {
+            if ($alunoExiste !== null) {
+                $saude = $alunoExiste;
+            } elseif ($cdExiste !== null) {
+                $saude = $cdExiste;
+            }
 
-    
+            $saude->nm_grav_saude = $request->grav;
+            $saude->nm_tipo_ps = $request->tipos;
+            $saude->nm_problema_saude = $request->nomedoproblema;
+            $saude->ds_problema_saude = $request->textarea_div;
 
-    $alunoExiste = TbAluno::where('nm_aluno', $verificarNome)->first();
-    $cdExiste = TbAluno::where('cd_aluno', $verificarCd)->first();
-
-
-    if ($alunoExiste || $cdExiste) {
-        if ($alunoExiste !== null) {
-            $saude = $alunoExiste;
-        } elseif ($cdExiste !== null) {
-            $saude = $cdExiste;
+            $saude->save(); // Salvar as alterações no registro existente
         }
 
-        $saude->nm_grav_saude = $request->grav;
-        $saude->nm_tipo_ps = $request->tipos;
-        $saude->nm_problema_saude = $request->nomedoproblema;
-        $saude->ds_problema_saude = $request->textarea_div;
-
-        $saude->save(); // Salvar as alterações no registro existente
+        $response = response()->json($results);
+        return redirect()->route('instituicao.problemassaude');
     }
 
-    $response = response()->json($results);
-    return view('telas.instituicao.problemassaude', [
-        'login' => $login,
-        'TbAlunos' => $TbAlunos,
-        ])->with('response', $results);}
 
 
-    
-    public function cliente(Request $request){
+    public function cliente(Request $request)
+    {
         $TbResponsaveis = TbResponsavel::paginate(6);
         $TbTurmas = TbTurma::all();
         $login = TbLogin::find(session('login'))->first();
@@ -101,10 +111,11 @@ class InstituicaoController extends Controller
             $TbResponsaveis = TbResponsavel::paginate(6);
         }
 
-        return view('telas.instituicao.clientes',['TbResponsaveis'=>$TbResponsaveis, 'TbTurmas'=>$TbTurmas, 'login' => $login]); 
+        return view('telas.instituicao.clientes', ['TbResponsaveis' => $TbResponsaveis, 'TbTurmas' => $TbTurmas, 'login' => $login]);
     }
 
-    public function aluno(Request $request){
+    public function aluno(Request $request)
+    {
         $login = TbLogin::find(session('login'))->first();
         $TbAlunos = TbAluno::paginate(6);
         $TbTurma = TbTurma::all();
@@ -115,10 +126,11 @@ class InstituicaoController extends Controller
             $TbAlunos = TbAluno::paginate(6);
         }
 
-        return view('telas.instituicao.alunos', ['TbAlunos' => $TbAlunos, 'TbTurma' => $TbTurma, 'login' => $login]); 
+        return view('telas.instituicao.alunos', ['TbAlunos' => $TbAlunos, 'TbTurma' => $TbTurma, 'login' => $login]);
     }
 
-     public function visualizar_turma($id) {
+    public function visualizar_turma($id)
+    {
         $TbTurma = TbTurma::findOrFail($id);
         $TbAluno = TbAluno::all();
         $login = TbLogin::find(session('login'))->first();
@@ -129,20 +141,20 @@ class InstituicaoController extends Controller
 
         $cdTurmaSelecionada = $TbTurma->cd_turma;
 
-       //Contando quantidade de alunos da sala
+        //Contando quantidade de alunos da sala
         $qtdalunosNaTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
             ->where('cd_turma', $cdTurmaSelecionada)
-            ->groupBy('cd_turma')             
+            ->groupBy('cd_turma')
             ->first();
 
-            
+
         //Monstrando professores da sala
-        $professoresnaturma = TbProfissional::where('cd_turma',$cdTurmaSelecionada)
-        ->get();
+        $professoresnaturma = TbProfissional::where('cd_turma', $cdTurmaSelecionada)
+            ->get();
 
         //Monstrando alunos da sala
         $alunosnaturma = TbAluno::where('cd_turma', $cdTurmaSelecionada)
-        ->get();
+            ->get();
 
 
         return view('telas.instituicao.visualizar_turma', [
@@ -151,37 +163,41 @@ class InstituicaoController extends Controller
             'login' => $login,
             'qtdalunosNaTurma' => $qtdalunosNaTurma,
             'alunosnaturma' => $alunosnaturma,
-            'professoresnaturma'=>$professoresnaturma
+            'professoresnaturma' => $professoresnaturma
         ]);
-        
     }
 
-    public function ajuda(){
+    public function ajuda()
+    {
         $login = TbLogin::find(session('login'))->first();
         return view('telas.instituicao.ajuda', ['login' => $login]);
     }
 
-    public function mensagem(){
+    public function mensagem()
+    {
         $cdLoginInstituicao = session()->get('login.cd_login');
         $Instituicao = TbInstituicao::where('cd_cadastro', $cdLoginInstituicao)->first();
         $TbAlunos = TbAluno::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
-        foreach($TbAlunos as $Aluno){
+        foreach ($TbAlunos as $Aluno) {
             $TbResponsavel[] = TbResponsavel::where('cd_responsavel', $Aluno->cd_responsavel)->get();
         }
         $TbEducadores = TbProfissional::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
         $login = TbLogin::find(session('login'))->first();
-        return view('telas.instituicao.mensagem',['TbResponsavel'=>$TbResponsavel, 'login' => $login, 'TbEducadores'=>$TbEducadores]);
+        return view('telas.instituicao.mensagem', ['TbResponsavel' => $TbResponsavel, 'login' => $login, 'TbEducadores' => $TbEducadores]);
     }
-    public function financeiro(){
+    public function financeiro()
+    {
         $login = TbLogin::find(session('login'))->first();
         return view('telas.instituicao.financeiro', ['login' => $login]);
     }
 
-    public function transporte(){
+    public function transporte()
+    {
         return view('telas.instituicao.transporte');
     }
 
-    public function colaborador(Request $request){
+    public function colaborador(Request $request)
+    {
         $login = TbLogin::find(session('login'))->first();
         $TbEducadores = TbProfissional::paginate(6);
         $TbTurmas = TbTurma::all();
@@ -195,7 +211,8 @@ class InstituicaoController extends Controller
     }
 
     //CRUD - Colaborador - INICIO
-    public function inserir_colaborador(Request $request) {
+    public function inserir_colaborador(Request $request)
+    {
         $educador = new TbProfissional();
         $educador->nm_profissional = $request->name;
         $educador->cd_cpf = $request->cpf;
@@ -203,7 +220,7 @@ class InstituicaoController extends Controller
 
         $cadastro = $educador->tb_cadastro()->create();
         $instituicao = $educador->tb_instituicao()->create();
-        
+
         $educador->cd_instituicao = $instituicao->cd_instituicao;
         $educador->cd_cadastro = $cadastro->cd_cadastro;
 
@@ -212,37 +229,38 @@ class InstituicaoController extends Controller
         $educador->save();
 
         return redirect()->route('instituicao.colaborador');
-
     }
 
-    public function visualizar_colaborador($id) {
+    public function visualizar_colaborador($id)
+    {
         $educador = TbProfissional::findOrFail($id);
         $turma = $educador->tb_turma;
         $login = TbLogin::find(session('login'))->first();
 
         return view('telas.instituicao.visualizar_educador', ['educador' => $educador, 'turma' => $turma, 'login' => $login]);
-        
     }
 
-    public function atualizar_colaborador($id) {
+    public function atualizar_colaborador($id)
+    {
         $educador = TbProfissional::findOrFail($id);
         $login = TbLogin::find(session('login'))->first();
 
-        if(!$educador->cd_turma || $educador->cd_turma){
+        if (!$educador->cd_turma || $educador->cd_turma) {
             $turma = $educador->tb_turma;
             $tbturmas = TbTurma::all();
             return view('telas.instituicao.editar_educador', compact('educador', 'turma', 'tbturmas', 'login'));
         }
     }
 
-    public function update_colaborador(Request $request, $id) {
+    public function update_colaborador(Request $request, $id)
+    {
         $request->validate([
             'name' => 'required',
             'cpf' => 'required',
             'funcao' => 'required',
             'turma' => 'required',
         ]);
-        
+
         $educador = TbProfissional::findOrFail($id);
 
         $educador->nm_profissional = $request->name;
@@ -258,10 +276,10 @@ class InstituicaoController extends Controller
         $educador->save();
 
         return redirect()->route('instituicao.colaborador');
-
     }
 
-    public function deletar_colaborador($id) {
+    public function deletar_colaborador($id)
+    {
         $educador = TbProfissional::findOrFail($id);
 
         $educador->delete();
@@ -271,11 +289,12 @@ class InstituicaoController extends Controller
     //CRUD - Colaborador - FIM
 
     //CRUD - Calendário - INICIO
-    public function calendario(){
+    public function calendario()
+    {
         $login = TbLogin::find(session('login'))->first();
         $eventos = array();
         $diasEventos = Event::all();
-        foreach($diasEventos as $diaEvento) {
+        foreach ($diasEventos as $diaEvento) {
             $eventos[] = [
                 'id'        =>      $diaEvento->id,
                 'title'     =>      $diaEvento->title,
@@ -286,12 +305,13 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.calendario', ['eventos' => $eventos, 'login' => $login]);
     }
 
-    public function calendarioStore(Request $request) {
+    public function calendarioStore(Request $request)
+    {
         $login = TbLogin::find(session('login'))->first();
         $request->validate([
             'title' =>  'required|string',
         ]);
-        
+
         $calendario = Event::create([
             'title'         =>  $request->title,
             'start_event'   =>  $request->start_event,
@@ -300,10 +320,11 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.calendario', ['login' => $login])->with(response()->json($calendario));
     }
 
-    public function calendarioUpdate(Request $request, $id) {
+    public function calendarioUpdate(Request $request, $id)
+    {
         $calendario = Event::find($id);
         $login = TbLogin::find(session('login'))->first();
-        if(! $calendario) {
+        if (!$calendario) {
             return response()->json([
                 'error' =>  'Não foi localizado o evento'
             ], 404);
@@ -320,7 +341,7 @@ class InstituicaoController extends Controller
     public function calendarioDelete($id)
     {
         $calendario = Event::find($id);
-        if(! $calendario) {
+        if (!$calendario) {
             return response()->json([
                 'error' => 'Não foi localizado o evento'
             ], 404);
@@ -333,23 +354,24 @@ class InstituicaoController extends Controller
     //CRUD - Calendário - FIM
 
     //CRUD - Cliente - INICIO
-    public function inserir_cliente(Request $request){
+    public function inserir_cliente(Request $request)
+    {
         $responsavel = new TbResponsavel();
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
 
-        $cadastro = $responsavel->tb_cadastro()->create(['nm_login'=>'teste', 'cd_senha'=>'teste']);
+        $cadastro = $responsavel->tb_cadastro()->create(['nm_login' => 'teste', 'cd_senha' => 'teste']);
         $responsavel->cd_cadastro = $cadastro->cd_cadastro;
         $uf = TbUf::find($request->uf);
         $cidade = $uf->tb_cidade()->firstOrCreate(['nm_cidade' => $request->cidade]);
         $bairro = $cidade->tb_bairro()->firstOrCreate(['nm_bairro' => $request->bairro, 'cd_cidade' => $cidade->cd_cidade]);
-        $endereco =$bairro->tb_endereco()->create(['cd_cep' => $request->cep,'cd_numcasa' => $request->num,'nm_endereco' => $request->logradouro,'ds_complemento' => $request->complemento,  'cd_bairro' => $bairro->cd_bairro]);
+        $endereco = $bairro->tb_endereco()->create(['cd_cep' => $request->cep, 'cd_numcasa' => $request->num, 'nm_endereco' => $request->logradouro, 'ds_complemento' => $request->complemento,  'cd_bairro' => $bairro->cd_bairro]);
         $responsavel->cd_endereco = $endereco->cd_endereco;
         $responsavel->save();
         $aluno = new TbAluno();
         $aluno->nm_aluno = $request->nomeAluno;
         $aluno->cd_turma = $request->turma;
-        if($request->ps == 1){
+        if ($request->ps == 1) {
             $aluno->se_problema_saude = $request->ps;
             $aluno->ds_problema_saude = $request->descricaoPS;
             $aluno->nm_problema_saude = $request->nomePS;
@@ -358,10 +380,11 @@ class InstituicaoController extends Controller
         $aluno->cd_responsavel = $responsavel->cd_responsavel;
         $aluno->save();
         $TbResponsaveis = TbResponsavel::paginate(6);
-        return back()->with('success', 'Responsavel cadastrado com sucesso!'); 
+        return back()->with('success', 'Responsavel cadastrado com sucesso!');
     }
 
-    public function deletar_cliente($id){
+    public function deletar_cliente($id)
+    {
         $responsavel = TbResponsavel::findOrFail($id);
         $enderecoCount = TbResponsavel::all()->where('cd_endereco', '=', $responsavel->cd_endereco)->count();
         $Turma = TbTurma::all();
@@ -370,42 +393,45 @@ class InstituicaoController extends Controller
         $responsavel->tb_contato()->delete();
         $responsavel->tb_login()->delete();
         $responsavel->delete();
-        if($enderecoCount == 1){
+        if ($enderecoCount == 1) {
             $responsavel->tb_endereco()->delete();
         }
         return redirect()->route('instituicao.clientes');
     }
 
-    public function visualizar_cliente($id){
+    public function visualizar_cliente($id)
+    {
         $login = TbLogin::find(session('login'))->first();
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
         $aluno = $responsavel->tb_aluno[0];
-        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco', 'aluno','login'));
+        return view('telas.instituicao.visualizar_cliente', compact('responsavel', 'endereco', 'aluno', 'login'));
     }
 
-    public function editar_cliente($id) {
+    public function editar_cliente($id)
+    {
         $login = TbLogin::find(session('login'))->first();
         $responsavel = TbResponsavel::findOrFail($id);
         $endereco = $responsavel->tb_endereco;
         return view('telas.instituicao.editar_cliente', compact('responsavel', 'endereco', 'login'));
     }
 
-    public function update_cliente(Request $request, $id) {
+    public function update_cliente(Request $request, $id)
+    {
         $responsavel = TbResponsavel::findOrFail($id);
-        
+
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
 
         $responsavel->tb_cadastro()->update([
-            'nm_login' => $request->nm_login, 
+            'nm_login' => $request->nm_login,
             'cd_senha' => $request->cd_senha
         ]);
 
         $responsavel->tb_endereco()->update([
-            'nm_endereco' => $request->nm_endereco, 
-            'cd_cep' => $request->cd_cep, 
-            'cd_numcasa' => $request->cd_numcasa, 
+            'nm_endereco' => $request->nm_endereco,
+            'cd_cep' => $request->cd_cep,
+            'cd_numcasa' => $request->cd_numcasa,
             'ds_complemento' => $request->ds_complemento
         ]);
 
@@ -413,13 +439,13 @@ class InstituicaoController extends Controller
 
         if ($endereco) {
             $bairro = TbBairro::find($endereco->cd_bairro);
-    
+
             if ($bairro) {
                 $bairro->nm_bairro = $request->nm_bairro;
                 $bairro->save();
-    
+
                 $cidade = TbCidade::find($bairro->cd_cidade);
-    
+
                 if ($cidade) {
                     $cidade->nm_cidade = $request->nm_cidade;
                     $cidade->sg_uf = $request->sg_uf;
@@ -427,20 +453,21 @@ class InstituicaoController extends Controller
                 }
             }
         }
-         
+
         $responsavel->save();
 
-        
+
         return redirect()->route('instituicao.clientes');
     }
     //CRUD - Cliente - FIM
 
     //CRUD - Aluno - INICIO
-    public function inserir_aluno(Request $request){
+    public function inserir_aluno(Request $request)
+    {
         $aluno = new TbAluno();
         $aluno->nm_aluno = $request->nomeAluno;
         $aluno->cd_turma = $request->turma;
-        if($request->ps == 1){
+        if ($request->ps == 1) {
             $aluno->se_problema_saude = $request->ps;
             $aluno->ds_problema_saude = $request->descricaoPS;
             $aluno->nm_problema_saude = $request->nomePS;
@@ -449,102 +476,109 @@ class InstituicaoController extends Controller
         $aluno->save();
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
-        return redirect()->route('instituicao.alunos'); 
+        return redirect()->route('instituicao.alunos');
     }
-    public function deletar_aluno($id){
+    public function deletar_aluno($id)
+    {
         $aluno = TbAluno::findOrFail($id);
         $aluno->delete();
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
-        return redirect()->route('instituicao.alunos'); 
+        return redirect()->route('instituicao.alunos');
     }
     //CRUD - Aluno - FIM
 
     //CRUD - Turma - INICIO
-    public function inserir_turma(Request $request){
+    public function inserir_turma(Request $request)
+    {
         $turma = new TbTurma();
         $turma->nm_turma = $request->nomeTurma;
-        $turma->cd_total_aluno = $request ->qtdMax;
+        $turma->cd_total_aluno = $request->qtdMax;
         $turma->sg_turma = $request->sigla;
-        if($request->periodo == "M"){
+        if ($request->periodo == "M") {
             $turma->ds_periodo = "Manhã";
-        }else if($request->periodo == "T"){
+        } else if ($request->periodo == "T") {
             $turma->ds_periodo = "Tarde";
-        }else {
+        } else {
             $turma->ds_periodo = "Integral";
         }
         $turma->save();
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
-        return redirect()->route('instituicao.alunos'); 
+        return redirect()->route('instituicao.alunos');
     }
-    public function deletar_turma($id){
+    public function deletar_turma($id)
+    {
         $TbTurma = TbTurma::all();
         $TbAluno = TbAluno::all();
         $turma = TbTurma::findOrFail($id);
         $turma->delete();
-        return redirect()->route('instituicao.alunos'); 
+        return redirect()->route('instituicao.alunos');
     }
     //CRUD - Turma - FIM
 
     public function download()
-{
-    $cardapio = TbCardapio::whereNotNull('img_pdf')->latest()->first();
+    {
+        $cardapio = TbCardapio::whereNotNull('img_pdf')->latest()->first();
 
-    if ($cardapio) {
-        $filePath = storage_path('app/public/' . $cardapio->img_pdf);
+        if ($cardapio) {
+            $filePath = storage_path('app/public/' . $cardapio->img_pdf);
 
-        if (file_exists($filePath)) {
-            return response()->download($filePath);
+            if (file_exists($filePath)) {
+                return response()->download($filePath);
+            }
         }
+
+        // Caso o arquivo não exista ou nenhum Cardapio válido seja encontrado
+        return redirect()->route('instituicao.refeicao')->with('error', 'Arquivo não encontrado.');
     }
 
-    // Caso o arquivo não exista ou nenhum Cardapio válido seja encontrado
-    return redirect()->route('instituicao.refeicao')->with('error', 'Arquivo não encontrado.');
-}
-
-    public function inserir_cardapio (Request $request){
+    public function inserir_cardapio(Request $request)
+    {
         $ddsemana = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
         $ddsemananum = date('w', strtotime($request->data));
         $cardapio = new TbCardapio();
-        $cardapio->dt_cardapio = $request -> data;
-        $cardapio ->nm_prato = $request->nmPrato;
-        $cardapio ->desc_prato = $request->DescPrato;
-        $cardapio ->cd_cor = $request->cor;
-        $cardapio ->nm_ddsemana = $ddsemana[$ddsemananum];
-        $cardapio ->nm_sobremessa = $request->nmSobremessa;
-        $cardapio ->desc_sobremessa = $request->DescSobremessa;
+        $cardapio->dt_cardapio = $request->data;
+        $cardapio->nm_prato = $request->nmPrato;
+        $cardapio->desc_prato = $request->DescPrato;
+        $cardapio->cd_cor = $request->cor;
+        $cardapio->nm_ddsemana = $ddsemana[$ddsemananum];
+        $cardapio->nm_sobremessa = $request->nmSobremessa;
+        $cardapio->desc_sobremessa = $request->DescSobremessa;
 
         if ($request->hasFile('imgdopdf')) {
             $novoNome = Str::slug(date('M'), '-') . '.' . $request->imgdopdf->getClientOriginalExtension();
             $imagem = $request->file('imgdopdf')->storeAs('public/cardapio', $novoNome);
             $cardapio->img_pdf = 'cardapio/' . $novoNome;
         }
-    
+
         $cardapio->save();
-    
+
         return back()->with('success', 'Cardapio enviado com sucesso!');
     }
-    public function visualizar_cardapio(){
+    public function visualizar_cardapio()
+    {
         $dataAtual = Carbon::now()->format('Y-m-d');
         $login = TbLogin::find(session('login'))->first();
-        $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','>', $dataAtual)->get();
-        $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio','<', $dataAtual)->get();
+        $TbCardapio = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio', '>', $dataAtual)->get();
+        $cardapioAnterior = TbCardapio::orderBy('dt_cardapio', 'asc')->where('dt_cardapio', '<', $dataAtual)->get();
         $cardapioHoje = TbCardapio::where('dt_cardapio', $dataAtual)->first();
-        return view('telas.instituicao.refeicao', ['TbCardapio'=>$TbCardapio, 'cardapioHoje'=>$cardapioHoje, 'cardapioAnterior'=>$cardapioAnterior, 'login' => $login]);
+        return view('telas.instituicao.refeicao', ['TbCardapio' => $TbCardapio, 'cardapioHoje' => $cardapioHoje, 'cardapioAnterior' => $cardapioAnterior, 'login' => $login]);
     }
-    public function deletar_cardapio($id){
+    public function deletar_cardapio($id)
+    {
         $refeicao = TbCardapio::findOrFail($id);
         $refeicao->delete();
         return redirect()->back();
     }
-    public function editar_cardapio($id) {
+    public function editar_cardapio($id)
+    {
         $cardapio = TbCardapio::findOrFail($id);
         return view('telas.instituicao.editar_cardapio');
     }
 
     public function perfil()
- {
+    {
         if (session()->has('login')) {
             $login = TbLogin::find(session('login'))->first();
             return view('telas.instituicao.perfil', compact('login'));
@@ -562,46 +596,43 @@ class InstituicaoController extends Controller
             $TbResponsavel = TbResponsavel::all();
             $login = TbLogin::find(session('login'))->first();
 
-            // Fazendo contagem - Quantos em cada sala matriculados
-            $alunosPorTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
+        // Fazendo contagem - Quantos em cada sala matriculados
+        $alunosPorTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
             ->groupBy('cd_turma')
             ->get()
             ->keyBy('cd_turma');
- 
-            // Fazendo contagem - Quantos responsaveis cadastrados
-            $clienteCadastrados = TbResponsavel::selectRaw('count(*) as total_Clientes')
+
+        // Fazendo contagem - Quantos responsaveis cadastrados
+        $clienteCadastrados = TbResponsavel::selectRaw('count(*) as total_Clientes')
             ->first();
 
 
-            //Fazendo Contagem Anual de Recebimento
+        //Fazendo Contagem Anual de Recebimento
 
-            $RecebimentoTotal = TbResponsavel::selectRaw("CONCAT('R$ ', FORMAT(ROUND(SUM(vl_fatura), 2), 2, 'de_DE')) AS total_recebido")
+        $RecebimentoTotal = TbResponsavel::selectRaw("CONCAT('R$ ', FORMAT(ROUND(SUM(vl_fatura), 2), 2, 'de_DE')) AS total_recebido")
             ->from('tb_pagamento')
             ->first();
 
-            // separando por mês e quantidade de contratos.
-            $recebimentoPorMes = TbPagamento::selectRaw("DATE_FORMAT(dt_pagamento, '%m/%Y') as mes_ano, COUNT(*) as quantidade, CONCAT('R$ ', FORMAT(SUM(vl_fatura), 2, 'de_DE')) AS total_recebido")
+        // separando por mês e quantidade de contratos.
+        $recebimentoPorMes = TbPagamento::selectRaw("DATE_FORMAT(dt_pagamento, '%m/%Y') as mes_ano, COUNT(*) as quantidade, CONCAT('R$ ', FORMAT(SUM(vl_fatura), 2, 'de_DE')) AS total_recebido")
             ->groupBy('mes_ano')
             ->orderBy('mes_ano')
             ->get();
 
-            // Separando por bairro as quantidade de responsaveis
-            $bairros = TbResponsavel::select('tb_bairro.nm_bairro as nome_bairro', DB::raw('COUNT(*) as total_responsaveis'))
+        // Separando por bairro as quantidade de responsaveis
+        $bairros = TbResponsavel::select('tb_bairro.nm_bairro as nome_bairro', DB::raw('COUNT(*) as total_responsaveis'))
             ->join('Tb_endereco', 'Tb_responsavel.cd_endereco', '=', 'tb_endereco.cd_endereco')
             ->join('tb_bairro', 'Tb_endereco.cd_bairro', '=', 'Tb_bairro.cd_bairro')
             ->groupBy('nome_bairro')
             ->get();
 
 
-         $responsaveis = TbResponsavel::join('tb_pagamento', 'tb_responsavel.cd_responsavel', '=', 'tb_pagamento.cd_pagamento')
+        $responsaveis = TbResponsavel::join('tb_pagamento', 'tb_responsavel.cd_responsavel', '=', 'tb_pagamento.cd_pagamento')
             ->join('Tb_status_pagamento', 'tb_pagamento.cd_status_pagamento', '=', 'tb_status_pagamento.cd_status_pagamento')
             ->select('tb_status_pagamento.nm_status_pagamento', DB::raw('COUNT(tb_responsavel.cd_responsavel) AS quantidade'))
             ->groupBy('tb_status_pagamento.nm_status_pagamento')
             ->get();
 
-            
-        
-           
 
         return view('telas.instituicao.dashboard',[
             'login' => $login,
@@ -613,31 +644,34 @@ class InstituicaoController extends Controller
             'RecebimentoPorMes' => $recebimentoPorMes,
             'bairros' => $bairros,
             'responsaveis' => $responsaveis
-        ]);}
-        
-    public function atualizarPerfil(Request $request) {
+        ]);
+    }
+
+    public function atualizarPerfil(Request $request)
+    {
         $request->validate([
             'image' =>  'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         $login = TbLogin::find(session('login'))->first();
-    
-        if($login->img_perfil) {
+
+        if ($login->img_perfil) {
             Storage::disk('public')->delete($login->img_perfil);
         }
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('storage', 'public');
-            $login->img_perfil = $imagePath;    
+            $login->img_perfil = $imagePath;
             $login->save();
         }
 
-        
-        
+
+
         return view('telas.instituicao.perfil', ['login' => $login]);
     }
 
-    public function dadosGrafico(){
+    public function dadosGrafico()
+    {
         $TbAlunos = TbAluno::all();
         // Lógica para recuperar os dados do banco de dados usando o modelo correspondente
         $alunosGf = TbAluno::all()->count();
@@ -646,14 +680,14 @@ class InstituicaoController extends Controller
         $alunosDados = TbAluno::select([
             'cd_turma', DB::raw('count(*) as total_alunos')
         ])
-        ->groupBy('cd_turma')
-        ->orderBy('cd_turma', 'asc')
-        ->get();
+            ->groupBy('cd_turma')
+            ->orderBy('cd_turma', 'asc')
+            ->get();
 
         // Preparar arrays
-        foreach($alunosDados as $alunoUser){
-            $cd_turma[] = $alunoUser -> cd_turma;
-            $total[] = $alunoUser -> total;
+        foreach ($alunosDados as $alunoUser) {
+            $cd_turma[] = $alunoUser->cd_turma;
+            $total[] = $alunoUser->total;
         }
 
         // p/ ChartJS
@@ -664,8 +698,8 @@ class InstituicaoController extends Controller
         $turmDados = TbTurma::all();
 
         // array
-        foreach($turmDados as $turm){
-            $turmNome[] = "'".$turm->nome."'";
+        foreach ($turmDados as $turm) {
+            $turmNome[] = "'" . $turm->nome . "'";
             $turmTotal[] = TbAluno::where('cd_turma', $turm->cd)->count();
         }
 
@@ -675,5 +709,4 @@ class InstituicaoController extends Controller
 
         return view('telas.instituicao.dashboard', compact('alunosGf', 'turmaUser', 'totalUser', 'turmLabel', 'turmTotal'));
     }
-    
 }
