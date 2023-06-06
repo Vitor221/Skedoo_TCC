@@ -633,7 +633,6 @@ class InstituicaoController extends Controller
             ->groupBy('tb_status_pagamento.nm_status_pagamento')
             ->get();
 
-
         return view('telas.instituicao.dashboard',[
             'login' => $login,
             'TbTurmas' =>$TbTurmas, 

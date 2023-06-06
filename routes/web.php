@@ -11,6 +11,7 @@ use App\Models\TbInstituicao;
 use App\Models\TbAluno;
 use App\Models\TbProfissional;
 use App\Models\TbLogin;
+use App\Models\TbTurma;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,11 @@ Route::get('/saude/aluno', function (\Illuminate\Http\Request $request) {
     $aluno = TbAluno::where('cd_aluno', '=', $id)->get();
     return response($aluno);
 });
+Route::get('/dashboard', function () {
+    $TbTurmas = TbTurma::all();
+    return response($TbTurmas);
+});
+
 
 //Tela Home
 Route::get('/', function () {

@@ -156,12 +156,14 @@
 
     <script src="{{ asset('js/configFinance.js') }}"></script>
 
-    <script>
+    {{-- <script>
+        fetch('/dashboard/')
+        .then(data =>)
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Berçário', 'Maternal I', 'Maternal II', 'Fase I', 'Fase II'],
+                labels: [''{{$TbTurmas[2]->nm_turma}}'', 'Maternal I', 'Maternal II', 'Fase I', 'Fase II'],
                 datasets: [{
                     label: 'Alunos por turma',
                     data: [6, 16, 12, 11, 8],
@@ -215,5 +217,5 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 @endsection
