@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    @yield('backgrounds')
     <nav>
         @yield('nav-telas')
     </nav>
@@ -33,6 +34,6 @@
     <br>
     
 
-</body>
     <script src="{{asset('js/configDataHora.js')}}"></script>
+</body>
 </html>

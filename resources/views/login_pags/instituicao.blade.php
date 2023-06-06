@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
 @endsection
 
+@section('backgrounds')
+
+<div class="background"></div>
+
+@endsection
+
 @section('conteudo-nav')
 <div class="nav">
     <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
@@ -12,7 +18,7 @@
     <div class="perfil-bg">
         <h3>
             Bem-vindo, {{ session('login')['nm_login'] }}
-            <a href="{{ route('instituicao.perfil') }}">
+            <a class="img-div" href="{{ route('instituicao.perfil') }}">
                 @if($login->img_perfil)
                     <img name="image" class="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
                 @else
