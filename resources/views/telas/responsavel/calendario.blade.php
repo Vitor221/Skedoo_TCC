@@ -40,6 +40,23 @@
 @endsection
 
 @section('content')
+<div class="modal fade" id="calendarioDeleteModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="modal-title"></h5>
+        </div>
+        <div id="modal-body">
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btnModalClose" data-bs-dismiss="modal">Close</button>
+          <a href="{{ route('instituicao.calendario') }}"><button type="button" id="deleteBtn" class="btnModalDelete">Deletar evento</button></a>
+        </div>
+      </div>
+    </div>
+</div>
+
 <div class="area-calendario">
     <div id="calendar"></div>
 </div>
@@ -59,7 +76,7 @@
             buttonText: {
                 today: "Hoje"
             },
-            eventColor: '#ecab54',
+            eventColor: '#76bcb5',
             events: evento,
             editable: false,
             eventRender: function(event, element,view) {
@@ -68,6 +85,17 @@
                 } else {
                     event.allDay = false;
                 }
+            },
+            eventClick: function(event) {
+                $('#calendarioDeleteModal').modal('toggle');
+                var id = event.id;
+                var title = event.title;
+                var start = event.start.format('DD/MM/YYYY');
+                var end = event.end.format('DD/MM/YYYY');
+
+                $('#modal-title').text(title);
+                $('#modal-body').html('<strong>Data de início:</strong> ' + start + '<br><br> <strong>Data de término:</strong> ' + end);
+
             },
             selectable: true,
             selectHelper: true,

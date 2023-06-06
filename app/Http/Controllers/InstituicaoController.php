@@ -292,6 +292,7 @@ class InstituicaoController extends Controller
     public function calendario()
     {
         $login = TbLogin::find(session('login'))->first();
+        $infoEventos = Event::all()->first();
         $eventos = array();
         $diasEventos = Event::all();
         foreach ($diasEventos as $diaEvento) {
@@ -302,7 +303,7 @@ class InstituicaoController extends Controller
                 'end'       =>      $diaEvento->end_event
             ];
         }
-        return view('telas.instituicao.calendario', ['eventos' => $eventos, 'login' => $login]);
+        return view('telas.instituicao.calendario', ['eventos' => $eventos, 'login' => $login, 'infoEventos' => $infoEventos]);
     }
 
     public function calendarioStore(Request $request)

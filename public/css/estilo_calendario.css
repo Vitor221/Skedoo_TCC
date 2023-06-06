@@ -9,7 +9,7 @@
 #calendar{
   background: rgb(255,214,162);
   background: linear-gradient(0deg, rgba(255,214,162,1) 0%, rgba(255,175,72,1) 73%);
-  width: 50%;
+  width: 60%;
   margin: auto;
   animation: go-back 1s;
 }
@@ -50,4 +50,53 @@
     transform: translateX(0);
     opacity: 100%;
   }
+}
+
+/* Estilizar Modals */
+
+.btnModalDelete {
+  padding: 0.7em;
+  background-color: rgb(234, 63, 63);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  border: none;
+  border-radius: 1em;
+  transition: all .2s ease-in;
+}
+
+.btnModalDelete:hover {
+  background-color: rgb(244, 102, 102);
+}
+
+.btnModalClose:hover {
+  background-color: rgb(77, 77, 77);
+}
+
+.btnModalClose {
+  padding: 0.7em;
+  background-color: rgb(100, 100, 100);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+  border: none;
+  border-radius: 1em;
+  transition: all .2s ease-in;
+}
+
+#modal-body {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#modal-title{
+  text-align: center;
+  display: flex;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  color: #76bcb5;
+  font-weight: 700;
+  font-size: 2em;
 }
