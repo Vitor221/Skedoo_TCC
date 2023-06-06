@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/estilo_saude.css') }}">
 @endsection
 
 @section('voltar')
@@ -33,16 +34,14 @@
 
         <div style="background-color: white;border-radius: 2em;padding:3em;">
             <h2 style="color:#6aa39e;">Indique o problema de saúde de determinado aluno.</h2>
-            <form action="">
+            <form action="{{route('instituicao.problemassaude.insert')}}" method="POST">
+                @csrf
                 <div class="grupo_input">
-                <div class="input_box">
-                        <label>Código do Aluno</label>
-                        <input type="text" id="cd" name="cd">
-                    </div>
                     <div class="input_box">
                         <label>Nome do Aluno</label>
-                        <input type="text" id="nome" name="nome" autocomplete="off" >
-                        <ul id="saude-results"></ul> 
+                        <input type="text" id="nome" name="nome" autocomplete="off" onkeyup="pesquisando()">
+                    </div>
+                    <div class="resultados" id="resultados">
                     </div>
 
                     <div class="input_box">
@@ -186,7 +185,7 @@
     </table>
 @endif
     </div>
-
+    <script src="{{asset('js/configSaude.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.4.1.js"></script>

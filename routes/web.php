@@ -37,15 +37,17 @@ Route::get('/novahora', function () {
 Route::get('/chat/usuarios', function (\Illuminate\Http\Request $request) {
     $nomeResponsavel = $request->input('nome');
     $responsaveis = TbResponsavel::where('nm_responsavel', 'like', '%' . $nomeResponsavel . '%')->get();
-    // $cdLoginInstituicao = session()->get('login.cd_login');
-    //     $Instituicao = TbInstituicao::where('cd_cadastro', $cdLoginInstituicao)->first();
-    //     $TbAlunos = TbAluno::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
-    //     foreach($TbAlunos as $Aluno){
-    //         $TbResponsavel[] = TbResponsavel::where('cd_responsavel', $Aluno->cd_responsavel)->get();
-    //     }
-    //     $TbEducadores = TbProfissional::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
-    //     $login = TbLogin::find(session('login'))->first();
     return response($responsaveis);
+});
+Route::get('/saude/alunos', function (\Illuminate\Http\Request $request) {
+    $aluno = $request->input('nome');
+    $alunos = TbAluno::where('nm_aluno', 'like', '%' . $aluno . '%')->get();
+    return response($alunos);
+});
+Route::get('/saude/aluno', function (\Illuminate\Http\Request $request) {
+    $id = $request->input('id');
+    $aluno = TbAluno::where('cd_aluno', '=', $id)->get();
+    return response($aluno);
 });
 
 //Tela Home
@@ -86,6 +88,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/turmas/{id}', [InstituicaoController::class, 'visualizar_turma'])->name('instituicao.turma.view');
     
     Route::get('instituicao/saude', [InstituicaoController::class, 'problemassaude'])->name('instituicao.problemassaude');  
+    Route::post('instituicao/saude/insert', [InstituicaoController::class, 'problemassaude_insert'])->name('instituicao.problemassaude.insert');  
 
     
     Route::get('instituicao/transportes', [InstituicaoController::class, 'transporte'])->name('instituicao.transporte');

@@ -8,3 +8,33 @@
     border-color:#87cac400;
     background-color: #87cac400;
 }
+.resultados{
+    background-color: rgb(215, 255, 242);
+    position: absolute;
+    top: 26em;
+    z-index: 1;
+    left: 5em;
+    max-height: 18em;
+    overflow: scroll;
+}
+.resultados::-webkit-scrollbar{
+    display: none;
+}
+.usuario{
+    padding-inline: 1em;
+    height: 4em;
+    display: flex;
+    border: none;
+    width: 100%;
+}
+.usuario:hover{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid;
+    border-color: rgba(128, 128, 128, 0.24);
+    overflow: hidden;
+}
+.usuario p{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: left;
+}
