@@ -204,6 +204,8 @@ i.uil.uil-arrow-right {
     radial-gradient(var(--R) at 50% calc(100% + var(--p)),#0000 99%,red 101%) 50% calc(100% - var(--size))/calc(4*var(--size)) 100% repeat-x;
   background: #8396dc;  
   border: none;
+  position: relative;
+  z-index: 0;
 }
 
 .section-carousel {
@@ -250,11 +252,13 @@ i.uil.uil-arrow-right {
 }
 
 .text-slide {
+    z-index: 1;
     text-align: center;
     margin-top: 2em;
     margin-left: -4em;
     background-color: #fff;
     padding: 1em;
+    position:relative;
     border-radius: 1em;
     box-shadow: -4px 4px 0 5px #ecab54;
 }
@@ -505,7 +509,7 @@ i.uil.uil-arrow-right {
     .carrosel_part {
         display: flex;
         width: 100%;
-        min-height: 84vh;
+        height: max-content;
         margin-top: 2em;
         align-items: center;
         justify-content: center;
@@ -707,6 +711,11 @@ i.uil.uil-arrow-right {
 
     nav a {
         font-size: 7px;
+    }
+}
+@media screen and (max-height: 900px) {
+    .slider img{
+        width: 18em;
     }
 }
 
