@@ -560,6 +560,7 @@ class InstituicaoController extends Controller
             $Tbpagamentos = TbPagamento::all();
             $TbStatusPagamento = TbStatusPagamento::all();
             $TbResponsavel = TbResponsavel::all();
+            $login = TbLogin::find(session('login'))->first();
 
             // Fazendo contagem - Quantos em cada sala matriculados
             $alunosPorTurma = TbAluno::select('cd_turma', DB::raw('count(*) as total_alunos'))
@@ -603,6 +604,7 @@ class InstituicaoController extends Controller
            
 
         return view('telas.instituicao.dashboard',[
+            'login' => $login,
             'TbTurmas' =>$TbTurmas, 
             'TbAlunos' => $TbAlunos,
             'alunosPorTurma' => $alunosPorTurma,
