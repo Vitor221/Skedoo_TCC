@@ -45,7 +45,7 @@
             <div class="titulo_foot">
                 <h4 style="width:100%; text-align:center; font-weight: bold; padding-bottom: 0.6rem" class="footer-color">Copyright & 2023 Skedoo - Todos os direitos reservados</h4>
             </div>
-        </footer>
+        </footer><br>
     </div>
 </body>
 <script src="{{ asset('js/configDataHora.js') }}"></script>
