@@ -25,7 +25,6 @@
 @endsection
 
 @section('content')
-<br><br>
 <div class="flex-cards">
     <x-card-funcoes tituloCard="Mensagens" href="{{route('educador.mensagem')}}" icon="uil uil-comments"/>
     <x-card-funcoes tituloCard="Turmas" href="{{route('educador.alunos')}}" icon="uil uil-kid"/>
