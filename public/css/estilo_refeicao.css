@@ -94,9 +94,7 @@ h1{
 }
 @media (max-width: 850px)
 {
- .conteudo{
-    margin: 0.5em;
- } 
+
  .insert-refeicao{
     padding: 1em;
     background-color: white;
@@ -109,9 +107,7 @@ h1{
     top: -1em;
     left: 8em;
 }
-}
-@media (max-width: 850px)
-{
+
     #imgdopdf{
         width: 9.5em;
     }

@@ -15,9 +15,10 @@
     <img id="logo-skedoo" src="{{ asset('../img/Skedoo.png') }}" alt="">
     <h4 id="data-atual">{{ \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('d/m/Y') }}</h4>
 
-    <div class="perfil-bg">
+    <div class="perfil-bg flex">
         <h3>
             Bem-vindo, {{ session('login')['nm_login'] }}
+        </h3>
             <a class="img-div" href="{{ route('instituicao.perfil') }}">
                 @if($login->img_perfil)
                     <img name="image" class="img-perfil" class="img-personalizado" src="{{ url('storage/' . $login->img_perfil) }}" alt="">
@@ -25,7 +26,6 @@
                     <img name="image" class="img-perfil" src="https://i.stack.imgur.com/Bzcs0.png" alt="">
                 @endif
             </a>
-        </h3>
     </div>
 </div>
 @endsection

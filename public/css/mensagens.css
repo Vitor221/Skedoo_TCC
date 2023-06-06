@@ -191,6 +191,10 @@ p{
     color: white;
     font-weight: bold;
 }
+.div-usuarios h3{
+    color: white;
+    font-weight: bold;
+}
 @media (max-width: 980px)
 {
   .tt-usuarios{
@@ -201,9 +205,6 @@ p{
 {
   .div-usuarios{
     display: none;
-  }
-  .conteudo{
-    margin:0.5em;
   }
   .div-mensagens{
     padding: 0px;

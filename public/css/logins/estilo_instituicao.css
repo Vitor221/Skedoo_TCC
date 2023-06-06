@@ -122,67 +122,7 @@ body {
     color: #4fbbb2;
     position: relative;
 }
-@media (max-width: 1300px)
-{
-  .card{
-    padding: 1.5em 1em;
-  }
-  .card .uil::before{
-    font-size: 9em;
-  }
-}
-@media (max-width: 1000px)
-{
-  .card .uil::before{
-    font-size: 7em;
-  }
-  .card h3{
-    font-size: 1em;
-  }
-}
-@media (max-width: 850px)
-{
-  .card .uil::before{
-    font-size: 5em;
-  }
-  .card h3{
-    font-size: 1em;
-  }
-}
-@media (max-width: 850px)
-{
-  .flex-cards{
-    display: block;
-    margin-bottom: 0em;
-  }
-  .card{
-    margin-bottom: 1em;
-  }
-  .card h3{
-    font-size: 1.5em;
-  }
-  #data-atual{
-    display: none;
-  }
-  #hora-atual{
-    display: none;
-  }
-  #logo-skedoo{
-    width:6em;
-  }
-  .perfil-bg h3{
-    font-size: 1.2em;
-  }
-  .uil-bell{
-    margin-right: 0px !important;
-  }
-  .menu-bar{
-    padding-inline: 2em;
-  }
-  .uil-estate::before{
-    font-size: 2em;
-  }
-}
+
 
 
 /* .flex-cards{
