@@ -543,14 +543,7 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.editar_cardapio');
     }
 
-    public function perfil()
- {
-        if (session()->has('login')) {
-            $login = TbLogin::find(session('login'))->first();
-            return view('telas.instituicao.perfil', compact('login'));
-        }
-        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
-    }
+    
 
     // DASHBORD
 
@@ -612,6 +605,15 @@ class InstituicaoController extends Controller
             'bairros' => $bairros,
             'responsaveis' => $responsaveis
         ]);}
+
+    public function perfil()
+    {
+        if (session()->has('login')) {
+            $login = TbLogin::find(session('login'))->first();
+            return view('telas.instituicao.perfil', compact('login'));
+        }
+        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
+    }  
         
     public function atualizarPerfil(Request $request) {
         $request->validate([
