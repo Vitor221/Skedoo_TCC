@@ -1,17 +1,10 @@
-html::before {
-    content: "";
-    background-image: url("../../img/img_logins/background_1-skedoo-resp.svg"),
-        url("../../img/img_logins/background_2-skedoo-resp.svg"),
-        url("../../img/img_logins/background_3-skedoo-resp.svg"),
-        url("../../img/img_logins/background_4-skedoo-resp.svg");
-    background-size: 15%, 8%, 20%, 20%;
-    background-position: top 5% left, right top 0%, bottom -180% left,
-     bottom -10px right;
-    background-repeat: no-repeat;
+body {
+    background-image:
+    url("../../img/img_logins/bg-responsavel-balls1.svg"),
+    url("../../img/img_logins/bg-responsavel-balls2.svg");
+    background-size: cover;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: 0.5;
+    height: 100vh;
 }
 
 
@@ -39,7 +32,7 @@ html::before {
 
 .perfil-bg {
     position: absolute;
-    background-color: #f7b662;
+    background-color: #eca344;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
     width: auto;
     padding: 0 1rem;
@@ -57,4 +50,66 @@ html::before {
 }
 .footer-color{
     color: #f7b662;
+}
+
+.conteudo-ajuda {
+    width: 100%;
+    background-image: linear-gradient(to left, #f7b662, #eca344 );
+    padding: 0.8em;
+    border-radius: 0.8em;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.conteudo-ajuda h2 {
+    font-weight: 700;
+}
+
+.col h3 {
+    margin-bottom: 0.6em;
+    color: #f7b662;
+    font-weight: 700;
+}
+
+.bg-ajuda {
+    background-color: #fff;
+    border-radius: 0.7em;
+}
+
+.col > .uil::before {
+    margin-top: 0.7rem;
+    font-size: 3.8rem;
+    color: #4fbbb2;
+}
+
+.contato-ajuda {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.contato-ajuda p {
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    border-bottom: 2px solid #4fbbb2;
+    width: 24%;
+    margin: auto;
+    margin-bottom: 1.2em;
+}
+
+.contato-ajuda h2 {
+    color: black;
+    font-weight: 700;
+}
+
+.uil-angle-left {
+    color: #4fbbb2;
+    transition: all .2s ease-in-out;
+    margin-left: 1em;
+}
+
+.uil-angle-left:hover {
+    transform: scale(1.1);
+}
+
+.informacoes {
+    background-color: #eca344;
 }

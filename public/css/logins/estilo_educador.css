@@ -1,17 +1,14 @@
-html::before {
+body {
     content: "";
-    background-image: url("../../img/img_contato/background_1-skedoo.svg"),
-        url("../../img/img_contato/background_2-skedoo.svg"),
-        url("../../img/img_contato/background_3-skedoo.svg"),
-        url("../../img/img_contato/background_4-skedoo.svg");
-    background-size: 15%, 20%, 20%, 20%;
-    background-position: top 5% left, right top 0%, bottom -180% left,
-     bottom -10px right;
-    background-repeat: repeat-y;
+    background-image: url("../../img/img_logins/bg-educador-wave-right.svg"),
+    url("../../img/img_logins/bg-educador-wave-left.svg"),
+    url("../../img/img_logins/bg-instituicao-ball-left.svg"),
+    url("../../img/img_logins/bg-educador-wave-right.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    position: absolute;
-    opacity: 0.5;
+    z-index: -10;
 }
 
 .menu-bar {
@@ -35,9 +32,6 @@ html::before {
 }
 .div-conteudo{
     background-color: #606cd6;
-}
-.paragrafo{
-    color: white;
 }
 
 .texto-card {
@@ -65,4 +59,67 @@ html::before {
 }
 .footer-color{
     color: #626ed2;
+}
+
+.conteudo-ajuda {
+    width: 100%;
+    background-image: linear-gradient(to left, #626ed2, #9ba4f5 );
+    padding: 0.8em;
+    border-radius: 0.8em;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.conteudo-ajuda h2 {
+    font-weight: 700;
+}
+
+.col h3 {
+    margin-bottom: 0.6em;
+    color: #626ed2;
+    font-weight: 700;
+}
+
+.bg-ajuda {
+    background-color: #fff;
+    border-radius: 0.7em;
+}
+
+.col > .uil::before {
+    margin-top: 0.7rem;
+    font-size: 3.8rem;
+    color: #f7b662;
+}
+
+.contato-ajuda {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.contato-ajuda p {
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    border-bottom: 2px solid #f7b662;
+
+    width: 24%;
+    margin: auto;
+    margin-bottom: 1.2em;
+}
+
+.contato-ajuda h2 {
+    color: black;
+    font-weight: 700;
+}
+
+.informacoes {
+    background-color: #606cd6;
+}
+
+.uil-angle-left {
+    color: #fff;
+    transition: all .2s ease-in-out;
+    margin-left: 1em;
+}
+
+.uil-angle-left:hover {
+    transform: scale(1.1);
 }

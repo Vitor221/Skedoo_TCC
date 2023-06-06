@@ -3,7 +3,7 @@ body {
     url("../../img/img_logins/bg-instituicao-wave.svg"),
     url("../../img/img_logins/bg-instituicao-ball-left.svg"),
     url("../../img/img_logins/bg-instituicao-ball-right.svg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     z-index: -10;
@@ -16,12 +16,6 @@ body {
 .nav {
     position: relative;
     color: #fff;
-}
-
-.img-perfil {
-    border-radius: 1000px;
-    width: 50px;
-    height: 50px;
 }
 
 .perfil-bg {
@@ -123,6 +117,16 @@ body {
     position: relative;
 }
 
+.uil-angle-left {
+    color: #fff;
+    transition: all .2s ease-in-out;
+    margin-left: 1em;
+
+}
+
+.uil-angle-left:hover {
+    transform: scale(1.1);
+}
 
 
 /* .flex-cards{
@@ -130,6 +134,3 @@ body {
     justify-content: space-around;
     margin-bottom: 4em;
 } */
-    
-
- 
