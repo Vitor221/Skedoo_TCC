@@ -15,7 +15,7 @@
     border-radius: 2em;
     border-color: #87cac4;
     top: -1em;
-    left: 12em;
+    left: 8em;
 }
 .insert-refeicao input{
     padding: 0.2em;
@@ -91,4 +91,40 @@ h1{
 }
 .anteriores{
     background-color: rgb(172, 172, 172);
+}
+@media (max-width: 850px)
+{
+ .conteudo{
+    margin: 0.5em;
+ } 
+ .insert-refeicao{
+    padding: 1em;
+    background-color: white;
+    position: absolute;
+    width: 30em;
+    height: max-content;
+    border: 0.5em solid;
+    border-radius: 1em;
+    border-color: #87cac4;
+    top: -1em;
+    left: 8em;
+}
+}
+@media (max-width: 850px)
+{
+    #imgdopdf{
+        width: 9.5em;
+    }
+ .insert-refeicao{
+    padding: 1em;
+    background-color: white;
+    position: absolute;
+    width: 20em;
+    height: max-content;
+    border: 0.5em solid;
+    border-radius: 1em;
+    border-color: #87cac4;
+    top: -1em;
+    left: 0em;
+}
 }

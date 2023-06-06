@@ -28,17 +28,15 @@
 @endsection
 
 @section('content')
+<div class="search" id="pesquisa" style="display:none;">
+        <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()">
+    </div>
+    <div class="resultados" id="resultados">
+    </div>
     <div class="div-conteudo">
         <div class="div-usuarios">
             <div class="flex">
                 <h3>Usuários</h3>
-                <button id="abrePesquisa" class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button>
-                <button id="fechaPesquisa"class="pesquisar" onclick="fechaPesquisar()" style="display:none;"><i class="uil uil-times"></i></button>
-                <div class="search" id="pesquisa" style="display:none;">
-                        <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()">
-                    </div>
-                    <div class="resultados" id="resultados">
-                    </div>
             </div>
             <div class="usuarios">
                 <h5 class="tt-usuarios">Responsaveis</h5>
@@ -59,7 +57,9 @@
         </div>
         <div class="block">
             <div class="div-mensagens">
-                <div class="topo-mensagens">
+                <div class="topo-mensagens flex">
+                    <button id="abrePesquisa" class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button>
+                <button id="fechaPesquisa"class="pesquisar" onclick="fechaPesquisar()" style="display:none;"><i class="uil uil-times"></i></button>
                     <h3 id="nomeChat">Nome do destinatario</h3>
                 </div>
                 <div id="div-mensagens" class="mensagens">
