@@ -28,18 +28,48 @@
 @endsection
 
 @section('content')
-    <div class="div-conteudo" style="margin-top: 0px;">
+
+    <div class="container text-center conteudo-ajuda">
         <h2>Funções</h2>
-        <h3 class="sub-titulo">Mensagens</h3>
-        <p class="paragrafo"> Permite enviar e receber mensagens em chats privados ou de modo geral, direcionadas a educadores, responsáveis ou ambos. É uma forma de comunicação interna dentro do sistema.</p>
-        <h3 class="sub-titulo">Refeição</h3>
-        <p class="paragrafo">Nesta seção, você pode visualizar as refeições que serão servidas, seja por semana ou pode fazer o download um PDF com as refeições do mês.</p>
-        <h3 class="sub-titulo">Saúde</h3>
-        <p class="paragrafo">Nesta seção, é possível solicitar o cadastro de condição de risco a saúde, como alergias, problemas respiratórios ou cardíacos. Essas informações ficam visíveis para a instituição.</p>
-        <h3 class="sub-titulo">Calendario</h3>
-        <p class="paragrafo">Nesta seção, é possível realizar a visualização de eventos, notificações e lembretes. Os eventos podem ser marcados para o dia ou uma sequencia de data escolhida.</p>
+        
+        <div class="bg-ajuda">
+            <div class="row align-items-start">
+
+                <div class="col">
+                    <i class="uil uil-envelope-add"></i>
+                    <h3 class="sub-titulo">Mensagens</h3>
+                    <p class="paragrafo">Permite enviar e receber mensagens em chats privados, direcionadas a educadores, responsáveis ou ambos. É uma forma de comunicação interna dentro do sistema.</p>
+                </div>
+
+                <div class="col">
+                        <i class="uil uil-calendar-alt"></i>
+                        <h3 class="sub-titulo">Calendário</h3>
+                        <p class="paragrafo">Nesta seção, é possível realizar a visualização de eventos, inserir e excluir eventos criados. Os eventos podem ser marcados para o dia todo ou em uma hora específica. Além disso, é possível criar lembretes e notificações relacionados aos eventos.</p>
+                </div>
+
+                <div class="col">
+                        <i class="uil uil-utensils"></i>
+                        <h3 class="sub-titulo">Refeição</h3>
+                        <p class="paragrafo">Nesta seção, você pode adicionar as refeições que serão servidas, seja por semana ou, se preferir, pode enviar um PDF para que os usuários do sistema possam fazer o download.</p>
+                </div>
+
+            </div>
+
+            <div class="row align-items-start">
+
+                <div class="col">
+                        <i class="uil uil-band-aid"></i>
+                        <h3 class="sub-titulo">Saúde</h3>
+                        <p class="paragrafo" style="width: 50%; margin: auto; margin-bottom: 1em">Nesta seção, é possível visualizar e cadastrar alunos com situações de risco a saúde, como alergias, problemas respiratórios ou cardíacos. Essas informações ficam visíveis para os educadores.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="contato-ajuda">
         <h2>Alguma duvida ou problema? Fale conosco.</h2>
-        <p class="paragrafo">email: skedoo@skedoo.com</p>
-        <p class="paragrafo">tel: (13) 996334709</p>
+        <p class="paragrafo"> <strong>email:</strong> skedoo@skedoo.com</p>
+        <p class="paragrafo"> <strong>tel:</strong> (13) 996334709</p>
     </div>
 @endsection

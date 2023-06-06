@@ -10,11 +10,14 @@
         integrity="sha384-MrcW6ZMFYlzcBC8NHDz+AwtTVTI0T8IUGuYnAD8IHTA5Q=" crossorigin="anonymous">
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link rel="stylesheet" href="{{ asset('css/estilo_perfil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
     <script src=""></script>
 </head>
 
 <body class="conteudo">
-    <x-button-back href="{{ url()->previous() }}" icon="uil uil-angle-left"/>
+    <div class="bt-voltar">
+        <x-button-back href="{{ url()->previous() }}" icon="uil uil-angle-left"/>
+    </div>
     
     <form class="form-cadastro" method="POST" id="form" enctype="multipart/form-data" action="{{ route('instituicao.perfil.atualizar') }}">
         @csrf
@@ -36,10 +39,19 @@
     </div>
 
     <div class="informacoes">
-        <h3 class="info-titulo">
-            Nome de Usuário
-        </h3>
-        <p class="info-texto">{{ session('login')['nm_login'] }}</p>
+        <div class="area-usuario">
+            <h3 class="info-titulo">
+                Nome de Usuário
+            </h3>
+            <p class="info-texto">{{ session('login')['nm_login'] }}</p>
+        </div>
+
+        <div class="area-senha">
+            <h3 class="info-titulo">
+                Senha do Usuário
+            </h3>
+            <p class="info-texto">{{ session('login')['cd_senha'] }}</p>
+        </div>
     </div>
     
     <div class="flex">

@@ -27,9 +27,11 @@
 }
 
 .conteudo {
-    margin: 3%;
+    margin-top: 3%;
 }
 .informacoes {
+    display: flex;
+    justify-content: space-around;
     width: 75%;
     margin: auto;
     padding: 2em;
@@ -37,6 +39,7 @@
     color: white;
     margin-top: 2em;
     border-radius: 2em;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
 .info-titulo {
     font-size: 1.2em;

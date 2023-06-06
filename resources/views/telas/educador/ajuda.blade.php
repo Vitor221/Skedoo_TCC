@@ -28,17 +28,37 @@
 @endsection
 
 @section('content')
-    <div class="div-conteudo" style="margin-top: 0px;">
+    <div class="container text-center conteudo-ajuda">
         <h2>Funções</h2>
-        <h3 class="sub-titulo">Mensagens</h3>
-        <p class="paragrafo">Permite enviar e receber mensagens em chats privados ou de modo geral, direcionadas a educadores, responsáveis ou ambos. É uma forma de comunicação interna dentro do sistema.</p>
-        <h3 class="sub-titulo">Calendario</h3>
-        <p class="paragrafo" >Nesta seção, é possível realizar a visualização de eventos. Além disso, é possível criar lembretes e notificações relacionados aos eventos.</p>
-        <h3 class="sub-titulo">Turmas</h3>
-        <p class="paragrafo">Na seção das Turmas é possivel fazer a verificação de quais alunos pertencem a cada sala.</p>
-        <h3 class="sub-titulo">Configurações</h3>
+        
+        <div class="bg-ajuda">
+            <div class="row align-items-start">
+
+                <div class="col">
+                    <i class="uil uil-envelope-add"></i>
+                    <h3 class="sub-titulo">Mensagens</h3>
+                    <p class="paragrafo">Permite enviar e receber mensagens em chats privados, direcionadas a educadores, responsáveis ou ambos. É uma forma de comunicação interna dentro do sistema.</p>
+                </div>
+
+                <div class="col">
+                        <i class="uil uil-calendar-alt"></i>
+                        <h3 class="sub-titulo">Calendário</h3>
+                        <p class="paragrafo">Nesta seção, é possível realizar a visualização de eventos, inserir e excluir eventos criados. Os eventos podem ser marcados para o dia todo ou em uma hora específica. Além disso, é possível criar lembretes e notificações relacionados aos eventos.</p>
+                </div>
+
+                <div class="col">
+                    <i class="uil uil-users-alt"></i>
+                    <h3 class="sub-titulo">Turmas</h3>
+                    <p class="paragrafo">Na seção das Turmas é possivel fazer a verificação de quais alunos pertencem a cada sala, editar, e criar novas salas.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="contato-ajuda">
         <h2>Alguma duvida ou problema? Fale conosco.</h2>
-        <p class="paragrafo">email: skedoo@skedoo.com</p>
-        <p class="paragrafo">tel: (13) 996334709</p>
+        <p class="paragrafo"> <strong>email:</strong> skedoo@skedoo.com</p>
+        <p class="paragrafo"> <strong>tel:</strong> (13) 996334709</p>
     </div>
 @endsection
