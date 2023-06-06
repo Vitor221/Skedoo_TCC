@@ -34,7 +34,7 @@
             <label>Nome da Turma</label>
             <input type="text" class="texto" style="width:100%" id="nomeTurma" name="nomeTurma"><br><br>
             <div class="div-input-flex">
-                <div class="block" style="width:20%;">
+                <div class="block" style="width:40%;">
                     <label>Periodo</label>
                     <br>
                     <select id="periodo" name="periodo" for="turma" class="texto">
