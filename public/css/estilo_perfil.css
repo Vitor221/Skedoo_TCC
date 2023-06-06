@@ -32,7 +32,7 @@
 .informacoes {
     display: flex;
     justify-content: space-around;
-    width: 75%;
+    width: 40%;
     margin: auto;
     padding: 2em;
     background-color: rgb(135, 202, 196);
@@ -40,6 +40,7 @@
     margin-top: 2em;
     border-radius: 2em;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 .info-titulo {
     font-size: 1.2em;

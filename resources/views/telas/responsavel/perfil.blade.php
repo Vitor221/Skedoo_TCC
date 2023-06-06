@@ -45,13 +45,6 @@
             </h3>
             <p class="info-texto">{{ session('login')['nm_login'] }}</p>
         </div>
-
-        <div class="area-senha">
-            <h3 class="info-titulo">
-                Senha do Usuário
-            </h3>
-            <p class="info-texto">{{ session('login')['cd_senha'] }}</p>
-        </div>
     </div>
     
     <div class="flex">
