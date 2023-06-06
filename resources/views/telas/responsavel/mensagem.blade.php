@@ -36,7 +36,9 @@
 </div>
     <div class="div-conteudo">
         <div class="div-usuarios">
+            <div class="flex">
             <h3>Usuários</h3>
+            </div>
             <div class="usuarios">
                 <h5 class="tt-usuarios">Instituição</h5>
                 @foreach ($TbInstituicao as $TbInstituicao)
