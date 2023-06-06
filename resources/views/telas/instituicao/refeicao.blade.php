@@ -102,8 +102,7 @@
                         <div class="block">
                             <p>{{ $cardapioHoje->nm_ddsemana }}</p>
                             {{ \Carbon\Carbon::parse($cardapioHoje->dt_cardapio)->format('d/m/Y') }}<br>
-                            <form method="POST"
-                                action="{{ route('instituicao.saude.delete', $cardapioHoje->id_cardapio)}}">
+                            <form method="POST" action="{{ route('instituicao.refeicao.delete', $cardapioHoje->id_cardapio)}}">
                                 @csrf
                                 @method('DELETE')
                                 <button><i class="uil uil-times"></i></button>
