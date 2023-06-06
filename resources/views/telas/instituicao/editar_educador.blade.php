@@ -36,14 +36,10 @@
         @csrf
         <div>
         <label for="">Nome do educador:</label>
-            <input type="text" name="name" value="{{ $educador->nm_profissional }}">
+        <input type="text" name="name" value="{{ $educador->nm_profissional }}">
 
-
-        <label for="">CPF do educador:</label>
-            <input type="text" name="cpf" value="{{ $educador->cd_cpf }}">
-
-            <label for="">Função do educador:</label>
-            <input type="text" name="funcao" value="{{ $educador->nm_funcao }}">
+        <label for="">Função do educador:</label>
+        <input type="text" name="funcao" value="{{ $educador->nm_funcao }}">
 
         <select for="turma" class="texto2" name="turma" id="turma">
               <option value="{{ $turma->cd_turma }}" selected disabled>{{ $turma->sg_turma }} - Atual</option>

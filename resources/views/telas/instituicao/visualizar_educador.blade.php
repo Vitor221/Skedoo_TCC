@@ -31,9 +31,8 @@
         <h1 style="text-align: center;">Informações do cliente</h1><br>
         <div class="visualizar2" style="background-color: white;">
         <h4>Colaborador</h4><br>
-        <p>Nome: {{ $educador->nm_profissional }}</p>
-        <p>CPF: {{ $educador->cd_cpf }}</p>
-        <p>Turma: {{$educador->tb_turma->nm_turma}}  -  {{$educador->tb_turma->ds_periodo}}</p>
+        <p><strong>Nome:</strong> {{ $educador->nm_profissional }}</p>
+        <p><strong>Turma:</strong> {{$educador->tb_turma->nm_turma}}  -  {{$educador->tb_turma->ds_periodo}}</p>
         </div>
     </div>
 

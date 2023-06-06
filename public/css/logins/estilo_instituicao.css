@@ -3,8 +3,7 @@ body {
     url("../../img/img_logins/bg-instituicao-wave.svg"),
     url("../../img/img_logins/bg-instituicao-ball-left.svg"),
     url("../../img/img_logins/bg-instituicao-ball-right.svg");
-    background-size: cover;
-    background-position: right, left, center, center;
+    background-size: 100%;
     background-repeat: no-repeat;
     width: 100%;
     z-index: -10;
@@ -34,6 +33,13 @@ body {
     top: 0;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+}
+
+@media screen and (max-width: 1250px) {
+    .img-perfil {
+        height: 20px;
+        width: 20px;
+    }
 }
 
 .menu-bar {
@@ -113,6 +119,4 @@ body {
     color: #4fbbb2;
     position: relative;
 }
-h4 {
-    margin: 0;
-}
+ 
