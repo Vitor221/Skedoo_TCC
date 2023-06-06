@@ -71,21 +71,20 @@
                 <h3>Ou insira um arquivo em pdf</h3>
                 <form action="" method="POST"  enctype="multipart/form-data">
                 @csrf
-                <label>Arquivo PDF do Mês:</label>
-                <input type="file" id="imgdopdf" name="imgdopdf" /><br>
+                <label>Arquivo PDF do Mês:</label><br>
+                <input type="file" id="imgdopdf" name="imgdopdf"/><br><br>
                 <button type="submit" class="enviar" value="Enviar">Enviar</button>
                 </form>
             </div><br>
         </div><br>
     </div><br><br>
-    <div class="div-conteudo">
+    {{-- <div class="div-conteudo">
         <h1>PDF DO MÊS</h1>
         <div class="div-refeicao">
         <a href="{{ route('download.arquivo') }}" style="margin-left: 41.5%;">Clique aqui para baixar o último arquivo</a>
         </div>
-    </div>
-    <br>
-    <br>
+    </div> --}}
+    
     <div class="div-conteudo">
         @if ($cardapioHoje)
             <h1>Refeição de Hoje</h1>

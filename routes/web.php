@@ -11,6 +11,7 @@ use App\Models\TbInstituicao;
 use App\Models\TbAluno;
 use App\Models\TbProfissional;
 use App\Models\TbLogin;
+use App\Models\TbTurma;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,28 @@ Route::get('/saude/aluno', function (\Illuminate\Http\Request $request) {
     $aluno = TbAluno::where('cd_aluno', '=', $id)->get();
     return response($aluno);
 });
+Route::get('/dashboard', function () {
+    $TbTurmas = TbTurma::all();
+    $TbAlunos = [];
+    foreach ($TbTurmas as $Turma) {
+        $count = TbAluno::where('cd_turma', '=', $Turma->cd_turma)->count();
+        $TbAlunos[$Turma->cd_turma] = $count;
+    }
+    $TbBairros = TbResponsavel::select('tb_bairro.nm_bairro as nome_bairro', DB::raw('COUNT(*) as total_responsaveis'))
+            ->join('Tb_endereco', 'Tb_responsavel.cd_endereco', '=', 'tb_endereco.cd_endereco')
+            ->join('tb_bairro', 'Tb_endereco.cd_bairro', '=', 'Tb_bairro.cd_bairro')
+            ->groupBy('nome_bairro')
+            ->get();
+    $data = [
+        'TbTurmas' => $TbTurmas,
+        'TbAlunos' => $TbAlunos,
+        'TbBairros' => $TbBairros
+    ];
+    return response()->json($data);
+});
+
+
+
 
 //Tela Home
 Route::get('/', function () {

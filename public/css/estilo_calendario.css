@@ -9,7 +9,6 @@
 #calendar{
   background: rgb(255,214,162);
   background: linear-gradient(0deg, rgba(255,214,162,1) 0%, rgba(255,175,72,1) 73%);
-  width: 50%;
   margin: auto;
   animation: go-back 1s;
 }
@@ -51,3 +50,4 @@
     opacity: 100%;
   }
 }
+

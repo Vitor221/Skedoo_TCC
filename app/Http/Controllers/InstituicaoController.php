@@ -577,15 +577,6 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.editar_cardapio');
     }
 
-    public function perfil()
-    {
-        if (session()->has('login')) {
-            $login = TbLogin::find(session('login'))->first();
-            return view('telas.instituicao.perfil', compact('login'));
-        }
-        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
-    }
-
     // DASHBORD
 
     public function dashboard(Request $request){
@@ -633,7 +624,6 @@ class InstituicaoController extends Controller
             ->groupBy('tb_status_pagamento.nm_status_pagamento')
             ->get();
 
-
         return view('telas.instituicao.dashboard',[
             'login' => $login,
             'TbTurmas' =>$TbTurmas, 
@@ -644,7 +634,16 @@ class InstituicaoController extends Controller
             'RecebimentoPorMes' => $recebimentoPorMes,
             'bairros' => $bairros,
             'responsaveis' => $responsaveis
-        ]);
+
+        ]);}
+
+    public function perfil()
+    {
+        if (session()->has('login')) {
+            $login = TbLogin::find(session('login'))->first();
+            return view('telas.instituicao.perfil', compact('login'));
+        }
+        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
     }
 
     public function atualizarPerfil(Request $request)

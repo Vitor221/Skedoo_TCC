@@ -43,7 +43,7 @@
         <br><br>
         <footer>
             <div class="titulo_foot">
-                <h4 style="width:100%; text-align:center; font-weight: bold;" class="footer-color">Copyright & 2023 Skedoo - Todos os direitos reservados</h4>
+                <h4 style="width:100%; text-align:center; font-weight: bold; padding-bottom: 0.6rem" class="footer-color">Copyright & 2023 Skedoo - Todos os direitos reservados</h4>
             </div>
         </footer>
     </div>

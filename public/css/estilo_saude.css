@@ -1,13 +1,4 @@
-.conteudo{
-    height: fit-content;
-    border-radius: 0px;;
-    border-width: 0px;
-    width: 70%;
-    margin: auto;
-    margin-top: 1rem;
-    border-color:#87cac400;
-    background-color: #87cac400;
-}
+
 .resultados{
     background-color: rgb(215, 255, 242);
     position: absolute;
