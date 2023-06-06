@@ -85,9 +85,9 @@
     </div><br>
     <div class="div-conteudo">
         <div style="background-color: white;border-radius: 2em;padding:3em;">
-            <h3>Quadro de Saúde</h3>
+            <h3 style="text-align: center">Quadro de Saúde</h3>
         </div>
-
+        <br>
         @if(isset($TbAlunos))
 
     <table>
