@@ -6,7 +6,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/config/config.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/estilo_dashboard.css') }}">
 @endsection
 
 @section('nav-telas')
@@ -34,27 +34,48 @@
     @csrf
 
     {{-- Gráficos com ChartJS --}}
-    <div class="container">
+    <div class="div-conteudo" style="padding: 2em; padding-top: 0px;">
         <div class="row">
-            <h3>Relatórios</h3>
+            <h2 style="width:100%; text-align: center; text-decoration: none;">Graficos</h2>
             <div class="col-6">
-                <div class="card">
+                <div class="grafico">
+                    <h3>Alunos por Turma</h3>
                     <canvas id="myChart"></canvas>
+                </div><br>
+                <div class="div-infos">
+                    <h4> Total Recebido</h4>
+                    <p>
+                        {{ $RecebimentoTotal->total_recebido }}
+                    </p>
                 </div>
             </div>
             <div class="col-6">
-                <div class="card">
+                <div class="grafico">
+                    <h3>Responsaveis por Bairro</h3>
                     <canvas id="myBar"></canvas>
+                </div><br>
+                <div class="grafico linha">
+                    <h3>Recebimentos dos Meses</h3>
+                    <canvas id="Linha"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-    <br>
-
+    <br> 
+<div class="div-conteudo" style="margin:1em;">
     <!-- Div Alunos-->
     <div class="container">
-        <div class="menu">
+        <h2 style="width:100%; text-align: center; text-decoration: none;">Tabelas</h2>
+        <div class="container">
+            <div class="div-infos">
+                <h4> Total Clientes</h4>
+                <p>
+                    {{ $clienteCadastrados->total_Clientes }}
+                </p>
+            </div>
+        </div><br><br>
+        <div class="menu div-infos">
             <table>
                 <h4>Alunos</h4>
                 <thead>
@@ -80,27 +101,10 @@
     </div><br><br>
 
     <!-- Cotando total de clientes responsaveis -->
-    <div class="container">
-        <div class="card">
-            <h4> Total Clientes</h4>
-            <p>
-                {{ $clienteCadastrados->total_Clientes }}
-            </p>
-        </div>
-    </div><br><br>
-
-    <div class="container">
-        <div class="card">
-            <h4> Total Recebido</h4>
-            <p>
-                {{ $RecebimentoTotal->total_recebido }}
-            </p>
-        </div>
-    </div><br><br>
 
     <!-- RECEBIMENTO POR MES -->
     <div class="container">
-        <div class="card">
+        <div class="div-infos">
             <h4>Recebimento por Mês</h4>
             <ul>
                 @foreach ($RecebimentoPorMes as $recebimento)
@@ -112,9 +116,11 @@
     </div><br><br>
 
 
+
     <!-- localização do grupo de responsaveis -->
     <div class="container">
-        <div class="card">
+        <div class="div-infos">
+            <h4>Bairros - Responsaveis</h4>
             <ul>
                 <ul>
                     @foreach ($bairros as $bairro)
@@ -127,7 +133,7 @@
 
 
     <!-- Div Pagamento -->
-    <div class="container">
+    {{-- <div class="container">
         <H3> PAGAMENTO </H3>
         <div class="">
             <table>
@@ -146,8 +152,9 @@
 
             </table>
         </div>
-    </div>
-
+    </div> --}}
+    <br>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
@@ -155,67 +162,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
 
     <script src="{{ asset('js/configFinance.js') }}"></script>
-
-    {{-- <script>
-        fetch('/dashboard/')
-        .then(data =>)
-        var ctx = document.getElementById('myChart');
-        var myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: [''{{$TbTurmas[2]->nm_turma}}'', 'Maternal I', 'Maternal II', 'Fase I', 'Fase II'],
-                datasets: [{
-                    label: 'Alunos por turma',
-                    data: [6, 16, 12, 11, 8],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        var ctb = document.getElementById('myBar');
-
-        var myBar = new Chart(ctb, {
-            type: 'bar',
-            data: {
-                labels: ['Conjunto Residencial Humaitá', 'Parque Continental'],
-                datasets: [{
-                    label: 'Alunos por bairro',
-                    data: [34, 29],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(255, 159, 64)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(54, 162, 235)',
-                        'rgb(153, 102, 255)',
-                        'rgb(201, 203, 207)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script> --}}
 @endsection

@@ -12,6 +12,7 @@ use App\Models\TbAluno;
 use App\Models\TbProfissional;
 use App\Models\TbLogin;
 use App\Models\TbTurma;
+use App\Models\TbPagamento;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +53,30 @@ Route::get('/saude/aluno', function (\Illuminate\Http\Request $request) {
 });
 Route::get('/dashboard', function () {
     $TbTurmas = TbTurma::all();
-    return response($TbTurmas);
+    $TbAlunos = [];
+    foreach ($TbTurmas as $Turma) {
+        $count = TbAluno::where('cd_turma', '=', $Turma->cd_turma)->count();
+        $TbAlunos[$Turma->cd_turma] = $count;
+    }
+    $TbBairros = TbResponsavel::select('tb_bairro.nm_bairro as nome_bairro', DB::raw('COUNT(*) as total_responsaveis'))
+            ->join('Tb_endereco', 'Tb_responsavel.cd_endereco', '=', 'tb_endereco.cd_endereco')
+            ->join('tb_bairro', 'Tb_endereco.cd_bairro', '=', 'Tb_bairro.cd_bairro')
+            ->groupBy('nome_bairro')
+            ->get();
+    $recebimentoPorMes = TbPagamento::selectRaw("DATE_FORMAT(dt_pagamento, '%m/%Y') as mes_ano, COUNT(*) as quantidade, CONCAT(FORMAT(SUM(vl_fatura), 2, 'de_DE')) AS total_recebido")
+            ->groupBy('mes_ano')
+            ->orderBy('mes_ano')
+            ->get();
+    $data = [
+        'TbTurmas' => $TbTurmas,
+        'TbAlunos' => $TbAlunos,
+        'TbBairros' => $TbBairros,
+        'recebimentoPorMes' => $recebimentoPorMes
+    ];
+    return response()->json($data);
 });
+
+
 
 
 //Tela Home

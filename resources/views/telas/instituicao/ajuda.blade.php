@@ -2,6 +2,7 @@
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/logins/estilo_instituicao.css') }}">
+<link rel="stylesheet" href="{{ asset('css/estilo_ajuda.css') }}">
 @endsection
 
 @section('voltar')

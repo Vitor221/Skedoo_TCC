@@ -99,6 +99,7 @@ body::-webkit-scrollbar{
     position: relative;
     margin: auto;
     margin: 4em;
+    border-radius: 2em;
 }
 .form-cadastro{
     background-color: #ffffff;
@@ -834,4 +835,46 @@ textarea:focus {
 
 .btnUpdateEducador:hover {
     background-color: #87cac4;
+}
+.flex{
+    display: flex;
+  }
+@media (max-width: 850px)
+{
+  #logo-skedoo{
+    width:6em;
+  }
+  .perfil-bg h3{
+    font-size: 1.2em;
+  }
+  .conteudo{
+    margin:0.5em;
+    margin-top: 1em;
+}
+  
+  .uil-bell{
+    margin-right: 0px !important;
+  }
+  .menu-bar{
+    padding-inline: 2em;
+  }
+  .uil-estate::before{
+    font-size: 2em;
+  }
+  #data-atual{
+    display: none;
+  }
+}
+@media (max-width: 650px)
+{
+    
+    #hora-atual{
+        display: none;
+    }
+  .perfil-bg h3{
+    display: none;
+  }
+  .perfil-bg{
+    background-color: blue;
+  }
 }
