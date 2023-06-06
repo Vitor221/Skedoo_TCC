@@ -153,7 +153,8 @@
             @else 
                 {{ $TbAlunos->links() }}
             @endif
-    </div>
+        </div>
+        <br>
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection

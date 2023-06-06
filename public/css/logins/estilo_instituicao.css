@@ -1,25 +1,24 @@
-html::before {
-    content: "";
-    background-image: url("../../img/img_logins/background_1-skedoo-inst.svg"),
-        url("../../img/img_logins/background_2-skedoo-inst.svg"),
-        url("../../img/img_logins/background_3-skedoo-inst.svg"),
-        url("../../img/img_logins/background_4-skedoo-inst.svg"), 
-        url('../../img/img_telas/nav-background2.svg'), 
-        url('../../img/img_telas/nav-background.svg'),
-        url('../../img/img_telas/bg-instituicao.svg');
-    background-size: 15%, 8%, 100%, 30%, 80%, 130%, 125%;
-    background-position: top left, right top 0%, bottom -180% left,
-     bottom -10px right, left, right, bottom left, left;
+body {
+    background-image: url("../../img/img_logins/bg-instituicao-wave-right.svg"),
+    url("../../img/img_logins/bg-instituicao-wave.svg"),
+    url("../../img/img_logins/bg-instituicao-ball-left.svg"),
+    url("../../img/img_logins/bg-instituicao-ball-right.svg");
+    background-size: 100%;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: 0.7;
+    z-index: -10;
+    height: 100vh;
 }
 
 .nav {
     position: relative;
     color: #fff;
+}
+
+.img-perfil {
+    border-radius: 1000px;
+    width: 50px;
+    height: 50px;
 }
 
 .perfil-bg {
@@ -34,6 +33,13 @@ html::before {
     top: 0;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+}
+
+@media screen and (max-width: 1250px) {
+    .img-perfil {
+        height: 20px;
+        width: 20px;
+    }
 }
 
 .menu-bar {
@@ -60,11 +66,58 @@ html::before {
 .menu-bar{
     background-color: #87cac4;
 }
-.div-conteudo{
-    background-color: #87cac4;
+
+.conteudo-ajuda {
+    width: 100%;
+    background-image: linear-gradient(to left, #70e0d7, #9eebe4 );
+    padding: 0.8em;
+    border-radius: 0.8em;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
 }
+
+.conteudo-ajuda h2 {
+    font-weight: 700;
+}
+
+.col h3 {
+    margin-bottom: 0.6em;
+    color: #4fbbb2;
+    font-weight: 700;
+}
+
+.bg-ajuda {
+    background-color: #fff;
+    border-radius: 0.7em;
+}
+
+.col > .uil::before {
+    margin-top: 0.7rem;
+    font-size: 3.8rem;
+    color: #f7b662;
+}
+
+.contato-ajuda {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.contato-ajuda p {
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    border-bottom: 2px solid #f7b662;
+    width: 24%;
+    margin: auto;
+    margin-bottom: 1.2em;
+}
+
+.contato-ajuda h2 {
+    color: black;
+    font-weight: 700;
+}
+
 .footer-color{
     color: #4fbbb2;
+    position: relative;
 }
 @media (max-width: 1300px)
 {
@@ -134,3 +187,6 @@ html::before {
     justify-content: space-around;
     margin-bottom: 4em;
 } */
+    
+
+ 
