@@ -32,7 +32,7 @@
         <form class="form-cadastro" id="formTurma" method="POST" action="{{route('instituicao.turma.insert')}}">
             @csrf
             <label>Nome da Turma</label>
-            <input type="text" class="texto" style="width:100%" id="nomeTurma" name="nomeTurma"><br><br>
+            <input type="text" class="texto" style="width:100%" id="nomeTurma" name="nomeTurma" autocomplete="off"><br><br>
             <div class="div-input-flex">
                 <div class="block" style="width:40%;">
                     <label>Periodo</label>
@@ -46,12 +46,12 @@
                 <div class="block" style="width:60%;">
                     <label>Sigla da Turma</label><br>
                     <input type="text" class="texto" style="width:100%" id="sigla" name="sigla"
-                        placeholder="Digite até 5 (cinco) letras..."><br><br>
+                        placeholder="Digite até 5 (cinco) letras..." autocomplete="off"><br><br>
                 </div>
                 <div class="block" style="width:100%">
                     <label>Quant. Max de Aluno</label>
                     <input type="text" class="texto" style="width:100%" id="qtdMax" name="qtdMax"
-                        placeholder="Nº máximo de alunos permitido"><br><br>
+                        placeholder="Nº máximo de alunos permitido" autocomplete="off"><br><br>
                 </div>
             </div>
             <button type="reset" class="cancelar" onclick="fechaFormTurma()">Cancelar</button>
@@ -63,7 +63,7 @@
     </div>
     <div class="search" id="pesquisa" style="display:none;">
         <form action="{{route('instituicao.alunos')}}" method="get">
-            <input type="search" name="s"  placeholder="Pesquisar alunos" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
+            <input type="search" name="s"  placeholder="Pesquisar alunos" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}" autocomplete="off">
             <button  type="submit"><i class="uil uil-search"></i></button>
         </form>
     </div>
@@ -146,11 +146,11 @@
 
             </tbody>
         </table>
-        
+
         <div class="pagination justify-content-center">
-            @if (request()->input('s'))                                                                                                                                                                                                                                  
-                {{ $TbAlunos->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
-            @else 
+            @if (request()->input('s'))
+                {{ $TbAlunos->appends(['s' => request()->input('s')])->links() }}
+            @else
                 {{ $TbAlunos->links() }}
             @endif
         </div>

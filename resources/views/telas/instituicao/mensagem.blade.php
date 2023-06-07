@@ -41,18 +41,18 @@
             <div class="usuarios">
                 <h5 class="tt-usuarios">Responsaveis</h5>
                 @for($i = 0; $i < count($TbResponsavel); $i++)
-                @foreach ($TbResponsavel[$i] as $Responsavel[$i])    
+                @foreach ($TbResponsavel[$i] as $Responsavel[$i])
                 <button class="usuario" id="responsavel_{{$i}}" value="{{$Responsavel[$i]->cd_cadastro}}" onclick="getID({{$Responsavel[$i]->cd_cadastro}})">
                     <p id="nm{{$Responsavel[$i]->cd_cadastro}}">{{ $Responsavel[$i]->nm_responsavel }}</p>
                 </button>
-                @endforeach 
+                @endforeach
                 @endfor
                 <h5 class="tt-usuarios">Educadores</h5>
-                @foreach ($TbEducadores as $Educador)    
+                @foreach ($TbEducadores as $Educador)
                 <button class="usuario" onclick="getID({{$Educador->nm_profissional}})">
                     <p id="nm{{$Educador->cd_cadastro}}">{{ $Educador->nm_profissional }}</p>
                 </button>
-                @endforeach 
+                @endforeach
             </div>
         </div>
         <div class="block">
@@ -68,9 +68,9 @@
             </div>
             <div class="div-form">
                 <div class="form-mensagem" action="">
-                    <input type="text" id="mensagem" onblur="removerTagsHTML(this)">
+                    <input type="text" id="mensagem" onblur="removerTagsHTML(this)" autocomplete="off">
                     <button onclick="enviarMensagem()">Enviar</button>
-                </div>  
+                </div>
             </div>
         </div>
     </div>

@@ -45,7 +45,7 @@
     <canvas id="myChart"></canvas>
   </div>
 
-  
+
     {{-- <div class="resume">
       <div>
         Entradas: R$
@@ -63,11 +63,11 @@
     <div class="newItem">
       <div class="divDesc">
         <label for="desc">Descrição</label>
-        <input type="text" id="desc" />
+        <input type="text" id="desc" autocomplete="off" />
       </div>
       <div class="divAmount">
         <label for="amount">Valor</label>
-        <input type="number" id="amount" />
+        <input type="number" id="amount" autocomplete="off" />
       </div>
       <div class="divType">
         <label for="type">Tipo</label>
@@ -92,12 +92,12 @@
         </tbody>
       </table>
 </div> --}}
-    
+
 </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
   <script src="{{ asset('js/configFinance.js') }}"></script>
-  
+
 </html>
 @endsection

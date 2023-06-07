@@ -33,19 +33,19 @@
         <form class="form-cadastro" id="form" method="POST">
             @csrf
             <label>Nome do Educador</label>
-            <input type="text" class="texto" style="width:100%; margin-bottom: 0.6em" id="name" name="name">
+            <input type="text" autocomplete="off" class="texto" style="width:100%; margin-bottom: 0.6em" id="name" name="name">
 
             <div class="div-input-flex">
                 <div class="block" style="width:80%; margin-bottom: 0.6em">
                     <label>CPF</label><br>
-                    <input type="text" class="texto" style="width:90%" id="cpf" name="cpf">
+                    <input type="text" autocomplete="off" class="texto" style="width:90%" id="cpf" name="cpf">
                 </div>
             </div>
 
             <div class="div-input-flex">
                 <div class="block" style="width: 80%; margin-bottom: 1em">
                     <label>Função do Educador</label>
-                    <input type="text" class="texto" style="width:90%" id="funcao" name="funcao">
+                    <input type="text" autocomplete="off" class="texto" style="width:90%" id="funcao" name="funcao">
                 </div>
             </div>
 
@@ -63,10 +63,10 @@
             <input type="submit" class="enviar">
         </form>
     </div>
-    
+
     <div class="search" id="pesquisa" style="display:none;">
         <form action="{{route('instituicao.colaborador')}}" method="get">
-            <input type="search" name="s"  placeholder="Pesquisar colaborador" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
+            <input type="search" autocomplete="off" name="s"  placeholder="Pesquisar colaborador" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
             <button  type="submit"><i class="uil uil-search"></i></button>
         </form>
     </div>
@@ -119,17 +119,17 @@
 
         <div>
 
-            @if (request()->input('s'))                                                                                                                                                                                                                                  
-            {{ $TbEducadores->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
-            @else 
+            @if (request()->input('s'))
+            {{ $TbEducadores->appends(['s' => request()->input('s')])->links() }}
+            @else
                 {{ $TbEducadores->links() }}
-            
+
             @endif
-         
+
         </div>
-        
+
     </div>
-    
+
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection

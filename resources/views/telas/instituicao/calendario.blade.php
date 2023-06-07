@@ -56,7 +56,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" id="title">
+                    <input type="text" class="form-control" id="title" autocomplete="off">
                     <span id="titleError" class="text-danger"></span>
                 </div>
                 <div class="modal-footer">
@@ -84,7 +84,7 @@
         </div>
       </div>
 
-    
+
     <div class="area-calendario">
         <div id='calendar'></div>
     </div>
@@ -118,7 +118,7 @@
             right: ''
         },
         buttonIcons: false,
-        buttonText: customTranslations.ptBr, 
+        buttonText: customTranslations.ptBr,
         events: evento,
         eventColor: '#76bcb5',
         displayEventTime: true,

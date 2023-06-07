@@ -33,59 +33,59 @@
         <form class="form-cadastro" id="form" method="POST">
             @csrf
             <label>Nome do Cliente</label>
-            <input type="text" class="texto" style="width:100%" id="name" name="name"><br><br>
+            <input type="text" class="texto" style="width:100%" id="name" name="name" autocomplete="off"><br><br>
             <div class="div-input-flex">
                 <div class="block" style="width:40%;">
                     <label>CPF</label><br>
-                    <input type="text" class="texto" style="text-align:center; width:90%" id="cpf" name="cpf">
+                    <input type="text" autocomplete="off" class="texto" style="text-align:center; width:90%" id="cpf" name="cpf">
                 </div>
                 <div class="block" style="width:60%;">
                     <label>Email</label><br>
-                    <input type="text" class="texto" style="width:100%" id="email" name="email"><br><br>
+                    <input type="text" autocomplete="off" class="texto" style="width:100%" id="email" name="email"><br><br>
                 </div>
             </div>
             <div class="div-input-flex">
                 <div class="block" style="width:50%;">
                     <label>Telefone</label><br>
-                    <input type="text" class="texto" id="tel" name="tel">
+                    <input type="text" autocomplete="off" class="texto" id="tel" name="tel">
                 </div>
                 <div class="block" style="width:45%;">
                     <label>Celular</label><br>
-                    <input type="text" class="texto" style="width:100%" id="cel" name="cel"><br><br>
+                    <input type="text" autocomplete="off" class="texto" style="width:100%" id="cel" name="cel"><br><br>
                 </div>
             </div>
             <div class="div-input-flex">
                 <div class="block" style="width:90%;">
                     <label>Cidade</label><br>
-                    <input type="text" class="texto" id="cidade" name="cidade" style="width:90%;">
+                    <input type="text" autocomplete="off" class="texto" id="cidade" name="cidade" style="width:90%;">
                 </div>
                 <div class="block" style="width:90%;">
                     <label>Logradouro</label><br>
-                    <input type="text" class="texto" id="logradouro" name="logradouro" style="width:90%;">
+                    <input type="text" autocomplete="off" class="texto" id="logradouro" name="logradouro" style="width:90%;">
                 </div>
                 <div class="block" style="width:25%;">
                     <label>Numero</label></label><br>
-                    <input type="text" class="texto" style="width:100%" id="num" name="num"><br><br>
+                    <input type="text" autocomplete="off" class="texto" style="width:100%" id="num" name="num"><br><br>
                 </div>
             </div>
             <div class="div-input-flex">
                 <div class="block" style="width:50%;">
                     <label>CEP</label><br>
-                    <input type="text" class="texto" id="cep" value="" name="cep" onblur="pesquisacep(this.value);">
+                    <input type="text" autocomplete="off" class="texto" id="cep" value="" name="cep" onblur="pesquisacep(this.value);">
                 </div>
                 <div class="block" style="width:45%;">
                     <label>Bairro</label></label><br>
-                    <input type="text" class="texto" style="width:100%" id="bairro" name="bairro"><br><br>
+                    <input type="text" autocomplete="off" class="texto" style="width:100%" id="bairro" name="bairro"><br><br>
                 </div>
             </div>
             <div class="div-input-flex">
                 <div class="block" style="width:90%;">
                     <label>Complemento</label><br>
-                    <input type="text" class="texto" id="complemento" name="complemento" style="width:90%;">
+                    <input type="text" autocomplete="off" class="texto" id="complemento" name="complemento" style="width:90%;">
                 </div>
                 <div class="block" style="width:25%;">
                     <label>UF</label></label><br>
-                    <input type="text" class="texto" style="width:100%" id="uf" name="uf"><br><br>
+                    <input type="text" autocomplete="off" class="texto" style="width:100%" id="uf" name="uf"><br><br>
                 </div>
             </div>
             <button type="button" class="enviar" style="background-color:#f3a033;" onclick="inserirAluno()">Adicionar aluno</button><br><br>
@@ -93,7 +93,7 @@
                 <div class="div-input-flex">
                     <div class="block" style="width:75%;">
                         <label>Nome do Aluno</label><br>
-                        <input type="text" class="texto" style="width:100%" id="nomeAluno" name="nomeAluno"><br><br>
+                        <input type="text" autocomplete="off" class="texto" style="width:100%" id="nomeAluno" name="nomeAluno"><br><br>
                     </div>
                     <div class="block" style="width:20%;">
                         <label>Turma</label>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="block" style="width:70%;">
                             <label>Nome do Problema</label><br>
-                            <input type="text" style="width:100%" class="texto" name="nomePS">
+                            <input type="text" autocomplete="off" style="width:100%" class="texto" name="nomePS">
                         </div>
                     </div>
                     <label id="label_duv">Descrição do Problema e Cuidados</label>
@@ -149,10 +149,10 @@
             <input type="submit" class="enviar">
         </form>
     </div>
-    
+
     <div class="search" id="pesquisa" style="display:none;">
     <form action="{{route('instituicao.clientes')}}" method="get">
-        <input type="search" name="s"  placeholder="Pesquisar responsavel" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
+        <input type="search" autocomplete="off" name="s"  placeholder="Pesquisar responsavel" aria-label="Pesquisar" value="{{ request()->input('s') ?? '' }}">
         <button  type="submit"><i class="uil uil-search"></i></button>
     </form>
     </div>
@@ -197,23 +197,23 @@
                             <form method="POST"
                                 action="{{ route('instituicao.clientes.delete', $TbResponsavel->cd_responsavel) }}">
                                 @csrf
-                                @method('DELETE')                                                                             
+                                @method('DELETE')
                      <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
-                        </td>                 
+                        </td>
                     </tr>
-                @endforeach          
+                @endforeach
             </tbody>
-        </table>                         
+        </table>
 
         <div class="pagination justify-content-center">
-           
-    
-            @if (request()->input('s'))                                                                                                                                                                                                                                  
-            {{ $TbResponsaveis->appends(['s' => request()->input('s')])->links() }}                                                                                                                                                                                                                                                                                             
-            @else 
+
+
+            @if (request()->input('s'))
+            {{ $TbResponsaveis->appends(['s' => request()->input('s')])->links() }}
+            @else
                 {{ $TbResponsaveis->links() }}
-            
+
             @endif
         </div>
         <br>
@@ -221,4 +221,3 @@
 
     <script src="{{ asset('js/configTelas.js') }}"></script>
 @endsection
-                                                                       

@@ -39,7 +39,7 @@
                 <div class="grupo_input">
                     <div class="input_box">
                         <label>Nome do Aluno</label>
-                        <input type="text" id="nome" name="nome" autocomplete="off" onkeyup="pesquisando()">
+                        <input type="text" autocomplete="off" id="nome" name="nome" autocomplete="off" onkeyup="pesquisando()">
                     </div>
                     <div class="resultados" id="resultados">
                     </div>
@@ -67,7 +67,7 @@
 
                     <div class="input_box">
                         <label>Nome do Problema</label>
-                        <input id="input-cel" type="text" id="nomedoproblema" name="nomedoproblema">
+                        <input id="input-cel" autocomplete="off" type="text" id="nomedoproblema" name="nomedoproblema">
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                     <button type="submit">Enviar</button>
                 </div>
             </form>
-        </div>        
+        </div>
     </div><br>
     <div class="div-conteudo">
         <div style="background-color: white;border-radius: 2em;padding:3em;">
@@ -122,10 +122,10 @@
                             <form method="POST"
                                 action="">
                                 @csrf
-                                @method('DELETE')                                                                             
+                                @method('DELETE')
                      <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
-                        </td>      
+                        </td>
                     </tr>
                 @elseif($aluno->nm_grav_saude === 'Grave')
                     <tr class="grave">
@@ -147,10 +147,10 @@
                             <form method="POST"
                                 action="">
                                 @csrf
-                                @method('DELETE')                                                                             
+                                @method('DELETE')
                      <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
-                        </td>       
+                        </td>
 
                     </tr>
                 @elseif($aluno->nm_grav_saude === 'Moderada')
@@ -173,10 +173,10 @@
                             <form method="POST"
                                 action="">
                                 @csrf
-                                @method('DELETE')                                                                             
+                                @method('DELETE')
                      <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
-                        </td>      
+                        </td>
 
                     </tr>
                 @endif

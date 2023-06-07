@@ -49,7 +49,7 @@
 
                     <div class="block">
                         <label>Nome do Prato</label><br>
-                        <input id="nmPrato" type="text" name="nmPrato" class="nome-prato">
+                        <input id="nmPrato" type="text" autocomplete="off" name="nmPrato" class="nome-prato">
                     </div><br>
                     <div class="block">
                         <textarea id="DescPrato" type="text" cols="50" rows="4" name="DescPrato"
@@ -58,7 +58,7 @@
 
                     <div class="block">
                         <label>Nome da Sobremessa</label><br>
-                        <input id="nmSobremessa" type="text" name="nmSobremessa" class="nome-prato">
+                        <input id="nmSobremessa" type="text" autocomplete="off" name="nmSobremessa" class="nome-prato">
                     </div><br>
                     <div class="block">
                         <textarea id="DescSobremessa" type="text" cols="50" rows="4" name="DescSobremessa"
@@ -84,7 +84,7 @@
         <a href="{{ route('download.arquivo') }}" style="margin-left: 41.5%;">Clique aqui para baixar o último arquivo</a>
         </div>
     </div> --}}
-    
+
     <div class="div-conteudo">
         @if ($cardapioHoje)
             <h1>Refeição de Hoje</h1>
@@ -129,7 +129,7 @@
                             <div class="block">
                                 <p>{{ $TbCardapio->nm_ddsemana }}</p>
                                 {{ \Carbon\Carbon::parse($TbCardapio->dt_cardapio)->format('d/m/Y') }}<br>
-                                
+
                                 <form method="POST"
                                     action="{{ route('instituicao.refeicao.delete', $TbCardapio->id_cardapio) }}">
                                     @csrf
@@ -165,7 +165,7 @@
                                 <form method="GET">
 
                                 </form>
-                                
+
                                 <form method="POST"
                                     action="{{ route('instituicao.refeicao.delete', $cardapioAnterior->id_cardapio) }}">
                                     @csrf

@@ -12,6 +12,7 @@
     "dependencies": {
         "fullcalendar": "^6.1.6",
         "mysql2": "^3.3.3",
-        "pdfobject": "^2.2.11"
+        "pdfobject": "^2.2.11",
+        "toastr": "^2.1.4"
     }
 }

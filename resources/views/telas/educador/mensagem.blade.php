@@ -30,7 +30,7 @@
 
 @section('content')
 <div class="search" id="pesquisa" style="display:none;">
-    <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()">
+    <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()" autocomplete="off">
 </div>
 <div class="resultados" id="resultados">
 </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="div-form">
                 <div class="form-mensagem" action="">
-                    <input type="text" id="mensagem">
+                    <input type="text" id="mensagem" autocomplete="off">
                     <button onclick="enviarMensagem()">Enviar</button>
                 </div>
             </div>

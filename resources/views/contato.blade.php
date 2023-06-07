@@ -27,29 +27,29 @@
     <div class="grupo_input">
       <div class="input_box">
         <label>Nome</label>
-        <input type="text">
+        <input autocomplete="off" type="text">
       </div>
 
       <div class="input_box">
         <label>E-mail</label>
-        <input type="text">
+        <input autocomplete="off" type="text">
       </div>
 
       <div class="input_tel-cel">
         <div class="input_box">
           <label>Telefone</label>
-          <input id="input-tel" type="text">
+          <input id="input-tel" autocomplete="off" type="text">
         </div>
 
         <div class="input_box">
           <label>Celular</label>
-          <input id="input-cel" type="text">
+          <input id="input-cel" autocomplete="off" type="text">
         </div>
       </div>
 
       <div class="input_box">
         <label>Nome da Instituição</label>
-        <input type="text">
+        <input type="text" autocomplete="off">
       </div>
 
       <div class="input_box">

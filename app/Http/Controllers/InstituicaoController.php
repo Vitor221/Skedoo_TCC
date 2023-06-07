@@ -41,7 +41,7 @@ class InstituicaoController extends Controller
             return redirect()->back();
         }
 
-        return redirect()->route('login')->with('mensagem', 'Precisa efetuar o login');
+        return redirect()->route('login_pag')->with('mensagem', 'Precisa efetuar o login');
     }
 
 
@@ -627,7 +627,7 @@ class InstituicaoController extends Controller
 
         return view('telas.instituicao.dashboard',[
             'login' => $login,
-            'TbTurmas' =>$TbTurmas, 
+            'TbTurmas' =>$TbTurmas,
             'TbAlunos' => $TbAlunos,
             'alunosPorTurma' => $alunosPorTurma,
             'clienteCadastrados' => $clienteCadastrados,

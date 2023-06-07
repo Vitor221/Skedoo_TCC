@@ -37,31 +37,31 @@
         @csrf
         <div>
             <label for="">Nome do responsável:</label>
-            <input type="text" name="name" value="{{ $responsavel->nm_responsavel }}">
+            <input type="text" autocomplete="off" name="name" value="{{ $responsavel->nm_responsavel }}">
             <label for="">CPF do responsável:</label>
-            <input type="text" name="cpf" value="{{ $responsavel->cd_cpf }}">
+            <input type="text" autocomplete="off" name="cpf" value="{{ $responsavel->cd_cpf }}">
             <label for="">Login do responsável:</label>
-            <input type="text" name="nm_login" value="{{ $responsavel->tb_cadastro->nm_login }}">
+            <input type="text" autocomplete="off" name="nm_login" value="{{ $responsavel->tb_cadastro->nm_login }}">
             {{-- <label for="">Senha do responsável:</label>
-            <input type="text" name="cd_senha" value="{{ $responsavel->tb_cadastro->cd_senha }}"> --}}
+            <input type="text" autocomplete="off" name="cd_senha" value="{{ $responsavel->tb_cadastro->cd_senha }}"> --}}
 
             <label for="">Endereço do responsável:</label>
-            <input type="text" name="nm_endereco" value="{{ $endereco->nm_endereco }}">
+            <input type="text" autocomplete="off" name="nm_endereco" value="{{ $endereco->nm_endereco }}">
             <label for="">Número da casa do responsável:</label>
-            <input type="text" name="cd_numcasa" value="{{ $endereco->cd_numcasa }}">
+            <input type="text" autocomplete="off" name="cd_numcasa" value="{{ $endereco->cd_numcasa }}">
         </div>
-        
+
         <div>
             <label for="">Complemento do responsável:</label>
-            <input type="text" name="ds_complemento" value="{{ $endereco->ds_complemento }}">
+            <input type="text" autocomplete="off" name="ds_complemento" value="{{ $endereco->ds_complemento }}">
             <label for="">Bairro do responsável:</label>
-            <input type="text" name="nm_bairro" value="{{ $endereco->tb_bairro->nm_bairro }}">
+            <input type="text" autocomplete="off" name="nm_bairro" value="{{ $endereco->tb_bairro->nm_bairro }}">
             <label for="">Cidade do responsável:</label>
-            <input type="text" name="nm_cidade" value="{{ $endereco->tb_bairro->tb_cidade->nm_cidade }}">
+            <input type="text" autocomplete="off" name="nm_cidade" value="{{ $endereco->tb_bairro->tb_cidade->nm_cidade }}">
             <label for="">Estado do responsável:</label>
-            <input type="text" name="sg_uf" value="{{ $endereco->tb_bairro->tb_cidade->tb_uf->sg_uf }}">
+            <input type="text" autocomplete="off" name="sg_uf" value="{{ $endereco->tb_bairro->tb_cidade->tb_uf->sg_uf }}">
             <label for="">CEP do responsável:</label>
-            <input type="text" name="cd_cep" value="{{ $endereco->cd_cep }}">
+            <input type="text" autocomplete="off" name="cd_cep" value="{{ $endereco->cd_cep }}">
         </div>
 
         <button type="submit" class="btnUpdate">Salvar</button>

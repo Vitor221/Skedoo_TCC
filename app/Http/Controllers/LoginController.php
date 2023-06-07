@@ -29,12 +29,12 @@ class LoginController extends Controller
             'nm_login.required' =>  'Campo login é obrigatório!',
             'cd_senha.required' =>  'Campo senha é obrigatório!'
         ]);
-        
+
         $usuario = TbLogin::where('nm_login', $data['nm_login'])->where('cd_senha', $data['cd_senha'])->first();
 
         if ($usuario) { //Se tiver todos os dados do usuário pesquisado e a senha do usuário for igual a senha do banco de dados.
             session()->put('login', $usuario);
-            
+
             if($usuario['cd_acesso'] == 1){
                 return redirect()->route('instituicao');
             }
@@ -46,8 +46,9 @@ class LoginController extends Controller
             if($usuario['cd_acesso'] == 3) {
                 return redirect()->route('responsavel');
             }
+        } else {
+            return redirect()->route('login_pag')->withErrors(['mensagem' => 'Login e/ou Senha inválidos']);
         }
-        return redirect()->back()->with('erro', 'Usuário ou senha inválido');
     }
 
     public function logoutLogin()
