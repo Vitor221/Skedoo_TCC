@@ -22,7 +22,7 @@ function getID(id) {
     divMensagens.innerHTML =
         "<h3 style='height:100%; width:100%; text-align:center; display: flex; justify-content: center; align-items: center;'>Carregando...</h3>";
     atualizarMensagens();
-    fechaPesquisar()
+    fechaPesquisar();
     setTimeout(autoScroll, 1000);
 }
 
@@ -149,6 +149,12 @@ function pesquisar() {
     document.getElementById('abrePesquisa').style = "display:none;"
     document.getElementById('fechaPesquisa').style = "display:auto;"
     document.getElementById('resultados').style = "display:auto;"
+}
+function usuarios() {
+    document.getElementById('div-usuarios').style = "display:block"
+}
+function fechaUsuarios() {
+    document.getElementById('div-usuarios').style = "display:none"
 }
 function fechaPesquisar() {
     document.getElementById('pesquisa').style = "display:none;"

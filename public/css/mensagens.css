@@ -11,6 +11,8 @@ p{
     margin-right: 2em;
     color: white;
     font-weight: bold;
+    max-height: 2.5em;
+    overflow: hidden;
 }
 .usuarios::-webkit-scrollbar{
     display: none;
@@ -142,12 +144,14 @@ p{
 }
 .pesquisar{
     margin: 0px;
-    margin-right: auto;
     width: 2em;
     height: 2em;
     padding: 0px;
 }
 .uil-search::before{
+    font-size: 1em;
+}
+.uil-list-ul::before{
     font-size: 1em;
 }
 .uil-search{
@@ -161,11 +165,17 @@ p{
     left: 20%;
 }
 .resultados{
+    max-height: 18em;
+    overflow: scroll;
     position: absolute;
     top: 7em;
     left: 20%;
-    max-height: 18em;
-    overflow: scroll;
+}
+.resultados button{
+    border: 3px solid;
+    margin-bottom: 0.2em;
+    border-radius: 1em;
+    border-color: rgb(253, 217, 151);
 }
 .uil-eye{
     width: fit-content;
@@ -195,6 +205,9 @@ p{
     color: white;
     font-weight: bold;
 }
+#abreUsuarios{
+    display: none;
+  }
 @media (max-width: 980px)
 {
   .tt-usuarios{
@@ -203,8 +216,34 @@ p{
 }
 @media (max-width: 850px)
 {
+    .search{
+        width: 16em;
+    }
+    .resultados{
+        max-width: 16em;
+    }
   .div-usuarios{
     display: none;
+    position: absolute;
+    width: 14em;
+    border-radius: 2em;
+    padding: 1em;
+    background-color: #3a8d86;
+  }
+  #nomeChat{
+    text-overflow: clip;
+    margin-left: 0.5em;
+  }
+  .usuarios{
+    max-height: 20em;
+    overflow: auto;
+  }
+  .flex{
+    margin-bottom: 0.5em;
+  }
+  .flex h3{
+    margin-top: auto;
+    margin-bottom: auto;
   }
   .div-mensagens{
     padding: 0px;
@@ -215,12 +254,14 @@ p{
   #nomeChat{
     font-size: 1.2em;
     height: fit-content;
-    margin: auto;
   }
   .mensagem{
     max-width: 80%;
   }
   .div-form{
     margin-inline: 0px;
+  }
+  #abreUsuarios{
+    display:inline;
   }
 }

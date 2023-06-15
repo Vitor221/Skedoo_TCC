@@ -169,7 +169,6 @@ body {
     display: flex;
     justify-content: space-around;
     margin-bottom: 4em;
-    margin-top: 4em;
 }
 
 .card-margin{
@@ -290,7 +289,9 @@ body {
 }
 @media (max-width: 650px)
 {
-    
+    .card-link{
+      display: flex;
+    }
     #hora-atual{
         display: none;
     }
@@ -298,12 +299,25 @@ body {
     font-size: 5em;
   }
   .card h3{
-    font-size: 1em;
+    font-size: 1.3em;
+    height: 100%;
+    float: right;
+    justify-content: center;
+    margin: auto;
+    max-width: 8em;
   }
   .perfil-bg h3{
     display: none;
   }
   .perfil-bg{
     background-color: blue;
+  }
+  .card{
+    display: flex;
+  }
+  .card i{
+    width: fit-content;
+    display: flex;
+    float: left;
   }
 }
