@@ -187,8 +187,15 @@ class InstituicaoController extends Controller
     }
     public function financeiro()
     {
+        $cdLoginInstituicao = session()->get('login.cd_login');
+        $Instituicao = TbInstituicao::where('cd_cadastro', $cdLoginInstituicao)->first();
+        $TbAlunos = TbAluno::where('cd_instituicao', $Instituicao->cd_instituicao)->get();
+        foreach ($TbAlunos as $Aluno) {
+            $TbResponsavel[] = TbResponsavel::where('cd_responsavel', $Aluno->cd_responsavel)->get();
+            $TbPagamento[] = TbPagamento::where('cd_responsavel', $Aluno->cd_responsavel)->get();
+        }
         $login = TbLogin::find(session('login'))->first();
-        return view('telas.instituicao.financeiro', ['login' => $login]);
+        return view('telas.instituicao.financeiro', ['TbResponsavel' => $TbResponsavel, 'login' => $login, 'TbPagamento' => $TbPagamento]);
     }
 
     public function transporte()

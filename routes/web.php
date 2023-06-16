@@ -119,9 +119,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('instituicao/saude', [InstituicaoController::class, 'problemassaude'])->name('instituicao.problemassaude');  
     Route::post('instituicao/saude/insert', [InstituicaoController::class, 'problemassaude_insert'])->name('instituicao.problemassaude.insert');  
 
-    
-    Route::get('instituicao/transportes', [InstituicaoController::class, 'transporte'])->name('instituicao.transporte');
-    Route::get('instituicao/financeiros', [InstituicaoController::class, 'financeiro'])->name('instituicao.financeiro');
+    Route::get('instituicao/financeiro', [InstituicaoController::class, 'financeiro'])->name('instituicao.financeiro');
     
     Route::get('instituicao/colaborador', [InstituicaoController::class, 'colaborador'])->name('instituicao.colaborador');
     Route::post('instituicao/colaborador', [InstituicaoController::class, 'inserir_colaborador'])->name('instituicao.colaborador');

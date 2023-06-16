@@ -161,5 +161,5 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
 
-    <script src="{{ asset('js/configFinance.js') }}"></script>
+    <script src="{{ asset('js/configDashboard.js') }}"></script>
 @endsection
