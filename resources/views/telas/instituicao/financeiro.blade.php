@@ -57,6 +57,8 @@
                   <thead>
                       <tr>
                           <th class="nome t-head-title">Nome do Responsavel</th>
+                          <th class="nome t-head-title">Tipo de Pagamento</th>
+                          <th class="nome t-head-title">Valor</th>
                           <th class="nome t-head-title">Status de Pagamento</th>
                           <th class="nome t-head-title">Confirmar Pagamento</th>
                       </tr>
@@ -68,6 +70,8 @@
                                   <td class="nome">{{ $Responsavel[$i]->nm_responsavel }}</td>
                           @endforeach
                           @foreach ($TbPagamento[$i] as $Pagamento[$i])
+                          <td class="forma-pagamento nome">{{ $Pagamento[$i]->cd_forma_pagamento }}</td>
+                          <td class="nome">{{ $Pagamento[$i]->vl_fatura }}</td>
                               <td class="status-pagamento nome" id="{{$i}}">{{ $Pagamento[$i]->cd_status_pagamento }}</td>
                           @endforeach
                           <td class="botoes"><button class="enviar" id="confirmar{{$i}}">Confirmar</button></td>
