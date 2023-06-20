@@ -46,6 +46,17 @@ Route::get('/saude/alunos', function (\Illuminate\Http\Request $request) {
     $alunos = TbAluno::where('nm_aluno', 'like', '%' . $aluno . '%')->get();
     return response($alunos);
 });
+Route::get('/financeiro/pagamento', function (\Illuminate\Http\Request $request) {
+    $novaData = \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('Y/m/d');
+    $TbPagamento = TbPagamento::findOrFail($request->input('pagamento'));
+    $TbPagamento->dt_pagamento = $novaData;
+    if($TbPagamento->cd_status_pagamento == 3){
+        $TbPagamento->cd_status_pagamento = 2;
+    }else{
+        $TbPagamento->cd_status_pagamento = 1;
+    }
+    $TbPagamento->save();
+});
 Route::get('/saude/aluno', function (\Illuminate\Http\Request $request) {
     $id = $request->input('id');
     $aluno = TbAluno::where('cd_aluno', '=', $id)->get();
@@ -99,7 +110,7 @@ Route::group(['middleware' => ['loginAccess']], function() {
     Route::get('/instituicao', [InstituicaoController::class, 'index'])->name('instituicao');
     
     Route::get('instituicao/clientes', [InstituicaoController::class, 'cliente'])->name('instituicao.clientes');
-    Route::post('instituicao/clientes', [InstituicaoController::class, 'insert_cliente'])->name('instituicao.clientes.insert');
+    Route::post('instituicao/clientes', [InstituicaoController::class, 'inserir_cliente'])->name('instituicao.clientes.insert');
     Route::delete('instituicao/clientes/{id}', [InstituicaoController::class, 'deletar_cliente'])->name('instituicao.clientes.delete');
     Route::get('instituicao/clientes/{id}', [InstituicaoController::class, 'visualizar_cliente'])->name('instituicao.clientes.view');
     Route::get('instituicao/clientes/edit/{id}', [InstituicaoController::class, 'editar_cliente'])->name('instituicao.clientes.edit');

@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <label>O aluno possui algum problema de saúde? </label>
-                <select name="ps" class="texto" for="problemasaude" id="select_form_value"
+                <select name="ps" class="texto" id="select_form_value"
                     onchange="selectForm()">
                     <option value="0">Não</option>
                     <option value="1">Sim</option>
@@ -128,6 +128,11 @@
                             <input type="text" autocomplete="off" style="width:100%" class="texto" name="nomePS">
                         </div>
                     </div>
+                    <select name="nomeGravidade">
+                        <option value="Gravissima">Gravissima</option>
+                        <option value="Grave">Grave</option>
+                        <option value="Moderada">Moderada</option>
+                    </select><br>
                     <label id="label_duv">Descrição do Problema e Cuidados</label>
                     <textarea name="descricaoPS" id="textarea_div" cols="30" rows="10" style="width:100%" name="descPS"></textarea><br><br>
                 </div>

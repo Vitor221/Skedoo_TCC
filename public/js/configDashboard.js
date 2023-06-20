@@ -10,8 +10,6 @@ function teste() {
             numAlunos = Object.values(data.TbAlunos).map(item => parseInt(item))
             valoresRecebidos = Object.values(data.recebimentoPorMes).map(item => parseInt(item.total_recebido))
             numResponsaveis = Object.values(data.TbBairros).map(item => parseInt(item.total_responsaveis))
-            console.log(data.recebimentoPorMes)
-            console.log(valoresRecebidos)
             var ctx = document.getElementById('myChart');
             var myChart = new Chart(ctx, {
                 type: 'doughnut',

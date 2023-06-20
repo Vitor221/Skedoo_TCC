@@ -45,12 +45,12 @@
 
     <body>
         <div class="div-conteudo">
-            <form class="form-pag">
+            {{-- <form class="form-pag">
                 @csrf
                 <label for="">Adicionar forma de pagamento:</label><br>
                 <input type="text" placeholder="Escrava o nome da forma de pagamento">
                 <input type="submit" class="enviar">
-            </form>
+            </form> --}}
             <div class="div-tabela">
               <h2 style="color: white">Tabela de Pagamentos</h2>
               <table>
@@ -74,7 +74,8 @@
                           <td class="nome">{{ $Pagamento[$i]->vl_fatura }}</td>
                               <td class="status-pagamento nome" id="{{$i}}">{{ $Pagamento[$i]->cd_status_pagamento }}</td>
                           @endforeach
-                          <td class="botoes"><button class="enviar" id="confirmar{{$i}}">Confirmar</button></td>
+                          <td class="botoes">
+                            <button class="enviar" id="confirmar{{$i}}" onclick="confirmaPagamento({{$TbPagamento[$i]}})">Confirmar</button></td>
                           </tr>
                       @endfor
                   </tbody>

@@ -29,6 +29,9 @@ for (let i = 0; i < statusPag.length; i++) {
         btn_confirmar.style = 'background-color:red;'
         btn_confirmar.innerHTML = 'Confirmar com Atraso'
     }
-
     console.log(valor);
+}
+function confirmaPagamento($id){
+    fetch (`/financeiro/pagamento?pagamento=${$id[0].cd_pagamento}`)
+    location.reload();
 }

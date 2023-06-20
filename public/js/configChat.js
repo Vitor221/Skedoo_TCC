@@ -194,7 +194,6 @@ function pesquisando() {
                 buttonElement.appendChild(pElement);
                 resultadosElement.appendChild(buttonElement);
             });
-
             pesquisaAtiva = false;
         })
         .catch(error => {

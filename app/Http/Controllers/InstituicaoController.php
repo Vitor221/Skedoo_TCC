@@ -198,6 +198,10 @@ class InstituicaoController extends Controller
         return view('telas.instituicao.financeiro', ['TbResponsavel' => $TbResponsavel, 'login' => $login, 'TbPagamento' => $TbPagamento]);
     }
 
+    public function financeiro_pagamento($id){
+        dd($id);
+    }
+
     public function transporte()
     {
         return view('telas.instituicao.transporte');
@@ -367,7 +371,6 @@ class InstituicaoController extends Controller
         $responsavel = new TbResponsavel();
         $responsavel->nm_responsavel = $request->name;
         $responsavel->cd_cpf = $request->cpf;
-
         $cadastro = $responsavel->tb_cadastro()->create(['nm_login' => 'teste', 'cd_senha' => 'teste']);
         $responsavel->cd_cadastro = $cadastro->cd_cadastro;
         $uf = TbUf::find($request->uf);
@@ -375,18 +378,22 @@ class InstituicaoController extends Controller
         $bairro = $cidade->tb_bairro()->firstOrCreate(['nm_bairro' => $request->bairro, 'cd_cidade' => $cidade->cd_cidade]);
         $endereco = $bairro->tb_endereco()->create(['cd_cep' => $request->cep, 'cd_numcasa' => $request->num, 'nm_endereco' => $request->logradouro, 'ds_complemento' => $request->complemento,  'cd_bairro' => $bairro->cd_bairro]);
         $responsavel->cd_endereco = $endereco->cd_endereco;
-        $responsavel->save();
         $aluno = new TbAluno();
         $aluno->nm_aluno = $request->nomeAluno;
         $aluno->cd_turma = $request->turma;
+        $aluno->se_problema_saude = $request->ps;
+        dd($request->ps);
         if ($request->ps == 1) {
             $aluno->se_problema_saude = $request->ps;
+            dd($aluno->se_problema_saude);
             $aluno->ds_problema_saude = $request->descricaoPS;
             $aluno->nm_problema_saude = $request->nomePS;
+            $aluno->nm_grav_saude = $request->nomeGravidade;
             $aluno->nm_tipo_ps = $request->tipos;
         }
         $aluno->cd_responsavel = $responsavel->cd_responsavel;
         $aluno->save();
+        $responsavel->save();
         $TbResponsaveis = TbResponsavel::paginate(6);
         return back()->with('success', 'Responsavel cadastrado com sucesso!');
     }
