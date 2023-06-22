@@ -49,13 +49,21 @@ Route::get('/saude/alunos', function (\Illuminate\Http\Request $request) {
 Route::get('/financeiro/pagamento', function (\Illuminate\Http\Request $request) {
     $novaData = \Carbon\Carbon::now(new DateTimeZone('America/Sao_Paulo'))->format('Y/m/d');
     $TbPagamento = TbPagamento::findOrFail($request->input('pagamento'));
-    $TbPagamento->dt_pagamento = $novaData;
-    if($TbPagamento->cd_status_pagamento == 3){
-        $TbPagamento->cd_status_pagamento = 2;
-    }else{
+    $novoPagamento = new TbPagamento();
+    $novoPagamento->cd_responsavel = $TbPagamento->cd_responsavel;
+    $novoPagamento->vl_fatura = $TbPagamento->vl_fatura;
+    $novoPagamento->cd_forma_pagamento = $TbPagamento->cd_forma_pagamento;
+    if($TbPagamento->cd_status_pagamento == 2){
         $TbPagamento->cd_status_pagamento = 1;
+        $novoPagamento->cd_status_pagamento = 1;
+    }else if($TbPagamento->cd_status_pagamento == 3){
+        $TbPagamento->cd_status_pagamento = 1;
+        $novoPagamento->cd_status_pagamento = 2;
     }
+    $novoPagamento->dt_pagamento = $novaData;
     $TbPagamento->save();
+    $novoPagamento->save();
+    return response($TbPagamento);
 });
 Route::get('/saude/aluno', function (\Illuminate\Http\Request $request) {
     $id = $request->input('id');

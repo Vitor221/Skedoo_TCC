@@ -65,17 +65,18 @@
                   </thead>
                   <tbody>
                       @for ($i = 0; $i < count($TbResponsavel); $i++)
-                          @foreach ($TbResponsavel[$i] as $Responsavel[$i])
-                              <tr>
-                                  <td class="nome">{{ $Responsavel[$i]->nm_responsavel }}</td>
-                          @endforeach
-                          @foreach ($TbPagamento[$i] as $Pagamento[$i])
+                      @foreach ($TbPagamento[$i] as $Pagamento[$i])
+                      @foreach ($TbResponsavel[$i] as $Responsavel[$i])
+                          <tr>
+                              <td class="nome">{{ $Responsavel[$i]->nm_responsavel }}</td>
+                      @endforeach
                           <td class="forma-pagamento nome">{{ $Pagamento[$i]->cd_forma_pagamento }}</td>
                           <td class="nome">{{ $Pagamento[$i]->vl_fatura }}</td>
-                              <td class="status-pagamento nome" id="{{$i}}">{{ $Pagamento[$i]->cd_status_pagamento }}</td>
+                              <td class="status-pagamento nome" id="{{$Pagamento[$i]->cd_pagamento}}{{$i}}">{{ $Pagamento[$i]->cd_status_pagamento }}</td>
+                              <td class="botoes">
+                                <button class="enviar btn-confirmar" id="confirmar{{$Pagamento[$i]->cd_pagamento}}{{$i}}" onclick="confirmaPagamento({{$Pagamento[$i]->cd_pagamento}})">Confirmar</button>
+                            </td>
                           @endforeach
-                          <td class="botoes">
-                            <button class="enviar" id="confirmar{{$i}}" onclick="confirmaPagamento({{$TbPagamento[$i]}})">Confirmar</button></td>
                           </tr>
                       @endfor
                   </tbody>
