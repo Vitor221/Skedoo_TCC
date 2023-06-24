@@ -13,15 +13,21 @@ function fechaForm(){
         document.getElementById('select_form_2').style = 'display:none;'
     }
 }
-function fechaFormAluno(){
-    $infoNomeAluno = document.getElementById('infoAlunoNome').value;
-    setTimeout(() => {  document.getElementById('form_aluno').style="display:none;"; }, 100);
-    if($infoNomeAluno == ""){
-        document.getElementById('nomeAluno').value=""
+function fechaFormAluno() {
+    var selectElement = document.getElementById("select_form_value");
+    var selectedValue = selectElement.value;
+    
+    var infoNomeAluno = document.getElementById('infoAlunoNome').value;
+    setTimeout(() => {  document.getElementById('form_aluno').style = "display:none;"; }, 100);
+    
+    if (infoNomeAluno == "") {
+        document.getElementById('nomeAluno').value = "";
     }
-    document.getElementById("select_form_value").selectedIndex = "0";
-    selectForm()
+    
+    selectElement.selectedIndex = selectedValue;
+    selectForm();
 }
+
 function inserirTurma(){
     setTimeout(() => {  document.getElementById('formTurma').style="display:block;"; }, 100);
     fechaPesquisar();
