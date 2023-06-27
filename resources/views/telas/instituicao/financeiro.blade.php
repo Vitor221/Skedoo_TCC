@@ -59,27 +59,29 @@
                           <th class="nome t-head-title">Nome do Responsavel</th>
                           <th class="nome t-head-title">Tipo de Pagamento</th>
                           <th class="nome t-head-title">Valor</th>
+                          <th class="nome t-head-title">Ultimo Pagamento</th>
                           <th class="nome t-head-title">Status de Pagamento</th>
                           <th class="nome t-head-title">Confirmar Pagamento</th>
                       </tr>
                   </thead>
                   <tbody>
-                      @for ($i = 0; $i < count($TbResponsavel); $i++)
-                      @foreach ($TbPagamento[$i] as $Pagamento[$i])
-                      @foreach ($TbResponsavel[$i] as $Responsavel[$i])
-                          <tr>
-                              <td class="nome">{{ $Responsavel[$i]->nm_responsavel }}</td>
-                      @endforeach
-                          <td class="forma-pagamento nome">{{ $Pagamento[$i]->cd_forma_pagamento }}</td>
-                          <td class="nome">{{ $Pagamento[$i]->vl_fatura }}</td>
-                              <td class="status-pagamento nome" id="{{$Pagamento[$i]->cd_pagamento}}{{$i}}">{{ $Pagamento[$i]->cd_status_pagamento }}</td>
-                              <td class="botoes">
-                                <button class="enviar btn-confirmar" id="confirmar{{$Pagamento[$i]->cd_pagamento}}{{$i}}" onclick="confirmaPagamento({{$Pagamento[$i]->cd_pagamento}})">Confirmar</button>
+                    @foreach ($TbResponsavel as $index => $responsavel)
+                        @php
+                            $ultimoPagamento = $TbPagamento[$index]->last();
+                        @endphp
+                        <tr>
+                            <td class="nome">{{ $responsavel[0]->nm_responsavel }}</td>
+                            <td class="forma-pagamento nome">{{ $ultimoPagamento->cd_forma_pagamento }}</td>
+                            <td class="nome">{{ $ultimoPagamento->vl_fatura }}</td>
+                            <td class="nome">{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $ultimoPagamento->dt_pagamento)->format('d/m/Y') }}</td>
+                            <td class="status-pagamento nome" id="{{ $ultimoPagamento->cd_pagamento }}{{ $index }}">{{ $ultimoPagamento->cd_status_pagamento }}</td>
+                            <td class="botoes">
+                                <button class="enviar btn-confirmar" id="confirmar{{ $ultimoPagamento->cd_pagamento }}{{ $index }}" onclick="confirmaPagamento({{ $ultimoPagamento->cd_pagamento }})">Confirmar</button>
                             </td>
-                          @endforeach
-                          </tr>
-                      @endfor
-                  </tbody>
+                        </tr>
+                    @endforeach
+                </tbody>
+                
               </table><br>
             </div>
         </div>

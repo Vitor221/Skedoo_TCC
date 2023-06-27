@@ -231,11 +231,8 @@ public function deletar_problemasaude($id)
             $TbPagamento[] = TbPagamento::where('cd_responsavel', $Aluno->cd_responsavel)->get();
         }
         $login = TbLogin::find(session('login'))->first();
+        // dd($TbPagamento);
         return view('telas.instituicao.financeiro', ['TbResponsavel' => $TbResponsavel, 'login' => $login, 'TbPagamento' => $TbPagamento]);
-    }
-
-    public function financeiro_pagamento($id){
-        dd($id);
     }
 
     public function transporte()
