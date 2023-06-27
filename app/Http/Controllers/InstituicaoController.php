@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Models\TbCidade;
+use App\Models\TbFormaPagamento;
 use App\Models\TbInstituicao;
 use App\Models\TbLogin;
 use Illuminate\Support\Facades\Storage;
@@ -230,9 +231,17 @@ public function deletar_problemasaude($id)
             $TbResponsavel[] = TbResponsavel::where('cd_responsavel', $Aluno->cd_responsavel)->get();
             $TbPagamento[] = TbPagamento::where('cd_responsavel', $Aluno->cd_responsavel)->get();
         }
+        $TbFormaPagamento = TbFormaPagamento::all();
         $login = TbLogin::find(session('login'))->first();
-        // dd($TbPagamento);
-        return view('telas.instituicao.financeiro', ['TbResponsavel' => $TbResponsavel, 'login' => $login, 'TbPagamento' => $TbPagamento]);
+        return view('telas.instituicao.financeiro', ['TbResponsavel' => $TbResponsavel, 'login' => $login, 'TbPagamento' => $TbPagamento, 'TbFormaPagamento' => $TbFormaPagamento]);
+    }
+    public function financeiro_inserir_plano(Request $request)
+    {
+        $TbFormaPagamento = new TbFormaPagamento();
+        $TbFormaPagamento->nm_forma_pagamento = $request->plano;
+        $TbFormaPagamento->vl_fatura = $request->valorPlano;
+        $TbFormaPagamento->save();
+        return redirect('instituicao.financeiro');
     }
 
     public function transporte()

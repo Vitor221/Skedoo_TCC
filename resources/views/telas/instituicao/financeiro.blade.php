@@ -45,12 +45,37 @@
 
     <body>
         <div class="div-conteudo">
-            {{-- <form class="form-pag">
-                @csrf
-                <label for="">Adicionar forma de pagamento:</label><br>
-                <input type="text" placeholder="Escrava o nome da forma de pagamento">
-                <input type="submit" class="enviar">
-            </form> --}}
+            <div style="background-color:white;padding:1em; border-radius:1em;">
+                <form method="POST" action="{{route('instituicao.financeiro.plano')}}">
+                    @csrf
+                    <label>Insira um nome para plano:</label>
+                    <input type="text" name="plano" class="texto">
+                    <label>Insira um valor para o plano:</label>
+                    <input type="text" name="valorPlano" class="texto">
+                    <button type="submit" class="enviar">Enviar</button>
+                </form>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="nome t-head-title">Plano</th>
+                            <th class="nome t-head-title">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      @foreach ($TbFormaPagamento as $FormaPagamento)
+                          <tr>
+                              <td class="nome">{{$FormaPagamento->nm_forma_pagamento}}</td></td>
+                              <td class="nome">{{ $FormaPagamento->vl_fatura}}</td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+                  
+                </table><
+            </div>
+        </div>
+        <br>
+        <div class="div-conteudo">
             <div class="div-tabela">
               <h2 style="color: white">Tabela de Pagamentos</h2>
               <table>

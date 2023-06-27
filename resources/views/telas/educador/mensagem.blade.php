@@ -30,13 +30,18 @@
 
 @section('content')
 <div class="search" id="pesquisa" style="display:none;">
-    <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()" autocomplete="off">
-</div>
-<div class="resultados" id="resultados">
-</div>
+        <input type="text" id="search-input" placeholder="Pesquisar usuários" onkeyup="pesquisando()">
+    </div>
+    <div class="div-resultados" id="div-resultados">
+        <div class="resultados" id="resultados">
+        </div>
+    </div>
     <div class="div-conteudo">
-        <div class="div-usuarios">
-            <h3>Usuários</h3>
+        <div class="div-usuarios" id="div-usuarios">
+            <div class="flex">
+                <h3>Usuários</h3>
+                <button id="abreUsuarios"  class="pesquisar" onclick="fechaUsuarios()" style="margin-left: auto;"><i class="uil uil-times"></i></button>
+            </div>
             <div class="usuarios">
                 <h5 class="tt-usuarios">Instituição</h5>
                 @foreach ($TbInstituicao as $TbInstituicao)
@@ -55,21 +60,25 @@
         <div class="block">
             <div class="div-mensagens">
                 <div class="topo-mensagens flex">
-                    <button id="abrePesquisa" class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button>
-                <button id="fechaPesquisa"class="pesquisar" onclick="fechaPesquisar()" style="display:none;"><i class="uil uil-times"></i></button>
+                    <div style="margin-right:auto;min-width:85px;">
+                        <button id="abrePesquisa" class="pesquisar" onclick="pesquisar()"><i class="uil uil-search"></i></button>
+                        <button id="fechaPesquisa"class="pesquisar" onclick="fechaPesquisar()" style="display:none;"><i class="uil uil-times"></i></button>
+                        <button id="abreUsuarios"class="pesquisar" onclick="usuarios()"><i class="uil uil-list-ul"></i></button>
+                    </div>
                     <h3 id="nomeChat">Nome do destinatario</h3>
                 </div>
                 <div id="div-mensagens" class="mensagens">
-                    <h3 style="height:100%; width:100%; text-align:center; margin-top:10%">Carregando...</h3>
+                    <h3 style='height:100%; width:100%; text-align:center; display: flex; justify-content: center; align-items: center;'>Carregando...</h3>
                 </div>
             </div>
             <div class="div-form">
                 <div class="form-mensagem" action="">
-                    <input type="text" id="mensagem" autocomplete="off">
+                    <input type="text" id="mensagem" onblur="removerTagsHTML(this)" autocomplete="off">
                     <button onclick="enviarMensagem()">Enviar</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/configChat.js') }}"></script>
 @endsection

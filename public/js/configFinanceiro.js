@@ -4,10 +4,13 @@ for (let i = 0; i < formaPag.length; i++) {
     const elementForma = formaPag[i];
     const valorForma = elementForma.innerHTML;
     if (valorForma == '1') {
-        elementForma.innerHTML = 'À vista';
+        elementForma.innerHTML = 'Mensal';
     }
     if (valorForma == '2') {
-        elementForma.innerHTML = 'À prazo';
+        elementForma.innerHTML = 'Bimestral';
+    }
+    if (valorForma == '3') {
+        elementForma.innerHTML = 'Trimestral';
     }
 }
 for (let i = 0; i < statusPag.length; i++) {

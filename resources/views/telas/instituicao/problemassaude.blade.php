@@ -34,41 +34,43 @@
 
         <div style="background-color: white;border-radius: 2em;padding:3em;">
             <h2 style="color:#6aa39e;">Indique o problema de saúde de determinado aluno.</h2>
-            <form action="{{route('instituicao.problemassaude.insert')}}" method="POST">
+            <form action="{{ route('instituicao.problemassaude.insert') }}" method="POST">
                 @csrf
                 <div class="grupo_input">
                     <div class="input_box">
                         <label>Nome do Aluno</label>
-                        <input type="text" autocomplete="off" id="nome" name="nome" autocomplete="off" onkeyup="pesquisando()">
+                        <input type="text" autocomplete="off" id="nome" name="nome" autocomplete="off"
+                            onkeyup="pesquisando()">
                     </div>
                     <div class="resultados" id="resultados">
                     </div>
-
-                    <div class="input_box">
-                        <label>Tipos de Problema</label>
-                        <select class="dropdown" name="tipos" id="tipos">
-                            <option class="opcao" value="0">Selecione</option>
-                            <option class="opcao" value="cardiaco">Cardíaco</option>
-                            <option class="opcao" value="respiratorio">Respiratório</option>
-                            <option class="opcao" value="alergico">Alérgico</option>
-                            <option class="opcao" value="outro">Outro</option>
-                        </select>
+                    <div style="display: flex; width:100%; padding:auto;">
+                        <div class="input_box" style="width: 15em;">
+                            <label>Tipos de Problema</label>
+                            <select class="dropdown" name="tipos" id="tipos">
+                                <option class="opcao" value="0">Selecione</option>
+                                <option class="opcao" value="cardiaco">Cardíaco</option>
+                                <option class="opcao" value="respiratorio">Respiratório</option>
+                                <option class="opcao" value="alergico">Alérgico</option>
+                                <option class="opcao" value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input_box" style="margin-left: 3em" style="width: 15em;">
+                            <label>Gravidade</label>
+                            <select class="dropdown" name="grav" id="grav">
+                                <option class="opcao" value="0">Selecione</option>
+                                <option class="opcao" value="Gravissima">Gravíssima</option>
+                                <option class="opcao" value="Grave">Grave</option>
+                                <option class="opcao" value="Moderada">Moderada</option>
+                            </select>
+                        </div>
+                        <div class="input_box" style=" margin-left:3em; width: 100%">
+                            <label>Nome do Problema</label>
+                            <input id="input-cel" autocomplete="off" type="text" id="nomedoproblema" name="nomedoproblema">
+                        </div>
                     </div>
 
-                    <div class="input_box">
-                        <label>Gravidade</label>
-                        <select class="dropdown" name="grav" id="grav">
-                            <option class="opcao" value="0">Selecione</option>
-                            <option class="opcao" value="Gravissima">Gravíssima</option>
-                            <option class="opcao" value="Grave">Grave</option>
-                            <option class="opcao" value="Moderada">Moderada</option>
-                        </select>
-                    </div>
-
-                    <div class="input_box">
-                        <label>Nome do Problema</label>
-                        <input id="input-cel" autocomplete="off" type="text" id="nomedoproblema" name="nomedoproblema">
-                    </div>
                 </div>
 
                 <div class="input_box">
@@ -88,191 +90,193 @@
             <h3 style="text-align: center">Quadro de Saúde</h3>
         </div>
         <br>
-        @if(isset($TbAlunos))
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Gravidade</th>
-                <th><th>Opções</th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($TbAlunos as $aluno)
-                @if($aluno->nm_grav_saude === 'Gravissima')
-
-                    <tr class="gravissima">
-                        <td>{{ $aluno->nm_aluno }}</td>
-                        <td>{{ $aluno->nm_grav_saude }}</td>
-                        <td class="botoes">
-                            <form method="GET"
-                                action="">
-                                <button type="button" class="btn btn-primary ver" data-bs-toggle="modal" data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>
-                            </form>
-                        </td>
-                        <td class="botoes">
-                            <form method="GET"
-                                action="">
-                                <button class="editar">Editar</button>
-                            </form>
-                        </td>
-                        <td class="botoes">
-                            <form method="POST"
-                                action="">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="deletar" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{ $aluno->cd_aluno }}"><i class="uil uil-trash-alt"></i></button>
-                            </form>
-                        </td>
+        @if (isset($TbAlunos))
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Gravidade</th>
+                        <th>
+                        <th>Opções</th>
+                        </th>
+                        <th></th>
                     </tr>
-                @elseif($aluno->nm_grav_saude === 'Grave')
-                    <tr class="grave">
-                        <td>{{ $aluno->nm_aluno }}</td>
-                        <td>{{ $aluno->nm_grav_saude }}</td>
-                       <td class="botoes">
-                            <form method="GET"
-                                action="">
-                                <button type="button" class="btn btn-primary ver" data-bs-toggle="modal" data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>                            </form>
-                        </td>
-                        <td class="botoes">
-                            <form method="GET"
-                                action="">
-                                <button class="editar">Editar</button>
-                            </form>
-                        </td>
-                        <td class="botoes">
-                            <form method="POST"
-                                action="">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="deletar" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{ $aluno->cd_aluno }}"><i class="uil uil-trash-alt"></i></button>
-                            </form>
-                        </td>
+                </thead>
+                <tbody>
+                    @foreach ($TbAlunos as $aluno)
+                        @if ($aluno->nm_grav_saude === 'Gravissima')
+                            <tr class="gravissima">
+                                <td>{{ $aluno->nm_aluno }}</td>
+                                <td>{{ $aluno->nm_grav_saude }}</td>
+                                <td class="botoes">
+                                    <form method="GET" action="">
+                                        <button type="button" class="btn btn-primary ver" data-bs-toggle="modal"
+                                            data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>
+                                    </form>
+                                </td>
+                                <td class="botoes">
+                                    <form method="GET" action="">
+                                        <button class="editar">Editar</button>
+                                    </form>
+                                </td>
+                                <td class="botoes">
+                                    <form method="POST" action="">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="deletar" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop-{{ $aluno->cd_aluno }}"><i
+                                                class="uil uil-trash-alt"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @elseif($aluno->nm_grav_saude === 'Grave')
+                            <tr class="grave">
+                                <td>{{ $aluno->nm_aluno }}</td>
+                                <td>{{ $aluno->nm_grav_saude }}</td>
+                                <td class="botoes">
+                                    <form method="GET" action="">
+                                        <button type="button" class="btn btn-primary ver" data-bs-toggle="modal"
+                                            data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>
+                                    </form>
+                                </td>
+                                <td class="botoes">
+                                    <form method="GET" action="">
+                                        <button class="editar">Editar</button>
+                                    </form>
+                                </td>
+                                <td class="botoes">
+                                    <form method="POST" action="">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="deletar" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop-{{ $aluno->cd_aluno }}"><i
+                                                class="uil uil-trash-alt"></i></button>
+                                    </form>
+                                </td>
 
-                    </tr>
-                @elseif($aluno->nm_grav_saude === 'Moderada')
-                    <tr class="moderada">
-                        <td>{{ $aluno->nm_aluno }}</td>
-                        <td>{{ $aluno->nm_grav_saude }}</td>
-                        <td class="botoes">
-                            <form method="GET"
-                                action="">
-                                <button type="button" class="btn btn-primary ver" data-bs-toggle="modal" data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>                            </form>
-                        </td>
-                        <td class="botoes">
-                            <form method="GET"
-                                action="">
-                                <button class="editar">Editar</button>
-                            </form>
-                        </td>
-                        <td class="botoes">
-                            <form method=""
-                                action="">
-                                @csrf
-                                @method('DELETE')
-                     <button type="button" class="deletar" data-bs-toggle="modal" data-bs-target="#staticBackdrop-{{ $aluno->cd_aluno }}"><i class="uil uil-trash-alt"></i></button>
+                            </tr>
+                        @elseif($aluno->nm_grav_saude === 'Moderada')
+                            <tr class="moderada">
+                                <td>{{ $aluno->nm_aluno }}</td>
+                                <td>{{ $aluno->nm_grav_saude }}</td>
+                                <td class="botoes">
+                                    <form method="GET" action="">
+                                        <button type="button" class="btn btn-primary ver" data-bs-toggle="modal"
+                                            data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>
+                                    </form>
+                                </td>
+                                <td class="botoes">
+                                    <form method="GET" action="">
+                                        <button class="editar">Editar</button>
+                                    </form>
+                                </td>
+                                <td class="botoes">
+                                    <form method="" action="">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="deletar" data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop-{{ $aluno->cd_aluno }}"><i
+                                                class="uil uil-trash-alt"></i></button>
 
 
-                
 
-                            </form>
-                        </td>
-                    </tr>
-                    @endif
-                    <!-- Modal Visualizar-->
- <div class="modal fade" id="modal-{{ $aluno->cd_aluno}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog"> 
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Visualizar Saúde</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <p>Nome do Aluno :  {{ $aluno->nm_aluno }}</p>
-        <p>Gravidade : {{ $aluno->nm_grav_saude }}</p>
-        <p> Tipo : {{$aluno->nm_tipo_ps}}</p>
-        <p> Nome da Situação: {{$aluno -> nm_problema_saude}} </p>
-        <p>Descrição:  {{$aluno -> ds_problema_saude}}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-  
-      </div>
+
+                                    </form>
+                                </td>
+                            </tr>
+                        @endif
+                        <!-- Modal Visualizar-->
+                        <div class="modal fade" id="modal-{{ $aluno->cd_aluno }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Visualizar Saúde</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Nome do Aluno : {{ $aluno->nm_aluno }}</p>
+                                        <p>Gravidade : {{ $aluno->nm_grav_saude }}</p>
+                                        <p> Tipo : {{ $aluno->nm_tipo_ps }}</p>
+                                        <p> Nome da Situação: {{ $aluno->nm_problema_saude }} </p>
+                                        <p>Descrição: {{ $aluno->ds_problema_saude }}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Fechar</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fim modal Visualizar -->
+
+                        <!-- Modal Excluir -->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop-{{ $aluno->cd_aluno }}" data-bs-backdrop="static"
+                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Excluir situação saúde?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Você tem certeza que deseja excluir a situação de saúde de {{ $aluno->nm_aluno }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Fechar</button>
+                                        <form method="POST"
+                                            action="{{ route('instituicao.problemassaude.delete', ['id' => $aluno->cd_aluno]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-primary">Excluir</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Fim modal Excluir -->
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
-  </div>
-</div>
-<!-- Fim modal Visualizar -->
-
-<!-- Modal Excluir -->
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop-{{ $aluno->cd_aluno }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Excluir situação saúde?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Você tem certeza que deseja excluir a situação de saúde de {{$aluno->nm_aluno}}?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <form method="POST" action="{{ route('instituicao.problemassaude.delete', ['id' => $aluno->cd_aluno]) }}">
-          @csrf
-          @method('DELETE')
-          <button type="submit" class="btn btn-primary">Excluir</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- Fim modal Excluir -->
-
-        
-            @endforeach
-        </tbody>
-    </table>
-
-
- 
-
-
-
-@endif
-    </div>
-    <script src="{{asset('js/configSaude.js')}}"></script>
+    <script src="{{ asset('js/configSaude.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.4.1.js"></script>
     <script>
-$(document).ready(function() {
-    $('#nome').on('input', function() {
-        var query = $(this).val();
+        $(document).ready(function() {
+            $('#nome').on('input', function() {
+                var query = $(this).val();
 
-        if (query.length >= 2) {
-            $.ajax({
-                url: '/saude',
-                dataType: 'json',
-                data: {
-                    term: query
-                },
-                success: function(data) {
-                    $('#saude-results').empty();
+                if (query.length >= 2) {
+                    $.ajax({
+                        url: '/saude',
+                        dataType: 'json',
+                        data: {
+                            term: query
+                        },
+                        success: function(data) {
+                            $('#saude-results').empty();
 
-                    $.each(data, function(key, value) {
-                        $('#saude-results').append('<li>' + value + '</li>');
+                            $.each(data, function(key, value) {
+                                $('#saude-results').append('<li>' + value + '</li>');
+                            });
+                        }
                     });
+                } else {
+                    $('#saude-results').empty();
                 }
             });
-        } else {
-            $('#saude-results').empty();
-        }
-    });
-});
-</script>
+        });
+    </script>
 @endsection

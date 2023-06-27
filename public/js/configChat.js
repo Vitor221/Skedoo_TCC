@@ -72,7 +72,15 @@ function atualizarMensagens() {
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            Object.entries(data).forEach(([key, mensagem]) => {             
+            Object.entries(data).forEach(([key, mensagem]) => {
+                var horario = mensagem.hora;;
+                var partes = horario.split(":");
+                var hora = partes[0];
+                var minuto = partes[1];
+                var horarioFormatado = hora + ":" + minuto;
+
+                console.log(horarioFormatado); // Saída: "15:39"
+
                 if (
                     mensagem.remetente == id_destinatario &&
                     mensagem.destinatario == id_remetente &&
@@ -93,14 +101,14 @@ function atualizarMensagens() {
                             "<div class='mensagem enviada'><p>" +
                             mensagem.mensagem +
                             "</p><span class='infomensagem'>" +
-                            mensagem.data +
+                            mensagem.data + ' ' + horarioFormatado +
                             "<i class='uil uil-eye'></i></span></div>";
                     } else {
                         novaMensagem +=
                             "<div class='mensagem enviada'><p>" +
                             mensagem.mensagem +
                             "</p><span class='infomensagem'>" +
-                            mensagem.data +
+                            mensagem.data + ' ' + horarioFormatado +
                             "<i class='uil uil-eye-slash'></i></span></div>";
                     }
                 }
@@ -112,7 +120,7 @@ function atualizarMensagens() {
                         "<div class='mensagem recebida'><p>" +
                         mensagem.mensagem +
                         "</p><span>" +
-                        mensagem.data +
+                        mensagem.data + ' ' + horarioFormatado +
                         "</span></div>";
                 }
             });
