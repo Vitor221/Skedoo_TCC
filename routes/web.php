@@ -137,6 +137,8 @@ Route::group(['middleware' => ['loginAccess']], function() {
     
     Route::get('instituicao/saude', [InstituicaoController::class, 'problemassaude'])->name('instituicao.problemassaude');  
     Route::post('instituicao/saude/insert', [InstituicaoController::class, 'problemassaude_insert'])->name('instituicao.problemassaude.insert');  
+    Route::delete('instituicao/saude/{id}', [InstituicaoController::class, 'deletar_problemasaude'])->name('instituicao.problemassaude.delete');
+
 
     Route::get('instituicao/financeiro', [InstituicaoController::class, 'financeiro'])->name('instituicao.financeiro');
     

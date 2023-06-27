@@ -116,6 +116,21 @@ public function visualizar_problemassaude($id)
     ]);
 }
 
+
+public function deletar_problemasaude($id)
+{
+    $aluno = TbAluno::findOrFail($id);
+
+    $aluno->nm_grav_saude = '';
+    $aluno->nm_tipo_ps = '';
+    $aluno->nm_problema_saude = '';
+    $aluno->ds_problema_saude = '';
+
+    $aluno->save();
+
+        return redirect()->route('instituicao.problemassaude');
+        
+}
    
     
 
