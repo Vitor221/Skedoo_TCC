@@ -109,7 +109,7 @@
                         <td class="botoes">
                             <form method="GET"
                                 action="">
-                                <button type="submit" class="ver">Vizualizar</button>
+                                <button type="button" class="btn btn-primary ver" data-bs-toggle="modal" data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>
                             </form>
                         </td>
                         <td class="botoes">
@@ -134,8 +134,7 @@
                        <td class="botoes">
                             <form method="GET"
                                 action="">
-                                <button type="submit" class="ver">Vizualizar</button>
-                            </form>
+                                <button type="button" class="btn btn-primary ver" data-bs-toggle="modal" data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>                            </form>
                         </td>
                         <td class="botoes">
                             <form method="GET"
@@ -160,8 +159,7 @@
                         <td class="botoes">
                             <form method="GET"
                                 action="">
-                                <button type="submit" class="ver">Vizualizar</button>
-                            </form>
+                                <button type="button" class="btn btn-primary ver" data-bs-toggle="modal" data-bs-target="#modal-{{ $aluno->cd_aluno }}">Vizualizar</button>                            </form>
                         </td>
                         <td class="botoes">
                             <form method="GET"
@@ -177,12 +175,42 @@
                      <button type="submit" class="deletar"><i class="uil uil-trash-alt"></i></button>
                             </form>
                         </td>
-
                     </tr>
-                @endif
+                    @endif
+                    <!-- Modal -->
+ <div class="modal fade" id="modal-{{ $aluno->cd_aluno}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog"> 
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Visualizar Saúde</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <p>Nome do Aluno :  {{ $aluno->nm_aluno }}</p>
+        <p>Gravidade : {{ $aluno->nm_grav_saude }}</p>
+        <p> Tipo : {{$aluno->nm_tipo_ps}}</p>
+        <p> Nome da Situação: {{$aluno -> nm_problema_saude}} </p>
+        <p>Descrição:  {{$aluno -> ds_problema_saude}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+  
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        
             @endforeach
         </tbody>
     </table>
+
+
+ 
+
+
+
 @endif
     </div>
     <script src="{{asset('js/configSaude.js')}}"></script>

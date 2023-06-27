@@ -95,7 +95,7 @@
     </div>
 
     <div class="text_card">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quam expedita ullam esse?</p>
+      <p>O curso de desenvolvimento de sistemas foi incrível! Aprendi muito e me sinto realizado por ter concluído o programa.</p>
     </div>
     <div class="star_card">
       <img src="{{ asset('img/img_home/cinco_estrelas.png') }}" alt="">
@@ -110,7 +110,7 @@
     </div>
 
     <div class="text_card">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quam expedita ullam esse?</p>
+      <p>Foi uma experiência gratificante desenvolver para a web. Aprendemos novas habilidades e nos sentimos orgulhosos do que conquistamos.</p>
     </div>
 
     <div class="star_card">
@@ -121,12 +121,12 @@
   <div class="cards">
     <div class="title_card">
       <div class="photo_icon"></div>
-      <h3>Fernando <p>Coordenador</p>
+      <h3>Matheus <p>Coordenador</p>
       </h3>
     </div>
 
     <div class="text_card">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quam expedita ullam esse?</p>
+      <p>Desenvolver com Laravel nos trouxe uma sensação de missão cumprida. Estamos felizes com o resultado final e com a experiência adquirida ao longo do processo.</p>
     </div>
 
     <div class="star_card">
