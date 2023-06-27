@@ -63,12 +63,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                      @foreach ($TbFormaPagamento as $FormaPagamento)
-                          <tr>
-                              <td class="nome">{{$FormaPagamento->nm_forma_pagamento}}</td></td>
-                              <td class="nome">{{ $FormaPagamento->vl_fatura}}</td>
-                          </tr>
-                      @endforeach
+                        @foreach ($TbFormaPagamento as $FormaPagamento)
+                        <tr>
+                            <td class="nome">{{$FormaPagamento->nm_forma_pagamento}}</td>
+                            <td class="botoes">
+                                <form method="GET" action="">
+                                    <button type="button" class="btn btn-primary ver" data-bs-toggle="modal"
+                                        data-bs-target="#modal-{{$FormaPagamento->id}}">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    
+                        <div class="modal fade" id="modal-{{$FormaPagamento->id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel{{$FormaPagamento->id}}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel{{$FormaPagamento->id}}">Excluir plano de contrato</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Você não pode excluir este plano, pois há clientes utilizando-o.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    
                   </tbody>
                   
                 </table><

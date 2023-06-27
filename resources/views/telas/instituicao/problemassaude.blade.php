@@ -196,11 +196,11 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Nome do Aluno : {{ $aluno->nm_aluno }}</p>
-                                        <p>Gravidade : {{ $aluno->nm_grav_saude }}</p>
-                                        <p> Tipo : {{ $aluno->nm_tipo_ps }}</p>
-                                        <p> Nome da Situação: {{ $aluno->nm_problema_saude }} </p>
-                                        <p>Descrição: {{ $aluno->ds_problema_saude }}</p>
+                                       <strong> <p>Nome do Aluno : </strong> {{ $aluno->nm_aluno }}</p>
+                                       <strong> <p>Gravidade :</strong> {{ $aluno->nm_grav_saude }}</p>
+                                       <strong> <p> Tipo :</strong> {{ $aluno->nm_tipo_ps }}</p>
+                                       <strong> <p> Nome da Situação:</strong> {{ $aluno->nm_problema_saude }} </p>
+                                       <strong> <p>Descrição:</strong> {{ $aluno->ds_problema_saude }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -221,7 +221,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Excluir situação saúde?</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Excluir situação saúde</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
