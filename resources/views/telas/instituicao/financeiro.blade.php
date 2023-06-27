@@ -46,13 +46,13 @@
     <body>
         <div class="div-conteudo">
             <div style="background-color:white;padding:1em; border-radius:1em;">
-                <form method="POST" action="{{route('instituicao.financeiro.plano')}}">
+                <form method="POST" action="{{route('instituicao.financeiro.plano')}}" style="display:flex;">
                     @csrf
                     <label>Insira um nome para plano:</label>
                     <input type="text" name="plano" class="texto">
                     <label>Insira um valor para o plano:</label>
                     <input type="text" name="valorPlano" class="texto">
-                    <button type="submit" class="enviar">Enviar</button>
+                    <button type="submit" class="enviar"style="margin-left:auto;">Enviar</button>
                 </form>
                 <br>
                 <table>
@@ -60,12 +60,14 @@
                         <tr>
                             <th class="nome t-head-title">Plano</th>
                             <th class="nome t-head-title">Valor</th>
+                            <th class="nome t-head-title"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($TbFormaPagamento as $FormaPagamento)
                         <tr>
                             <td class="nome">{{$FormaPagamento->nm_forma_pagamento}}</td>
+                            <td class="nome">{{$FormaPagamento->vl_fatura}}</td>
                             <td class="botoes">
                                 <form method="GET" action="">
                                     <button type="button" class="btn btn-primary ver" data-bs-toggle="modal"
