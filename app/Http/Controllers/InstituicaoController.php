@@ -240,8 +240,11 @@ public function deletar_problemasaude($id)
         $TbFormaPagamento = new TbFormaPagamento();
         $TbFormaPagamento->nm_forma_pagamento = $request->plano;
         $TbFormaPagamento->vl_fatura = $request->valorPlano;
+        $registro = TbFormaPagamento::latest('cd_forma_pagamento')->first();
+        $cdNovo = $registro->cd_forma_pagamento+1;
+        $TbFormaPagamento->cd_forma_pagamento = $cdNovo;
         $TbFormaPagamento->save();
-        return redirect('instituicao.financeiro');
+        return redirect()->route('instituicao.financeiro');
     }
 
     public function transporte()
