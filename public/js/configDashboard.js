@@ -3,7 +3,6 @@ function teste() {
     fetch('/dashboard')
         .then(response => response.json())
         .then(data => {
-            console.log(data.recebimentoPorMes);
             var numAlunos = [];
             var numResponsaveis = [];
             var valoresRecebidos = [];

@@ -100,8 +100,6 @@
         </div>
     </div><br><br>
 
-    <!-- Cotando total de clientes responsaveis -->
-
     <!-- RECEBIMENTO POR MES -->
     <div class="container">
         <div class="div-infos">
@@ -130,29 +128,6 @@
             </ul>
         </div>
     </div>
-
-
-    <!-- Div Pagamento -->
-    {{-- <div class="container">
-        <H3> PAGAMENTO </H3>
-        <div class="">
-            <table>
-                <thead>
-                    <th scope="col">Status</th>
-                    <th scope="col">Quant.</th>
-                    <th scope="col">Visualizar</th>
-                </thead>
-
-                <tbody>
-                    @foreach ($responsaveis as $responsavel)
-                        <p>Status: {{ $responsavel->nm_status_pagamento }}</p>
-                        <p>Quantidade: {{ $responsavel->quantidade }}</p>
-                    @endforeach
-                </tbody>
-
-            </table>
-        </div>
-    </div> --}}
     <br>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
